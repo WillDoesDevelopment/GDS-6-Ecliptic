@@ -1,2 +1,2 @@
-# GDS-6-Astrology-game
+# GDS-6-Ecliptic
 An indie game that tells the stories in the stars
