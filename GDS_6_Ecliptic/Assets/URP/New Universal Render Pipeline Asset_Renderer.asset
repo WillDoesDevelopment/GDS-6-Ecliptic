@@ -17,7 +17,7 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: 7166093972081736280}
   m_RendererFeatureMap: 58faff0080147363
-  m_UseNativeRenderPass: 0
+  m_UseNativeRenderPass: 1
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -35,13 +35,13 @@ MonoBehaviour:
   m_AssetVersion: 2
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_TransparentLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_DefaultStencilState:
     overrideStencilState: 0
-    stencilReference: 0
+    stencilReference: 6
     stencilCompareFunction: 8
     passOperation: 2
     failOperation: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_AccurateGbufferNormals: 0
   m_ClusteredRendering: 0
   m_TileSize: 32
-  m_IntermediateTextureMode: 1
+  m_IntermediateTextureMode: 0
 --- !u!114 &7166093972081736280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35df192534a010148938192ae7be2e58, type: 3}
   m_Name: ScreenSpaceOutlines
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   renderPassEvent: 300
   outlinesLayerMask:
     serializedVersion: 2
@@ -76,16 +76,16 @@ MonoBehaviour:
     m_Bits: 0
   outlineSettings:
     outlineColor: {r: 0, g: 0, b: 0, a: 1}
-    outlineScale: 2.2
-    depthThreshold: 61
-    robertsCrossMultiplier: 259
-    normalThreshold: 0.518
+    outlineScale: 0.8
+    depthThreshold: 4
+    robertsCrossMultiplier: 500
+    normalThreshold: 0.57
     steepAngleThreshold: 0
-    steepAngleMultiplier: 0
+    steepAngleMultiplier: 5
   viewSpaceNormalsTextureSettings:
     colorFormat: 9
     depthBufferBits: 74
-    filterMode: 0
+    filterMode: 2
     backgroundColor: {r: 0, g: 0, b: 0, a: 1}
     perObjectData: -1
     enableDynamicBatching: 1
