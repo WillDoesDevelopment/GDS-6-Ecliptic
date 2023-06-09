@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Outline
-  m_Shader: {fileID: 4800000, guid: e9b73dc06b393134ba7953c30c49b6a1, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9768959cae7395346a7a181574264759, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -20,13 +20,17 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
+    - _NoiseTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Thickness: 0.3
+    - _Lerp: 0
+    - _NOISE: 0
+    - _Offset: 0.5
+    - _Outline: 0.016
+    - _OutlineZ: -0.0002
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
