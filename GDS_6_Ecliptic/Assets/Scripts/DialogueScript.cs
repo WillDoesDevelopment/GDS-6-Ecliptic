@@ -33,6 +33,7 @@ public class DialogueScript : MonoBehaviour
         }
     }
 
+
     public void Proximity()
     {
         Animator EnterAnim = EnterText.GetComponent<Animator>();
