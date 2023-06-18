@@ -8,6 +8,11 @@ Shader "Unlit/InkOutline"
         _NoiseTex("Noise (RGB)", 2D) = "white" { }// noise texture
         _Lerp("Lerp between normals and vertex based", Range(0, 1)) = 0// outline z offset
         [Toggle(NOISE)] _NOISE("Enable Noise?", Float) = 0
+
+        _EmissionMap("Emission Map", 2D) = "black" {}/////////////////
+        [HDR] _EmissionColor("Emission Color", Color) = (0,0,0,0)/////////////
+        _Emission("Emission", Range(0, 100)) = 50
+            _MainTex("Albedo", 2D) = "white" {}
     }
 
         HLSLINCLUDE
@@ -22,7 +27,7 @@ Shader "Unlit/InkOutline"
         };
 
         struct v2f {
-            float4 pos : SV_POSITION;
+            float4 pos : POSITION;
             float4 color : COLOR;
         };
 
@@ -31,6 +36,14 @@ Shader "Unlit/InkOutline"
         uniform float4 _OutlineColor;
         sampler2D _NoiseTex;// noise texture
         float _Offset, _Lerp; // noise offset
+
+        uniform float4 _EmissionColor;
+        uniform float _Emission;
+        uniform sampler2D _EmissionMap
+
+        //uniform fixed4 _MainTex;
+        //uniform fixed4 albedo;
+
 
         v2f vert(appdata v) {
             v2f o;
@@ -53,6 +66,11 @@ Shader "Unlit/InkOutline"
             float2 offset = mul((float2x2)UNITY_MATRIX_P, float2(lerp(norm.x, vert.x, _Lerp), lerp(norm.y, vert.y, _Lerp)));
             // texture for noise
             float4 tex = tex2Dlod(_NoiseTex, float4(v.texcoord.xy, 0, 0) * _Offset);// noise texture based on texture coordinates and offset
+            
+            half4 outputvar = half4(_OutlineColor.rgb, _OutlineColor.a);
+            half4 emission = tex2Dlod(_EmissionMap, float4(v.uv, 0, 0)) * _EmissionColor;
+            outputvar.rgb += emission.rgb;
+
 
 #if NOISE // switch for noise
             o.pos.xy += offset * _Outline * tex.r;// add noise 
@@ -60,8 +78,10 @@ Shader "Unlit/InkOutline"
             o.pos.xy += offset * _Outline;// or not
 #endif
             o.pos.z += _OutlineZ;// push away from camera
+             
+            o.color += outputvar;
+       
 
-            o.color = _OutlineColor;
             return o;
         }
         ENDHLSL
