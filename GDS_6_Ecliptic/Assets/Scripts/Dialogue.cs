@@ -7,6 +7,6 @@ public class Dialogue
 {
     public string[] sentances;
     public string name;
-
+    public Sprite DialogueImage;
 
 }

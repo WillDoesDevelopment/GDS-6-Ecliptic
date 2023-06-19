@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
     public GameObject EnterText;
     public TextMeshProUGUI DialogueText;
+    public TextMeshProUGUI NameText;
+    public Image SpriteUI;
 
     public Animator TextAnim;
     //public GameObject player;
@@ -44,6 +47,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        SpriteUI.GetComponent<Image>().sprite = dialogue.DialogueImage;
+        NameText.text = dialogue.name;
         TextAnim.SetBool("PopUp", true);
         Debug.Log("Working");
         Sentences.Clear();
@@ -73,7 +78,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             DialogueText.text += letter;
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.05f);
         }
     }
 
