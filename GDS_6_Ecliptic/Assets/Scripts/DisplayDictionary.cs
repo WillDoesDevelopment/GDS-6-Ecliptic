@@ -5,12 +5,13 @@ using UnityEngine;
 public class DisplayDictionary : MonoBehaviour
 {
     [SerializeField]
-    public Dictionary<GameObject, float> keyValuePairs = new Dictionary<GameObject, float>();
+    public Dictionary<GameObject, float> TestDict = new Dictionary<GameObject, float>();
 
-    public GameObject PlaceHolder;
+
+    //public GameObject PlaceHolder;
     void Start()
     {
-        keyValuePairs.Add(PlaceHolder, 5f);
+        //keyValuePairs.Add(PlaceHolder, 5f);
     }
 
     // Update is called once per frame
