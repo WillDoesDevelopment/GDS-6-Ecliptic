@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    //Movement
     public float movSpeed = 0;
+
+    float inputX;
+    float inputZ;
+    public float _rotation;
+    float _velocity;
+    public float yRotation;
+
+    public Vector3 moveVector;
 
     public Rigidbody RB;
     // Start is called before the first frame update
@@ -21,29 +30,21 @@ public class PlayerScript : MonoBehaviour
 
     private void movment()
     {
-        if (Input.GetKey(KeyCode.A))
+        //Input
+        inputX = Input.GetAxis("Horizontal");
+        inputZ = Input.GetAxis("Vertical");
+
+        //Translation
+        moveVector = Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f) * movSpeed;
+        RB.velocity = moveVector;
+
+        //Rotation
+        if(moveVector != Vector3.zero)
         {
-            //transform.position += Vector3.left*Time.deltaTime * movSpeed;
-            //RB.AddForce(Vector3.left * movSpeed);
-            RB.velocity = Vector3.left * movSpeed;
+            yRotation = Mathf.Atan2(moveVector.z, moveVector.x) * Mathf.Rad2Deg * -1f + 90f;
+            _rotation = Mathf.SmoothDampAngle(_rotation, yRotation, ref _velocity, 0.1f);
+            transform.rotation = Quaternion.Euler(0f, _rotation, 0f);
         }
-        if (Input.GetKey(KeyCode.S))
-        {
-            //transform.position += Vector3.back * Time.deltaTime * movSpeed;
-            //RB.AddForce(Vector3.back * movSpeed);
-            RB.velocity = Vector3.back * movSpeed;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            //transform.position += Vector3.right * Time.deltaTime * movSpeed;
-            //RB.AddForce(Vector3.right * movSpeed);
-            RB.velocity = Vector3.right * movSpeed;
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            //transform.position += Vector3.forward * Time.deltaTime * movSpeed;
-            //RB.AddForce(Vector3.forward * movSpeed);
-            RB.velocity =Vector3.forward * movSpeed;
-        }
+        
     }
 }
