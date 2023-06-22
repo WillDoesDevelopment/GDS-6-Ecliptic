@@ -16,6 +16,8 @@ public class CamMovment : MonoBehaviour
     public Transform RoomLeftPos;
     public Transform RoomRightPos;
 
+    public PlayerScript Ps;
+
     // Start is called before the first frame update
     void Start()
     {
