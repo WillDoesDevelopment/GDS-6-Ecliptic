@@ -15,16 +15,18 @@ public class PuzzleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float WeightVal = 0;
         weightsArr = Physics.OverlapSphere(Vector3.zero, 10);
 
         foreach (Collider c in weightsArr)
         {
-            if(c.GetComponent<Weight>() != null)
+            Weight weight = c.GetComponent<Weight>();
+            if (weight != null && c.GetComponent<Weight>().isColliding == true)
             {
-
-                Debug.Log(c.GetComponent<Weight>().isColliding);
+                WeightVal += weight.weight;
             }
         }
+        Debug.Log(WeightVal);
     }
 
 
