@@ -16,7 +16,7 @@ public class PuzzleManager : MonoBehaviour
     void Update()
     {
         float WeightVal = 0;
-        weightsArr = Physics.OverlapSphere(Vector3.zero, 1);
+        weightsArr = Physics.OverlapSphere(this.transform.position, 5);
 
         foreach (Collider c in weightsArr)
         {

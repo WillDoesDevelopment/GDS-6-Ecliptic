@@ -9,7 +9,7 @@ public class Weight : MonoBehaviour
 
     public bool isColliding = false;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         isColliding = true;
     }
