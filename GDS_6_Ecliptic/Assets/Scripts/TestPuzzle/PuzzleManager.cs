@@ -26,7 +26,7 @@ public class PuzzleManager : MonoBehaviour
                 WeightVal += weight.weight;
             }
         }
-        Debug.Log(WeightVal);
+        //Debug.Log(WeightVal);
     }
 
 
