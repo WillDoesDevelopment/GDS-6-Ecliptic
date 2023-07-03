@@ -28,13 +28,14 @@ public class PickUpScript : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, 3000))
             {
-                HoldingObj = hit.transform.gameObject;
-                if (HoldingObj.CompareTag("PickUp") && holding == false)
+
+                if (hit.transform.CompareTag("PickUp") && holding == false)
                 {
+                    HoldingObj = hit.transform.gameObject;
                     PickUp(HoldingObj);
                     holding = true;
                 }
-                else if (holding == true)
+                else if (holding == true && HoldingObj == hit.transform.gameObject)
                 {
                     PutDown(HoldingObj);
                     holding = false;
@@ -81,6 +82,7 @@ public class PickUpScript : MonoBehaviour
         Rigidbody RBTemp = HoldingObj.GetComponent<Rigidbody>();
         if (RBTemp != null)
         {
+            Debug.Log("working");
             RBTemp.constraints  = RigidbodyConstraints.None;
         }
     }

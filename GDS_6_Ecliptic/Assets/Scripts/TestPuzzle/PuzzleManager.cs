@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class PuzzleManager : MonoBehaviour
 {
     public Collider[] weightsArr;
     // Start is called before the first frame update
-
+    public TextMeshProUGUI ScaleValDisplay;
     void Start()
     {
         
@@ -16,7 +16,7 @@ public class PuzzleManager : MonoBehaviour
     void Update()
     {
         float WeightVal = 0;
-        weightsArr = Physics.OverlapSphere(this.transform.position, 5);
+        weightsArr = Physics.OverlapSphere(this.transform.position, 2);
 
         foreach (Collider c in weightsArr)
         {
@@ -26,6 +26,7 @@ public class PuzzleManager : MonoBehaviour
                 WeightVal += weight.weight;
             }
         }
+        ScaleValDisplay.text = WeightVal.ToString();
         //Debug.Log(WeightVal);
     }
 
