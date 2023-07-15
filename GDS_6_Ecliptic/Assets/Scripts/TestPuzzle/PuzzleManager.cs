@@ -7,9 +7,10 @@ public class PuzzleManager : MonoBehaviour
     public Collider[] weightsArr;
     // Start is called before the first frame update
     public TextMeshProUGUI ScaleValDisplay;
+    public Vector3 StartPos;
     void Start()
     {
-        
+        StartPos = this.transform.position;
     }
 
     // Update is called once per frame
@@ -26,6 +27,7 @@ public class PuzzleManager : MonoBehaviour
                 WeightVal += weight.weight;
             }
         }
+        //this.transform.position = StartPos - new Vector3(0, WeightVal/10, 0);
         ScaleValDisplay.text = WeightVal.ToString();
         //Debug.Log(WeightVal);
     }
