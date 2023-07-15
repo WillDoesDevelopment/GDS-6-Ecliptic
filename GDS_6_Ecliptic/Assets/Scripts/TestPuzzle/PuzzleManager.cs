@@ -8,6 +8,7 @@ public class PuzzleManager : MonoBehaviour
     // Start is called before the first frame update
     public TextMeshProUGUI ScaleValDisplay;
     public Vector3 StartPos;
+    public PuzzleManager OtherScale;
     void Start()
     {
         StartPos = this.transform.position;
@@ -27,9 +28,14 @@ public class PuzzleManager : MonoBehaviour
                 WeightVal += weight.weight;
             }
         }
+        
         //this.transform.position = StartPos - new Vector3(0, WeightVal/10, 0);
         ScaleValDisplay.text = WeightVal.ToString();
         //Debug.Log(WeightVal);
+        if (ScaleValDisplay.text == 20.ToString() && OtherScale.ScaleValDisplay.text == 20.ToString())
+        {
+            this.GetComponent<Renderer>().material.color = Color.green;
+        }
     }
 
 

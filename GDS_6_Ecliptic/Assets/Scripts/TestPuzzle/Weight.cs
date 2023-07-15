@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Weight : MonoBehaviour
 {
     public float weight;
     public Rigidbody RB;
+    public TextMeshProUGUI WeightTxt;
 
     public bool isColliding = false;
+    private void Awake()
+    {
+       WeightTxt =  this.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        WeightTxt.text = weight.ToString();
+    }
 
     private void OnCollisionStay(Collision collision)
     {
