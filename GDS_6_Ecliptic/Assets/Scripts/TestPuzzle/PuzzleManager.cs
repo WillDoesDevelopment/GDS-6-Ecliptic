@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class PuzzleManager : MonoBehaviour
 {
+    private bool isRunning = false;
     public Collider[] weightsArr;
 
     public int TargetVal;
@@ -19,7 +20,8 @@ public class PuzzleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float WeightVal = 0;
+
+        int WeightVal = 0;
         weightsArr = Physics.OverlapSphere(this.transform.position, 2);
 
         foreach (Collider c in weightsArr)
@@ -27,17 +29,39 @@ public class PuzzleManager : MonoBehaviour
             Weight weight = c.GetComponent<Weight>();
             if (weight != null && c.GetComponent<Weight>().isColliding == true)
             {
-                WeightVal += weight.weight;
+                WeightVal += (int)weight.weight;
             }
         }
         
-        //this.transform.position = StartPos - new Vector3(0, WeightVal/10, 0);
+        if(isRunning == false)
+        {
+            StartCoroutine(MoveScales(WeightVal));
+        }
+
         ScaleValDisplay.text = WeightVal.ToString();
-        //Debug.Log(WeightVal);
+
         if (ScaleValDisplay.text == TargetVal.ToString() && OtherScale.ScaleValDisplay.text == TargetVal.ToString())
         {
             this.GetComponent<Renderer>().material.color = Color.green;
         }
+    }
+
+    public  IEnumerator MoveScales(int WeightVal)
+    {
+        isRunning = true;
+        Vector3 yTranslation = new Vector3(0, WeightVal / 100, 0);
+        foreach (Collider c in weightsArr)
+        {
+            c.transform.parent = this.transform;
+        }
+        this.transform.position = StartPos - yTranslation;
+        
+        this.transform.DetachChildren();
+        
+        isRunning = false;
+
+        yield return new  WaitForSeconds(1);
+
     }
 
 
