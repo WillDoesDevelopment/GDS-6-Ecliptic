@@ -5,6 +5,8 @@ using TMPro;
 public class PuzzleManager : MonoBehaviour
 {
     public Collider[] weightsArr;
+
+    public int TargetVal;
     // Start is called before the first frame update
     public TextMeshProUGUI ScaleValDisplay;
     public Vector3 StartPos;
@@ -32,7 +34,7 @@ public class PuzzleManager : MonoBehaviour
         //this.transform.position = StartPos - new Vector3(0, WeightVal/10, 0);
         ScaleValDisplay.text = WeightVal.ToString();
         //Debug.Log(WeightVal);
-        if (ScaleValDisplay.text == 20.ToString() && OtherScale.ScaleValDisplay.text == 20.ToString())
+        if (ScaleValDisplay.text == TargetVal.ToString() && OtherScale.ScaleValDisplay.text == TargetVal.ToString())
         {
             this.GetComponent<Renderer>().material.color = Color.green;
         }
