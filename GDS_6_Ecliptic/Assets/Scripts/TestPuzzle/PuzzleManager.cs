@@ -12,6 +12,8 @@ public class PuzzleManager : MonoBehaviour
     public TextMeshProUGUI ScaleValDisplay;
     public Vector3 StartPos;
     public PuzzleManager OtherScale;
+
+    public PickUpScript PUS;
     void Start()
     {
         StartPos = this.transform.position;
@@ -33,7 +35,7 @@ public class PuzzleManager : MonoBehaviour
             }
         }
         
-        if(isRunning == false)
+        if(isRunning == false && PUS.holding ==  false)
         {
             StartCoroutine(MoveScales(WeightVal));
         }
@@ -49,14 +51,19 @@ public class PuzzleManager : MonoBehaviour
     public  IEnumerator MoveScales(int WeightVal)
     {
         isRunning = true;
-        Vector3 yTranslation = new Vector3(0, WeightVal / 100, 0);
+        Vector3 yTranslation = new Vector3(0, (float)WeightVal / 100, 0);
         foreach (Collider c in weightsArr)
         {
-            c.transform.parent = this.transform;
+            if(c.GetComponent<Weight>() != null)
+            {
+                Debug.Log("Working" + yTranslation);
+                c.transform.parent = this.transform;
+
+            }
         }
         this.transform.position = StartPos - yTranslation;
         
-        this.transform.DetachChildren();
+        //this.transform.DetachChildren();
         
         isRunning = false;
 

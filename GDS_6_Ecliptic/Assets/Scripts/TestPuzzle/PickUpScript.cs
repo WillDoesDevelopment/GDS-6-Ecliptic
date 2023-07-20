@@ -9,6 +9,8 @@ public class PickUpScript : MonoBehaviour
 
     public GameObject HoldingObj;
     public bool holding = false;
+
+    public PickUpScript PUS;
     void Start()
     {
         
