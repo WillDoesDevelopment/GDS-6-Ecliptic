@@ -5,38 +5,39 @@ using UnityEngine.EventSystems;
 
 public class ObjSelectHL : MonoBehaviour
 {
-    public Material hlMat;
-    public Material ogMat;
+    public Material Mat;
+    public Color[] HLColours;
+    public bool isSelected = false;
 
-    private Transform highlight;
     private RaycastHit hit;
 
     // Update is called once per frame
     void Update()
     {
 
-        if(highlight != null)
+
+        if(isSelected == false)
         {
-            highlight.GetComponent<MeshRenderer>().material = ogMat;
-            highlight = null;
+            gameObject.GetComponent<MeshRenderer>().material.GetColor("_Highlight_Colour");
+            gameObject.GetComponent<MeshRenderer>().material.SetColor("_Highlight_Colour", HLColours[0]);
         }
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out hit))
         {
-            highlight = hit.transform;
-            if (highlight.CompareTag("Selectable"))
+
+            if (hit.transform.CompareTag("Selectable"))
             {
-                if (highlight.GetComponent<MeshRenderer>().material != hlMat)
-                {
-                    ogMat = highlight.GetComponent<MeshRenderer>().material;
-                    highlight.GetComponent<MeshRenderer>().material = hlMat;
-                }
+                isSelected = true;
+                gameObject.GetComponent<MeshRenderer>().material.GetColor("_Highlight_Colour");
+                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Highlight_Colour", HLColours[1]);
+
             }   
             else
             {
-                highlight = null;
+                return;
             }
+            isSelected = false;
         }
 
     }
