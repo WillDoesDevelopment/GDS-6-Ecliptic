@@ -10,7 +10,7 @@ public class ObjSelectHL : MonoBehaviour
     public bool isSelected = false;
 
     private RaycastHit hit;
-
+    Ray ray;
     // Update is called once per frame
     void Update()
     {
@@ -18,27 +18,29 @@ public class ObjSelectHL : MonoBehaviour
 
         if(isSelected == false)
         {
-            gameObject.GetComponent<MeshRenderer>().material.GetColor("_Highlight_Colour");
-            gameObject.GetComponent<MeshRenderer>().material.SetColor("_Highlight_Colour", HLColours[0]);
+            gameObject.GetComponent<Renderer>().material.GetColor("_Highlight_Colour");
+            gameObject.GetComponent<Renderer>().material.SetColor("_Highlight_Colour", HLColours[0]);
         }
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out hit))
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out hit))
         {
-
-            if (hit.transform.CompareTag("Selectable"))
+            isSelected = false;
+            if (hit.transform.gameObject.tag == "Selectable")
             {
                 isSelected = true;
-                gameObject.GetComponent<MeshRenderer>().material.GetColor("_Highlight_Colour");
-                gameObject.GetComponent<MeshRenderer>().material.SetColor("_Highlight_Colour", HLColours[1]);
-
+                this.gameObject.GetComponent<Renderer>().material.GetColor("_Highlight_Colour");
+                this.gameObject.GetComponent<Renderer>().material.SetColor("_Highlight_Colour", HLColours[1]);
+                print("Hit" + this.gameObject.name);
             }   
             else
             {
                 return;
+                
             }
-            isSelected = false;
+            
         }
 
     }
+
 }
