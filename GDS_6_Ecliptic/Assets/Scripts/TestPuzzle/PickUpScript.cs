@@ -10,7 +10,7 @@ public class PickUpScript : MonoBehaviour
     public GameObject HoldingObj;
     public bool holding = false;
 
-    public PickUpScript PUS;
+
     void Start()
     {
         
@@ -58,7 +58,9 @@ public class PickUpScript : MonoBehaviour
             Rigidbody RBTemp = pickUpObj.GetComponent<Rigidbody>();
             if (RBTemp != null)
             {
-                RBTemp.constraints = RigidbodyConstraints.FreezePosition;
+                RBTemp.constraints = RigidbodyConstraints.FreezeAll;
+                //RBTemp.constraints = RigidbodyConstraints.FreezeRotation;
+                //RBTemp.useGravity = false;
             }
         }
     }

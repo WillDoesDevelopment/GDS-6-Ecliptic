@@ -12,14 +12,16 @@ public class ObjSelectHL : MonoBehaviour
     private RaycastHit hit;
     Ray ray;
     // Update is called once per frame
+
     void Update()
     {
-
+        
 
         if(isSelected == false)
         {
-            gameObject.GetComponent<Renderer>().material.GetColor("_Highlight_Colour");
-            gameObject.GetComponent<Renderer>().material.SetColor("_Highlight_Colour", HLColours[0]);
+            this.gameObject.GetComponent<Renderer>().material.GetColor("_Highlight_Colour");
+            this.gameObject.GetComponent<Renderer>().material.SetColor("_Highlight_Colour", HLColours[0]);
+
         }
 
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -29,8 +31,8 @@ public class ObjSelectHL : MonoBehaviour
             if (hit.transform.gameObject.tag == "Selectable")
             {
                 isSelected = true;
-                this.gameObject.GetComponent<Renderer>().material.GetColor("_Highlight_Colour");
-                this.gameObject.GetComponent<Renderer>().material.SetColor("_Highlight_Colour", HLColours[1]);
+                hit.transform.GetComponent<Renderer>().material.GetColor("_Highlight_Colour");
+                hit.transform.GetComponent<Renderer>().material.SetColor("_Highlight_Colour", HLColours[1]);
                 print("Hit" + this.gameObject.name);
             }   
             else
