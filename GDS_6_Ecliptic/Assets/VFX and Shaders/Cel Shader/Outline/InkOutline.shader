@@ -37,9 +37,6 @@ Shader "Unlit/InkOutline"
         sampler2D _NoiseTex;// noise texture
         float _Offset, _Lerp; // noise offset
 
-        uniform float4 _EmissionColor;
-        uniform float _Emission;
-        uniform sampler2D _EmissionMap
 
         //uniform fixed4 _MainTex;
         //uniform fixed4 albedo;
@@ -68,8 +65,6 @@ Shader "Unlit/InkOutline"
             float4 tex = tex2Dlod(_NoiseTex, float4(v.texcoord.xy, 0, 0) * _Offset);// noise texture based on texture coordinates and offset
             
             half4 outputvar = half4(_OutlineColor.rgb, _OutlineColor.a);
-            half4 emission = tex2Dlod(_EmissionMap, float4(v.uv, 0, 0)) * _EmissionColor;
-            outputvar.rgb += emission.rgb;
 
 
 #if NOISE // switch for noise
