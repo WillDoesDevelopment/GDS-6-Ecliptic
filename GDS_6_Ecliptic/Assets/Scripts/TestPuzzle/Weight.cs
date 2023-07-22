@@ -8,11 +8,17 @@ public class Weight : MonoBehaviour
     public Rigidbody RB;
     public TextMeshProUGUI WeightTxt;
 
+    public bool visible;
+
     public bool isColliding = false;
     private void Awake()
     {
-       WeightTxt =  this.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        WeightTxt.text = weight.ToString();
+        if (visible)
+        {
+            WeightTxt =  this.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            WeightTxt.text = weight.ToString();
+
+        }
     }
 
     private void OnCollisionStay(Collision collision)

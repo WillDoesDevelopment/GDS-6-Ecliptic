@@ -29,13 +29,13 @@ public class PuzzleManager : MonoBehaviour
         foreach (Collider c in weightsArr)
         {
             Weight weight = c.GetComponent<Weight>();
-            if (weight != null && c.GetComponent<Weight>().isColliding == true)
+            if (weight != null && c.GetComponent<Weight>().isColliding == true )
             {
                 WeightVal += (int)weight.weight;
             }
         }
         
-        if(isRunning == false && PUS.holding ==  false)
+        if(isRunning == false  && PUS.holding == false)
         {
             StartCoroutine(MoveScales(WeightVal));
         }
@@ -51,7 +51,7 @@ public class PuzzleManager : MonoBehaviour
     public  IEnumerator MoveScales(int WeightVal)
     {
         isRunning = true;
-        Vector3 yTranslation = new Vector3(0, (float)WeightVal / 100, 0);
+        Vector3 yTranslation = new Vector3(0, (float)WeightVal / 50, 0);
         foreach (Collider c in weightsArr)
         {
             if(c.GetComponent<Weight>() != null)

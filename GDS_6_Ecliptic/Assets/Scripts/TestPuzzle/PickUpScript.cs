@@ -88,6 +88,7 @@ public class PickUpScript : MonoBehaviour
         {
             Debug.Log("working");
             RBTemp.constraints  = RigidbodyConstraints.None;
+            //HoldingObj = null;
         }
     }
 }
