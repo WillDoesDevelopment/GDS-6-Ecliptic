@@ -17,4 +17,12 @@ public class HubManager : MonoBehaviour
     {
         
     }
+
+    public void SendToScene(DoorStatus DS)
+    {
+        if(DS.IsOpen == true)
+        {
+            SceneManager.LoadScene(DS.SceneNum);
+        }
+    }
 }
