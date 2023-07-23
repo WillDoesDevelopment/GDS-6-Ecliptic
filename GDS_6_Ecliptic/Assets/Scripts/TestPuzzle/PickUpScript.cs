@@ -41,6 +41,7 @@ public class PickUpScript : MonoBehaviour
                 {
                     PutDown(HoldingObj);
                     holding = false;
+                    HoldingObj = PickUpPos;
                 }
                 
             }
@@ -86,9 +87,8 @@ public class PickUpScript : MonoBehaviour
         Rigidbody RBTemp = HoldingObj.GetComponent<Rigidbody>();
         if (RBTemp != null)
         {
-            Debug.Log("working");
+            //Debug.Log("working");
             RBTemp.constraints  = RigidbodyConstraints.None;
-            //HoldingObj = null;
         }
     }
 }

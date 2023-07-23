@@ -7,6 +7,7 @@ public class PuzzleManager : MonoBehaviour
     private bool isRunning = false;
     public Collider[] weightsArr;
 
+    public float OverlapSphereRange;
     public int TargetVal;
     // Start is called before the first frame update
     public TextMeshProUGUI ScaleValDisplay;
@@ -24,18 +25,18 @@ public class PuzzleManager : MonoBehaviour
     {
 
         int WeightVal = 0;
-        weightsArr = Physics.OverlapSphere(this.transform.position, 2);
+        weightsArr = Physics.OverlapSphere(this.transform.position, OverlapSphereRange);
 
         foreach (Collider c in weightsArr)
         {
             Weight weight = c.GetComponent<Weight>();
-            if (weight != null && c.GetComponent<Weight>().isColliding == true )
+            if (weight != null && c.GetComponent<Weight>().isColliding == true && c.gameObject != PUS.HoldingObj )
             {
                 WeightVal += (int)weight.weight;
             }
         }
         
-        if(isRunning == false  && PUS.holding == false)
+        if(isRunning == false  )
         {
             StartCoroutine(MoveScales(WeightVal));
         }
@@ -48,13 +49,13 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-    public  IEnumerator MoveScales(int WeightVal)
+    public  IEnumerator MoveScales(int WeightVal )
     {
         isRunning = true;
         Vector3 yTranslation = new Vector3(0, (float)WeightVal / 50, 0);
         foreach (Collider c in weightsArr)
         {
-            if(c.GetComponent<Weight>() != null)
+            if(c.GetComponent<Weight>() != null && c.gameObject != PUS.HoldingObj)
             {
                 Debug.Log("Working" + yTranslation);
                 c.transform.parent = this.transform;
