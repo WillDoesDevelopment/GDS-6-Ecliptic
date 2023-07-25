@@ -4,14 +4,25 @@ using UnityEngine;
 using TMPro;
 public class PuzzleManager : MonoBehaviour
 {
+    //Checks the coroutine if its running as to avoid calling it every frame
     private bool isRunning = false;
+
+    // Physics.SphereOverlap creates an array of colliders and this is where we store them
     public Collider[] weightsArr;
 
+    // the diametre of the SphereOverlap
     public float OverlapSphereRange;
+
+    // was used as the origonal win condition of the puzzle, has changed since
     public int TargetVal;
-    // Start is called before the first frame update
+
+    // for displaying the weight on the scale in UI form, may be obsolete now
     public TextMeshProUGUI ScaleValDisplay;
+
+    // needed to know the initial position for which to change the scale height
     public Vector3 StartPos;
+
+    //Needed a refrence to the other scale script, there are two instances of this script in the scene
     public PuzzleManager OtherScale;
 
     public PickUpScript PUS;
@@ -23,10 +34,13 @@ public class PuzzleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //the weight that is on our scale
         int WeightVal = 0;
+
+        // populates our collider array
         weightsArr = Physics.OverlapSphere(this.transform.position, OverlapSphereRange);
 
+        // this checks that the weight is colliding near the scale and that the object is not currently being held, if this criterea is met we add the wieght to WeightVal
         foreach (Collider c in weightsArr)
         {
             Weight weight = c.GetComponent<Weight>();
@@ -35,20 +49,36 @@ public class PuzzleManager : MonoBehaviour
                 WeightVal += (int)weight.weight;
             }
         }
-        
+        //provided the coroutine is not running, run it and pass in WeightVal as an overload
         if(isRunning == false  )
         {
             StartCoroutine(MoveScales(WeightVal));
         }
+        //displays our Weight
 
-        ScaleValDisplay.text = WeightVal.ToString();
+        bool UnknownBlock = false;
+        foreach (Collider c in weightsArr)
+        {
+            Weight W = c.GetComponent<Weight>();
+            if (W != null && W.visible == false)
+            {
+                UnknownBlock = true;
+                ScaleValDisplay.text = "?";
+            }
+        }
+        if(UnknownBlock == false)
+        {
+            ScaleValDisplay.text = WeightVal.ToString();
+        }
 
+        //the test for our obsolete win condition
         if (ScaleValDisplay.text == TargetVal.ToString() && OtherScale.ScaleValDisplay.text == TargetVal.ToString())
         {
             this.GetComponent<Renderer>().material.color = Color.green;
         }
     }
 
+    // the couroutine that moves the scales relative to the weight
     public  IEnumerator MoveScales(int WeightVal )
     {
         isRunning = true;
