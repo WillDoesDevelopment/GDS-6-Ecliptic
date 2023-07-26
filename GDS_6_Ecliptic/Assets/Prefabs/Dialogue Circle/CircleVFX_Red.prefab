@@ -19492,7 +19492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8240508297271703699}
   - component: {fileID: 7832509518510097959}
-  - component: {fileID: 7913852894307551837}
+  - component: {fileID: -5252805183494467877}
   m_Layer: 0
   m_Name: CircleVFX_Red
   m_TagString: Untagged
@@ -19540,7 +19540,7 @@ MonoBehaviour:
   player: {fileID: 0}
   radius: 3
   Dm: {fileID: 0}
---- !u!114 &7913852894307551837
+--- !u!114 &-5252805183494467877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19549,13 +19549,143 @@ MonoBehaviour:
   m_GameObject: {fileID: 8240508297271703696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a7f9b5811f3c0b44a6b9167f5b85598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    sentances: []
-    name: 
-    DialogueImage: {fileID: 0}
-  player: {fileID: 0}
-  radius: 0
-  Dm: {fileID: 0}
+  trails:
+  - {fileID: 8240508295664542178}
+  - {fileID: 8240508296256392719}
+  rings:
+  - {fileID: 8240508296706817535}
+  - {fileID: 8240508296170401214}
+  scrollMats:
+  - {fileID: 2100000, guid: df37589665e2d02459a890f04a5dbad4, type: 2}
+  - {fileID: 2100000, guid: a9a46decbb7133243a55bf55241fee8e, type: 2}
+  emissMat:
+  - {fileID: 2100000, guid: 7209c0b646b81244c883fc685b4997ac, type: 2}
+  TstartCol:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 1, g: 0.76925457, b: 0, a: 0}
+  TtrailGrad:
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.4943396, b: 0.96364695, a: 1}
+    key1: {r: 1, g: 0.216717, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.9646237, b: 0, a: 1}
+    key1: {r: 1, g: 0, b: 0.8397136, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  RstartCol:
+  - {r: 1, g: 0.61970043, b: 0, a: 0}
+  - {r: 0.97807074, g: 1, b: 0, a: 0}
+  RtrailGrad:
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.9646237, b: 0, a: 1}
+    key1: {r: 1, g: 0, b: 0.8397136, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 1, g: 0.4943396, b: 0.96364695, a: 1}
+    key1: {r: 1, g: 0.216717, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  RemissCol:
+  - {r: 1, g: 0, b: 0.42058372, a: 0}
+  - {r: 1, g: 0.8193936, b: 0, a: 0}
+  ScrollCol:
+  - {r: 1, g: 0.5021508, b: 0, a: 0}
+  - {r: 1, g: 0, b: 0.57144785, a: 0}
