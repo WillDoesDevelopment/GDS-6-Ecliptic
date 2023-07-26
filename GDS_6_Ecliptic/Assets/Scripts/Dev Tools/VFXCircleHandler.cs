@@ -83,7 +83,7 @@ public class VFXCircleHandler : MonoBehaviour
         var RMain2 = rings[1].main;
         var RTrails2 = rings[1].trails;
         var Remit2 = rings[1].emission;
-        Remit2.enabled = true;
+        rings[1].Play();
 
         //ediing the colours in the sections
         RMain2.startColor = RstartCol[1];
