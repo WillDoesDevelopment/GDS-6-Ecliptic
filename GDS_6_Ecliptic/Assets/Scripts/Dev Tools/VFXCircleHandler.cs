@@ -39,24 +39,23 @@ public class VFXCircleHandler : MonoBehaviour
         //emission mat for rings
         emissMat[0].GetColor("_EmissionColor");
 
-    }
-
-    private void Start()
-    {
         //Clockwise PS
         //references for actual sections of particle system
         var main1 = trails[0].main;
         var trails1 = trails[0].trails;
+        var emit1 = trails[0].emission;
 
         //Editing the colours in the sections
         main1.startColor = TstartCol[0];
         trails1.colorOverLifetime = TtrailGrad[1];
-
+        emit1.enabled = true;
 
         //Anti Clockwise PS
         //references for actual sections of particle system
         var main2 = trails[1].main;
         var trails2 = trails[1].trails;
+        var emit2 = trails[1].emission;
+        emit2.enabled = true;
 
         //Editing the colours in the sections
         main2.startColor = TstartCol[1];
@@ -67,6 +66,8 @@ public class VFXCircleHandler : MonoBehaviour
         //references for actual sections of particle system
         var RMain1 = rings[0].main;
         var RTrails1 = rings[0].trails;
+        var Remit1 = rings[0].emission;
+        Remit1.enabled = true;
 
         //ediing the colours in the sections
         RMain1.startColor = RstartCol[0];
@@ -79,8 +80,10 @@ public class VFXCircleHandler : MonoBehaviour
 
         //Rings Outer
         //references for actual sections of particle system
-        var RMain2 = rings[0].main;
-        var RTrails2 = rings[0].trails;
+        var RMain2 = rings[1].main;
+        var RTrails2 = rings[1].trails;
+        var Remit2 = rings[1].emission;
+        Remit2.enabled = true;
 
         //ediing the colours in the sections
         RMain2.startColor = RstartCol[1];
@@ -98,6 +101,12 @@ public class VFXCircleHandler : MonoBehaviour
         //Scroll Anti Clockwise
         scrollMats[1].SetColor("_Circle_Color", ScrollCol[2]);
         scrollMats[1].SetColor("_Emission", ScrollCol[3]);
+
+    }
+
+    private void Start()
+    {
+        
 
 
     }
