@@ -17,7 +17,7 @@ public class HubManager : MonoBehaviour
     {
         
     }
-
+    // wher called it accesses a Door status script and loads the designated scene
     public void SendToScene(DoorStatus DS)
     {
         if(DS.IsOpen == true)

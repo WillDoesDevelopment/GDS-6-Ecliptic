@@ -6,13 +6,15 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+    // image and text components necessary
     public GameObject EnterText;
     public TextMeshProUGUI DialogueText;
     public TextMeshProUGUI NameText;
     public Image SpriteUI;
 
+    // animator for dialogue
     public Animator TextAnim;
-    //public GameObject player;
+    
 
     public Queue<string> Sentences;
 
@@ -34,12 +36,14 @@ public class DialogueManager : MonoBehaviour
     
     public void EnterPrompt()
     {
+        // toggles on the enter script
         Animator EnterAnim = EnterText.GetComponent<Animator>();
         EnterAnim.SetBool("FadeIn", true);
 
     }
     public void EnterAnimExit()
     {
+        //toggles off the enter script
         Animator EnterAnim = EnterText.GetComponent<Animator>();
         EnterAnim.SetBool("FadeIn", false);
 
@@ -47,29 +51,35 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        // add image and from our dialogue package that is passed through
         SpriteUI.GetComponent<Image>().sprite = dialogue.DialogueImage;
         NameText.text = dialogue.name;
         TextAnim.SetBool("PopUp", true);
-        Debug.Log("Working");
+        //Debug.Log("Working");
         Sentences.Clear();
 
         foreach (string sentence in dialogue.sentances)
         {
+            // add the sentances in our dialogue package to the local sentance queue
             Sentences.Enqueue(sentence);
 
         }
+        // after the prep and saving to local variables we call the next dialogue
         NextDialogue();
     }
     public void NextDialogue()
     {
+        // check if we are out of dialogue
         if (Sentences.Count == 0)
         {
             endDialogue();
             return;
         }
-
+        // dequeue sentences as the same time as saving them to a temp variable
         string tempSentence = Sentences.Dequeue();
+        // incase we are mid way through typeText coroutine
         StopAllCoroutines();
+        //types each character
         StartCoroutine(TypeText(tempSentence));
     }
     public IEnumerator TypeText(string sentence)
@@ -82,6 +92,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // exit dialogue anim
     public void endDialogue()
     {
         TextAnim.SetBool("PopUp", false);
