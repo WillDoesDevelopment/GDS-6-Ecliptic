@@ -71,11 +71,11 @@ public class CamMovment : MonoBehaviour
         float playerDistZ = (target.transform.position.z - RoomLeftPosZ.position.z) / totalDistz;
 
         // calculates the change in rotation based on how far we are from the left or right of the room
-        Vector3 RotDelta = (Rot1 * playerDist + Rot2 * Mathf.Abs(playerDist - 1) + RotZ1 * playerDistZ+ RotZ2 * Mathf.Abs(playerDistZ - 1))/2;
+        Vector3 RotDelta = (Rot1 * playerDist + Rot2 * Mathf.Abs(playerDist - 1) + RotZ1 * playerDistZ+ RotZ2 * Mathf.Abs(playerDistZ - 1));
         this.transform.eulerAngles = RotDelta;
 
         // calculates positionally where the camera should be relative to the player
-        Vector3 offsetDelta = (offset1 * playerDist + offset2 * Mathf.Abs(playerDist - 1) + offsetZ1 * playerDistZ + offsetZ2 * Mathf.Abs(playerDistZ - 1))/2;
+        Vector3 offsetDelta = (offset1 * playerDist + offset2 * Mathf.Abs(playerDist - 1) + offsetZ1 * playerDistZ + offsetZ2 * Mathf.Abs(playerDistZ - 1));
         Vector3 targetPos = offsetDelta + target.transform.position;
         // this impliments the calculation and also lerps on the z axis
         this.transform.position = Vector3.Lerp(this.transform.position, targetPos, lerpSpeed);
