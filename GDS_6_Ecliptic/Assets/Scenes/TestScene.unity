@@ -11758,10 +11758,16 @@ MonoBehaviour:
   lerpSpeed: 0.005
   offset1: {x: -3.65, y: 4.1, z: -6.68}
   offset2: {x: -0.37, y: 1.18, z: -5.2}
+  offsetZ1: {x: 0, y: 0, z: 0}
+  offsetZ2: {x: 0, y: 0, z: 0}
   Rot1: {x: 23.99, y: 27.85, z: -0.06448974}
   Rot2: {x: 0, y: 0, z: 0}
+  RotZ1: {x: 0, y: 0, z: 0}
+  RotZ2: {x: 0, y: 0, z: 0}
   RoomLeftPos: {fileID: 2007475973}
   RoomRightPos: {fileID: 2044991095}
+  RoomLeftPosZ: {fileID: 0}
+  RoomRightPosZ: {fileID: 0}
   Ps: {fileID: 0}
 --- !u!114 &963194232
 MonoBehaviour:
@@ -33004,8 +33010,8 @@ MonoBehaviour:
   emissMat:
   - {fileID: 2100000, guid: 5d9a967d14052fb4485bff9df1befc4e, type: 2}
   TstartCol:
-  - {r: 0, g: 0.42149734, b: 1, a: 0}
-  - {r: 0, g: 0.9529512, b: 1, a: 0}
+  - {r: 0, g: 0.42149734, b: 1, a: 1}
+  - {r: 0, g: 0.9529512, b: 1, a: 1}
   TtrailGrad:
   - serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -33064,8 +33070,8 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   RstartCol:
-  - {r: 0.5226415, g: 1, b: 0.93561965, a: 0}
-  - {r: 0, g: 0.10823119, b: 0.8207547, a: 0}
+  - {r: 0.5226415, g: 1, b: 0.93561965, a: 1}
+  - {r: 0, g: 0.10823119, b: 0.8207547, a: 1}
   RtrailGrad:
   - serializedVersion: 2
     key0: {r: 0.9191632, g: 0.67358494, b: 1, a: 1}
@@ -33124,13 +33130,13 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   RemissCol:
-  - {r: 0, g: 0.8569753, b: 1, a: 0}
-  - {r: 0.09228456, g: 1, b: 0, a: 0}
+  - {r: 0, g: 0.8569753, b: 1, a: 1}
+  - {r: 0.09228456, g: 1, b: 0, a: 1}
   ScrollCol:
-  - {r: 0.09480369, g: 1, b: 0, a: 0}
-  - {r: 0, g: 0.9393873, b: 1, a: 0}
-  - {r: 0, g: 0.17550755, b: 1, a: 0}
-  - {r: 0.3686142, g: 0, b: 1, a: 0}
+  - {r: 0.09480369, g: 1, b: 0, a: 1}
+  - {r: 0, g: 0.9393873, b: 1, a: 1}
+  - {r: 0, g: 0.17550755, b: 1, a: 1}
+  - {r: 0.3686142, g: 0, b: 1, a: 1}
 --- !u!1 &8780730477216178843
 GameObject:
   m_ObjectHideFlags: 0

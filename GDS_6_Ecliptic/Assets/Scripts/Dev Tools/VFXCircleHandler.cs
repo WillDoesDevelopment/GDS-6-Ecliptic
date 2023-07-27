@@ -67,7 +67,6 @@ public class VFXCircleHandler : MonoBehaviour
         var RMain1 = rings[0].main;
         var RTrails1 = rings[0].trails;
         var Remit1 = rings[0].emission;
-        Remit1.enabled = true;
 
         //ediing the colours in the sections
         RMain1.startColor = RstartCol[0];
@@ -83,7 +82,6 @@ public class VFXCircleHandler : MonoBehaviour
         var RMain2 = rings[1].main;
         var RTrails2 = rings[1].trails;
         var Remit2 = rings[1].emission;
-        rings[1].Play();
 
         //ediing the colours in the sections
         RMain2.startColor = RstartCol[1];
@@ -106,9 +104,16 @@ public class VFXCircleHandler : MonoBehaviour
 
     private void Start()
     {
-        
+        var RMain2 = rings[1].main;
+        var Remit2 = rings[1].emission;
+        rings[1].Play();
 
+        Remit2.enabled = true;
+        Remit2.rateOverTime = 10f;
 
+        var Remit1 = rings[0].emission;
+        Remit1.enabled = true;
+        Remit2.rateOverTime = 10f;
     }
 
 }
