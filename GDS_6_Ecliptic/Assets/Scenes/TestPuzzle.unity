@@ -1138,6 +1138,7 @@ GameObject:
   - component: {fileID: 594725826}
   - component: {fileID: 594725831}
   - component: {fileID: 594725832}
+  - component: {fileID: 594725833}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1276,6 +1277,23 @@ MonoBehaviour:
   PickUpPos: {fileID: 1713700099}
   HoldingObj: {fileID: 0}
   holding: 0
+--- !u!114 &594725833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594725825}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2573604872e15b4180e15bf1e16b402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movSpeed: 5
+  _rotation: 0
+  yRotation: 0
+  moveVector: {x: 0, y: 0, z: 0}
+  RB: {fileID: 0}
 --- !u!1 &633316605
 GameObject:
   m_ObjectHideFlags: 0
@@ -4703,7 +4721,7 @@ GameObject:
   - component: {fileID: 1986293523}
   - component: {fileID: 1986293522}
   m_Layer: 5
-  m_Name: Image
+  m_Name: SpriteImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
