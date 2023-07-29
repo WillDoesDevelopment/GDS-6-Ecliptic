@@ -25,4 +25,9 @@ public class HubManager : MonoBehaviour
             SceneManager.LoadScene(DS.SceneNum);
         }
     }
+
+    public void SendToHub()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
