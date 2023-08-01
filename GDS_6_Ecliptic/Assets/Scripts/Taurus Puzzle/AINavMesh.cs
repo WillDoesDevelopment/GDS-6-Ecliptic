@@ -21,11 +21,28 @@ public class AINavMesh : MonoBehaviour
     }
     void Update()
     {
-        //CurrentNavPos = positionQueue.Peek();
-        if (this.transform.position == CurrentNavPos)
-        {
+        CurrentNavPos = positionQueue.Peek().position;
+        if (Proximity(CurrentNavPos))
 
+        {
+            Transform temp = positionQueue.Dequeue();
+            positionQueue.Enqueue(temp);
+            
         }
-        NMA.SetDestination(new Vector3(0, 0, 0));
+        NMA.SetDestination(CurrentNavPos);
+    }
+
+    public bool Proximity( Vector3 NavPos)
+    {
+        float playerDistZ = NavPos.z - transform.position.z;
+        float playerDistX = NavPos.x - transform.position.x;
+        if (Mathf.Sqrt(Mathf.Pow(playerDistX, 2) + Mathf.Pow(playerDistZ, 2)) < 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
