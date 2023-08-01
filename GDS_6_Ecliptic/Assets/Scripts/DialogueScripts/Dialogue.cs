@@ -6,8 +6,20 @@ using UnityEngine;
 [System.Serializable]
 public class Dialogue 
 {
+    
     // all required information for the dialogue
-    public string[] sentances;
+    public enum DialogueType
+    {
+        OtherDialogue,
+        Monologue,
+        Narration
+    }
+    public string[] sentences;
+    public DialogueType[] dialogueType;
+
+    public string monologueName;
+    public Sprite MonologueImage;
+
     public string name;
     public Sprite DialogueImage;
 

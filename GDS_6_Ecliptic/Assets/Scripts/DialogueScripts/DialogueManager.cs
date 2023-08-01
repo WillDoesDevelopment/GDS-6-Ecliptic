@@ -8,9 +8,16 @@ public class DialogueManager : MonoBehaviour
 {
     // image and text components necessary
     public GameObject EnterText;
+
     public TextMeshProUGUI DialogueText;
+
+    [Header("Other Player Attributes")]
     public TextMeshProUGUI NameText;
     public Image SpriteUI;
+
+    [Header("Main Player Attributes")]
+    public TextMeshProUGUI PlayerNameText;
+    public Image PlayerSpriteUI;
 
     // animator for dialogue
     public Animator TextAnim;
@@ -24,12 +31,6 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         Sentences = new Queue<string>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 
@@ -55,10 +56,12 @@ public class DialogueManager : MonoBehaviour
         SpriteUI.GetComponent<Image>().sprite = dialogue.DialogueImage;
         NameText.text = dialogue.name;
         TextAnim.SetBool("PopUp", true);
-        //Debug.Log("Working");
+
+        PlayerNameText.text = dialogue.monologueName;
+        PlayerSpriteUI.GetComponent<Image>().sprite = dialogue.MonologueImage;
         Sentences.Clear();
 
-        foreach (string sentence in dialogue.sentances)
+        foreach (string sentence in dialogue.sentences)
         {
             // add the sentances in our dialogue package to the local sentance queue
             Sentences.Enqueue(sentence);
@@ -75,19 +78,20 @@ public class DialogueManager : MonoBehaviour
             endDialogue();
             return;
         }
+
         // dequeue sentences as the same time as saving them to a temp variable
         string tempSentence = Sentences.Dequeue();
         // incase we are mid way through typeText coroutine
         StopAllCoroutines();
         //types each character
-        StartCoroutine(TypeText(tempSentence));
+        StartCoroutine(TypeText(tempSentence, DialogueText));
     }
-    public IEnumerator TypeText(string sentence)
+    public IEnumerator TypeText(string sentence, TextMeshProUGUI TxtElement)
     {
         DialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            DialogueText.text += letter;
+            TxtElement.text += letter;
             yield return new WaitForSeconds(.05f);
         }
     }
