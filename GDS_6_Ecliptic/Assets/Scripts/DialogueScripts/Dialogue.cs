@@ -16,6 +16,10 @@ public class Dialogue
     }
     public string[] sentences;
     public DialogueType[] dialogueType;
+
+    public string monologueName;
+    public Sprite MonologueImage;
+
     public string name;
     public Sprite DialogueImage;
 
