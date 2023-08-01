@@ -58,7 +58,7 @@ public class DialogueManager : MonoBehaviour
         //Debug.Log("Working");
         Sentences.Clear();
 
-        foreach (string sentence in dialogue.sentances)
+        foreach (string sentence in dialogue.sentences)
         {
             // add the sentances in our dialogue package to the local sentance queue
             Sentences.Enqueue(sentence);
