@@ -57,6 +57,12 @@ public class DialogueManager : MonoBehaviour
         // animates our text ui to pop up
 
         // add image and name from our dialogue package that is passed through
+        //Debug.Log(dialogue);
+        Debug.Log("size of dialogue :" + dialogue.line.Length);
+        Debug.Log(dialogue.DialogueImage);
+        Sprite temp = SpriteUI.GetComponent<Image>().sprite;
+        Debug.Log(temp);
+
         SpriteUI.GetComponent<Image>().sprite = dialogue.DialogueImage;
         NameText.text = dialogue.name;
         TextAnim.SetBool("PopUp", true);
