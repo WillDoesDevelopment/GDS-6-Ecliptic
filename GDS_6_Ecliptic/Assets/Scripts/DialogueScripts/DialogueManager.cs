@@ -54,33 +54,33 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        // add image and from our dialogue package that is passed through
+        // animates our text ui to pop up
+
+        // add image and name from our dialogue package that is passed through
         SpriteUI.GetComponent<Image>().sprite = dialogue.DialogueImage;
         NameText.text = dialogue.name;
         TextAnim.SetBool("PopUp", true);
 
-        SpriteUI.gameObject.SetActive(false);
-        NameText.transform.parent.gameObject.SetActive(false);
-
         PlayerNameText.text = dialogue.monologueName;
         PlayerSpriteUI.GetComponent<Image>().sprite = dialogue.MonologueImage;
+
+        //sets them all to inactive to start
+        SpriteUI.gameObject.SetActive(false);
+        NameText.transform.parent.gameObject.SetActive(false);
 
         PlayerNameText.transform.parent.gameObject.SetActive(false);
         PlayerSpriteUI.gameObject.SetActive(false);
 
         Sentences.Clear();
 
-        foreach (string sentence in dialogue.sentences)
+        foreach (Dialogue.DialogueLine info in dialogue.line)
         {
             // add the sentances in our dialogue package to the local sentance queue
-            Sentences.Enqueue(sentence);
+            Sentences.Enqueue(info.sentence);
+            SentenceType.Enqueue(info.dialogueType);
 
         }
-        foreach (Dialogue.DialogueType DT in dialogue.dialogueType)
-        {
-            SentenceType.Enqueue(DT);
 
-        }
         // after the prep and saving to local variables we call the next dialogue
         NextDialogue();
     }

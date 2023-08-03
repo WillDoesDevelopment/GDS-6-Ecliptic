@@ -23,8 +23,8 @@ public class Dialogue: ScriptableObject
         Monologue,
         Narration
     }
-    public string[] sentences;
-    public DialogueType[] dialogueType;
+    //public string[] sentences;
+    //public DialogueType[] dialogueType;
 
     public string monologueName;
     public Sprite MonologueImage;
