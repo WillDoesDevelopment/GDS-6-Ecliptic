@@ -24,6 +24,7 @@ public class DialogueManager : MonoBehaviour
     
 
     public Queue<string> Sentences;
+    public Queue<Dialogue.DialogueType> SentenceType;
 
     private bool DialogueMode = false;
     public float radius;
@@ -31,6 +32,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         Sentences = new Queue<string>();
+        SentenceType = new Queue<Dialogue.DialogueType>();
     }
 
 
@@ -57,8 +59,15 @@ public class DialogueManager : MonoBehaviour
         NameText.text = dialogue.name;
         TextAnim.SetBool("PopUp", true);
 
+        SpriteUI.gameObject.SetActive(false);
+        NameText.transform.parent.gameObject.SetActive(false);
+
         PlayerNameText.text = dialogue.monologueName;
         PlayerSpriteUI.GetComponent<Image>().sprite = dialogue.MonologueImage;
+
+        PlayerNameText.transform.parent.gameObject.SetActive(false);
+        PlayerSpriteUI.gameObject.SetActive(false);
+
         Sentences.Clear();
 
         foreach (string sentence in dialogue.sentences)
@@ -67,16 +76,50 @@ public class DialogueManager : MonoBehaviour
             Sentences.Enqueue(sentence);
 
         }
+        foreach (Dialogue.DialogueType DT in dialogue.dialogueType)
+        {
+            SentenceType.Enqueue(DT);
+
+        }
         // after the prep and saving to local variables we call the next dialogue
         NextDialogue();
     }
     public void NextDialogue()
     {
         // check if we are out of dialogue
+
         if (Sentences.Count == 0)
         {
             endDialogue();
             return;
+        }
+
+        Dialogue.DialogueType TempType = SentenceType.Dequeue();
+
+        if(TempType == Dialogue.DialogueType.OtherDialogue)
+        {
+            SpriteUI.gameObject.SetActive(true);
+            NameText.transform.parent.gameObject.SetActive(true);
+
+            PlayerNameText.transform.parent.gameObject.SetActive(false);
+            PlayerSpriteUI.gameObject.SetActive(false);
+
+        }
+        else if(TempType == Dialogue.DialogueType.Monologue)
+        {
+            SpriteUI.gameObject.SetActive(false);
+            NameText.transform.parent.gameObject.SetActive(false);
+
+            PlayerNameText.transform.parent.gameObject.SetActive(true);
+            PlayerSpriteUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            PlayerNameText.transform.parent.gameObject.SetActive(false);
+            PlayerSpriteUI.gameObject.SetActive(false);
+
+            PlayerNameText.transform.parent.gameObject.SetActive(false);
+            PlayerSpriteUI.gameObject.SetActive(false);
         }
 
         // dequeue sentences as the same time as saving them to a temp variable
