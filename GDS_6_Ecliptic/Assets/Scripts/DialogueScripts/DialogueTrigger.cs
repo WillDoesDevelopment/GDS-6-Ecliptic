@@ -19,48 +19,72 @@ public class DialogueTrigger : MonoBehaviour
 
     // self explanitory
     private bool dialogueMode = false;
-    // Update is called once per frame
-    void Start()
+
+    public bool OnStart = false;
+    void Awake()
     {
         // instead of finding it in editor
         Dm = FindObjectOfType<DialogueManager>();
+
+    }
+    private void Start()
+    {
+        OnStartCheck();
     }
     void Update()
     {
-
-        if (dialogueMode == false)
-        {
-            // check if we are in range
-            Proximity();
-        }
-        else if (Input.GetKeyDown(KeyCode.Return))
-        {
-            // check if we press enter while in a dialogue mode
-            Dm.NextDialogue();
-        }
+        DialogueModeCheck();
     }
-    public void Proximity()
+    public bool Proximity()
     {
         // checks if player is outside or within a radius
         float playerDistZ = player.transform.position.z - transform.position.z;
         float playerDistX = player.transform.position.x - transform.position.x;
         if (Mathf.Sqrt(Mathf.Pow(playerDistX, 2) + Mathf.Pow(playerDistZ, 2)) < radius)
         {
-            // instructions for the player
-            Dm.EnterPrompt();
-            if (Input.GetKey(KeyCode.Return))
-            {
-                // we are in a dialogue, exit the prompt and start dialogue
-                dialogueMode = true;
-                Dm.EnterAnimExit();
-                Dm.StartDialogue(dialogue);
-            }
+            return true;
         }
+
         else
         {
-            // if not in radius, exit the prompt
-            Dm.EnterAnimExit();
+            return false;
+        }
+    }
 
+    public void OnStartCheck()
+    {
+        if (OnStart)
+        {
+            Dm.StartDialogue(dialogue);
+            dialogueMode = true;
+        }
+    }
+
+    public void DialogueModeCheck()
+    {
+        if (dialogueMode == false)
+        {
+            // check if we are in range
+            if (Proximity())
+            {
+                Dm.EnterPrompt();
+                if (Input.GetKey(KeyCode.Return))
+                {
+                    dialogueMode = true;
+                    Dm.EnterAnimExit();
+                    Dm.StartDialogue(dialogue);
+                }
+
+            }
+            else
+            {
+                Dm.EnterAnimExit();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Return))
+        {
+            // check if we press enter while in a dialogue mode
+            Dm.NextDialogue();
         }
     }
 }

@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
     private bool DialogueMode = false;
     public float radius;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Sentences = new Queue<string>();
         SentenceType = new Queue<Dialogue.DialogueType>();
@@ -55,17 +55,14 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         // animates our text ui to pop up
+        TextAnim.SetBool("PopUp", true);
 
         // add image and name from our dialogue package that is passed through
-        //Debug.Log(dialogue);
-        Debug.Log("size of dialogue :" + dialogue.line.Length);
-        Debug.Log(dialogue.DialogueImage);
-        Sprite temp = SpriteUI.GetComponent<Image>().sprite;
-        Debug.Log(temp);
 
+
+        
         SpriteUI.GetComponent<Image>().sprite = dialogue.DialogueImage;
         NameText.text = dialogue.name;
-        TextAnim.SetBool("PopUp", true);
 
         PlayerNameText.text = dialogue.monologueName;
         PlayerSpriteUI.GetComponent<Image>().sprite = dialogue.MonologueImage;
@@ -93,7 +90,7 @@ public class DialogueManager : MonoBehaviour
     public void NextDialogue()
     {
         // check if we are out of dialogue
-
+        Debug.Log(Sentences.Count);
         if (Sentences.Count == 0)
         {
             endDialogue();
@@ -150,4 +147,6 @@ public class DialogueManager : MonoBehaviour
     {
         TextAnim.SetBool("PopUp", false);
     }
+
+
 }
