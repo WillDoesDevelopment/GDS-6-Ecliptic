@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // so you can see this in editor
-[System.Serializable]
-public class Dialogue 
+//[System.Serializable]
+[CreateAssetMenu(menuName = "data/dialogue")]
+public class Dialogue: ScriptableObject
 {
-    
+    [System.Serializable]
+    public struct DialogueLine 
+    { 
+        public string sentence; 
+        public DialogueType dialogueType;
+    }
+
+
+    public DialogueLine[] line;
     // all required information for the dialogue
     public enum DialogueType
     {
@@ -14,8 +23,8 @@ public class Dialogue
         Monologue,
         Narration
     }
-    public string[] sentences;
-    public DialogueType[] dialogueType;
+    //public string[] sentences;
+    //public DialogueType[] dialogueType;
 
     public string monologueName;
     public Sprite MonologueImage;
