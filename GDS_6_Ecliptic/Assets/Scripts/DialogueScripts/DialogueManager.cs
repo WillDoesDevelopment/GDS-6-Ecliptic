@@ -60,7 +60,7 @@ public class DialogueManager : MonoBehaviour
         // add image and name from our dialogue package that is passed through
 
 
-        
+        Debug.Log(dialogue.line.Length);
         SpriteUI.GetComponent<Image>().sprite = dialogue.DialogueImage;
         NameText.text = dialogue.name;
 
@@ -75,14 +75,15 @@ public class DialogueManager : MonoBehaviour
         PlayerSpriteUI.gameObject.SetActive(false);
 
         Sentences.Clear();
+        SentenceType.Clear();
 
         foreach (Dialogue.DialogueLine info in dialogue.line)
         {
             // add the sentances in our dialogue package to the local sentance queue
             Sentences.Enqueue(info.sentence);
             SentenceType.Enqueue(info.dialogueType);
-
         }
+            Debug.Log(Sentences.Count);
 
         // after the prep and saving to local variables we call the next dialogue
         NextDialogue();
@@ -90,9 +91,9 @@ public class DialogueManager : MonoBehaviour
     public void NextDialogue()
     {
         // check if we are out of dialogue
-        Debug.Log(Sentences.Count);
         if (Sentences.Count == 0)
         {
+            Debug.Log("no more sentences");
             endDialogue();
             return;
         }

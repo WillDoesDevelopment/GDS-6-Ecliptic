@@ -33,6 +33,7 @@ public class DialogueTrigger : MonoBehaviour
     }
     void Update()
     {
+       
         DialogueModeCheck();
     }
     public bool Proximity()
@@ -53,7 +54,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void OnStartCheck()
     {
-        if (OnStart)
+        if (OnStart == true)
         {
             Dm.StartDialogue(dialogue);
             dialogueMode = true;
@@ -62,13 +63,15 @@ public class DialogueTrigger : MonoBehaviour
 
     public void DialogueModeCheck()
     {
+        
         if (dialogueMode == false)
         {
             // check if we are in range
             if (Proximity())
             {
+                //Debug.Log("In range");
                 Dm.EnterPrompt();
-                if (Input.GetKey(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return))
                 {
                     dialogueMode = true;
                     Dm.EnterAnimExit();
@@ -83,8 +86,17 @@ public class DialogueTrigger : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
+            EndDialogueCheck();
             // check if we press enter while in a dialogue mode
+            Debug.Log("EnterPressed");
             Dm.NextDialogue();
+        }
+    }
+    public void EndDialogueCheck()
+    {
+        if (Dm.Sentences.Count == 0)
+        {
+            this.GetComponent<DialogueTrigger>().enabled = false;
         }
     }
 }
