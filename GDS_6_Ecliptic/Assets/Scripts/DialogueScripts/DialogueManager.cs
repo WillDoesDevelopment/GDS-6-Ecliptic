@@ -7,6 +7,8 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     // image and text components necessary
+    public PlayerScript PS;
+
     public GameObject EnterText;
 
     public TextMeshProUGUI DialogueText;
@@ -22,7 +24,10 @@ public class DialogueManager : MonoBehaviour
     // animator for dialogue
     public Animator TextAnim;
     public Animator EnterAnim;
+
+
     public bool proximityBool = false;
+    public bool DialogueMode = false;
 
     public Queue<string> Sentences;
     public Queue<Dialogue.DialogueType> SentenceType;
@@ -39,6 +44,12 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         EnterPromptCheck();
+        DialogueModeCheck();
+    }
+    public void DialogueModeCheck()
+    {
+        PS.enabled = !DialogueMode;
+        DialogueMode = false;
     }
     public void EnterPromptCheck()
     {
@@ -53,7 +64,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterPrompt()
     {
-        Debug.Log("EnterPrompt");
+        //Debug.Log("EnterPrompt");
         // toggles on the enter script
         //Animator EnterAnim = EnterText.GetComponent<Animator>();
         EnterAnim.SetBool("FadeIn", true);
@@ -61,7 +72,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void EnterAnimExit()
     {
-        Debug.Log("Exiting");
+        //Debug.Log("Exiting");
         //toggles off the enter script
         //Animator EnterAnim = EnterText.GetComponent<Animator>();
         EnterAnim.SetBool("FadeIn", false);
@@ -109,7 +120,7 @@ public class DialogueManager : MonoBehaviour
         // check if we are out of dialogue
         if (Sentences.Count == 0)
         {
-            Debug.Log("no more sentences");
+            //Debug.Log("no more sentences");
             endDialogue();
             return;
         }

@@ -66,7 +66,6 @@ public class DialogueTrigger : MonoBehaviour
 
     public void DialogueModeCheck()
     {
-        
         if (dialogueMode == false)
         {
             // check if we are in range
@@ -89,11 +88,17 @@ public class DialogueTrigger : MonoBehaviour
 
             Dm.NextDialogue();
         }
+        if (dialogueMode == true)
+        {
+            Dm.DialogueMode = true;
+        }
     }
     public void EndDialogueCheck()
     {
         if (Dm.Sentences.Count == 0)
         {
+            Debug.Log("end sentence");
+            //dialogueMode = false;
             this.GetComponent<DialogueTrigger>().enabled = false;
         }
     }
