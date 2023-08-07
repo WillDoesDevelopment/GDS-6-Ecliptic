@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RoomManager : MonoBehaviour
+{
+    public GameObject NormalSheep;
+    public GameObject GoldSheep;
+    public GameObject Aires;
+
+    public HubManager HM;
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (DialogueEndcheck(Aires))
+        {
+            HM.SendToHub();
+        }
+        if (DialogueEndcheck(GoldSheep))
+        {
+            GoldSheep.GetComponent<Animator>().SetTrigger("Animate");
+        }
+        if (DialogueEndcheck(NormalSheep))
+        {
+            NormalSheep.GetComponent<Animator>().SetTrigger("Animate");
+        }
+    }
+
+    public bool DialogueEndcheck(GameObject DialogueObj)
+    {
+        if (DialogueObj.GetComponent<DialogueTrigger>().enabled != true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+}
