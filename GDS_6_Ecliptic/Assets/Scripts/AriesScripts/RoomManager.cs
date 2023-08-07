@@ -6,6 +6,9 @@ public class RoomManager : MonoBehaviour
 {
     public GameObject NormalSheep;
     public GameObject GoldSheep;
+    public GameObject Aires;
+
+    public HubManager HM;
     void Start()
     {
         
@@ -14,25 +17,30 @@ public class RoomManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PuzzleStartCheck();
-        StartledSheepCheck();
-    }
-
-    void PuzzleStartCheck()
-    {
-        if (GoldSheep.GetComponent<DialogueTrigger>().enabled != true)
+        if (DialogueEndcheck(Aires))
+        {
+            HM.SendToHub();
+        }
+        if (DialogueEndcheck(GoldSheep))
         {
             GoldSheep.GetComponent<Animator>().SetTrigger("Animate");
         }
-    }
-
-    void StartledSheepCheck()
-    {
-        if (NormalSheep.GetComponent<DialogueTrigger>().enabled != true)
+        if (DialogueEndcheck(NormalSheep))
         {
             NormalSheep.GetComponent<Animator>().SetTrigger("Animate");
-            
-
         }
     }
+
+    public bool DialogueEndcheck(GameObject DialogueObj)
+    {
+        if (DialogueObj.GetComponent<DialogueTrigger>().enabled != true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }
