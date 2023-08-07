@@ -21,13 +21,14 @@ public class DialogueManager : MonoBehaviour
 
     // animator for dialogue
     public Animator TextAnim;
-    
+    public Animator EnterAnim;
+    public bool proximityBool = false;
 
     public Queue<string> Sentences;
     public Queue<Dialogue.DialogueType> SentenceType;
 
-    private bool DialogueMode = false;
-    public float radius;
+    //private bool DialogueMode = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,19 +36,34 @@ public class DialogueManager : MonoBehaviour
         SentenceType = new Queue<Dialogue.DialogueType>();
     }
 
+    private void Update()
+    {
+        EnterPromptCheck();
+    }
+    public void EnterPromptCheck()
+    {
+        EnterAnimExit();
 
-    
+        if (proximityBool == true)
+        {
+            EnterPrompt();
+            proximityBool = false;
+        }
+    }
+
     public void EnterPrompt()
     {
+        Debug.Log("EnterPrompt");
         // toggles on the enter script
-        Animator EnterAnim = EnterText.GetComponent<Animator>();
+        //Animator EnterAnim = EnterText.GetComponent<Animator>();
         EnterAnim.SetBool("FadeIn", true);
 
     }
     public void EnterAnimExit()
     {
+        Debug.Log("Exiting");
         //toggles off the enter script
-        Animator EnterAnim = EnterText.GetComponent<Animator>();
+        //Animator EnterAnim = EnterText.GetComponent<Animator>();
         EnterAnim.SetBool("FadeIn", false);
 
     }

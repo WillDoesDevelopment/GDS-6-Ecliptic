@@ -73,7 +73,7 @@ public class DialogueTrigger : MonoBehaviour
             if (Proximity())
             {
                 //Debug.Log("In range");
-                Dm.EnterPrompt();
+                Dm.proximityBool = true;
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
                     TriggerDialogue();
@@ -81,16 +81,12 @@ public class DialogueTrigger : MonoBehaviour
                 }
 
             }
-            else
-            {
-                Dm.EnterAnimExit();
-            }
+
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
             EndDialogueCheck();
-            // check if we press enter while in a dialogue mode
-            Debug.Log("EnterPressed");
+
             Dm.NextDialogue();
         }
     }
