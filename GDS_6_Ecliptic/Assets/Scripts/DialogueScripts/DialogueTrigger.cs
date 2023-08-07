@@ -21,6 +21,7 @@ public class DialogueTrigger : MonoBehaviour
     private bool dialogueMode = false;
 
     public bool OnStart = false;
+    public bool OnEvent = false;
     void Awake()
     {
         // instead of finding it in editor
@@ -35,6 +36,8 @@ public class DialogueTrigger : MonoBehaviour
     {
        
         DialogueModeCheck();
+        //OnEventCheck();
+
     }
     public bool Proximity()
     {
@@ -73,9 +76,8 @@ public class DialogueTrigger : MonoBehaviour
                 Dm.EnterPrompt();
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    dialogueMode = true;
-                    Dm.EnterAnimExit();
-                    Dm.StartDialogue(dialogue);
+                    TriggerDialogue();
+                    
                 }
 
             }
@@ -97,6 +99,22 @@ public class DialogueTrigger : MonoBehaviour
         if (Dm.Sentences.Count == 0)
         {
             this.GetComponent<DialogueTrigger>().enabled = false;
+        }
+    }
+
+    public void TriggerDialogue()
+    {
+        dialogueMode = true;
+        Dm.EnterAnimExit();
+        Dm.StartDialogue(dialogue);
+    }
+
+    public void OnEventCheck()
+    {
+        if (OnEvent && dialogueMode == false)
+        {
+            radius = 0;
+            TriggerDialogue();
         }
     }
 }
