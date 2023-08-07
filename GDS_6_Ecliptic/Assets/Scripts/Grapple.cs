@@ -93,6 +93,19 @@ public class Grapple : MonoBehaviour
             rope.transform.position = (playerPoint.position + grapplePoint.position) / 2.0f;
             rope.transform.localScale = new Vector3(ropeWidth, ropeWidth, Vector3.Distance(playerPoint.position, grapplePoint.position));
             rope.transform.LookAt(grapplePoint);
+
+            if (target.GetComponent<columnScript>() != null)
+            {
+                Debug.Log("almost");
+
+                if (t<1)
+                {
+                    target.GetComponent<columnScript>().fall = true;
+                    target = null;
+                    Debug.Log("fall");
+                    rope.SetActive(false);
+                }
+            }
         }
 
             
