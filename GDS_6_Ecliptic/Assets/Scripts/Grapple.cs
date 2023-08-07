@@ -96,13 +96,13 @@ public class Grapple : MonoBehaviour
 
             if (target.GetComponent<columnScript>() != null)
             {
-                Debug.Log("almost");
+                //Debug.Log("almost");
 
                 if (t<1)
                 {
                     target.GetComponent<columnScript>().fall = true;
                     target = null;
-                    Debug.Log("fall");
+                    //Debug.Log("fall");
                     rope.SetActive(false);
                 }
             }
