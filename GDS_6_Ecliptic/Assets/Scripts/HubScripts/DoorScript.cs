@@ -9,6 +9,10 @@ public class DoorScript : MonoBehaviour
 
     //for collision checking
     public GameObject Player;
+
+    public float Radius = 5;
+
+    public Animator ThisAnim;
     
     // at the moment each door script needs to know about the hub manager
     public HubManager HM;
@@ -16,12 +20,21 @@ public class DoorScript : MonoBehaviour
     {
         // instead of finding it in editor for each door
         HM = FindObjectOfType<HubManager>();
+
+        ThisAnim = this.GetComponentInParent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (proximity())
+        {
+            ThisAnim.SetBool("Animate", true);
+        }
+        else
+        {
+            ThisAnim.SetBool("Animate", false);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -30,6 +43,21 @@ public class DoorScript : MonoBehaviour
         if(collision.gameObject == Player)
         {
             HM.SendToScene(DS);
+        }
+    }
+
+    public bool proximity()
+    {
+        float playerDistZ = Player.transform.position.z - transform.position.z;
+        float playerDistX = Player.transform.position.x - transform.position.x;
+        if (Mathf.Sqrt(Mathf.Pow(playerDistX, 2) + Mathf.Pow(playerDistZ, 2)) < Radius)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
         }
     }
 }
