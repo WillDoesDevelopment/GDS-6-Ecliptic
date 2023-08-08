@@ -19,6 +19,7 @@ public class lionAI : MonoBehaviour
     public float chargeTime = 3f;
     public float waitTime = 2f;
     public float pounceTime = 2.5f;
+    public float pounceDistance = 14f;
 
 
     LayerMask hitObject;
@@ -81,7 +82,7 @@ public class lionAI : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer < 0)
             {
-                pounceTarget = transform.position + transform.forward * 10;
+                pounceTarget = transform.position + transform.forward * pounceDistance;
                 timer = waitTime;
                 state = 3;
             }

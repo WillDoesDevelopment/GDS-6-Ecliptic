@@ -21,6 +21,7 @@ public class DialogueTrigger : MonoBehaviour
     private bool dialogueMode = false;
 
     public bool OnStart = false;
+    public bool OnEvent = false;
     void Awake()
     {
         // instead of finding it in editor
@@ -35,6 +36,8 @@ public class DialogueTrigger : MonoBehaviour
     {
        
         DialogueModeCheck();
+        //OnEventCheck();
+
     }
     public bool Proximity()
     {
@@ -63,40 +66,56 @@ public class DialogueTrigger : MonoBehaviour
 
     public void DialogueModeCheck()
     {
-        
         if (dialogueMode == false)
         {
             // check if we are in range
             if (Proximity())
             {
                 //Debug.Log("In range");
-                Dm.EnterPrompt();
+                Dm.proximityBool = true;
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    dialogueMode = true;
-                    Dm.EnterAnimExit();
-                    Dm.StartDialogue(dialogue);
+                    TriggerDialogue();
+                    
                 }
 
             }
-            else
-            {
-                Dm.EnterAnimExit();
-            }
+
         }
         else if (Input.GetKeyDown(KeyCode.Return))
         {
             EndDialogueCheck();
-            // check if we press enter while in a dialogue mode
-            Debug.Log("EnterPressed");
+
             Dm.NextDialogue();
+        }
+        if (dialogueMode == true)
+        {
+            Dm.DialogueMode = true;
         }
     }
     public void EndDialogueCheck()
     {
         if (Dm.Sentences.Count == 0)
         {
+            Debug.Log("end sentence");
+            //dialogueMode = false;
             this.GetComponent<DialogueTrigger>().enabled = false;
+        }
+    }
+
+    public void TriggerDialogue()
+    {
+        dialogueMode = true;
+        Dm.EnterAnimExit();
+        Dm.StartDialogue(dialogue);
+    }
+
+    public void OnEventCheck()
+    {
+        if (OnEvent && dialogueMode == false)
+        {
+            radius = 0;
+            TriggerDialogue();
         }
     }
 }

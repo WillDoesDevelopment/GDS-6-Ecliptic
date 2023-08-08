@@ -7,6 +7,8 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     // image and text components necessary
+    public PlayerScript PS;
+
     public GameObject EnterText;
 
     public TextMeshProUGUI DialogueText;
@@ -21,13 +23,17 @@ public class DialogueManager : MonoBehaviour
 
     // animator for dialogue
     public Animator TextAnim;
-    
+    public Animator EnterAnim;
+
+
+    public bool proximityBool = false;
+    public bool DialogueMode = false;
 
     public Queue<string> Sentences;
     public Queue<Dialogue.DialogueType> SentenceType;
 
-    private bool DialogueMode = false;
-    public float radius;
+    //private bool DialogueMode = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,19 +41,40 @@ public class DialogueManager : MonoBehaviour
         SentenceType = new Queue<Dialogue.DialogueType>();
     }
 
+    private void Update()
+    {
+        EnterPromptCheck();
+        DialogueModeCheck();
+    }
+    public void DialogueModeCheck()
+    {
+        PS.enabled = !DialogueMode;
+        DialogueMode = false;
+    }
+    public void EnterPromptCheck()
+    {
+        EnterAnimExit();
 
-    
+        if (proximityBool == true)
+        {
+            EnterPrompt();
+            proximityBool = false;
+        }
+    }
+
     public void EnterPrompt()
     {
+        //Debug.Log("EnterPrompt");
         // toggles on the enter script
-        Animator EnterAnim = EnterText.GetComponent<Animator>();
+        //Animator EnterAnim = EnterText.GetComponent<Animator>();
         EnterAnim.SetBool("FadeIn", true);
 
     }
     public void EnterAnimExit()
     {
+        //Debug.Log("Exiting");
         //toggles off the enter script
-        Animator EnterAnim = EnterText.GetComponent<Animator>();
+        //Animator EnterAnim = EnterText.GetComponent<Animator>();
         EnterAnim.SetBool("FadeIn", false);
 
     }
@@ -93,7 +120,7 @@ public class DialogueManager : MonoBehaviour
         // check if we are out of dialogue
         if (Sentences.Count == 0)
         {
-            Debug.Log("no more sentences");
+            //Debug.Log("no more sentences");
             endDialogue();
             return;
         }
