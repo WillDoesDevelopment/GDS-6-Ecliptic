@@ -5,6 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 public class DialogueTrigger : MonoBehaviour
 {
+    public enum DialogueState
+    {
+        NotStarted,
+        InProgress,
+        Finished
+    }
+    public DialogueState DialogueMode = DialogueState.NotStarted;
     // seen in editor
     public Dialogue dialogue;
 
@@ -18,7 +25,7 @@ public class DialogueTrigger : MonoBehaviour
     public DialogueManager Dm;
 
     // self explanitory
-    private bool dialogueMode = false;
+    //private bool dialogueMode = false;
 
     public bool OnStart = false;
     public bool OnEvent = false;
@@ -59,14 +66,13 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (OnStart == true)
         {
-            Dm.StartDialogue(dialogue);
-            dialogueMode = true;
+            TriggerDialogue();
         }
     }
 
     public void DialogueModeCheck()
     {
-        if (dialogueMode == false)
+        if (DialogueMode == DialogueState.NotStarted)
         {
             // check if we are in range
             if (Proximity())
@@ -82,37 +88,35 @@ public class DialogueTrigger : MonoBehaviour
             }
 
         }
-        else if (Input.GetKeyDown(KeyCode.Return))
+        else if (DialogueMode == DialogueState.InProgress && Input.GetKeyDown(KeyCode.Return))
         {
+            // end dialogue must be done first otherwise our Next dialogue in dialogue manager will check for no sentences left and stop the dialogue before we can exit the dialogue in dialogue trigger
             EndDialogueCheck();
-
             Dm.NextDialogue();
         }
-        if (dialogueMode == true)
-        {
-            Dm.DialogueMode = true;
-        }
+
     }
     public void EndDialogueCheck()
     {
         if (Dm.Sentences.Count == 0)
         {
             Debug.Log("end sentence");
+            DialogueMode = DialogueState.Finished;
             //dialogueMode = false;
-            this.GetComponent<DialogueTrigger>().enabled = false;
+            //this.GetComponent<DialogueTrigger>().enabled = false;
         }
     }
 
     public void TriggerDialogue()
     {
-        dialogueMode = true;
+        DialogueMode = DialogueState.InProgress;
         Dm.EnterAnimExit();
         Dm.StartDialogue(dialogue);
     }
 
     public void OnEventCheck()
     {
-        if (OnEvent && dialogueMode == false)
+        if (OnEvent)
         {
             radius = 0;
             TriggerDialogue();

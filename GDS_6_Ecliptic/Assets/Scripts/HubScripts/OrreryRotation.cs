@@ -7,6 +7,12 @@ public class OrreryRotation : MonoBehaviour
 
     public GameObject[] OrreryArms;
     public float[] RandomRotations;
+
+    public float LerpSpeed;
+
+    public static int SceneCounter;
+
+    public DialogueTrigger DT;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +26,35 @@ public class OrreryRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < OrreryArms.Length; i++)
+        if (DialogueTrigger.DialogueState.Finished == null)
         {
-            OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0);
+            Debug.Log(DialogueTrigger.DialogueState.Finished + "Enum");
+
+        }
+        if(DT.DialogueMode == null)
+        {
+            Debug.Log(DT.DialogueMode + "Dialogue Trigger OBJ");
+
+        }
+        if(DT.DialogueMode != DialogueTrigger.DialogueState.Finished)
+        {
+            for (int i = 0; i < OrreryArms.Length; i++)
+            {
+                OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0);
+            }
+
+        }
+        else
+        {
+            for (int i = 0; i < OrreryArms.Length; i++)
+            {
+                if (i != 1)
+                {
+                    OrreryArms[i].transform.eulerAngles = Vector3.Lerp(OrreryArms[i].transform.eulerAngles,new Vector3(0, 27*(i), 0),LerpSpeed);
+
+                }
+            }
+            OrreryArms[1].transform.eulerAngles = Vector3.Lerp(OrreryArms[1].transform.eulerAngles, new Vector3(0, 90, 0), LerpSpeed);
         }
     }
 }
