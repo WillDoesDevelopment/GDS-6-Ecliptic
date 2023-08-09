@@ -8,6 +8,7 @@ public class lionAI : MonoBehaviour
     public GameObject ColumnParent;
     public GameObject particle1;
     public GameObject particle2;
+    public GameObject particle3;
     public float speed = 1;
     float inv = 1;
     float angle = 0;
@@ -40,6 +41,7 @@ public class lionAI : MonoBehaviour
         target = Player.transform.position;
         particle1.SetActive(false);
         particle2.SetActive(false);
+        particle3.SetActive(false);
     }
 
     // Update is called once per frame
@@ -47,7 +49,7 @@ public class lionAI : MonoBehaviour
     {
         if(state == 1)          //Following
         {
-            particle2.SetActive(false);
+            particle3.SetActive(false);
             rayDist = Vector3.Distance(transform.position, Player.transform.position) - 3.0f;
             var rayPos = transform.position;
             RaycastHit hit;
@@ -86,7 +88,7 @@ public class lionAI : MonoBehaviour
 
         if(state == 2)          //Charging
         {
-            
+            particle1.SetActive(true);
             forward = Vector3.Normalize(Vector3.Scale(Player.transform.position - transform.position , new Vector3(1,0,1)));            
             
             Quaternion targetRotation = Quaternion.LookRotation(forward, Vector3.up);
@@ -103,7 +105,8 @@ public class lionAI : MonoBehaviour
 
         if (state == 3)         //Waiting
         {
-            particle1.SetActive(true);
+            particle1.SetActive(false);
+            particle2.SetActive(true);
             timer -= Time.deltaTime;
             if (timer < 0)
             {
@@ -114,8 +117,8 @@ public class lionAI : MonoBehaviour
 
         if (state == 4)         //Pouncing
         {
-            particle1.SetActive(false);
-            particle2.SetActive(true);
+            particle2.SetActive(false);
+            particle3.SetActive(true);
             transform.position = Vector3.MoveTowards(transform.position, pounceTarget, Time.deltaTime * 40.0f);
             timer -= Time.deltaTime;
             if (timer < 0)
