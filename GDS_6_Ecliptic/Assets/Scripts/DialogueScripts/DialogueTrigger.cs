@@ -5,13 +5,13 @@ using UnityEngine.UI;
 using TMPro;
 public class DialogueTrigger : MonoBehaviour
 {
-    public enum DialogueState
+    /*public enum DialogueState
     {
         NotStarted,
         InProgress,
         Finished
     }
-    public DialogueState DialogueMode = DialogueState.NotStarted;
+    public DialogueState DialogueMode = DialogueState.NotStarted;*/
     // seen in editor
     public Dialogue dialogue;
 
@@ -29,6 +29,10 @@ public class DialogueTrigger : MonoBehaviour
 
     public bool OnStart = false;
     public bool OnEvent = false;
+
+    public bool IsDone => dialogue.DialogueMode == Dialogue.DialogueState.Finished;
+    public bool IsTrigger => !OnStart && !OnEvent;
+
     void Awake()
     {
         // instead of finding it in editor
@@ -41,8 +45,11 @@ public class DialogueTrigger : MonoBehaviour
     }
     void Update()
     {
-       
-        DialogueModeCheck();
+       if (IsTrigger)
+        {
+            DialogueModeCheck();
+
+        }
         //OnEventCheck();
 
     }
@@ -72,7 +79,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void DialogueModeCheck()
     {
-        if (DialogueMode == DialogueState.NotStarted)
+        if (dialogue.DialogueMode == Dialogue.DialogueState.NotStarted)
         {
             // check if we are in range
             if (Proximity())
@@ -88,28 +95,29 @@ public class DialogueTrigger : MonoBehaviour
             }
 
         }
-        else if (DialogueMode == DialogueState.InProgress && Input.GetKeyDown(KeyCode.Return))
+        else if (dialogue.DialogueMode == Dialogue.DialogueState.InProgress && Input.GetKeyDown(KeyCode.Return))
         {
             // end dialogue must be done first otherwise our Next dialogue in dialogue manager will check for no sentences left and stop the dialogue before we can exit the dialogue in dialogue trigger
-            EndDialogueCheck();
+            Dm.EndDialogueCheck(dialogue);
             Dm.NextDialogue();
+
         }
 
     }
-    public void EndDialogueCheck()
+   /* public void EndDialogueCheck()
     {
         if (Dm.Sentences.Count == 0)
         {
-            Debug.Log("end sentence");
-            DialogueMode = DialogueState.Finished;
+            //Debug.Log("end sentence");
+            dialogue.DialogueMode = Dialogue.DialogueState.Finished;
             //dialogueMode = false;
             //this.GetComponent<DialogueTrigger>().enabled = false;
         }
-    }
+    }*/
 
     public void TriggerDialogue()
     {
-        DialogueMode = DialogueState.InProgress;
+        dialogue.DialogueMode = Dialogue.DialogueState.InProgress;
         Dm.EnterAnimExit();
         Dm.StartDialogue(dialogue);
     }

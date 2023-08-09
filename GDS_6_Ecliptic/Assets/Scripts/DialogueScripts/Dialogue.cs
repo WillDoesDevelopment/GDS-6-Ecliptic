@@ -32,4 +32,17 @@ public class Dialogue: ScriptableObject
     public string name;
     public Sprite DialogueImage;
 
+    public enum DialogueState
+    {
+        NotStarted,
+        InProgress,
+        Finished
+    }
+    [System.NonSerialized]
+    public DialogueState DialogueMode = DialogueState.NotStarted;
+
+    private void OnEnable()
+    {
+        DialogueMode = DialogueState.NotStarted;
+    }
 }
