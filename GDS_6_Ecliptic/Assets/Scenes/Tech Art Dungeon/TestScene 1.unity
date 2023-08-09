@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogueMode: 0
   dialogue: {fileID: 0}
   player: {fileID: 305504743}
   radius: 3
@@ -11746,6 +11747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogueMode: 0
   dialogue: {fileID: 0}
   player: {fileID: 305504743}
   radius: 3
@@ -12867,6 +12869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0beeeb262ef6846b2f67fe5a9f5864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PS: {fileID: 0}
   EnterText: {fileID: 603561434}
   DialogueText: {fileID: 249812331}
   NameText: {fileID: 1493438989}
@@ -12874,7 +12877,9 @@ MonoBehaviour:
   PlayerNameText: {fileID: 0}
   PlayerSpriteUI: {fileID: 0}
   TextAnim: {fileID: 1670822136}
-  radius: 0
+  EnterAnim: {fileID: 0}
+  proximityBool: 0
+  DialogueMode: 0
 --- !u!4 &1622666603
 Transform:
   m_ObjectHideFlags: 0
@@ -33456,6 +33461,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+--- !u!1001 &5852181366253643810
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5852181365506259645, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_RootOrder
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852181365506259645, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852181365506259645, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.0626471
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852181365506259645, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.135889
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852181365506259645, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852181365506259645, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852181365506259645, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852181365506259645, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852181365506259645, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852181365506259645, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852181365506259645, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852181365506259646, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
+      propertyPath: m_Name
+      value: Earing
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4635b5ef52fdbdb4f817b36d08737433, type: 3}
 --- !u!114 &7601633116004317540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33468,6 +33530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogueMode: 0
   dialogue: {fileID: 0}
   player: {fileID: 0}
   radius: 3
