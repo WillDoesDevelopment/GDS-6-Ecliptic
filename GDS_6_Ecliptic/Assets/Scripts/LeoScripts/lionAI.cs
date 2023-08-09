@@ -5,6 +5,9 @@ using UnityEngine;
 public class lionAI : MonoBehaviour
 {
     public GameObject Player;
+    public GameObject ColumnParent;
+    public GameObject particle1;
+    public GameObject particle2;
     public float speed = 1;
     float inv = 1;
     float angle = 0;
@@ -21,6 +24,13 @@ public class lionAI : MonoBehaviour
     public float pounceTime = 2.5f;
     public float pounceDistance = 14f;
 
+    //Floor collapse
+    float floorTimer = 0.0f;
+    float x;
+    float y;
+    float z;
+    Vector3 Pos;
+
 
     LayerMask hitObject;
     // Start is called before the first frame update
@@ -28,6 +38,8 @@ public class lionAI : MonoBehaviour
     {
         forward = transform.forward;
         target = Player.transform.position;
+        particle1.SetActive(false);
+        particle2.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,6 +47,7 @@ public class lionAI : MonoBehaviour
     {
         if(state == 1)          //Following
         {
+            particle2.SetActive(false);
             rayDist = Vector3.Distance(transform.position, Player.transform.position) - 3.0f;
             var rayPos = transform.position;
             RaycastHit hit;
@@ -73,8 +86,8 @@ public class lionAI : MonoBehaviour
 
         if(state == 2)          //Charging
         {
-            forward = Vector3.Normalize(Vector3.Scale(Player.transform.position - transform.position , new Vector3(1,0,1)));
-              
+            
+            forward = Vector3.Normalize(Vector3.Scale(Player.transform.position - transform.position , new Vector3(1,0,1)));            
             
             Quaternion targetRotation = Quaternion.LookRotation(forward, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
@@ -90,6 +103,7 @@ public class lionAI : MonoBehaviour
 
         if (state == 3)         //Waiting
         {
+            particle1.SetActive(true);
             timer -= Time.deltaTime;
             if (timer < 0)
             {
@@ -100,6 +114,8 @@ public class lionAI : MonoBehaviour
 
         if (state == 4)         //Pouncing
         {
+            particle1.SetActive(false);
+            particle2.SetActive(true);
             transform.position = Vector3.MoveTowards(transform.position, pounceTarget, Time.deltaTime * 40.0f);
             timer -= Time.deltaTime;
             if (timer < 0)
@@ -109,6 +125,42 @@ public class lionAI : MonoBehaviour
             }
         }
 
+        if(ColumnParent.transform.childCount == 0)
+        {
+            x = Mathf.Floor(transform.position.x + 0.5f);
+            y = transform.position.y;
+            z = Mathf.Floor(transform.position.z + 0.5f);
+            Pos = new Vector3(x, y, z);
+            state = 5;
+        }
+
+        if (state == 5)     //Collapse
+        {
+            particle1.SetActive(false);
+            particle2.SetActive(false);
+
+            floorTimer += Time.deltaTime;
+            if (timer > 1.0)
+            {
+                collapse(3.0f);
+            }
+            if (timer > 1.5)
+            {
+                collapse(4.0f);
+            }
+            if (timer > 2.0)
+            {
+                collapse(5.0f);
+            }
+            if (timer > 2.5)
+            {
+                collapse(6.0f);
+            }
+
+            transform.position = transform.position - Vector3.up * Time.deltaTime * 2.0f;            
+            Destroy(gameObject, 4.0f);
+        }
+
         //Collision
 
         Collider[] hitColliders = Physics.OverlapBox(transform.position, new Vector3(1f, 1.5f, 1f));
@@ -116,7 +168,21 @@ public class lionAI : MonoBehaviour
         {
             if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Column"))
             {
-                hitCollider.transform.gameObject.SetActive(false);
+                //hitCollider.transform.gameObject.GetComponent<columnScript>().fall = true;       
+                hitCollider.gameObject.GetComponent<columnScript>().fall = true;
+            }
+
+        }
+
+    }
+    public void collapse(float radius)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(Pos, radius);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Floor"))
+            {
+                hitCollider.transform.GetComponent<floorScript>().solid = false;
             }
 
         }

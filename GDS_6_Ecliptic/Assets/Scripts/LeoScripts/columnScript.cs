@@ -18,6 +18,7 @@ public class columnScript : MonoBehaviour
         if(fall == true)
         {
             transform.position = transform.position - Vector3.up * Time.deltaTime * 4.0f;
+            GetComponent<CapsuleCollider>().enabled = false;
             Destroy(gameObject, 4.0f);
         }
     }
