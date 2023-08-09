@@ -27,7 +27,7 @@ public class DialogueManager : MonoBehaviour
 
 
     public bool proximityBool = false;
-    public bool DialogueMode = false;
+    //public bool DialogueMode = false;
 
     public Queue<string> Sentences;
     public Queue<Dialogue.DialogueType> SentenceType;
@@ -48,8 +48,9 @@ public class DialogueManager : MonoBehaviour
     }
     public void DialogueModeCheck()
     {
-        PS.enabled = !DialogueMode;
-        DialogueMode = false;
+        
+        /*PS.enabled = !DialogueMode;
+        DialogueMode = false;*/
     }
     public void EnterPromptCheck()
     {
@@ -118,12 +119,12 @@ public class DialogueManager : MonoBehaviour
     public void NextDialogue()
     {
         // check if we are out of dialogue
-        if (Sentences.Count == 0)
+        /*if (Sentences.Count == 0)
         {
             //Debug.Log("no more sentences");
             endDialogue();
             return;
-        }
+        }*/
 
         Dialogue.DialogueType TempType = SentenceType.Dequeue();
 
@@ -176,5 +177,16 @@ public class DialogueManager : MonoBehaviour
         TextAnim.SetBool("PopUp", false);
     }
 
+    public void EndDialogueCheck(Dialogue dialogue)
+    {
+        if (Sentences.Count == 0)
+        {
+            //Debug.Log("end sentence");
+            dialogue.DialogueMode = Dialogue.DialogueState.Finished;
+            //dialogueMode = false;
+            //this.GetComponent<DialogueTrigger>().enabled = false;
+            TextAnim.SetBool("PopUp", false);
+        }
+    }
 
 }

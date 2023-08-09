@@ -37,10 +37,9 @@ public class RoomManager : MonoBehaviour
             }
         }
     }
-
     public bool DialogueEndcheck(GameObject DialogueObj)
     {
-        if (DialogueObj.GetComponent<DialogueTrigger>().enabled != true)
+        if (DialogueObj.GetComponent<Dialogue>().DialogueMode == Dialogue.DialogueState.Finished)
         {
             return true;
         }
