@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class AINavMesh : MonoBehaviour
 {
+    public GameObject Player; 
+
     public NavMeshAgent NMA;
     private Vector3 CurrentNavPos;
 
@@ -22,8 +24,11 @@ public class AINavMesh : MonoBehaviour
     void Update()
     {
         CurrentNavPos = positionQueue.Peek().position;
-        if (Proximity(CurrentNavPos))
-
+        if(Proximity(Player.transform.position, 9))
+        {
+            CurrentNavPos = Player.transform.position;
+        }
+        else if (Proximity(CurrentNavPos, 1))
         {
             Transform temp = positionQueue.Dequeue();
             positionQueue.Enqueue(temp);
@@ -32,17 +37,25 @@ public class AINavMesh : MonoBehaviour
         NMA.SetDestination(CurrentNavPos);
     }
 
-    public bool Proximity( Vector3 NavPos)
+    public bool Proximity( Vector3 NavPos, float radius)
     {
         float playerDistZ = NavPos.z - transform.position.z;
         float playerDistX = NavPos.x - transform.position.x;
-        if (Mathf.Sqrt(Mathf.Pow(playerDistX, 2) + Mathf.Pow(playerDistZ, 2)) < 1)
+        if (Mathf.Sqrt(Mathf.Pow(playerDistX, 2) + Mathf.Pow(playerDistZ, 2)) < radius)
         {
             return true;
         }
         else
         {
             return false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject == Player)
+        {
+            Debug.Log("GG loser");
         }
     }
 }
