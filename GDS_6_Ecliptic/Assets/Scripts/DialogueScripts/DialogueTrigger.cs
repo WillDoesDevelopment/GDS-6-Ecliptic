@@ -45,11 +45,10 @@ public class DialogueTrigger : MonoBehaviour
     }
     void Update()
     {
-       if (IsTrigger)
-        {
+       
             DialogueModeCheck();
 
-        }
+        
         //OnEventCheck();
 
     }
@@ -90,6 +89,7 @@ public class DialogueTrigger : MonoBehaviour
                 {
                     TriggerDialogue();
                     
+                    
                 }
 
             }
@@ -99,7 +99,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             // end dialogue must be done first otherwise our Next dialogue in dialogue manager will check for no sentences left and stop the dialogue before we can exit the dialogue in dialogue trigger
             Dm.EndDialogueCheck(dialogue);
-            Dm.NextDialogue();
+            Dm.NextDialogue(dialogue);
 
         }
 
@@ -117,7 +117,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        dialogue.DialogueMode = Dialogue.DialogueState.InProgress;
+        
         Dm.EnterAnimExit();
         Dm.StartDialogue(dialogue);
     }

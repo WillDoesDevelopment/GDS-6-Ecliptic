@@ -34,12 +34,13 @@ public class RoomManager : MonoBehaviour
             foreach(DialogueTrigger dt in DT)
             {
                 dt.OnEventCheck();
+                dt.OnEvent  = false;
             }
         }
     }
     public bool DialogueEndcheck(GameObject DialogueObj)
     {
-        if (DialogueObj.GetComponent<Dialogue>().DialogueMode == Dialogue.DialogueState.Finished)
+        if (DialogueObj.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             return true;
         }

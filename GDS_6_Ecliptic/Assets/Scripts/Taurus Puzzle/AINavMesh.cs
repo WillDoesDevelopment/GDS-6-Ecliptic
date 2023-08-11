@@ -24,7 +24,7 @@ public class AINavMesh : MonoBehaviour
     void Update()
     {
         CurrentNavPos = positionQueue.Peek().position;
-        if(Proximity(Player.transform.position, 9))
+        if(Proximity(Player.transform.position, 6))
         {
             CurrentNavPos = Player.transform.position;
         }

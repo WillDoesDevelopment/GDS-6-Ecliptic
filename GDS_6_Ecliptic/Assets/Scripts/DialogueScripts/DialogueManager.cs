@@ -82,6 +82,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+
+        dialogue.DialogueMode = Dialogue.DialogueState.InProgress;
         // animates our text ui to pop up
         TextAnim.SetBool("PopUp", true);
 
@@ -114,18 +116,18 @@ public class DialogueManager : MonoBehaviour
             Debug.Log(Sentences.Count);
 
         // after the prep and saving to local variables we call the next dialogue
-        NextDialogue();
+        NextDialogue(dialogue);
     }
-    public void NextDialogue()
+    public void NextDialogue(Dialogue dialogue)
     {
         // check if we are out of dialogue
-        /*if (Sentences.Count == 0)
+        if (Sentences.Count == 0)
         {
-            //Debug.Log("no more sentences");
-            endDialogue();
+            Debug.Log("skipping next dialogue");
             return;
-        }*/
+        }
 
+        
         Dialogue.DialogueType TempType = SentenceType.Dequeue();
 
         if(TempType == Dialogue.DialogueType.OtherDialogue)
@@ -160,6 +162,7 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
         //types each character
         StartCoroutine(TypeText(tempSentence, DialogueText));
+
     }
     public IEnumerator TypeText(string sentence, TextMeshProUGUI TxtElement)
     {
@@ -172,20 +175,20 @@ public class DialogueManager : MonoBehaviour
     }
 
     // exit dialogue anim
-    public void endDialogue()
-    {
-        TextAnim.SetBool("PopUp", false);
-    }
+
 
     public void EndDialogueCheck(Dialogue dialogue)
     {
+        
         if (Sentences.Count == 0)
         {
+            TextAnim.SetBool("PopUp", false);
             //Debug.Log("end sentence");
             dialogue.DialogueMode = Dialogue.DialogueState.Finished;
             //dialogueMode = false;
             //this.GetComponent<DialogueTrigger>().enabled = false;
             TextAnim.SetBool("PopUp", false);
+            return;
         }
     }
 
