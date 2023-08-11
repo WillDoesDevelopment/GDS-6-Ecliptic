@@ -123,7 +123,7 @@ public class DialogueManager : MonoBehaviour
         // check if we are out of dialogue
         if (Sentences.Count == 0)
         {
-            Debug.Log("skipping next dialogue");
+            
             return;
         }
 
