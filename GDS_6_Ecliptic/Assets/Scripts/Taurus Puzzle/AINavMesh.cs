@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class AINavMesh : MonoBehaviour
 {
-    public GameObject Player; 
+    public GameObject Player;
+    public int visionDist;
 
     public NavMeshAgent NMA;
     private Vector3 CurrentNavPos;
@@ -24,7 +25,7 @@ public class AINavMesh : MonoBehaviour
     void Update()
     {
         CurrentNavPos = positionQueue.Peek().position;
-        if(Proximity(Player.transform.position, 6))
+        if(Proximity(Player.transform.position, visionDist))
         {
             CurrentNavPos = Player.transform.position;
         }
