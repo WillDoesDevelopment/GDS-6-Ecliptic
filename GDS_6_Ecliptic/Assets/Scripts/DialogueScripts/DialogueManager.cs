@@ -25,6 +25,9 @@ public class DialogueManager : MonoBehaviour
     public Animator TextAnim;
     public Animator EnterAnim;
 
+    public Animator PlayerImgAnim;
+    public Animator OtherImgAnim;
+
 
     public bool proximityBool = false;
     //public bool DialogueMode = false;
@@ -90,12 +93,14 @@ public class DialogueManager : MonoBehaviour
         // add image and name from our dialogue package that is passed through
 
 
-        Debug.Log(dialogue.line.Length);
+
         SpriteUI.GetComponent<Image>().sprite = dialogue.DialogueImage;
+        SpriteUI.rectTransform.sizeDelta = new Vector2 (dialogue.DialogueImage.rect.width, dialogue.DialogueImage.rect.height);
         NameText.text = dialogue.name;
 
-        PlayerNameText.text = dialogue.monologueName;
         PlayerSpriteUI.GetComponent<Image>().sprite = dialogue.MonologueImage;
+        PlayerSpriteUI.rectTransform.sizeDelta = new Vector2(dialogue.MonologueImage.rect.width, dialogue.MonologueImage.rect.height);
+        PlayerNameText.text = dialogue.monologueName;
 
         //sets them all to inactive to start
         SpriteUI.gameObject.SetActive(false);
@@ -138,6 +143,9 @@ public class DialogueManager : MonoBehaviour
             PlayerNameText.transform.parent.gameObject.SetActive(false);
             PlayerSpriteUI.gameObject.SetActive(false);
 
+            OtherImgAnim.SetBool("Animate", true);
+            PlayerImgAnim.SetBool("Animate", false);
+
         }
         else if(TempType == Dialogue.DialogueType.Monologue)
         {
@@ -146,6 +154,9 @@ public class DialogueManager : MonoBehaviour
 
             PlayerNameText.transform.parent.gameObject.SetActive(true);
             PlayerSpriteUI.gameObject.SetActive(true);
+
+            OtherImgAnim.SetBool("Animate", false);
+            PlayerImgAnim.SetBool("Animate", true);
         }
         else
         {
@@ -154,6 +165,9 @@ public class DialogueManager : MonoBehaviour
 
             PlayerNameText.transform.parent.gameObject.SetActive(false);
             PlayerSpriteUI.gameObject.SetActive(false);
+
+            OtherImgAnim.SetBool("Animate", false);
+            PlayerImgAnim.SetBool("Animate", false);
         }
 
         // dequeue sentences as the same time as saving them to a temp variable
