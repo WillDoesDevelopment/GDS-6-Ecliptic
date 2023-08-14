@@ -23,6 +23,7 @@ public class TaurusPuzzle : MonoBehaviour
     {
         if (CollectedItems == 4)
         {
+            HB.AddOneToLevel();
             HB.SendToHub();
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class OrreryRotation : MonoBehaviour
 {
     public BridgeScript BS;
+    
     public GameObject[] OrreryArms;
     public float[] RandomRotations;
 
@@ -57,7 +58,7 @@ public class OrreryRotation : MonoBehaviour
         {
             for (int i = 0; i < OrreryArms.Length; i++)
             {
-                if (i != 1)
+                if (i != HubManager.LevelNumber)
                 {
                     //Debug.Log("Working");
                     OrreryArms[i].transform.eulerAngles = Vector3.Lerp(OrreryArms[i].transform.eulerAngles,new Vector3(0, 27*(i), 0),LerpSpeed);
@@ -66,11 +67,13 @@ public class OrreryRotation : MonoBehaviour
                 else
                 {
 
-                    Debug.Log(OrreryArms[1]);
-                    OrreryArms[1].transform.eulerAngles = Vector3.Lerp(OrreryArms[1].transform.eulerAngles, new Vector3(0, 90, 0), LerpSpeed);
-                    BS.door = OrreryArms[1].transform.GetChild(0).gameObject;
+                    Debug.Log(OrreryArms[HubManager.LevelNumber]);
+                    OrreryArms[HubManager.LevelNumber].transform.eulerAngles = Vector3.Lerp(OrreryArms[HubManager.LevelNumber].transform.eulerAngles, new Vector3(0, 90, 0), LerpSpeed);
+                    BS.door = OrreryArms[HubManager.LevelNumber].transform.GetChild(0).gameObject;
+                    
                     BS.Connect();
                     Debug.Log("connect");
+
                 }
 
             }

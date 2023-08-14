@@ -21,6 +21,7 @@ public class RoomManager : MonoBehaviour
     {
         if (DialogueEndcheck(Aires))
         {
+            HM.AddOneToLevel();
             HM.SendToHub();
         }
         if (DialogueEndcheck(GoldSheep))

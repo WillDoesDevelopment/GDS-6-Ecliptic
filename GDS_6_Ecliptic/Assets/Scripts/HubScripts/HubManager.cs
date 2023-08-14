@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class HubManager : MonoBehaviour
 {
     public GameObject[] doors;
+
+    public static int LevelNumber = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,10 @@ public class HubManager : MonoBehaviour
             SceneManager.LoadScene(DS.SceneNum);
         }
     }
-
+    public void AddOneToLevel()
+    {
+        LevelNumber += 1;
+    }
     public void SendToHub()
     {
         SceneManager.LoadScene(0);
