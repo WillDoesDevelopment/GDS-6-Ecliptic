@@ -43,7 +43,7 @@ public class Dialogue: ScriptableObject
         InProgress,
         Finished
     }
-    [System.NonSerialized]
+    //[System.NonSerialized]
     public DialogueState DialogueMode = DialogueState.NotStarted;
 
     private void OnEnable()
