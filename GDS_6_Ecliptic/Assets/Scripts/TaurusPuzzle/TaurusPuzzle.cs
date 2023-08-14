@@ -36,4 +36,8 @@ public class TaurusPuzzle : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
     }
+    public void Reset()
+    {
+        Player.transform.position = new Vector3(0f,0.5f,0f);
+    }
 }

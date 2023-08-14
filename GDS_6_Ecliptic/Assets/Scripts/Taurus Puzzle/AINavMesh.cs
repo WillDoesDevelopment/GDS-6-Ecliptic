@@ -14,6 +14,8 @@ public class AINavMesh : MonoBehaviour
     public Queue<Transform> positionQueue = new Queue<Transform>();
     public Transform[] positions;
 
+    public DialogueTrigger StartDialogue;
+
     private void Awake()
     {
         foreach (Transform t in positions)
@@ -24,18 +26,22 @@ public class AINavMesh : MonoBehaviour
     }
     void Update()
     {
-        CurrentNavPos = positionQueue.Peek().position;
-        if(Proximity(Player.transform.position, visionDist))
+        if(StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            CurrentNavPos = Player.transform.position;
-        }
-        else if (Proximity(CurrentNavPos, 1))
-        {
-            Transform temp = positionQueue.Dequeue();
-            positionQueue.Enqueue(temp);
+
+            CurrentNavPos = positionQueue.Peek().position;
+            if(Proximity(Player.transform.position, visionDist))
+            {
+                CurrentNavPos = Player.transform.position;
+            }
+            else if (Proximity(CurrentNavPos, 1))
+            {
+                Transform temp = positionQueue.Dequeue();
+                positionQueue.Enqueue(temp);
             
+            }
+            NMA.SetDestination(CurrentNavPos);
         }
-        NMA.SetDestination(CurrentNavPos);
     }
 
     public bool Proximity( Vector3 NavPos, float radius)

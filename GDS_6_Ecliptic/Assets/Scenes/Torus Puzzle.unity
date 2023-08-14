@@ -976,8 +976,8 @@ MonoBehaviour:
   player: {fileID: 622446111}
   radius: 3
   Dm: {fileID: 465424108}
-  OnStart: 0
-  OnEvent: 1
+  OnStart: 1
+  OnEvent: 0
 --- !u!64 &271354643
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1716,7 +1716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1a05856c07fa8f94a8dccf0effbe88b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.23
+      value: 1.439
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1a05856c07fa8f94a8dccf0effbe88b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2312,7 +2312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622446111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.27, y: 1.22, z: 0.99}
+  m_LocalPosition: {x: 0, y: 0.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4982,7 +4982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 622446111}
-  visionDist: 10
+  visionDist: 9
   NMA: {fileID: 1694990389}
   positions:
   - {fileID: 1952734273}
@@ -4994,6 +4994,7 @@ MonoBehaviour:
   - {fileID: 1713960715}
   - {fileID: 156630626}
   - {fileID: 1829068379}
+  StartDialogue: {fileID: 271354642}
 --- !u!1 &1713960714
 GameObject:
   m_ObjectHideFlags: 0
