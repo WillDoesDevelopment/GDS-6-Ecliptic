@@ -35,7 +35,7 @@ public class Grapple : MonoBehaviour
         //Cast
         if(target == null)
         {
-            if (Input.GetMouseButton(0))    //Draw indicator
+            if (Input.GetMouseButton(0) ^ Input.GetKey(KeyCode.JoystickButton1))    //Draw indicator
             {
                 scope.SetActive(true);
                 scope.transform.position = (transform.position + transform.forward * maxLength/2.0f);                
@@ -47,7 +47,7 @@ public class Grapple : MonoBehaviour
             }
 
 
-            if (Input.GetMouseButtonUp(0))  //Cast on release
+            if (Input.GetMouseButtonUp(0) ^ Input.GetKeyUp(KeyCode.JoystickButton1))  //Cast on release
             {
                 var rayPos = transform.position;
                 RaycastHit hit;
@@ -67,12 +67,15 @@ public class Grapple : MonoBehaviour
         
 
         //Release
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) ^ Input.GetKeyDown(KeyCode.JoystickButton0))
         {
             target = null;
             rope.SetActive(false);
         }
+        
+        
 
+        
 
         //Object follow
 
