@@ -7,6 +7,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "data/dialogue")]
 public class Dialogue: ScriptableObject
 {
+    public Dialogue()
+    {
+        DialogueMode = DialogueState.NotStarted;
+        Debug.Log("setting state to not started " + DialogueMode);
+    }
     [System.Serializable]
     public struct DialogueLine 
     { 

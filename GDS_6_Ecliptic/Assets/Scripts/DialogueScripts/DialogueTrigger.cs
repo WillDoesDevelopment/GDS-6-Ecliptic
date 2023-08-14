@@ -78,6 +78,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void DialogueModeCheck()
     {
+        
         if (dialogue.DialogueMode == Dialogue.DialogueState.NotStarted)
         {
             // check if we are in range
