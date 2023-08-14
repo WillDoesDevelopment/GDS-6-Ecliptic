@@ -25,8 +25,8 @@ public class DialogueManager : MonoBehaviour
     public Animator TextAnim;
     public Animator EnterAnim;
 
-    public Animator PlayerImgAnim;
-    public Animator OtherImgAnim;
+   /* public Animator PlayerImgAnim;
+    public Animator OtherImgAnim;*/
 
 
     public bool proximityBool = false;
@@ -103,11 +103,11 @@ public class DialogueManager : MonoBehaviour
         PlayerNameText.text = dialogue.monologueName;
 
         //sets them all to inactive to start
-        SpriteUI.gameObject.SetActive(false);
+        /*SpriteUI.gameObject.SetActive(false);
         NameText.transform.parent.gameObject.SetActive(false);
 
         PlayerNameText.transform.parent.gameObject.SetActive(false);
-        PlayerSpriteUI.gameObject.SetActive(false);
+        PlayerSpriteUI.gameObject.SetActive(false);*/
 
         Sentences.Clear();
         SentenceType.Clear();
@@ -137,37 +137,37 @@ public class DialogueManager : MonoBehaviour
 
         if(TempType == Dialogue.DialogueType.OtherDialogue)
         {
-            SpriteUI.gameObject.SetActive(true);
+/*            SpriteUI.gameObject.SetActive(true);
             NameText.transform.parent.gameObject.SetActive(true);
 
             PlayerNameText.transform.parent.gameObject.SetActive(false);
-            PlayerSpriteUI.gameObject.SetActive(false);
+            PlayerSpriteUI.gameObject.SetActive(false);*/
 
-            OtherImgAnim.SetBool("Animate", true);
-            PlayerImgAnim.SetBool("Animate", false);
+            TextAnim.SetBool("OtherImgAnimation", true);
+            TextAnim.SetBool("PlayerImgAnimate", false);
 
         }
         else if(TempType == Dialogue.DialogueType.Monologue)
         {
-            SpriteUI.gameObject.SetActive(false);
+/*            SpriteUI.gameObject.SetActive(false);
             NameText.transform.parent.gameObject.SetActive(false);
 
             PlayerNameText.transform.parent.gameObject.SetActive(true);
-            PlayerSpriteUI.gameObject.SetActive(true);
+            PlayerSpriteUI.gameObject.SetActive(true);*/
 
-            OtherImgAnim.SetBool("Animate", false);
-            PlayerImgAnim.SetBool("Animate", true);
+            TextAnim.SetBool("OtherImgAnimation", false);
+            TextAnim.SetBool("PlayerImgAnimate", true);
         }
         else
         {
-            PlayerNameText.transform.parent.gameObject.SetActive(false);
+/*            PlayerNameText.transform.parent.gameObject.SetActive(false);
             PlayerSpriteUI.gameObject.SetActive(false);
 
             PlayerNameText.transform.parent.gameObject.SetActive(false);
-            PlayerSpriteUI.gameObject.SetActive(false);
+            PlayerSpriteUI.gameObject.SetActive(false);*/
 
-            OtherImgAnim.SetBool("Animate", false);
-            PlayerImgAnim.SetBool("Animate", false);
+            TextAnim.SetBool("OtherImgAnimation", false);
+            TextAnim.SetBool("PlayerImgAnimate", false);
         }
 
         // dequeue sentences as the same time as saving them to a temp variable
@@ -197,6 +197,8 @@ public class DialogueManager : MonoBehaviour
         if (Sentences.Count == 0)
         {
             TextAnim.SetBool("PopUp", false);
+            TextAnim.SetBool("PlayerImgAnimate", false);
+            TextAnim.SetBool("OtherImgAnimation", false);
             //Debug.Log("end sentence");
             dialogue.DialogueMode = Dialogue.DialogueState.Finished;
             //dialogueMode = false;
