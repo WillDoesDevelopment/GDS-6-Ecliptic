@@ -20,7 +20,8 @@ public class OrreryScript : MonoBehaviour
 
     void Start()
     {
-        // for some reason these objects have to be added at run time or i get a null ref
+        StartDialogue();
+      /*  // for some reason these objects have to be added at run time or i get a null ref
         if(BS == null)
         {
             BS = GameObject.FindObjectOfType<BridgeScript>();
@@ -29,7 +30,7 @@ public class OrreryScript : MonoBehaviour
         {
             DT = GameObject.FindObjectOfType<DialogueTrigger>();
             
-        }
+        }*/
         //make sure the bridge is not connected
         BS.Disconnect();
         
@@ -88,5 +89,10 @@ public class OrreryScript : MonoBehaviour
             }
 
         }
+    }
+
+    public void StartDialogue()
+    {
+        StartDialoguetriggers[HubManager.LevelNumber].gameObject.SetActive(true);
     }
 }

@@ -7,7 +7,7 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     // image and text components necessary
-    public PlayerScript PS;
+    //public PlayerScript PS;
 
     public GameObject EnterText;
 

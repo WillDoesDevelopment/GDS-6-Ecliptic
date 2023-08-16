@@ -26,7 +26,7 @@ public class CamMovment : MonoBehaviour
     //public Transform RoomRightPosZ;
 
     // player script
-    public PlayerScript Ps;
+    //public PlayerScript Ps;
 
 
     void Update()
