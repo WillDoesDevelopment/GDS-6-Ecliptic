@@ -143,19 +143,19 @@ public class lionAI : MonoBehaviour
             particle2.SetActive(false);
 
             floorTimer += Time.deltaTime;
-            if (timer > 1.0)
+            if (floorTimer > 0.0)
             {
                 collapse(3.0f);
             }
-            if (timer > 1.5)
+            if (floorTimer > 0.5)
             {
                 collapse(4.0f);
             }
-            if (timer > 2.0)
+            if (floorTimer > 1.0)
             {
                 collapse(5.0f);
             }
-            if (timer > 2.5)
+            if (floorTimer > 1.5)
             {
                 collapse(6.0f);
             }
