@@ -15,10 +15,8 @@ public class PlayerController : MonoBehaviour
     public float yRotation;
     CharacterController controller;
     Vector3 moveDirection = Vector3.zero;
-    Vector3 lastPosition = Vector3.zero;
-    float cSpeed = 0;
-    [Range(0f, 10f)] public float speed = 5;
-    [Range(0f, 10f)] public float jumpSpeed = 5;
+    
+    [Range(0f, 10f)] public float speed = 5;    
     //public bool multiJump = false;
     [Range(0f, 20f)] public float gravity = 10;
     [Range(0f, 100f)] public float maxFallSpeed = 10;
@@ -27,7 +25,7 @@ public class PlayerController : MonoBehaviour
     float inputX;
     float inputY;
     float inputZ;
-    float a = 90.0f;
+    public bool canWalk = true;
 
     
 
@@ -86,52 +84,35 @@ public class PlayerController : MonoBehaviour
             Respawn();
         }
 
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (grounded == true)
-            {
-                inputY = jumpSpeed;
-            }
-            else if (multiJump == true)
-            {
-                inputY = jumpSpeed;
-            }
-                
-        }
-        */
-
-        inputY = Mathf.Clamp(inputY, -maxFallSpeed, maxFallSpeed);
-        inputX = Input.GetAxis("Horizontal"); 
-        inputZ = Input.GetAxis("Vertical");
-
-        moveDirection = new Vector3(inputX, 0, inputZ);
-        moveDirection = Vector3.ClampMagnitude(moveDirection,1.0f)* speed;
-        moveDirection = new Vector3(moveDirection.x, inputY, moveDirection.z);
-
-        //moveDirection = new Vector3(inputX, inputY / speed, inputZ );
-        //moveDirection = transform.TransformDirection(moveDirection) * speed; //credit benjamin esposito First Person Drifter
-
-        grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0; //credit benjamin esposito First Person Drifter
-
-
         
-        lastPosition = transform.position;
 
-
-        #endregion Movement
-
-
-        //rotation input
-        moveVector = Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f) * speed;
-        if (moveVector != Vector3.zero)
+        if(canWalk)
         {
-            yRotation = Mathf.Atan2(moveVector.z, moveVector.x) * Mathf.Rad2Deg * -1f + 90f;
-            _rotation = Mathf.SmoothDampAngle(_rotation, yRotation, ref _velocity, 0.1f);
-            transform.rotation = Quaternion.Euler(0f, _rotation, 0f);
+            inputY = Mathf.Clamp(inputY, -maxFallSpeed, maxFallSpeed);
+            inputX = Input.GetAxis("Horizontal");
+            inputZ = Input.GetAxis("Vertical");
+
+            moveDirection = new Vector3(inputX, 0, inputZ);
+            moveDirection = Vector3.ClampMagnitude(moveDirection, 1.0f) * speed;
+            moveDirection = new Vector3(moveDirection.x, inputY, moveDirection.z);
+
+            //moveDirection = new Vector3(inputX, inputY / speed, inputZ );
+            //moveDirection = transform.TransformDirection(moveDirection) * speed; //credit benjamin esposito First Person Drifter
+
+            grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0; //credit benjamin esposito First Person Drifter
+
+
+            #endregion Movement
+
+
+            //rotation input
+            moveVector = Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f) * speed;
+            if (moveVector != Vector3.zero)
+            {
+                yRotation = Mathf.Atan2(moveVector.z, moveVector.x) * Mathf.Rad2Deg * -1f + 90f;
+                _rotation = Mathf.SmoothDampAngle(_rotation, yRotation, ref _velocity, 0.1f);
+                transform.rotation = Quaternion.Euler(0f, _rotation, 0f);
+            }
         }
-
-    }       
-
-    
+    }      
 }
