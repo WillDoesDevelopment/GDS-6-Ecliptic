@@ -206,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BS: {fileID: 0}
   OrreryArms: []
-  RandomRotations: []
+  StartDialoguetriggers: []
   LerpSpeed: 0
   DT: {fileID: 0}
 --- !u!1 &30334151
@@ -337,7 +337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &146787602
 Transform:
   m_ObjectHideFlags: 0
@@ -360,12 +360,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146787601}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: aba80389a3abd1d40a7fa6af15778a24, type: 2}
+  dialogue: {fileID: 11400000, guid: 743d41e2cf5107841a4b30b7c25e0fe4, type: 2}
   player: {fileID: 1775929405}
   radius: 0
   Dm: {fileID: 859039435}
@@ -1189,7 +1189,9 @@ MonoBehaviour:
   - {fileID: 6958084331458411035}
   - {fileID: 7610268004934524828}
   - {fileID: 1879293910344582815}
-  RandomRotations: []
+  StartDialoguetriggers:
+  - {fileID: 1759458689}
+  - {fileID: 146787603}
   LerpSpeed: 1
   DT: {fileID: 8168402922491536517}
 --- !u!1 &1149771771

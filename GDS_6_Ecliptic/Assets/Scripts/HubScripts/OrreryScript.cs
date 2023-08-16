@@ -7,8 +7,9 @@ public class OrreryScript : MonoBehaviour
     public BridgeScript BS;
     
     public GameObject[] OrreryArms;
-    public float[] RandomRotations;
+    private float[] RandomRotations;
 
+    public DialogueTrigger[] StartDialoguetriggers;
     public float LerpSpeed;
 
     public static int SceneCounter;
