@@ -66,6 +66,6 @@ public class HubManager : MonoBehaviour
     }
     public void SendToHub()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
