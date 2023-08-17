@@ -21,17 +21,6 @@ public class OrreryScript : MonoBehaviour
     void Start()
     {
         StartDialogue();
-      /*  // for some reason these objects have to be added at run time or i get a null ref
-        if(BS == null)
-        {
-            BS = GameObject.FindObjectOfType<BridgeScript>();
-        }
-        if(DT == null)
-        {
-            DT = GameObject.FindObjectOfType<DialogueTrigger>();
-            
-        }*/
-        //make sure the bridge is not connected
         BS.Disconnect();
         
         // creates the arrays of random rotations for the Orrery
@@ -79,12 +68,12 @@ public class OrreryScript : MonoBehaviour
             else
             {
 
-                Debug.Log(OrreryArms[HubManager.LevelNumber]);
+                //Debug.Log(OrreryArms[HubManager.LevelNumber]);
                 OrreryArms[HubManager.LevelNumber].transform.eulerAngles = Vector3.Lerp(OrreryArms[HubManager.LevelNumber].transform.eulerAngles, new Vector3(0, 90, 0), LerpSpeed);
                 BS.door = OrreryArms[HubManager.LevelNumber].transform.GetChild(0).gameObject;
 
                 BS.Connect();
-                Debug.Log("connect");
+                //Debug.Log("connect");
 
             }
 

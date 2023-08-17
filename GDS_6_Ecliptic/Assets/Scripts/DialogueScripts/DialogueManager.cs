@@ -118,7 +118,7 @@ public class DialogueManager : MonoBehaviour
             Sentences.Enqueue(info.sentence);
             SentenceType.Enqueue(info.dialogueType);
         }
-            Debug.Log(Sentences.Count);
+            //Debug.Log(Sentences.Count);
 
         // after the prep and saving to local variables we call the next dialogue
         NextDialogue(dialogue);

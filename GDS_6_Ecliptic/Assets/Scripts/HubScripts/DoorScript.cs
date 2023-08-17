@@ -39,6 +39,7 @@ public class DoorScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Colliding");
         // if the door this is attached to collides with player, pass in DoorStatus into the corrisponding hub manager script
         if(collision.gameObject == Player)
         {
