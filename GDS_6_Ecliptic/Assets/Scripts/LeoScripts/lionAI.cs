@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class lionAI : MonoBehaviour
 {
+    public HubManager hubManager;
     public GameObject Player;
     public GameObject ColumnParent;
     public GameObject particle1;
@@ -186,9 +187,16 @@ public class lionAI : MonoBehaviour
             if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Floor"))
             {
                 hitCollider.transform.GetComponent<floorScript>().solid = false;
+                StartCoroutine(WaitForX(1));
             }
 
         }
 
+    }
+    public IEnumerator WaitForX(int x)
+    {
+        yield return new WaitForSeconds(x);
+        hubManager.SendToHub();
+        hubManager.AddOneToLevel();
     }
 }

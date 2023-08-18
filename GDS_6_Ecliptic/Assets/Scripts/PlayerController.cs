@@ -106,12 +106,12 @@ public class PlayerController : MonoBehaviour
 
 
             //rotation input
-            moveVector = Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f) * speed;
+            moveVector = Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f) * speed *Time.deltaTime;
             if (moveVector != Vector3.zero)
             {
                 yRotation = Mathf.Atan2(moveVector.z, moveVector.x) * Mathf.Rad2Deg * -1f + 90f;
                 _rotation = Mathf.SmoothDampAngle(_rotation, yRotation, ref _velocity, 0.1f);
-                transform.rotation = Quaternion.Euler(0f, _rotation, 0f);
+                transform.rotation = Quaternion.Euler(0f, _rotation , 0f);
             }
         }
     }      

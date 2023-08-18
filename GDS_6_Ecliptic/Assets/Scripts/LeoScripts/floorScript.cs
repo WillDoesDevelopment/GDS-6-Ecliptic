@@ -19,6 +19,8 @@ public class floorScript : MonoBehaviour
         if(solid == false)
         {
             transform.position = transform.position + Vector3.down * 2.0f * Time.deltaTime;
+            
         }
     }
+
 }
