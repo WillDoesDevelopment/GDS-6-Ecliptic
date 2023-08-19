@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.00081684894, g: 0.0007818759, b: 0.00064324966, a: 1}
+  m_IndirectSpecularColor: {r: 0.0008265437, g: 0.0007772069, b: 0.00065080466, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 11532032}
   m_Layer: 6
   m_Name: PM3D_Sphere3D1_1
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1067,6 +1067,7 @@ Transform:
   - {fileID: 2069176717}
   - {fileID: 849748754486086962}
   - {fileID: 1055099840}
+  - {fileID: 1337041198}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1081,10 +1082,9 @@ GameObject:
   - component: {fileID: 314622567}
   - component: {fileID: 314622570}
   - component: {fileID: 314622569}
-  - component: {fileID: 314622568}
   m_Layer: 6
   m_Name: RegularRam
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1108,18 +1108,6 @@ Transform:
   m_Father: {fileID: 1055099840}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 47.138, z: 0}
---- !u!114 &314622568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314622566}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c64fe5e7312a04409aafe34a9ed65b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &314622569
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3261,12 +3249,12 @@ GameObject:
   - component: {fileID: 1055099839}
   - component: {fileID: 1055099838}
   - component: {fileID: 1055099837}
-  - component: {fileID: 1055099841}
   - component: {fileID: 1055099842}
   - component: {fileID: 1055099843}
+  - component: {fileID: 1055099844}
   m_Layer: 6
   m_Name: NormalRam
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3350,24 +3338,6 @@ Transform:
   m_Father: {fileID: 312369105}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -38.014, z: 0}
---- !u!114 &1055099841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055099836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: caff07fe262fd1646953acfbebcd7350, type: 2}
-  player: {fileID: 1442537224}
-  radius: 3
-  Dm: {fileID: 1412829475}
-  OnStart: 0
-  OnEvent: 0
 --- !u!95 &1055099842
 Animator:
   serializedVersion: 4
@@ -3389,6 +3359,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1055099843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055099836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: caff07fe262fd1646953acfbebcd7350, type: 2}
+  player: {fileID: 1442537224}
+  radius: 3
+  Dm: {fileID: 1412829475}
+  OnStart: 0
+  OnEvent: 0
+--- !u!114 &1055099844
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3838,7 +3826,7 @@ GameObject:
   - component: {fileID: 1289554008}
   m_Layer: 6
   m_Name: PM3D_Cylinder3D1
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4039,6 +4027,56 @@ Transform:
   m_Father: {fileID: 1406073658}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1337041197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1337041198}
+  - component: {fileID: 1337041199}
+  m_Layer: 0
+  m_Name: SheepDeathDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1337041198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337041197}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 312369105}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1337041199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337041197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: a1419f4b2cce3a64f9bc4a179118cdf7, type: 2}
+  player: {fileID: 1442537224}
+  radius: 0
+  Dm: {fileID: 1412829475}
+  OnStart: 0
+  OnEvent: 1
 --- !u!1 &1340612792
 GameObject:
   m_ObjectHideFlags: 0
@@ -4795,6 +4833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NormalSheep: {fileID: 1055099836}
+  DeadSheepDialogue: {fileID: 1337041199}
+  Arrow: {fileID: 2634719743684325083, guid: da1042be44a97004094693c1d4479846, type: 3}
   GoldSheep: {fileID: 919132149306631311}
   Aires: {fileID: 849748754486086961}
   HM: {fileID: 1625424134}
@@ -4938,7 +4978,7 @@ GameObject:
   - component: {fileID: 1762248924}
   m_Layer: 6
   m_Name: PM3D_Sphere3D1
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5316,7 +5356,7 @@ GameObject:
   - component: {fileID: 1812355245}
   m_Layer: 6
   m_Name: Ram_05
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5560,6 +5600,10 @@ PrefabInstance:
     - target: {fileID: 8490829136179490732, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490829136179490732, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
@@ -25558,7 +25602,6 @@ GameObject:
   - component: {fileID: 152902113}
   - component: {fileID: 152902112}
   - component: {fileID: 919132149306631313}
-  - component: {fileID: 919132149306631312}
   m_Layer: 6
   m_Name: Aries_hero_GoldRam
   m_TagString: Untagged
@@ -25566,18 +25609,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &919132149306631312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149306631311}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c64fe5e7312a04409aafe34a9ed65b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &919132149306631313
 BoxCollider:
   m_ObjectHideFlags: 0

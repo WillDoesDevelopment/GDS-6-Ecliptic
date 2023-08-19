@@ -5,6 +5,8 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     public GameObject NormalSheep;
+    public DialogueTrigger DeadSheepDialogue;
+    public GameObject Arrow;
     //public DialogueTrigger NoramlSheepDeath;
 
     public GameObject GoldSheep;
@@ -19,6 +21,7 @@ public class RoomManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    
         if (DialogueEndcheck(Aires))
         {
             HM.AddOneToLevel();
@@ -30,15 +33,12 @@ public class RoomManager : MonoBehaviour
         }
         if (DialogueEndcheck(NormalSheep))
         {
+                                                                                // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
             NormalSheep.GetComponent<Animator>().SetTrigger("Animate");
-            DialogueTrigger[] DT = NormalSheep.GetComponents<DialogueTrigger>();
-            foreach(DialogueTrigger dt in DT)
-            {
-                dt.OnEventCheck();
-                dt.OnEvent  = false;
-            }
+
         }
     }
+
     public bool DialogueEndcheck(GameObject DialogueObj)
     {
         if (DialogueObj.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
@@ -50,5 +50,12 @@ public class RoomManager : MonoBehaviour
             return false;
         }
     }
+
+    public void Reset()
+    {
+        
+    }
+
+
 
 }

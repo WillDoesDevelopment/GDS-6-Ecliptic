@@ -9,10 +9,11 @@ public class arrowScript : MonoBehaviour
     float arrowLength = 1.3f;
     public GameObject burstPrefab;
 
+    public RoomManager RM;
     // Start is called before the first frame update
     void Start()
     {
-        
+        RM = FindObjectOfType<RoomManager>();
     }
 
     // Update is called once per frame
@@ -35,22 +36,35 @@ public class arrowScript : MonoBehaviour
         if (Physics.Raycast(new Ray(rayPos, transform.forward), out hit, arrowLength))  //Raycast forward
         {
             Debug.DrawLine(rayPos, rayPos + transform.up, Color.green, 0.01f);
-
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Wall"))         //Check if hitting wall
+            GameObject Temp = hit.collider.gameObject;
+            if (Temp.layer == LayerMask.NameToLayer("Wall"))         //Check if hitting wall
             {
                 Burst();
                 Destroy(gameObject);        
             }
-            if (hit.collider.gameObject.name == "Player")                               //Check if hitting Player
+            if (Temp.CompareTag("Player"))                               //Check if hitting Player
             {
                 Burst();
                 Debug.Log("Hit Player");
                 Destroy(gameObject);
             }
-            if (hit.collider.gameObject.name == "Ram")                                  //Check if hitting Ram
+            if (Temp.CompareTag("Destroyable"))                                  //Check if hitting Ram
             {
                 Burst();                
-                Destroy(gameObject);
+                //DialogueTrigger DT = Temp.GetComponent<DialogueTrigger>();
+
+                Debug.Log("Hit Ram");
+                
+                Temp.SetActive(false);
+
+                DialogueTrigger[] DT = Temp.transform.parent.GetComponents<DialogueTrigger>();
+                
+                foreach(DialogueTrigger dt in DT)
+                {
+                    dt.OnEventCheck();
+                    dt.OnEvent = false;
+                }
+                Destroy(Temp);
             }
 
         }
