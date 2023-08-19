@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    public GameObject NormalSheep;
     public DialogueTrigger DeadSheepDialogue;
     public GameObject Arrow;
+    public GameObject NormalSheep;
     //public DialogueTrigger NoramlSheepDeath;
-
+    public GameObject Player;
     public GameObject GoldSheep;
     public GameObject Aires;
 
     public HubManager HM;
+
+    private Vector3 PlayerStartPos;
+    private Vector3 GoldRamStartPos;
     void Start()
     {
-        
+        PlayerStartPos = Player.transform.position;
+        GoldRamStartPos = GoldSheep.transform.position;
     }
 
     // Update is called once per frame
@@ -53,6 +57,12 @@ public class RoomManager : MonoBehaviour
 
     public void Reset()
     {
+        Player.transform.position = PlayerStartPos;
+        GameObject Temp = Instantiate(GoldSheep, GoldRamStartPos, Quaternion.identity);
+        Destroy(GoldSheep);
+        GoldSheep = Temp;
+
+        Player.GetComponent<DialogueTrigger>().OnEventCheck();
         
     }
 

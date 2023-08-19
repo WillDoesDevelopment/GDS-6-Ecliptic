@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.0008265437, g: 0.0007772069, b: 0.00065080466, a: 1}
+  m_IndirectSpecularColor: {r: 0.0021042116, g: 0.002079523, b: 0.0016553539, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4332,6 +4332,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8490829136179490732, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
   m_PrefabInstance: {fileID: 1834345436}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1442537234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442537224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: b7cc0137e3e056946bf2fd4516225abe, type: 2}
+  player: {fileID: 1442537224}
+  radius: 0
+  Dm: {fileID: 1412829475}
+  OnStart: 0
+  OnEvent: 1
 --- !u!1001 &1467411326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4832,9 +4850,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c5e7e312155d64886b6e2f08e0226b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NormalSheep: {fileID: 1055099836}
   DeadSheepDialogue: {fileID: 1337041199}
   Arrow: {fileID: 2634719743684325083, guid: da1042be44a97004094693c1d4479846, type: 3}
+  NormalSheep: {fileID: 1055099836}
+  Player: {fileID: 1442537224}
   GoldSheep: {fileID: 919132149306631311}
   Aires: {fileID: 849748754486086961}
   HM: {fileID: 1625424134}

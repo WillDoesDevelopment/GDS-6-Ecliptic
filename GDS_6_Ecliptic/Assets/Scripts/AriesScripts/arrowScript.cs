@@ -46,7 +46,8 @@ public class arrowScript : MonoBehaviour
             {
                 Burst();
                 Debug.Log("Hit Player");
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                RM.Reset();
             }
             if (Temp.CompareTag("Destroyable"))                                  //Check if hitting Ram
             {
