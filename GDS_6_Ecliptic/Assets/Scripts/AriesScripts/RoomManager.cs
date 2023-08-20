@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    public DialogueTrigger DeadSheepDialogue;
-    public GameObject Arrow;
+
     public GameObject NormalSheep;
-    //public DialogueTrigger NoramlSheepDeath;
+
     public GameObject Player;
     public GameObject GoldSheep;
     public GameObject Aires;
@@ -16,6 +15,8 @@ public class RoomManager : MonoBehaviour
 
     private Vector3 PlayerStartPos;
     private Vector3 GoldRamStartPos;
+
+    public GameObject ExitDoor;
     void Start()
     {
         PlayerStartPos = Player.transform.position;
@@ -28,12 +29,13 @@ public class RoomManager : MonoBehaviour
     
         if (DialogueEndcheck(Aires))
         {
+            ExitDoor.GetComponent<DoorScript>().DS.IsOpen = true;
             HM.AddOneToLevel();
-            HM.SendToHub();
+            
         }
         if (DialogueEndcheck(GoldSheep))
         {
-            GoldSheep.GetComponent<Animator>().SetTrigger("Animate");
+            GoldSheep.GetComponent<Animator>().SetBool("Animate", true);
         }
         if (DialogueEndcheck(NormalSheep))
         {
@@ -65,7 +67,8 @@ public class RoomManager : MonoBehaviour
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
         Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
-        
+        Temp.GetComponent<Animator>().SetBool("Animate", false);
+        Temp.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
     }
 
 

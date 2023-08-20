@@ -27,7 +27,7 @@ public class DoorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (proximity())
+        if (proximity() && DS.IsOpen ==true)
         {
             ThisAnim.SetBool("Animate", true);
         }
@@ -41,7 +41,7 @@ public class DoorScript : MonoBehaviour
     {
         Debug.Log("Colliding");
         // if the door this is attached to collides with player, pass in DoorStatus into the corrisponding hub manager script
-        if(collision.gameObject == Player)
+        if(collision.gameObject == Player && DS.IsOpen == true)
         {
             HM.SendToScene(DS);
         }
