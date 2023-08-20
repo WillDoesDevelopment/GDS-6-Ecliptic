@@ -15,6 +15,7 @@ public class AINavMesh : MonoBehaviour
     public Transform[] positions;
 
     public DialogueTrigger StartDialogue;
+    public bool NavMeshPause = false;
 
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class AINavMesh : MonoBehaviour
     }
     void Update()
     {
-        if(StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        if(StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished && NavMeshPause == false)
         {
 
             CurrentNavPos = positionQueue.Peek().position;
@@ -41,6 +42,10 @@ public class AINavMesh : MonoBehaviour
             
             }
             NMA.SetDestination(CurrentNavPos);
+        }
+        else
+        {
+            NMA.SetDestination(this.transform.position);
         }
     }
 

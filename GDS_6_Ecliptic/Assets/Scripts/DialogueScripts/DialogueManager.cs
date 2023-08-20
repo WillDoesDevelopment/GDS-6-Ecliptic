@@ -47,14 +47,9 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         EnterPromptCheck();
-        DialogueModeCheck();
+
     }
-    public void DialogueModeCheck()
-    {
-        
-        /*PS.enabled = !DialogueMode;
-        DialogueMode = false;*/
-    }
+
     public void EnterPromptCheck()
     {
         EnterAnimExit();
@@ -68,17 +63,12 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterPrompt()
     {
-        //Debug.Log("EnterPrompt");
-        // toggles on the enter script
-        //Animator EnterAnim = EnterText.GetComponent<Animator>();
+
         EnterAnim.SetBool("FadeIn", true);
 
     }
     public void EnterAnimExit()
     {
-        //Debug.Log("Exiting");
-        //toggles off the enter script
-        //Animator EnterAnim = EnterText.GetComponent<Animator>();
         EnterAnim.SetBool("FadeIn", false);
 
     }
@@ -92,8 +82,6 @@ public class DialogueManager : MonoBehaviour
 
         // add image and name from our dialogue package that is passed through
 
-
-
         SpriteUI.GetComponent<Image>().sprite = dialogue.DialogueImage;
         SpriteUI.rectTransform.sizeDelta = new Vector2 (dialogue.DialogueImage.rect.width, dialogue.DialogueImage.rect.height);
         NameText.text = dialogue.name;
@@ -101,13 +89,6 @@ public class DialogueManager : MonoBehaviour
         PlayerSpriteUI.GetComponent<Image>().sprite = dialogue.MonologueImage;
         PlayerSpriteUI.rectTransform.sizeDelta = new Vector2(dialogue.MonologueImage.rect.width, dialogue.MonologueImage.rect.height);
         PlayerNameText.text = dialogue.monologueName;
-
-        //sets them all to inactive to start
-        /*SpriteUI.gameObject.SetActive(false);
-        NameText.transform.parent.gameObject.SetActive(false);
-
-        PlayerNameText.transform.parent.gameObject.SetActive(false);
-        PlayerSpriteUI.gameObject.SetActive(false);*/
 
         Sentences.Clear();
         SentenceType.Clear();
@@ -118,54 +99,35 @@ public class DialogueManager : MonoBehaviour
             Sentences.Enqueue(info.sentence);
             SentenceType.Enqueue(info.dialogueType);
         }
-            //Debug.Log(Sentences.Count);
+
 
         // after the prep and saving to local variables we call the next dialogue
         NextDialogue(dialogue);
     }
     public void NextDialogue(Dialogue dialogue)
     {
-        // check if we are out of dialogue
+        // check if we are out of dialogue and if so,  dont run the dialogue
         if (Sentences.Count == 0)
         {
-            
             return;
         }
 
-        
+        // grab the dialogue type from the queue and check what it is, depending on this we will set the approptiate animations
         Dialogue.DialogueType TempType = SentenceType.Dequeue();
 
         if(TempType == Dialogue.DialogueType.OtherDialogue)
         {
-/*            SpriteUI.gameObject.SetActive(true);
-            NameText.transform.parent.gameObject.SetActive(true);
-
-            PlayerNameText.transform.parent.gameObject.SetActive(false);
-            PlayerSpriteUI.gameObject.SetActive(false);*/
-
             TextAnim.SetBool("OtherImgAnimation", true);
             TextAnim.SetBool("PlayerImgAnimate", false);
 
         }
         else if(TempType == Dialogue.DialogueType.Monologue)
         {
-/*            SpriteUI.gameObject.SetActive(false);
-            NameText.transform.parent.gameObject.SetActive(false);
-
-            PlayerNameText.transform.parent.gameObject.SetActive(true);
-            PlayerSpriteUI.gameObject.SetActive(true);*/
-
             TextAnim.SetBool("OtherImgAnimation", false);
             TextAnim.SetBool("PlayerImgAnimate", true);
         }
         else
         {
-/*            PlayerNameText.transform.parent.gameObject.SetActive(false);
-            PlayerSpriteUI.gameObject.SetActive(false);
-
-            PlayerNameText.transform.parent.gameObject.SetActive(false);
-            PlayerSpriteUI.gameObject.SetActive(false);*/
-
             TextAnim.SetBool("OtherImgAnimation", false);
             TextAnim.SetBool("PlayerImgAnimate", false);
         }
@@ -183,14 +145,20 @@ public class DialogueManager : MonoBehaviour
         DialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            TxtElement.text += letter;
+            // if you put a slash in text it will do a carrage return
+            if(letter == '/')
+            {
+                TxtElement.text += "<br>";
+            }
+            else
+            {
+                TxtElement.text += letter;
+            }
             yield return new WaitForSeconds(.05f);
         }
     }
 
-    // exit dialogue anim
-
-
+    // exit dialogue anims
     public void EndDialogueCheck(Dialogue dialogue)
     {
         
@@ -199,10 +167,7 @@ public class DialogueManager : MonoBehaviour
             TextAnim.SetBool("PopUp", false);
             TextAnim.SetBool("PlayerImgAnimate", false);
             TextAnim.SetBool("OtherImgAnimation", false);
-            //Debug.Log("end sentence");
             dialogue.DialogueMode = Dialogue.DialogueState.Finished;
-            //dialogueMode = false;
-            //this.GetComponent<DialogueTrigger>().enabled = false;
             TextAnim.SetBool("PopUp", false);
             return;
         }

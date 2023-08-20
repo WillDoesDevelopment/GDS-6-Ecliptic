@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1937926996}
-  m_IndirectSpecularColor: {r: 0.0022112723, g: 0.0021719919, b: 0.0017408864, a: 1}
+  m_IndirectSpecularColor: {r: 0.0011109652, g: 0.0010798416, b: 0.0008748841, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -428,8 +428,9 @@ GameObject:
   - component: {fileID: 116755607}
   - component: {fileID: 116755606}
   - component: {fileID: 116755610}
+  - component: {fileID: 116755612}
   m_Layer: 9
-  m_Name: Item 3
+  m_Name: "Hephastus\u2019 Necklace"
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,6 +542,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb0eade5ea75d941a01dc9564ae1241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &116755612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116755605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 9b5b8cc10234547438ec83ff56bfad0e, type: 2}
+  player: {fileID: 772081480}
+  radius: 0
+  Dm: {fileID: 465424108}
+  OnStart: 0
+  OnEvent: 1
 --- !u!1 &156630625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,8 +1347,9 @@ GameObject:
   - component: {fileID: 369014826}
   - component: {fileID: 369014825}
   - component: {fileID: 369014829}
+  - component: {fileID: 369014831}
   m_Layer: 9
-  m_Name: Item 2
+  m_Name: Laelaps
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1441,6 +1461,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb0eade5ea75d941a01dc9564ae1241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &369014831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369014824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: f20aba4415db2e940a926de82af1c406, type: 2}
+  player: {fileID: 772081480}
+  radius: 0
+  Dm: {fileID: 465424108}
+  OnStart: 0
+  OnEvent: 1
 --- !u!1 &392476245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,8 +1840,9 @@ GameObject:
   - component: {fileID: 514661402}
   - component: {fileID: 514661401}
   - component: {fileID: 514661405}
+  - component: {fileID: 514661407}
   m_Layer: 9
-  m_Name: Item 4
+  m_Name: Javelin
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1915,6 +1954,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb0eade5ea75d941a01dc9564ae1241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &514661407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514661400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 571370fadba4b89498209908706e3b9c, type: 2}
+  player: {fileID: 772081480}
+  radius: 0
+  Dm: {fileID: 465424108}
+  OnStart: 0
+  OnEvent: 1
 --- !u!1 &576270201
 GameObject:
   m_ObjectHideFlags: 0
@@ -4407,8 +4464,9 @@ GameObject:
   - component: {fileID: 1525499485}
   - component: {fileID: 1525499484}
   - component: {fileID: 1525499488}
+  - component: {fileID: 1525499490}
   m_Layer: 9
-  m_Name: Item
+  m_Name: Talos
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4520,6 +4578,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb0eade5ea75d941a01dc9564ae1241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1525499490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525499483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: c4b6efce46c8e4f43b287b701b8ce8bb, type: 2}
+  player: {fileID: 772081480}
+  radius: 0
+  Dm: {fileID: 465424108}
+  OnStart: 0
+  OnEvent: 1
 --- !u!1 &1583035311
 GameObject:
   m_ObjectHideFlags: 0
@@ -5056,6 +5132,7 @@ MonoBehaviour:
   - {fileID: 156630626}
   - {fileID: 1829068379}
   StartDialogue: {fileID: 271354642}
+  NavMeshPause: 0
 --- !u!1 &1713960714
 GameObject:
   m_ObjectHideFlags: 0
@@ -6444,6 +6521,7 @@ MonoBehaviour:
   CollectedItems: 0
   Player: {fileID: 772081480}
   HB: {fileID: 400901816}
+  ANM: {fileID: 1694990394}
 --- !u!1 &3802115462221475380
 GameObject:
   m_ObjectHideFlags: 0

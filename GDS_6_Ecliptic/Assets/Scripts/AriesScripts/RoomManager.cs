@@ -63,6 +63,8 @@ public class RoomManager : MonoBehaviour
         GoldSheep = Temp;
 
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
+        Player.GetComponent<DialogueTrigger>().OnEvent = false;
+
         
     }
 

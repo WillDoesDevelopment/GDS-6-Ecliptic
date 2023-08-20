@@ -5,13 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class DialogueTrigger : MonoBehaviour
 {
-    /*public enum DialogueState
-    {
-        NotStarted,
-        InProgress,
-        Finished
-    }
-    public DialogueState DialogueMode = DialogueState.NotStarted;*/
+
     // seen in editor
     public Dialogue dialogue;
 
@@ -21,15 +15,14 @@ public class DialogueTrigger : MonoBehaviour
     // how large is proximity
     public float radius;
 
-    // all Dialogue triggers need to know about the Dialogue manages, same as the hub manager
+    // all Dialogue triggers need to know about the DialogueManager, same as the hub manager
     public DialogueManager Dm;
 
-    // self explanitory
-    //private bool dialogueMode = false;
-
+    // for different dialogue circumstances
     public bool OnStart = false;
     public bool OnEvent = false;
 
+    // attempt to intergrate a Lambda
     public bool IsDone => dialogue.DialogueMode == Dialogue.DialogueState.Finished;
     public bool IsTrigger => !OnStart && !OnEvent;
 
@@ -37,7 +30,6 @@ public class DialogueTrigger : MonoBehaviour
     {
         // instead of finding it in editor
         Dm = FindObjectOfType<DialogueManager>();
-
     }
     private void Start()
     {
@@ -45,12 +37,7 @@ public class DialogueTrigger : MonoBehaviour
     }
     void Update()
     {
-       
             DialogueModeCheck();
-
-        
-        //OnEventCheck();
-
     }
     public bool Proximity()
     {
@@ -70,7 +57,7 @@ public class DialogueTrigger : MonoBehaviour
 
     public void OnStartCheck()
     {
-        if (OnStart == true)
+        if (OnStart)
         {
             TriggerDialogue();
         }
@@ -89,8 +76,6 @@ public class DialogueTrigger : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Return) ^ Input.GetKeyUp(KeyCode.JoystickButton1))
                 {
                     TriggerDialogue();
-                    
-                    
                 }
 
             }
@@ -113,17 +98,8 @@ public class DialogueTrigger : MonoBehaviour
         }
 
     }
-   /* public void EndDialogueCheck()
-    {
-        if (Dm.Sentences.Count == 0)
-        {
-            //Debug.Log("end sentence");
-            dialogue.DialogueMode = Dialogue.DialogueState.Finished;
-            //dialogueMode = false;
-            //this.GetComponent<DialogueTrigger>().enabled = false;
-        }
-    }*/
 
+    // is called by iether, OnStartCheck(), OnEventCheck(), or DialogueModeCheck()
     public void TriggerDialogue()
     {
         
@@ -131,6 +107,7 @@ public class DialogueTrigger : MonoBehaviour
         Dm.StartDialogue(dialogue);
     }
 
+    // can only be called from other functions, must have OnEvent bool true
     public void OnEventCheck()
     {
         if (OnEvent)
