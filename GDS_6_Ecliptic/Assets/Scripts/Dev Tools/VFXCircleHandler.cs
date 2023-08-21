@@ -22,6 +22,9 @@ public class VFXCircleHandler : MonoBehaviour
     [Header("Colours for Fire Scroll")] //Sets the 3D fire/scroll Colours
     public Color[] ScrollCol;
 
+    [Header("Game Objects")]
+    public GameObject[] objs;
+
     private void Awake()
     {
         //References for particle systems
@@ -119,10 +122,14 @@ public class VFXCircleHandler : MonoBehaviour
 
     public void circleVFXStart()
     {
-        rings[0].Play();
-        rings[1].Play();
-        trails[0].Play();
-        trails[1].Play();
+        objs[0].SetActive(true);
+        objs[1].SetActive(true);
+        objs[2].SetActive(true);
+        objs[3].SetActive(true);
+        objs[4].SetActive(true);
+        objs[5].SetActive(true);
+
+
     }
 
 
