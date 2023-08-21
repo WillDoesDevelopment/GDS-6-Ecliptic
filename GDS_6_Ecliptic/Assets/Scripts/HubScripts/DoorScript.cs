@@ -35,23 +35,30 @@ public class DoorScript : MonoBehaviour
         {
             ThisAnim.SetBool("Animate", false);
         }
+
+        if (Vector3.Distance(transform.position, Player.transform.position) < 2)
+        {
+            HM.SendToScene(DS);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        /*
         Debug.Log("Colliding");
         // if the door this is attached to collides with player, pass in DoorStatus into the corrisponding hub manager script
         if(collision.gameObject == Player && DS.IsOpen == true)
         {
             HM.SendToScene(DS);
         }
+        */
     }
 
     public bool proximity()
     {
-        float playerDistZ = Player.transform.position.z - transform.position.z;
-        float playerDistX = Player.transform.position.x - transform.position.x;
-        if (Mathf.Sqrt(Mathf.Pow(playerDistX, 2) + Mathf.Pow(playerDistZ, 2)) < Radius)
+        //float playerDistZ = Player.transform.position.z - transform.position.z;
+        //float playerDistX = Player.transform.position.x - transform.position.x;
+        if (Vector3.Distance(transform.position, Player.transform.position) < Radius)
         {
             return true;
         }
@@ -60,5 +67,7 @@ public class DoorScript : MonoBehaviour
         {
             return false;
         }
+
+        //Vector3.Distance(transform.position, Player.transform.position);
     }
 }
