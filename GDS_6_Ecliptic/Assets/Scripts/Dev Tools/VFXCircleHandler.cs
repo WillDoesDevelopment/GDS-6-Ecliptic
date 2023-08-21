@@ -97,8 +97,8 @@ public class VFXCircleHandler : MonoBehaviour
         scrollMats[0].SetColor("_Emission", ScrollCol[1]);
 
         //Scroll Anti Clockwise
-        scrollMats[1].SetColor("_Circle_Color", ScrollCol[2]);
-        scrollMats[1].SetColor("_Emission", ScrollCol[3]);
+        scrollMats[1].SetColor("_Circle_Color", ScrollCol[1]);
+        scrollMats[1].SetColor("_Emission", ScrollCol[0]);
 
     }
 
