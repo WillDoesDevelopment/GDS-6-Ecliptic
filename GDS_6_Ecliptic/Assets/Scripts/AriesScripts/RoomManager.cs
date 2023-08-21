@@ -9,7 +9,8 @@ public class RoomManager : MonoBehaviour
 
     public GameObject Player;
     public GameObject GoldSheep;
-    public GameObject Aires;
+    public GameObject Aries;
+    public VFXCircleHandler VFXCH;
 
     public HubManager HM;
 
@@ -27,8 +28,9 @@ public class RoomManager : MonoBehaviour
     void Update()
     {
     
-        if (DialogueEndcheck(Aires))
+        if (DialogueEndcheck(Aries))
         {
+            VFXCH.circleVFXStart();
             ExitDoor.GetComponent<DoorScript>().DS.IsOpen = true;
             HM.AddOneToLevel();
             

@@ -116,4 +116,14 @@ public class VFXCircleHandler : MonoBehaviour
         Remit2.rateOverTime = 10f;
     }
 
+
+    public void circleVFXStart()
+    {
+        rings[0].Play();
+        rings[1].Play();
+        trails[0].Play();
+        trails[1].Play();
+    }
+
+
 }
