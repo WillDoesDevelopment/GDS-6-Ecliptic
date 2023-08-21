@@ -5,11 +5,14 @@ using UnityEngine;
 public class lionAI : MonoBehaviour
 {
     public HubManager hubManager;
+    public RoomManager RM;
     public GameObject Player;
     public GameObject ColumnParent;
     public GameObject particle1;
     public GameObject particle2;
     public GameObject particle3;
+    public GameObject barrier;
+    public float barrierMaxScale = 20;
     public float speed = 1;
     float inv = 1;
     float angle = 0;
@@ -38,11 +41,13 @@ public class lionAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RM = FindObjectOfType<RoomManager>();
         forward = transform.forward;
         target = Player.transform.position;
         particle1.SetActive(false);
         particle2.SetActive(false);
         particle3.SetActive(false);
+        barrier.SetActive(false);
     }
 
     // Update is called once per frame
@@ -127,9 +132,22 @@ public class lionAI : MonoBehaviour
                 timer = followTime;
                 state = 1;
             }
+
+
+            RaycastHit hit;                                                                     //raycast for wall boundary
+            if (Physics.Raycast(new Ray(transform.position, transform.forward), out hit, 5.0f)) //Raycast forward
+            {
+                GameObject Temp = hit.collider.gameObject;
+                if (Temp.layer == LayerMask.NameToLayer("Wall"))                                //Check if hitting wall Layer
+                {
+                    pounceTarget = transform.position;                                          //Stop moving
+                    //timer = followTime;
+                    //state = 1;
+                }
+            }
         }
 
-        if(ColumnParent.transform.childCount == 0)
+        if(ColumnParent.transform.childCount == 0 && state != 5)
         {
             x = Mathf.Floor(transform.position.x + 0.5f);
             y = transform.position.y;
@@ -142,6 +160,10 @@ public class lionAI : MonoBehaviour
         {
             particle1.SetActive(false);
             particle2.SetActive(false);
+            barrier.SetActive(true);
+            barrier.transform.position = Pos;
+            var a = Mathf.Clamp(floorTimer * 20f, 0, barrierMaxScale);
+            barrier.transform.localScale = new Vector3(a, barrierMaxScale, a);
 
             floorTimer += Time.deltaTime;
             if (floorTimer > 0.0)
@@ -165,19 +187,25 @@ public class lionAI : MonoBehaviour
             Destroy(gameObject, 4.0f);
         }
 
-        //Collision
-
-        Collider[] hitColliders = Physics.OverlapBox(transform.position, new Vector3(1f, 1.5f, 1f));
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Column"))
+        //Collision    
+        Collider[] hitColliders1 = Physics.OverlapBox(transform.position + transform.forward * 2f, new Vector3(2.5f, 2.0f, 2.5f)); //Hitbox for player
+        foreach (var hitCollider in hitColliders1)
+        {            
+            if (hitCollider.gameObject == Player)                                           //Room restarts
             {
-                //hitCollider.transform.gameObject.GetComponent<columnScript>().fall = true;       
-                hitCollider.gameObject.GetComponent<columnScript>().fall = true;
+                //RM.Reset();
+                Debug.Log("Restart room");                                                  //Need restart function here.....................................
             }
-
         }
-
+        Collider[] hitColliders2 = Physics.OverlapBox(transform.position, new Vector3(1.2f, 2.0f, 1.2f)); //Hitbox for columns. Hitboxes need rotation.........
+        foreach (var hitCollider in hitColliders2)
+        {
+            if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Column"))            //collumn falls
+            {                      
+                hitCollider.gameObject.GetComponent<columnScript>().fall = true;
+            }  
+        }
+        
     }
     public void collapse(float radius)
     {
@@ -187,7 +215,7 @@ public class lionAI : MonoBehaviour
             if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Floor"))
             {
                 hitCollider.transform.GetComponent<floorScript>().solid = false;
-                StartCoroutine(WaitForX(1));
+                StartCoroutine(WaitForX(3));
             }
 
         }
@@ -198,5 +226,14 @@ public class lionAI : MonoBehaviour
         yield return new WaitForSeconds(x);
         hubManager.SendToHub();
         hubManager.AddOneToLevel();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(transform.position + transform.forward * 2f, new Vector3(2.5f, 2.0f, 2.5f));    //Draw for debugging
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position, new Vector3(1.2f, 2.0f, 1.2f));                             //Draw for debugging
     }
 }

@@ -21,5 +21,10 @@ public class columnScript : MonoBehaviour
             GetComponent<CapsuleCollider>().enabled = false;
             Destroy(gameObject, 4.0f);
         }
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Destroy(gameObject, 0.0f);
+        }
     }
 }
