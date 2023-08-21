@@ -38,10 +38,13 @@ public class DialogueManager : MonoBehaviour
     //private bool DialogueMode = false;
 
     // Start is called before the first frame update
+
+    public GameObject player;
     void Awake()
     {
         Sentences = new Queue<string>();
         SentenceType = new Queue<Dialogue.DialogueType>();
+        player = GameObject.Find("Player");
     }
 
     private void Update()
@@ -77,6 +80,7 @@ public class DialogueManager : MonoBehaviour
     {
 
         dialogue.DialogueMode = Dialogue.DialogueState.InProgress;
+        player.GetComponent<PlayerController>().canWalk = false;
         // animates our text ui to pop up
         TextAnim.SetBool("PopUp", true);
 
@@ -164,6 +168,7 @@ public class DialogueManager : MonoBehaviour
         
         if (Sentences.Count == 0)
         {
+            player.GetComponent<PlayerController>().canWalk = true;
             TextAnim.SetBool("PopUp", false);
             TextAnim.SetBool("PlayerImgAnimate", false);
             TextAnim.SetBool("OtherImgAnimation", false);

@@ -7,7 +7,7 @@ public class OrreryScript : MonoBehaviour
     public BridgeScript BS;
     
     public GameObject[] OrreryArms;
-    private float[] RandomRotations;
+    public float[] RandomRotations;
 
     public DialogueTrigger[] StartDialoguetriggers;
     public float LerpSpeed;
@@ -24,11 +24,11 @@ public class OrreryScript : MonoBehaviour
         BS.Disconnect();
         
         // creates the arrays of random rotations for the Orrery
-        RandomRotations = new float[OrreryArms.Length];
+        /*RandomRotations = new float[OrreryArms.Length];
         for (int i = 0; i< OrreryArms.Length; i++)
         {
             RandomRotations[i] = Random.Range(-0.1f, 0.1f);
-        }
+        }*/
     }
 
     // Update is called once per frame
