@@ -32,7 +32,7 @@ public class RoomManager : MonoBehaviour
         {
             VFXCH.circleVFXStart();
             ExitDoor.GetComponent<DoorScript>().DS.IsOpen = true;
-            HM.AddOneToLevel();
+            
             
         }
         if (DialogueEndcheck(GoldSheep))

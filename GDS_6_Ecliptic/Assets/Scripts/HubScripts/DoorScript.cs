@@ -13,6 +13,8 @@ public class DoorScript : MonoBehaviour
     public float Radius = 5;
 
     public Animator ThisAnim;
+
+    public int StageNumber;
     
     // at the moment each door script needs to know about the hub manager
     public HubManager HM;
@@ -39,6 +41,7 @@ public class DoorScript : MonoBehaviour
         if (Vector3.Distance(transform.position, Player.transform.position) < 2)
         {
             HM.SendToScene(DS);
+            HM.SetGameStage(StageNumber);
         }
     }
 

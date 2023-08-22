@@ -21,6 +21,7 @@ public class TaurusManager : MonoBehaviour
     {
         CheckWinCondition();
         GiftPickUpCheck();
+        ArtifactCollected();
     }
 
     public void GiftPickUpCheck()
@@ -39,22 +40,49 @@ public class TaurusManager : MonoBehaviour
     }
     public void CheckWinCondition()
     {
+        DialogueTrigger dtEvent = null;
         if (CollectedItems == 4)
         {
+            DialogueTrigger[] DT = this.GetComponents<DialogueTrigger>();
+            foreach(DialogueTrigger dt in DT)
+            {
+                if (dt.OnEvent == true)
+                {
+                    dtEvent = dt;
+                }
+            }
+            if(dtEvent.dialogue.DialogueMode == Dialogue.DialogueState.NotStarted)
+            {
+                dtEvent.OnEventCheck();
+            }
+            if(dtEvent.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+            {
+                HB.SetGameStage(2);
+                HB.SendToHub();
+
+            }
             // here we will check if dialogue is done
-            HB.AddOneToLevel();
-            HB.SendToHub();
         }
+    }
+    public void ArtifactCollected()
+    {
+        GameObject HO = Player.GetComponent<PickUpScript>().HoldingObj;
+        if(HO == null)
+        {
+            return;
+        }
+        if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.transform.position, HO.transform.position) < 2)
+        {
+            CollectedItems += 1;
+            Player.GetComponent<PickUpScript>().holding = false;
+            //HO.gameObject.SetActive(false);
+            Destroy(HO);
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Artifact>() != null)
-        {
-            CollectedItems += 1;
-            Player.GetComponent<PickUpScript>().holding = false;
-            collision.gameObject.SetActive(false);
-        }
     }
     public void Reset()
     {

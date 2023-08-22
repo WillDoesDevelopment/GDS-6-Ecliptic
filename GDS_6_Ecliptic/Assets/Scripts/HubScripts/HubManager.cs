@@ -64,6 +64,11 @@ public class HubManager : MonoBehaviour
     {
         LevelNumber += 1;
     }
+
+    public void SetGameStage(int stageNum)
+    {
+        LevelNumber = stageNum;
+    }
     public void SendToHub()
     {
         SceneManager.LoadScene(1);

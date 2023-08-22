@@ -52,7 +52,10 @@ public class PuzzleManager : MonoBehaviour
         //provided the coroutine is not running, run it and pass in WeightVal as an overload
         if(isRunning == false  )
         {
-            StartCoroutine(MoveScales(WeightVal));
+            if(WeightVal < 10)
+            {
+                StartCoroutine(MoveScales(WeightVal));
+            }
         }
         //displays our Weight
 
@@ -82,7 +85,7 @@ public class PuzzleManager : MonoBehaviour
     public  IEnumerator MoveScales(int WeightVal )
     {
         isRunning = true;
-        Vector3 yTranslation = new Vector3(0, (float)WeightVal / 50, 0);
+        Vector3 yTranslation = new Vector3(0, (float)WeightVal / 20, 0);
         foreach (Collider c in weightsArr)
         {
             if(c.GetComponent<Weight>() != null && c.gameObject != PUS.HoldingObj)

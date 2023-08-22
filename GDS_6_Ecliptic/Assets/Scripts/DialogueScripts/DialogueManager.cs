@@ -158,7 +158,7 @@ public class DialogueManager : MonoBehaviour
             {
                 TxtElement.text += letter;
             }
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(.02f);
         }
     }
 

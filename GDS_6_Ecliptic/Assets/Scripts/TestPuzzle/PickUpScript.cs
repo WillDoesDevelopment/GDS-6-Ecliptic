@@ -66,12 +66,16 @@ public class PickUpScript : MonoBehaviour
             pickUpObj.transform.position = PickUpPos.transform.position;
             pickUpObj.transform.SetParent(PickUpPos.transform);
 
-            Rigidbody RBTemp = pickUpObj.GetComponent<Rigidbody>();
-            if (RBTemp != null)
+            if(pickUpObj.GetComponent<Rigidbody>() != null)
             {
-                RBTemp.constraints = RigidbodyConstraints.FreezeAll;
-                //RBTemp.constraints = RigidbodyConstraints.FreezeRotation;
-                //RBTemp.useGravity = false;
+                Rigidbody RBTemp = pickUpObj.GetComponent<Rigidbody>();
+                if (RBTemp != null)
+                {
+                    RBTemp.constraints = RigidbodyConstraints.FreezeAll;
+                    //RBTemp.constraints = RigidbodyConstraints.FreezeRotation;
+                    //RBTemp.useGravity = false;
+                }
+
             }
         }
     }
