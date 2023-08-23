@@ -30,13 +30,14 @@ public class RoomManager : MonoBehaviour
     
         if (DialogueEndcheck(Aries))
         {
-            VFXCH.circleVFXStart();
+            
             ExitDoor.GetComponent<DoorScript>().DS.IsOpen = true;
             
             
         }
         if (DialogueEndcheck(GoldSheep))
         {
+            VFXCH.circleVFXStart();
             GoldSheep.GetComponent<Animator>().SetBool("Animate", true);
         }
         if (DialogueEndcheck(NormalSheep))
