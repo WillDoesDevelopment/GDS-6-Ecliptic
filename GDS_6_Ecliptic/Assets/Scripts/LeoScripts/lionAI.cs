@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class lionAI : MonoBehaviour
 {
@@ -188,16 +189,18 @@ public class lionAI : MonoBehaviour
         }
 
         //Collision    
-        Collider[] hitColliders1 = Physics.OverlapBox(transform.position + transform.forward * 2f, new Vector3(2.5f, 2.0f, 2.5f)); //Hitbox for player
+        Collider[] hitColliders1 = Physics.OverlapBox(transform.position + transform.forward * 2f, new Vector3(1.25f, 1.0f, 1.25f)); //Hitbox for player
         foreach (var hitCollider in hitColliders1)
         {            
             if (hitCollider.gameObject == Player)                                           //Room restarts
             {
                 //RM.Reset();
                 Debug.Log("Restart room");                                                  //Need restart function here.....................................
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
             }
         }
-        Collider[] hitColliders2 = Physics.OverlapBox(transform.position, new Vector3(1.2f, 2.0f, 1.2f)); //Hitbox for columns. Hitboxes need rotation.........
+        Collider[] hitColliders2 = Physics.OverlapBox(transform.position, new Vector3(1.0f, 1.0f, 1.0f)); //Hitbox for columns. Hitboxes need rotation.........
         foreach (var hitCollider in hitColliders2)
         {
             if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Column"))            //collumn falls
@@ -231,9 +234,9 @@ public class lionAI : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position + transform.forward * 2f, new Vector3(2.5f, 2.0f, 2.5f));    //Draw for debugging
+        Gizmos.DrawWireCube(transform.position + transform.forward * 2f, new Vector3(2.5f, 2.0f, 2.5f));    //Draw for debugging player hit
 
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position, new Vector3(1.2f, 2.0f, 1.2f));                             //Draw for debugging
+        Gizmos.DrawWireCube(transform.position, new Vector3(2.0f, 2.0f, 2.0f));                             //Draw for debugging column hit
     }
 }

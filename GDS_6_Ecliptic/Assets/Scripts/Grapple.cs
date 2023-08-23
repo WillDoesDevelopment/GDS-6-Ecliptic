@@ -49,11 +49,11 @@ public class Grapple : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0) ^ Input.GetKeyUp(KeyCode.JoystickButton1))  //Cast on release
             {
-                var rayPos = transform.position;
+                var rayPos = transform.position - transform.forward;
                 RaycastHit hit;
                 Debug.DrawLine(rayPos, rayPos + transform.forward * maxLength, Color.blue, 0.5f);                   //Draw debug line for cast
 
-                if (Physics.SphereCast(new Ray(rayPos, transform.forward), 2.0f, out hit, maxLength - 2.0f, grappleLayer)) //Raycast forward
+                if (Physics.SphereCast(new Ray(rayPos, transform.forward), 2.0f, out hit, maxLength - 3.0f, grappleLayer)) //Raycast forward
                 {
                     Debug.DrawLine(hit.point, hit.point + transform.up * 2f, Color.green, 0.5f);                    //Draw debug line on hit
                     target = hit.transform.gameObject;                                                              //Set target object
