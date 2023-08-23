@@ -30,6 +30,9 @@ public class DialogueManager : MonoBehaviour
 
 
     public bool proximityBool = false;
+
+    public bool CoroutineRunning = false;
+    private bool skip = false;
     //public bool DialogueMode = false;
 
     public Queue<string> Sentences;
@@ -110,6 +113,11 @@ public class DialogueManager : MonoBehaviour
     }
     public void NextDialogue(Dialogue dialogue)
     {
+        if (CoroutineRunning)
+        {
+            skip = true;
+            return;
+        }
         // check if we are out of dialogue and if so,  dont run the dialogue
         if (Sentences.Count == 0)
         {
@@ -142,10 +150,11 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
         //types each character
         StartCoroutine(TypeText(tempSentence, DialogueText));
-
+        Debug.Log("it run");
     }
     public IEnumerator TypeText(string sentence, TextMeshProUGUI TxtElement)
     {
+        CoroutineRunning = true;
         DialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
@@ -158,8 +167,15 @@ public class DialogueManager : MonoBehaviour
             {
                 TxtElement.text += letter;
             }
+            if(skip == true)
+            {
+                TxtElement.text = sentence;
+                skip = false;
+                break;
+            }
             yield return new WaitForSeconds(.02f);
         }
+        CoroutineRunning = false;
     }
 
     // exit dialogue anims

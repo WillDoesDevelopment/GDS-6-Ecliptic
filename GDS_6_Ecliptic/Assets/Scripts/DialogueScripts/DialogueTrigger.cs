@@ -84,10 +84,13 @@ public class DialogueTrigger : MonoBehaviour
         else if (dialogue.DialogueMode == Dialogue.DialogueState.InProgress)
         {
             
-            if (Input.GetKeyDown(KeyCode.Return) ^ Input.GetKeyUp(KeyCode.JoystickButton1))
+            if (Input.GetKeyDown(KeyCode.Return) ^ Input.GetKeyUp(KeyCode.JoystickButton1) )
             {
                 // end dialogue must be done first otherwise our Next dialogue in dialogue manager will check for no sentences left and stop the dialogue before we can exit the dialogue in dialogue trigger
-                Dm.EndDialogueCheck(dialogue);
+               if(Dm.CoroutineRunning == false)
+                {
+                    Dm.EndDialogueCheck(dialogue);
+                }
                 Dm.NextDialogue(dialogue);
             }
 
