@@ -49,6 +49,7 @@ public class VFXCircleHandler : MonoBehaviour
         var emit1 = trails[0].emission;
 
         //Editing the colours in the sections
+        TstartCol[0].a = 0;
         main1.startColor = TstartCol[0];
         trails1.colorOverLifetime = TtrailGrad[1];
         emit1.enabled = true;
@@ -61,6 +62,7 @@ public class VFXCircleHandler : MonoBehaviour
         emit2.enabled = true;
 
         //Editing the colours in the sections
+        TstartCol[1].a = 0;
         main2.startColor = TstartCol[1];
         trails2.colorOverLifetime = TtrailGrad[1];
 
@@ -72,10 +74,12 @@ public class VFXCircleHandler : MonoBehaviour
         var Remit1 = rings[0].emission;
 
         //ediing the colours in the sections
+        RstartCol[0].a = 0;
         RMain1.startColor = RstartCol[0];
         RTrails1.colorOverLifetime = RtrailGrad[0];
 
         //editing the colours in the emissive material in renderer
+        emissMat[0].color = RemissCol[1];
         emissMat[0].SetColor("_Base_Color", RemissCol[0]);
         emissMat[0].SetColor("_Emission", RemissCol[1]);
 
@@ -87,12 +91,13 @@ public class VFXCircleHandler : MonoBehaviour
         var Remit2 = rings[1].emission;
 
         //ediing the colours in the sections
+        RstartCol[1].a = 0;
         RMain2.startColor = RstartCol[1];
         RTrails2.colorOverLifetime = RtrailGrad[1];
 
         //editing the colours in the emissive material in renderer
-        emissMat[0].color = RemissCol[0];
-        emissMat[0].SetColor("_EmissionColor", RemissCol[1]);
+        emissMat[0].SetColor("_Base_Color", RemissCol[0]);
+        emissMat[0].SetColor("_Emission", RemissCol[1]);
 
 
         //Scroll Clockwise
@@ -107,28 +112,35 @@ public class VFXCircleHandler : MonoBehaviour
 
     private void Start()
     {
-        var RMain2 = rings[1].main;
-        var Remit2 = rings[1].emission;
-        rings[1].Play();
-
-        Remit2.enabled = true;
-        Remit2.rateOverTime = 10f;
-
-        var Remit1 = rings[0].emission;
-        Remit1.enabled = true;
-        Remit2.rateOverTime = 10f;
+        
     }
 
 
     public void circleVFXStart()
     {
+        //SCROLL SHADER OBJS
         objs[0].SetActive(true);
         objs[1].SetActive(true);
-        objs[2].SetActive(true);
-        objs[3].SetActive(true);
-        objs[4].SetActive(true);
-        objs[5].SetActive(true);
 
+        //TRAIL ALPHA
+        var main = trails[0].main;
+        var main1 = trails[1].main;
+
+        TstartCol[0].a = 1;
+        TstartCol[1].a = 1;
+
+        main.startColor = TstartCol[0];
+        main1.startColor = TstartCol[1];
+
+        //RING ALPHA 
+        var RMain = rings[0].main;
+        var RMain1 = rings[1].main;
+
+        RstartCol[0].a = 1;
+        RstartCol[1].a = 1;
+
+        RMain.startColor = RstartCol[0];
+        RMain1.startColor = RstartCol[1];
 
     }
 
