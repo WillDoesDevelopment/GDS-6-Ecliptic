@@ -22,7 +22,7 @@ public class RoomManager : MonoBehaviour
     {
         PlayerStartPos = Player.transform.position;
         GoldRamStartPos = GoldSheep.transform.position;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;.................................Cursor
     }
 
     // Update is called once per frame
