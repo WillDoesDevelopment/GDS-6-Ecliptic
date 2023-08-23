@@ -20,6 +20,7 @@ public class OrreryScript : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None; //.........................................................Cursor
         StartDialogue();
         BS.Disconnect();
         
