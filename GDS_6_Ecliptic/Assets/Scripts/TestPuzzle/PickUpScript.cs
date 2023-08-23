@@ -16,6 +16,7 @@ public class PickUpScript : MonoBehaviour
     // allows us to check if we are holding somthing or not
     public bool holding = false;
 
+    public LayerMask PickUpLayer;
 
     void Start()
     {
@@ -35,7 +36,7 @@ public class PickUpScript : MonoBehaviour
             RaycastHit hit;
             // syntax i found for raycasting from camera to mouse pos
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 3000))
+            if (Physics.Raycast(ray, out hit, 3000, PickUpLayer))
             {
                 //checks if the object is tagged correctly and we are not holding somthing already
                 if (hit.transform.CompareTag("PickUp") && holding == false)
