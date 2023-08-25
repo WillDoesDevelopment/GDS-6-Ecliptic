@@ -167,14 +167,14 @@ public class DialogueManager : MonoBehaviour
             {
                 TxtElement.text += letter;
             }
-            if(skip == true)
+            if(skip == false)
             {
-                TxtElement.text = sentence;
-                skip = false;
-                break;
+                yield return new WaitForSeconds(.02f);
+
             }
-            yield return new WaitForSeconds(.02f);
         }
+        //yield return new WaitForSeconds(0);
+        skip = false;
         CoroutineRunning = false;
     }
 
