@@ -18,6 +18,10 @@ public class PickUpScript : MonoBehaviour
 
     public LayerMask PickUpLayer;
 
+    public bool Raycasting  = false;
+    public bool ProximityPickUp = false;
+
+    //private  Collider[] ObjColliders;
     void Start()
     {
         
@@ -27,7 +31,14 @@ public class PickUpScript : MonoBehaviour
     void Update()
     {
         // on click we pick up the in range object
-        Raycast();
+        if (ProximityPickUp)
+        {
+            PickUpInProximity();
+        }
+        if (Raycasting)
+        {
+            Raycast();
+        }
     }
     public void Raycast()
     {
@@ -57,6 +68,28 @@ public class PickUpScript : MonoBehaviour
         }
     }
 
+    public void PickUpInProximity()
+    {
+        Collider[] ObjColliders = Physics.OverlapSphere(this.transform.position, PickUpRadius);
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            foreach(Collider collider in ObjColliders)
+            {
+                if(collider.CompareTag("PickUp") && holding == false)
+                {
+                    HoldingObj = collider.gameObject;
+                    PickUp(HoldingObj);
+                    holding = true;
+                }
+                else if (holding == true && HoldingObj == collider.gameObject)
+                {
+                    PutDown(HoldingObj);
+                    holding = false;
+                    HoldingObj = PickUpPos;
+                }
+            }
+        }
+    }
     // we check if it is withing proximity using the helper function, we then set the object to out holding pos and parent it, we check for an RB and then freeze all constraints
     public void PickUp(GameObject pickUpObj)
     {
