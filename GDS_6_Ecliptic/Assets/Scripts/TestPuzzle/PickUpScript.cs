@@ -71,7 +71,7 @@ public class PickUpScript : MonoBehaviour
     public void PickUpInProximity()
     {
         Collider[] ObjColliders = Physics.OverlapSphere(this.transform.position, PickUpRadius);
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
         {
             foreach(Collider collider in ObjColliders)
             {
