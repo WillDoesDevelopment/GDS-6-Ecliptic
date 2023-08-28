@@ -34,6 +34,7 @@ public class AINavMesh : MonoBehaviour
             if(Proximity(Player.transform.position, visionDist))
             {
                 CurrentNavPos = Player.transform.position;
+                GetComponent<Renderer>().material.color = Color.black;
             }
             else if (Proximity(CurrentNavPos, 1))
             {
@@ -45,6 +46,7 @@ public class AINavMesh : MonoBehaviour
         }
         else
         {
+            GetComponent<Renderer>().material.color = Color.red;
             NMA.SetDestination(this.transform.position);
         }
     }
