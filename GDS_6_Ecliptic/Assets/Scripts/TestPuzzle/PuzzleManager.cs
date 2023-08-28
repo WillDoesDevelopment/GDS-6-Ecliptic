@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class PuzzleManager : MonoBehaviour
 {
+    public Animator EvenAnim;
     //Checks the coroutine if its running as to avoid calling it every frame
     private bool isRunning = false;
 
@@ -26,6 +27,8 @@ public class PuzzleManager : MonoBehaviour
     public PuzzleManager OtherScale;
 
     public PickUpScript PUS;
+
+    private int WeightVal = 0;
     void Start()
     {
         StartPos = this.transform.position;
@@ -35,7 +38,7 @@ public class PuzzleManager : MonoBehaviour
     void Update()
     {
         //the weight that is on our scale
-        int WeightVal = 0;
+        WeightVal = 0;
 
         // populates our collider array
         weightsArr = Physics.OverlapSphere(this.transform.position, OverlapSphereRange);
@@ -63,26 +66,19 @@ public class PuzzleManager : MonoBehaviour
             }
         }
         //displays our Weight
+        UnknownBlockCheck();
 
-        bool UnknownBlock = false;
-        foreach (Collider c in weightsArr)
-        {
-            Weight W = c.GetComponent<Weight>();
-            if (W != null && W.visible == false)
-            {
-                UnknownBlock = true;
-                ScaleValDisplay.text = "?";
-            }
-        }
-        if(UnknownBlock == false)
-        {
-            ScaleValDisplay.text = WeightVal.ToString();
-        }
+
+        
 
         //the test for our obsolete win condition
-        if (ScaleValDisplay.text == TargetVal.ToString() && OtherScale.ScaleValDisplay.text == TargetVal.ToString())
+        if (WeightVal == OtherScale.WeightVal && WeightVal!=0)
         {
-            this.GetComponent<Renderer>().material.color = Color.green;
+            EvenAnim.SetBool("Even", true);
+        }
+        else
+        {
+            EvenAnim.SetBool("Even", false);
         }
     }
 
@@ -110,5 +106,21 @@ public class PuzzleManager : MonoBehaviour
 
     }
 
-
+    public void UnknownBlockCheck()
+    {
+        bool UnknownBlock = false;
+        foreach (Collider c in weightsArr)
+        {
+            Weight W = c.GetComponent<Weight>();
+            if (W != null && W.visible == false)
+            {
+                UnknownBlock = true;
+                ScaleValDisplay.text = "?";
+            }
+        }
+        if (UnknownBlock == false)
+        {
+            ScaleValDisplay.text = WeightVal.ToString();
+        }
+    }
 }

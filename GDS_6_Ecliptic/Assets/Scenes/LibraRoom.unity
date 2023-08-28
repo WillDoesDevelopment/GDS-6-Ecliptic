@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2007001220}
-  m_IndirectSpecularColor: {r: 0.0022677218, g: 0.0022615434, b: 0.0017856875, a: 1}
+  m_IndirectSpecularColor: {r: 0.0017760783, g: 0.0017469904, b: 0.0013977999, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1136,6 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d7ed33537827284791eaa9276b5910d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EvenAnim: {fileID: 1838646232}
   weightsArr: []
   OverlapSphereRange: 1.5
   TargetVal: 15
@@ -1869,6 +1870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d7ed33537827284791eaa9276b5910d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EvenAnim: {fileID: 1838646232}
   weightsArr: []
   OverlapSphereRange: 1.5
   TargetVal: 15
@@ -2834,7 +2836,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -3782,6 +3784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1838646231}
+  - component: {fileID: 1838646232}
   m_Layer: 0
   m_Name: 'Scale Plates '
   m_TagString: Untagged
@@ -3806,6 +3809,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1838646232
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838646230}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: be5de5a78eb841b4bb219e1c5f06a557, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1875570060
 GameObject:
   m_ObjectHideFlags: 0
