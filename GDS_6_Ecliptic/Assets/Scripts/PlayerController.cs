@@ -5,32 +5,26 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    
-    float yrot;
-
     //Movement
-    public Vector3 moveVector;
-    public float _rotation;
-    float _velocity;
-    public float yRotation;
     CharacterController controller;
-    Vector3 moveDirection = Vector3.zero;
-    
-    [Range(0f, 10f)] public float speed = 5;    
-    //public bool multiJump = false;
-    [Range(0f, 20f)] public float gravity = 10;
-    [Range(0f, 100f)] public float maxFallSpeed = 10;
-    bool grounded = false;
-    float airTime = 0;
     float inputX;
     float inputY;
     float inputZ;
+    public Vector3 moveVector;
+    Vector3 moveDirection = Vector3.zero;
+    public float _rotation;
+    float _velocity;
+    public float yRotation;    
+    [Range(0f, 10f)] public float speed = 5;        
+    [Range(0f, 20f)] public float gravity = 10;
+    [Range(0f, 100f)] public float maxFallSpeed = 10;
+    public float airTime = 0;
+    bool grounded = false;    
     public bool canWalk = true;
-
-    
-
+      
     //Spawn
     Vector3 spawnPoint;
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,9 +36,7 @@ public class PlayerController : MonoBehaviour
         spawnPoint = transform.position;
 
         // Movement
-        controller = GetComponent<CharacterController>();        
-
-        
+        controller = GetComponent<CharacterController>();                
         
     }
     
@@ -82,7 +74,7 @@ public class PlayerController : MonoBehaviour
             inputY = -0.25f;
         }
 
-        if (airTime > 10)
+        if (airTime > 10)       //Respawns if falling for too long
         {
             Respawn();
         }
@@ -98,10 +90,7 @@ public class PlayerController : MonoBehaviour
             moveDirection = new Vector3(inputX, 0, inputZ);
             moveDirection = Vector3.ClampMagnitude(moveDirection, 1.0f) * speed;
             moveDirection = new Vector3(moveDirection.x, inputY, moveDirection.z);
-
-            //moveDirection = new Vector3(inputX, inputY / speed, inputZ );
-            //moveDirection = transform.TransformDirection(moveDirection) * speed; //credit benjamin esposito First Person Drifter
-
+                   
             grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0; //credit benjamin esposito First Person Drifter
 
 
