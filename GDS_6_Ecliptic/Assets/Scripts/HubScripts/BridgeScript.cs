@@ -6,6 +6,7 @@ public class BridgeScript : MonoBehaviour
 {
     public GameObject bridge1;
     public GameObject bridge2;
+    public GameObject openWall;
     public GameObject door;
 
     public Vector3 doorOffset;
@@ -18,6 +19,7 @@ public class BridgeScript : MonoBehaviour
     {
         bridge1.SetActive(false);
         bridge2.SetActive(false);
+        openWall.SetActive(true);
         Connect();
     }
 
@@ -32,6 +34,7 @@ public class BridgeScript : MonoBehaviour
     {
         bridge1.SetActive(true);
         bridge2.SetActive(true);
+        openWall.SetActive(false);
 
         totalLength = Vector3.Distance(bridge1.transform.position, door.transform.position + doorOffset);
         bridge2.transform.localScale = new Vector3(1, 1, totalLength - bridge1Length);
@@ -43,6 +46,7 @@ public class BridgeScript : MonoBehaviour
     {
         bridge1.SetActive(false);
         bridge2.SetActive(false);
+        openWall.SetActive(true);
 
     }
 
