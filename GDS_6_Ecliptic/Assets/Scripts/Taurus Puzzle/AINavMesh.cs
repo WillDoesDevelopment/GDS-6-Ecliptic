@@ -30,6 +30,7 @@ public class AINavMesh : MonoBehaviour
         if(StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished && NavMeshPause == false)
         {
 
+            GetComponent<Renderer>().material.color = Color.red;
             CurrentNavPos = positionQueue.Peek().position;
             if(Proximity(Player.transform.position, visionDist))
             {
@@ -46,7 +47,7 @@ public class AINavMesh : MonoBehaviour
         }
         else
         {
-            GetComponent<Renderer>().material.color = Color.red;
+            
             NMA.SetDestination(this.transform.position);
         }
     }
