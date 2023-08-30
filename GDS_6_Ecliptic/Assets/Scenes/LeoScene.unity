@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1918500789}
-  m_IndirectSpecularColor: {r: 0.0014011116, g: 0.0013551762, b: 0.0011020806, a: 1}
+  m_IndirectSpecularColor: {r: 0.0013192273, g: 0.0013040742, b: 0.0010370766, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -50348,8 +50348,8 @@ GameObject:
   - component: {fileID: 883125555}
   - component: {fileID: 883125554}
   - component: {fileID: 883125553}
-  - component: {fileID: 883125552}
   - component: {fileID: 883125551}
+  - component: {fileID: 883125557}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -50364,7 +50364,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883125550}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f570d36f06735fd489b3c0710e9512de, type: 3}
   m_Name: 
@@ -50372,26 +50372,6 @@ MonoBehaviour:
   player: {fileID: 948833215}
   SmoothTime: 1
   MaxSpeed: 1
---- !u!114 &883125552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 883125550}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6edc3cd22473111408ce9f0c7b05e3e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  lerpSpeed: 0.005
-  offset1: {x: -3.65, y: 4.1, z: -7}
-  offset2: {x: -1.04, y: 3.48, z: -7}
-  Rot1: {x: 23.99, y: 27.85, z: -0.06448974}
-  Rot2: {x: 20.83, y: 9.8, z: 0}
-  RoomLeftPos: {fileID: 0}
-  RoomRightPos: {fileID: 0}
 --- !u!114 &883125553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50491,6 +50471,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 26.958, y: 0, z: 0}
+--- !u!114 &883125557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883125550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea63a15e76b69db4182bce68eaa4de24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 948833215}
+  lion: {fileID: 280198472}
 --- !u!1 &886402033
 GameObject:
   m_ObjectHideFlags: 0
