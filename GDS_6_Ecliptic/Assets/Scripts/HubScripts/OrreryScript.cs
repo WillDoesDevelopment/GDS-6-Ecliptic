@@ -5,6 +5,7 @@ using UnityEngine;
 public class OrreryScript : MonoBehaviour
 {
     public BridgeScript BS;
+    bool connected = false;
     
     public GameObject[] OrreryArms;
     public float[] RandomRotations;
@@ -23,7 +24,8 @@ public class OrreryScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.None; //.........................................................Cursor
         StartDialogue();
         BS.Disconnect();
-        
+        connected = false;
+
         // creates the arrays of random rotations for the Orrery
         /*RandomRotations = new float[OrreryArms.Length];
         for (int i = 0; i< OrreryArms.Length; i++)
@@ -66,14 +68,19 @@ public class OrreryScript : MonoBehaviour
                 OrreryArms[i].transform.eulerAngles = Vector3.Lerp(OrreryArms[i].transform.eulerAngles, new Vector3(0, 27 * (i), 0), LerpSpeed);
 
             }
-            else
+            else   //This is called every frame and porbably shouldn't be..............................................................................
             {
 
                 //Debug.Log(OrreryArms[HubManager.LevelNumber]);
                 OrreryArms[HubManager.LevelNumber].transform.eulerAngles = Vector3.Lerp(OrreryArms[HubManager.LevelNumber].transform.eulerAngles, new Vector3(0, 90, 0), LerpSpeed);
                 BS.door = OrreryArms[HubManager.LevelNumber].transform.GetChild(0).gameObject;
 
-                BS.Connect();
+                if(connected == false)
+                {
+                    BS.Connect();
+                    connected = true;
+                }
+                
                 //Debug.Log("connect");
 
             }
