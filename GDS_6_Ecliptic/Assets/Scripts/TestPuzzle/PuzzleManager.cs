@@ -91,7 +91,7 @@ public class PuzzleManager : MonoBehaviour
         {
             if(c.GetComponent<Weight>() != null && c.gameObject != PUS.HoldingObj)
             {
-                Debug.Log("Working" + yTranslation);
+                //Debug.Log("Working" + yTranslation);
                 c.transform.parent = this.transform;
 
             }

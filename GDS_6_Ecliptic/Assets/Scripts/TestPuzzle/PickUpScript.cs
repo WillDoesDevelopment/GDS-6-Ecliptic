@@ -21,6 +21,7 @@ public class PickUpScript : MonoBehaviour
     public bool Raycasting  = false;
     public bool ProximityPickUp = false;
 
+    public Collider[] ObjColliders;
     //private  Collider[] ObjColliders;
     void Start()
     {
@@ -70,50 +71,64 @@ public class PickUpScript : MonoBehaviour
 
     public void PickUpInProximity()
     {
-        Collider[] ObjColliders = Physics.OverlapSphere(this.transform.position, PickUpRadius);
+        ObjColliders = Physics.OverlapSphere(this.transform.position, PickUpRadius);
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
         {
-            foreach(Collider collider in ObjColliders)
+            
+            if(nearestPickUp().CompareTag("PickUp") && holding == false)
             {
-                if(collider.CompareTag("PickUp") && holding == false)
-                {
-                    HoldingObj = collider.gameObject;
-                    PickUp(HoldingObj);
-                    holding = true;
-                }
-                else if (holding == true && HoldingObj == collider.gameObject)
-                {
-                    PutDown(HoldingObj);
-                    holding = false;
-                    HoldingObj = PickUpPos;
-                }
+                HoldingObj = nearestPickUp();
+                PickUp(nearestPickUp());
+                holding = true;
             }
+            else if (holding == true)
+            {
+                PutDown(HoldingObj);
+                holding = false;
+                HoldingObj = PickUpPos;
+            }
+            
         }
     }
     // we check if it is withing proximity using the helper function, we then set the object to out holding pos and parent it, we check for an RB and then freeze all constraints
     public void PickUp(GameObject pickUpObj)
     {
         //bool ProxBool = ;
+        pickUpObj.transform.position = PickUpPos.transform.position;
+        pickUpObj.transform.SetParent(PickUpPos.transform);
 
-        if (Proximity(pickUpObj))
+        if(pickUpObj.GetComponent<Rigidbody>() != null)
         {
-            pickUpObj.transform.position = PickUpPos.transform.position;
-            pickUpObj.transform.SetParent(PickUpPos.transform);
-
-            if(pickUpObj.GetComponent<Rigidbody>() != null)
+            Rigidbody RBTemp = pickUpObj.GetComponent<Rigidbody>();
+            if (RBTemp != null)
             {
-                Rigidbody RBTemp = pickUpObj.GetComponent<Rigidbody>();
-                if (RBTemp != null)
-                {
-                    RBTemp.constraints = RigidbodyConstraints.FreezeAll;
-                    //RBTemp.constraints = RigidbodyConstraints.FreezeRotation;
-                    //RBTemp.useGravity = false;
-                }
-
+                RBTemp.constraints = RigidbodyConstraints.FreezeAll;
+                //RBTemp.constraints = RigidbodyConstraints.FreezeRotation;
+                //RBTemp.useGravity = false;
             }
+
         }
+        
     }
 
+    public float Dist(GameObject player, GameObject other)
+    {
+        return Vector3.Distance(player.transform.position, other.transform.position);
+    }
+    public GameObject nearestPickUp()
+    {
+        GameObject nearest = null;
+
+        foreach (Collider c in ObjColliders)
+        {
+            if(nearest == null || Dist(this.gameObject, c.gameObject)< Dist(this.gameObject, nearest)&& c.CompareTag("PickUp"))
+            {
+                nearest = c.gameObject;
+                //Debug.Log(nearest);
+            }
+        }
+        return nearest;
+    }
     public bool Proximity(GameObject pickUpObj)
     {
         float playerDistZ = pickUpObj.transform.position.z - transform.position.z;
