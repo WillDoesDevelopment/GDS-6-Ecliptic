@@ -49,6 +49,8 @@ public class lionAI : MonoBehaviour
         particle2.SetActive(false);
         particle3.SetActive(false);
         barrier.SetActive(false);
+        state = 1;
+        timer = followTime;
     }
 
     // Update is called once per frame
@@ -148,7 +150,7 @@ public class lionAI : MonoBehaviour
             }
         }
 
-        if(ColumnParent.transform.childCount == 0 && state != 5)
+        if(ColumnParent.transform.childCount == 0 && state != 5)                                //Level Ends
         {
             x = Mathf.Floor(transform.position.x + 0.5f);
             y = transform.position.y;
@@ -183,9 +185,13 @@ public class lionAI : MonoBehaviour
             {
                 collapse(6.0f);
             }
+            if (floorTimer > 4.0f)
+            {
+                gameObject.SetActive(false);
+            }
 
             transform.position = transform.position - Vector3.up * Time.deltaTime * 2.0f;            
-            Destroy(gameObject, 4.0f);
+            //Destroy(gameObject, 4.0f);
         }
 
         //Collision    
