@@ -11,6 +11,8 @@ public class TaurusManager : MonoBehaviour
     public HubManager HB;
 
     public AINavMesh ANM;
+
+    public VFXCircleHandler VFXCH;
     void Start()
     {
         
@@ -43,6 +45,7 @@ public class TaurusManager : MonoBehaviour
         DialogueTrigger dtEvent = null;
         if (CollectedItems == 4)
         {
+            VFXCH.circleVFXStart();
             DialogueTrigger[] DT = this.GetComponents<DialogueTrigger>();
             foreach(DialogueTrigger dt in DT)
             {
