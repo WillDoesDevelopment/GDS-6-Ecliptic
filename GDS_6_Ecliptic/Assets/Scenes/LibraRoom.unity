@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2007001220}
-  m_IndirectSpecularColor: {r: 0.0011974085, g: 0.0011378012, b: 0.0009416095, a: 1}
+  m_IndirectSpecularColor: {r: 0.0014442569, g: 0.0014150504, b: 0.0011354359, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -884,6 +884,7 @@ MonoBehaviour:
   player: {fileID: 121999595}
   CombinationsAnim: {fileID: 4435230666453257929}
   HM: {fileID: 312838635}
+  EndDialogue: {fileID: 1399300627}
 --- !u!1 &373871864
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,6 +2987,7 @@ GameObject:
   - component: {fileID: 1399300625}
   - component: {fileID: 1399300624}
   - component: {fileID: 1399300623}
+  - component: {fileID: 1399300627}
   - component: {fileID: 1399300622}
   m_Layer: 0
   m_Name: character
@@ -3090,6 +3092,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1399300627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399300621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 4c4d6d4c6a1e6ba48b7ef41c0bb03c14, type: 2}
+  player: {fileID: 121999595}
+  radius: 0
+  Dm: {fileID: 612832918}
+  OnStart: 0
+  OnEvent: 1
 --- !u!1 &1433837033
 GameObject:
   m_ObjectHideFlags: 0

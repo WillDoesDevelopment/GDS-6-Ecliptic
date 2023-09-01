@@ -129,19 +129,6 @@ public class PickUpScript : MonoBehaviour
         }
         return nearest;
     }
-    public bool Proximity(GameObject pickUpObj)
-    {
-        float playerDistZ = pickUpObj.transform.position.z - transform.position.z;
-        float playerDistX = pickUpObj.transform.position.x - transform.position.x;
-        if (Mathf.Sqrt(Mathf.Pow(playerDistX, 2) + Mathf.Pow(playerDistZ, 2)) < PickUpRadius)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     // here we reverse what we did in the pickUP function
     public void PutDown(GameObject HoldingObj)
