@@ -185,13 +185,18 @@ public class DialogueManager : MonoBehaviour
         if (Sentences.Count == 0)
         {
             player.GetComponent<PlayerController>().canWalk = true;
+
             TextAnim.SetBool("PopUp", false);
+            
+            
             TextAnim.SetBool("PlayerImgAnimate", false);
             TextAnim.SetBool("OtherImgAnimation", false);
             dialogue.DialogueMode = Dialogue.DialogueState.Finished;
-            TextAnim.SetBool("PopUp", false);
+            //TextAnim.SetBool("PopUp", false);
             return;
         }
     }
+
+
 
 }
