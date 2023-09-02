@@ -10,8 +10,11 @@ public class blockerScr : MonoBehaviour
 
     public float radius = 10;
     public float speed = 15;
-    float radialSpeed = 0;
+    public float radialSpeed = 0;
     public float angle = 180;
+    public float playerAngle;
+
+    Vector3 xy = new Vector3(1, 0, 1);
 
     // Start is called before the first frame update
     void Start()
@@ -29,15 +32,15 @@ public class blockerScr : MonoBehaviour
 
         //Check left or right
         {
-            Vector3 targetDir = playerTransform.position - transform.position;
-            Vector3 forward = transform.forward;
-            float playerAngle = Vector3.SignedAngle(targetDir, forward, Vector3.up);
-            if (playerAngle <= 0.0F)
+            Vector3 targetDir = Vector3.Scale(playerTransform.position - pivotPoint.position , xy);
+            Vector3 forward = Vector3.Scale( transform.position - pivotPoint.position,xy);
+            playerAngle = Vector3.SignedAngle(targetDir, forward, Vector3.up);
+            if (playerAngle >= 1.0F)
             {
                 //Turn Right
                 angle += Time.deltaTime * radialSpeed;
             }
-            else
+            else if (playerAngle <= -1.0F)
             {
                 //Turn Left
                 angle -= Time.deltaTime * radialSpeed;
