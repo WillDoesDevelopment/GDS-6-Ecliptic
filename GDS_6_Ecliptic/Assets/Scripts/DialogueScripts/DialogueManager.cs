@@ -8,6 +8,8 @@ public class DialogueManager : MonoBehaviour
 {
     // image and text components necessary
     //public PlayerScript PS;
+    public Sprite OtherDialogueBoxSprite;
+    public Image OtherDialogueBox;
 
     public GameObject EnterText;
 
@@ -45,6 +47,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject player;
     void Awake()
     {
+        OtherDialogueBox.sprite = OtherDialogueBoxSprite;
         Sentences = new Queue<string>();
         SentenceType = new Queue<Dialogue.DialogueType>();
         player = GameObject.Find("Player");
