@@ -16,6 +16,8 @@ public class LibraRoomManager : MonoBehaviour
     public Animator CombinationsAnim;
 
     public HubManager HM;
+
+    public DialogueTrigger EndDialogue;
     void Start()
     {
         
@@ -23,18 +25,22 @@ public class LibraRoomManager : MonoBehaviour
 
     void Update()
     {
-        RotateCombination(ReturnNearestCombination());
+        if(EndDialogue.OnEvent != false)
+        {
+            RotateCombination(ReturnNearestCombination());
+
+        }
         CheckWinCondition();
     }
 
     // Every frame we check if the nearest combination object is close enough and if it should be rotated
     public void RotateCombination(GameObject Combination)
     {
-        if (Dist(player, Combination) < 2)
+        if (Dist(player, Combination) < 3)
         {
             //Debug.Log(Combination.name);
             CombinationsAnim.SetBool(Combination.name, true);
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
             {
                 Combination.transform.Rotate(0, 0, -360 / 9);
                 Combination.GetComponent<CombinationVal>().Val += 1;
@@ -51,8 +57,18 @@ public class LibraRoomManager : MonoBehaviour
     {
         if (Combination[0].GetComponent<CombinationVal>().Val == 2 && Combination[1].GetComponent<CombinationVal>().Val == 4 && Combination[2].GetComponent<CombinationVal>().Val == 7)
         {
-            
-            HM.SendToHub();
+            foreach(GameObject g in Combination)
+            {
+                CombinationsAnim.SetBool(g.name, true);
+            }
+            EndDialogue.OnEventCheck();
+            EndDialogue.OnEvent = false;
+            if(EndDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+            {
+                HM.SendToHub();
+
+            }
+
         }
     }
 

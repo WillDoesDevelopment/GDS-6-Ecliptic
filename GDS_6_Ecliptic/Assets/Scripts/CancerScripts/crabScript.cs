@@ -10,6 +10,8 @@ public class crabScript : MonoBehaviour
     public Vector3 colliderOffset;
     public Vector3 colliderScale;
 
+    public VFXCircleHandler VFXCH;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class crabScript : MonoBehaviour
                 if (player.GetComponent<PlayerController>().airTime > 0.5)
                 {
                     GetComponent<Animator>().SetTrigger("Animate");
+                    VFXCH.circleVFXStart(); //dialouge circle stuff :)
                 }
             }
         }

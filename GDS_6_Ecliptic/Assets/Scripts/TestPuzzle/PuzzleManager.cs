@@ -96,11 +96,17 @@ public class PuzzleManager : MonoBehaviour
 
             }
         }
+        /*while(this.transform.position.y > StartPos.y - yTranslation.y)
+        {
+            this.transform.position -= new Vector3(0, yTranslation.y/10,0);
+            Debug.Log("running");
+            yield return new  WaitForSeconds(0.05f);
+
+        }*/
         this.transform.position = StartPos - yTranslation;
-        yield return new  WaitForSeconds(1);
-        
+        yield return new WaitForSeconds(0.05f);
         //this.transform.DetachChildren();
-        
+
         isRunning = false;
 
 

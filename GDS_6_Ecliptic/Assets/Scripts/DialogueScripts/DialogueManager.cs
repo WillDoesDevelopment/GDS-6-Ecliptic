@@ -8,6 +8,8 @@ public class DialogueManager : MonoBehaviour
 {
     // image and text components necessary
     //public PlayerScript PS;
+    public Sprite OtherDialogueBoxSprite;
+    public Image OtherDialogueBox;
 
     public GameObject EnterText;
 
@@ -45,6 +47,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject player;
     void Awake()
     {
+        OtherDialogueBox.sprite = OtherDialogueBoxSprite;
         Sentences = new Queue<string>();
         SentenceType = new Queue<Dialogue.DialogueType>();
         player = GameObject.Find("Player");
@@ -185,13 +188,18 @@ public class DialogueManager : MonoBehaviour
         if (Sentences.Count == 0)
         {
             player.GetComponent<PlayerController>().canWalk = true;
+
             TextAnim.SetBool("PopUp", false);
+            
+            
             TextAnim.SetBool("PlayerImgAnimate", false);
             TextAnim.SetBool("OtherImgAnimation", false);
             dialogue.DialogueMode = Dialogue.DialogueState.Finished;
-            TextAnim.SetBool("PopUp", false);
+            //TextAnim.SetBool("PopUp", false);
             return;
         }
     }
+
+
 
 }
