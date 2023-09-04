@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.0004782715, g: 0.00046885884, b: 0.00037612146, a: 1}
+  m_IndirectSpecularColor: {r: 0.0013392105, g: 0.0012916827, b: 0.0010544434, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4344,6 +4344,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 59.528, z: 0}
+--- !u!114 &1243871068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865650952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: fd311e64baec0f646b7cc945a915c643, type: 2}
+  player: {fileID: 1442537224}
+  radius: 3
+  Dm: {fileID: 1412829475}
+  OnStart: 0
+  OnEvent: 0
 --- !u!1 &1289554006
 GameObject:
   m_ObjectHideFlags: 0
@@ -6724,24 +6742,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8240508296729342891, guid: dd929a5a02b66e344ad8d6ad838df73a, type: 3}
   m_PrefabInstance: {fileID: 1865650950}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1865650957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865650952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: fd311e64baec0f646b7cc945a915c643, type: 2}
-  player: {fileID: 1442537224}
-  radius: 3
-  Dm: {fileID: 1412829475}
-  OnStart: 0
-  OnEvent: 0
 --- !u!1 &1903383557
 GameObject:
   m_ObjectHideFlags: 0
@@ -8077,6 +8077,34 @@ PrefabInstance:
       propertyPath: OtherDialogueBoxSprite
       value: 
       objectReference: {fileID: 21300000, guid: 8a8594df51c7ab04b9ca0de0c32dbca9, type: 3}
+    - target: {fileID: 6279914843836385645, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 163df958eb8b6ec43abc52e0f51bd46b, type: 3}
+    - target: {fileID: 6279914843836385645, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279914843836385645, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279914843836385645, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279914844153769672, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279914844153769672, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279914844153769672, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6279914844905713249, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -8164,6 +8192,10 @@ PrefabInstance:
     - target: {fileID: 6279914844905713277, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
       propertyPath: m_Name
       value: DialogueCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279914845069936499, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5.9999695
       objectReference: {fileID: 0}
     - target: {fileID: 6279914845088880967, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
       propertyPath: m_fontColor32.rgba
