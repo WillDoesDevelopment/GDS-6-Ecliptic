@@ -29,19 +29,19 @@ public class RoomManager : MonoBehaviour
     void Update()
     {
     
-        if (DialogueEndcheck(Aries.transform.GetChild(6).gameObject))
+        if (DialogueEndcheck(Aries))
         {
             
             ExitDoor.GetComponent<DoorScript>().DS.IsOpen = true;
             
             
         }
-        if (DialogueEndcheck(GoldSheep.transform.GetChild(0).gameObject))
+        if (DialogueEndcheck(GoldSheep))
         {
             VFXCH.circleVFXStart();
             GoldSheep.GetComponent<Animator>().SetBool("Animate", true);
         }
-        if (DialogueEndcheck(NormalSheep.transform.GetChild(0).gameObject))
+        if (DialogueEndcheck(NormalSheep))
         {
                                                                                 // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
             NormalSheep.GetComponent<Animator>().SetTrigger("Animate");
