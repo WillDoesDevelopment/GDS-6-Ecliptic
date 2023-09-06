@@ -17,7 +17,7 @@ public class SkyboxRotate : MonoBehaviour
     void Update()
     {
         //float offset = Mathf.Lerp(-180, 180, 0) / ;
-        //starhub.transform.Rotate(0, transform.position.x * starSpeed, 0);
+        starhub.transform.Rotate(0, transform.position.x * starSpeed, 0);
 
         RenderSettings.skybox.SetFloat("_Rotation", transform.position.x * rotSpeed);
     }
