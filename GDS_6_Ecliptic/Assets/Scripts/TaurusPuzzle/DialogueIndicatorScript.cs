@@ -18,9 +18,13 @@ public class DialogueIndicatorScript : MonoBehaviour
     {
         if(DT.dialogue.DialogueMode == Dialogue.DialogueState.NotStarted)
         {
-            DialogueIndicatorAnim.SetBool("Animate", false);
+            
             triggerIndicatorCheck();
 
+        }
+        else
+        {
+            DialogueIndicatorAnim.SetBool("Animate", false);
         }
     }
     public void triggerIndicatorCheck()
@@ -28,7 +32,7 @@ public class DialogueIndicatorScript : MonoBehaviour
 
         if (DT.Proximity())
         {
-            Debug.Log(DT.Proximity());  
+            //Debug.Log(DT.Proximity());  
             DialogueIndicatorAnim.SetBool("Animate", true);
         }
         else
