@@ -30,6 +30,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         // instead of finding it in editor
         Dm = FindObjectOfType<DialogueManager>();
+        player = GameObject.Find("Player");
     }
     private void Start()
     {

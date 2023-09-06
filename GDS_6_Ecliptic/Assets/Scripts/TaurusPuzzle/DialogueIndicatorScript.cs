@@ -16,11 +16,15 @@ public class DialogueIndicatorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(DT.dialogue.DialogueMode == Dialogue.DialogueState.NotStarted)
+        if(DT.dialogue.DialogueMode == Dialogue.DialogueState.NotStarted && DT.OnEvent == false)
         {
-            DialogueIndicatorAnim.SetBool("Animate", false);
+            
             triggerIndicatorCheck();
 
+        }
+        else
+        {
+            DialogueIndicatorAnim.SetBool("Animate", false);
         }
     }
     public void triggerIndicatorCheck()
@@ -28,7 +32,7 @@ public class DialogueIndicatorScript : MonoBehaviour
 
         if (DT.Proximity())
         {
-            Debug.Log(DT.Proximity());  
+            //Debug.Log(DT.Proximity());  
             DialogueIndicatorAnim.SetBool("Animate", true);
         }
         else
