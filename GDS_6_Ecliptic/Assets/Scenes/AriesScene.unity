@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.015507564, g: 0.0005599896, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.011379318, g: 0.00031089148, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -524,6 +524,24 @@ Transform:
   m_Father: {fileID: 1406073658}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &152902112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149306631311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 0b4a110c4590e2d4480e43f02e25185d, type: 2}
+  player: {fileID: 1442537224}
+  radius: 5
+  Dm: {fileID: 1412829475}
+  OnStart: 0
+  OnEvent: 0
 --- !u!95 &152902113
 Animator:
   serializedVersion: 4
@@ -6654,6 +6672,7 @@ GameObject:
   - component: {fileID: 543450653580623413}
   - component: {fileID: 152902114}
   - component: {fileID: 152902113}
+  - component: {fileID: 152902112}
   - component: {fileID: 919132149306631313}
   m_Layer: 6
   m_Name: Aries_hero_GoldRam
@@ -7516,6 +7535,7 @@ GameObject:
   - component: {fileID: 6262515803582005935}
   - component: {fileID: 3662520977926307667}
   - component: {fileID: 6317744022585428289}
+  - component: {fileID: 8532410017173160062}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -7972,6 +7992,24 @@ Transform:
   m_Father: {fileID: 7583722162023137474}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8532410017173160062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6607104654957669066}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 2da034e5c72fdd04793012a93257d3d5, type: 2}
+  player: {fileID: 1442537224}
+  radius: 3
+  Dm: {fileID: 1412829475}
+  OnStart: 0
+  OnEvent: 0
 --- !u!23 &8740442431200787033
 MeshRenderer:
   m_ObjectHideFlags: 0
