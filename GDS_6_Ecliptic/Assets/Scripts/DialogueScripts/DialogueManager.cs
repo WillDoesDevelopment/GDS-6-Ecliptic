@@ -153,7 +153,7 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
         //types each character
         StartCoroutine(TypeText(tempSentence, DialogueText));
-        Debug.Log("it run");
+        //Debug.Log("it run");
     }
     public IEnumerator TypeText(string sentence, TextMeshProUGUI TxtElement)
     {
