@@ -12,6 +12,7 @@ public class RoomManager : MonoBehaviour
     public GameObject Aries;
     public VFXCircleHandler VFXCH;
 
+    public DialogueTrigger TestDt;
     public HubManager HM;
 
     private Vector3 PlayerStartPos;
@@ -28,20 +29,20 @@ public class RoomManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
-        if (DialogueEndcheck(Aries.transform.GetChild(0).gameObject))
+        Debug.Log("TestDT" + TestDt);
+        Debug.Log(Aries.GetComponent<DialogueTrigger>());
+        if (DialogueEndcheck(Aries.GetComponent<DialogueTrigger>()))
         {
-            
             ExitDoor.GetComponent<DoorScript>().DS.IsOpen = true;
             
             
         }
-        if (DialogueEndcheck(GoldSheep.transform.GetChild(0).gameObject))
+        if (DialogueEndcheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
             VFXCH.circleVFXStart();
             GoldSheep.GetComponent<Animator>().SetBool("Animate", true);
         }
-        if (DialogueEndcheck(NormalSheep.transform.GetChild(0).gameObject))
+        if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
         {
                                                                                 // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
             NormalSheep.GetComponent<Animator>().SetTrigger("Animate");
@@ -49,9 +50,10 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public bool DialogueEndcheck(GameObject DialogueObj)
+    public bool DialogueEndcheck(DialogueTrigger DialogueObj)
     {
-        if (DialogueObj.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        
+        if (DialogueObj.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             return true;
         }

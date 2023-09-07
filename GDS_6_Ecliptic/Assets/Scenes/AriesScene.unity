@@ -4827,6 +4827,22 @@ Transform:
   m_Father: {fileID: 1996149707}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -12.5, z: 0}
+--- !u!1 &1509297792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5203205849167279358, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
+  m_PrefabInstance: {fileID: 235301532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1509297793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4731691729103838188, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
+  m_PrefabInstance: {fileID: 235301532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509297792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1599008479
 GameObject:
   m_ObjectHideFlags: 0
@@ -5045,11 +5061,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c5e7e312155d64886b6e2f08e0226b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NormalSheep: {fileID: 1055099836}
+  NormalSheep: {fileID: 2010639523}
   Player: {fileID: 1442537224}
-  GoldSheep: {fileID: 919132149306631311}
-  Aries: {fileID: 8240508295815261078}
+  GoldSheep: {fileID: 1509297792}
+  Aries: {fileID: 2125654454}
   VFXCH: {fileID: 3970566854044868061}
+  TestDt: {fileID: 1509297793}
   HM: {fileID: 1625424134}
   ExitDoor: {fileID: 2051854785}
 --- !u!4 &1625424133
@@ -5927,6 +5944,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 312369105}
     m_Modifications:
+    - target: {fileID: -9176931480253804449, guid: dd929a5a02b66e344ad8d6ad838df73a, type: 3}
+      propertyPath: m_Name
+      value: DialogueTriggerPrefab
+      objectReference: {fileID: 0}
     - target: {fileID: -5252805183494467877, guid: dd929a5a02b66e344ad8d6ad838df73a, type: 3}
       propertyPath: objs.Array.size
       value: 2
@@ -6301,6 +6322,11 @@ Transform:
   m_Father: {fileID: 459500725}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2010639523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5203205849167279358, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
+  m_PrefabInstance: {fileID: 775844211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2027760005
 GameObject:
   m_ObjectHideFlags: 0
@@ -6566,6 +6592,11 @@ MonoBehaviour:
   Dm: {fileID: 1412829475}
   OnStart: 1
   OnEvent: 0
+--- !u!1 &2125654454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3304710221375790725, guid: dd929a5a02b66e344ad8d6ad838df73a, type: 3}
+  m_PrefabInstance: {fileID: 1865650950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2127021392
 GameObject:
   m_ObjectHideFlags: 0
