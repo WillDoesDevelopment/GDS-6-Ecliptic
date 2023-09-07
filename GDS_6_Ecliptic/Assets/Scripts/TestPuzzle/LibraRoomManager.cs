@@ -66,7 +66,7 @@ public class LibraRoomManager : MonoBehaviour
             if(EndDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
             {
                 HM.SendToHub();
-
+                HM.SetGameStage(3);
             }
 
         }
