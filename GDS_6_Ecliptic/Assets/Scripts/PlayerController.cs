@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
         if (airTime > 10)       //Respawns if falling for too long
         {
             Respawn();
+            airTime = 0;
         }
 
         
@@ -105,6 +106,10 @@ public class PlayerController : MonoBehaviour
                 _rotation = Mathf.SmoothDampAngle(_rotation, yRotation, ref _velocity, 0.1f);
                 transform.rotation = Quaternion.Euler(0f, _rotation , 0f);
             }
+        }
+        else
+        {
+         
         }
     }      
 }

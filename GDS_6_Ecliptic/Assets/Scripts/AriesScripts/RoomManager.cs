@@ -29,8 +29,8 @@ public class RoomManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("TestDT" + TestDt);
-        Debug.Log(Aries.GetComponent<DialogueTrigger>());
+        //Debug.Log("TestDT" + TestDt);
+        //Debug.Log(Aries.GetComponent<DialogueTrigger>());
         if (DialogueEndcheck(Aries.GetComponent<DialogueTrigger>()))
         {
             ExitDoor.GetComponent<DoorScript>().DS.IsOpen = true;
@@ -66,15 +66,15 @@ public class RoomManager : MonoBehaviour
     public void Reset()
     {
         Player.transform.position = PlayerStartPos;
-        GameObject Temp = Instantiate(GoldSheep, GoldRamStartPos, Quaternion.identity);
+        GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, Quaternion.identity);
         Destroy(GoldSheep);
-        GoldSheep = Temp;
+        GoldSheep = Temp.transform.GetChild(0).gameObject;
 
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
         Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
         Temp.GetComponent<Animator>().SetBool("Animate", false);
-        Temp.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+        Temp.transform.GetChild(0).GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
     }
 
 
