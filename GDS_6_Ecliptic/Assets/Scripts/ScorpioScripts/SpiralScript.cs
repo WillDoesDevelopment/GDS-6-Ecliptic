@@ -40,5 +40,6 @@ public class SpiralScript : MonoBehaviour
         animPercent = Mathf.Clamp(animPercent, 0, 0.98f);       
         
         anim.SetFloat("MotionPercent", animPercent);
+        transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
     }
 }
