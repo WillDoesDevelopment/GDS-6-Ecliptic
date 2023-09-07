@@ -40,12 +40,12 @@ public class RoomManager : MonoBehaviour
         if (DialogueEndcheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
             VFXCH.circleVFXStart();
-            GoldSheep.GetComponent<Animator>().SetBool("Animate", true);
+            GoldSheep.transform.parent.GetComponent<Animator>().SetBool("Animate", true);
         }
         if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
         {
                                                                                 // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
-            NormalSheep.GetComponent<Animator>().SetTrigger("Animate");
+            NormalSheep.transform.parent.GetComponent<Animator>().SetTrigger("Animate");
 
         }
     }
