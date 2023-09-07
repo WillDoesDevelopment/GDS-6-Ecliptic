@@ -17,12 +17,14 @@ public class RoomManager : MonoBehaviour
 
     private Vector3 PlayerStartPos;
     private Vector3 GoldRamStartPos;
+    private Quaternion GoldRamStartRot;
 
     public GameObject ExitDoor;
     void Start()
     {
         PlayerStartPos = Player.transform.position;
-        GoldRamStartPos = GoldSheep.transform.position;
+        GoldRamStartPos = GoldSheep.transform.parent.transform.position;
+        GoldRamStartRot = GoldSheep.transform.parent.transform.rotation;
         //Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -66,15 +68,15 @@ public class RoomManager : MonoBehaviour
     public void Reset()
     {
         Player.transform.position = PlayerStartPos;
-        GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, Quaternion.identity);
-        Destroy(GoldSheep);
-        GoldSheep = Temp.transform.GetChild(0).gameObject;
+        GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, GoldRamStartRot);
+        Destroy(GoldSheep.transform.parent.gameObject);        
+        GoldSheep = Temp.transform.Find("DialogueTriggerPrefab").gameObject;
 
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
         Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
-        Temp.GetComponent<Animator>().SetBool("Animate", false);
-        Temp.transform.GetChild(0).GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+        Temp.GetComponent<Animator>().SetBool("Animate", false);        
+        Temp.transform.Find("DialogueTriggerPrefab").gameObject.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
     }
 
 
