@@ -50,11 +50,11 @@ public class linearScorpian : MonoBehaviour
 
         Debug.DrawLine(point1.position, point1.position + line, Color.green, 0.01f);
 
-        targetPoint = point1.position + line + Mathf.Sin(timer * 3.0f) * lineAngle;
+        targetPoint = point1.position + line + 0.5f * Mathf.Sin(timer * 3.0f) * lineAngle;
         targetPoint = new Vector3(Mathf.Clamp(targetPoint.x, Mathf.Min(limit1.x, limit2.x), Mathf.Max(limit1.x, limit2.x)),targetPoint.y, Mathf.Clamp(targetPoint.z, Mathf.Min(limit1.z, limit2.z), Mathf.Max(limit1.z, limit2.z))); //omg i hope this works
 
         transform.position = targetPoint;
-        transform.LookAt(player.transform);
+        transform.LookAt(new Vector3(player.transform.position.x,transform.position.y,player.transform.position.z));
         
         
     }
