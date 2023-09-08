@@ -31,13 +31,17 @@ public class TaurusManager : MonoBehaviour
         GameObject HeldObj = Player.GetComponent<PickUpScript>().HoldingObj;
         if (HeldObj != null)
         {
-            HeldObj.GetComponent<DialogueTrigger>().OnEventCheck();
-            HeldObj.GetComponent<DialogueTrigger>().OnEvent = false;
-            ANM.NavMeshPause = true;
-            if (HeldObj.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+            if (HeldObj.CompareTag("PickUp"))
             {
-                ANM.NavMeshPause = false;
+                HeldObj.GetComponent<DialogueTrigger>().OnEventCheck();
+                HeldObj.GetComponent<DialogueTrigger>().OnEvent = false;
+                ANM.NavMeshPause = true;
+                if (HeldObj.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+                {
+                    ANM.NavMeshPause = false;
+                }
             }
+
         }
     }
     public void CheckWinCondition()
