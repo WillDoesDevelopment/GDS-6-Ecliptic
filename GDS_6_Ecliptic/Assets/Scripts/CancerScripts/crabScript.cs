@@ -10,7 +10,8 @@ public class crabScript : MonoBehaviour
     public Vector3 colliderOffset;
     public Vector3 colliderScale;
 
-    public HubManager hubManager;
+    public HubManager HM;
+    public DialogueTrigger EndDialogue;
     public VFXCircleHandler VFXCH;
 
     // Start is called before the first frame update
@@ -33,14 +34,22 @@ public class crabScript : MonoBehaviour
                 {
                     GetComponent<Animator>().SetTrigger("Animate");
                     VFXCH.circleVFXStart(); //dialouge circle stuff :)
-                    StartCoroutine(WaitForX());
+                    
+                    EndDialogue.OnEventCheck();
+                    EndDialogue.OnEvent = false;
+                    
+
                 }
             }
         }
 
+        if (EndDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        {
+            HM.SendToHub();
+            HM.SetGameStage(5);
+        }
 
-        
-        
+
     }
 
     private void OnDrawGizmos()
@@ -50,10 +59,4 @@ public class crabScript : MonoBehaviour
 
     }
 
-    public IEnumerator WaitForX()
-    {
-        yield return new WaitForSeconds(5);
-        hubManager.SendToHub();
-        hubManager.SetGameStage(5);
-    }
 }

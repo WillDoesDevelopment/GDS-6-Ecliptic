@@ -13,6 +13,9 @@ public class lionAI : MonoBehaviour
     public GameObject particle2;
     public GameObject particle3;
     public GameObject barrier;
+    public DialogueTrigger StartDialogue;
+    public DialogueTrigger EndDialogue;
+    public DialogueTrigger DeathDialogue;
     public float barrierMaxScale = 20;
     public float speed = 1;
     float inv = 1;
@@ -43,20 +46,32 @@ public class lionAI : MonoBehaviour
     void Start()
     {
         RM = FindObjectOfType<RoomManager>();
-        forward = transform.forward;
-        target = Player.transform.position;
-        particle1.SetActive(false);
-        particle2.SetActive(false);
-        particle3.SetActive(false);
-        barrier.SetActive(false);
-        state = 1;
-        timer = followTime;
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(state == 1)          //Following
+
+        StartDialogue.OnEventCheck();
+        StartDialogue.OnEvent = false;
+
+        
+
+        if (StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished && state == 0)
+        {
+            forward = transform.forward;
+            target = Player.transform.position;
+            particle1.SetActive(false);
+            particle2.SetActive(false);
+            particle3.SetActive(false);
+            barrier.SetActive(false);
+            state = 1;
+            timer = followTime;
+        }
+
+        if (state == 1)          //Following
         {
             particle3.SetActive(false);
             rayDist = Vector3.Distance(transform.position, Player.transform.position) - 3.0f;
@@ -201,7 +216,10 @@ public class lionAI : MonoBehaviour
             if (hitCollider.gameObject == Player)                                           //Room restarts
             {
                 //RM.Reset();
+                DeathDialogue.OnEventCheck();
+                DeathDialogue.OnEvent = false;
                 Debug.Log("Restart room");                                                  //Need restart function here.....................................
+                DeathDialogue.dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
                 Scene scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(scene.name);
             }
@@ -224,7 +242,10 @@ public class lionAI : MonoBehaviour
             if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Floor"))
             {
                 hitCollider.transform.GetComponent<floorScript>().solid = false;
-                StartCoroutine(WaitForX(3));
+                EndDialogue.OnEventCheck();
+                EndDialogue.OnEvent = false;
+
+                
             }
 
         }
@@ -233,8 +254,8 @@ public class lionAI : MonoBehaviour
     public IEnumerator WaitForX(int x)
     {
         yield return new WaitForSeconds(x);
-        hubManager.SendToHub();
-        hubManager.SetGameStage(6);
+        
+        
     }
 
     private void OnDrawGizmos()

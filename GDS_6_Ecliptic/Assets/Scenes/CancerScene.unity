@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 910931263}
-  m_IndirectSpecularColor: {r: 0.006445773, g: 0.013860775, b: 0.15792516, a: 1}
+  m_IndirectSpecularColor: {r: 0.007159519, g: 0.015119575, b: 0.17190087, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -180,6 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ea9ce4fe4405543bf5187ea569eb87, type: 3}
+--- !u!4 &243534789 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5806861045126316915, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
+  m_PrefabInstance: {fileID: 992601219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &307165597 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c0532b0fe5230c54cb15738834224631, type: 3}
@@ -226,7 +231,8 @@ MonoBehaviour:
   squish: 0
   colliderOffset: {x: 0, y: 1, z: 1}
   colliderScale: {x: 4, y: 0.5, z: 4}
-  hubManager: {fileID: 2049466030}
+  HM: {fileID: 2049466030}
+  EndDialogue: {fileID: 8240508296733363852}
   VFXCH: {fileID: 1914608263111841661}
 --- !u!65 &307165601
 BoxCollider:
@@ -928,7 +934,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1163132737}
     m_Modifications:
     - target: {fileID: 4731691729103838188, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: Dm
@@ -943,6 +949,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4731691729103838188, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
+      propertyPath: OnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4731691729103838188, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: dialogue
       value: 
       objectReference: {fileID: 11400000, guid: 19dad925166b3dc408a6bf382c36a689, type: 2}
@@ -952,19 +962,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5806861045126316915, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5806861045126316915, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.73
+      value: -0.19000006
       objectReference: {fileID: 0}
     - target: {fileID: 5806861045126316915, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.24
+      value: 0.99
       objectReference: {fileID: 0}
     - target: {fileID: 5806861045126316915, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.4
+      value: 1.0799999
       objectReference: {fileID: 0}
     - target: {fileID: 5806861045126316915, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -972,15 +982,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5806861045126316915, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5806861045126316915, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5806861045126316915, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5806861045126316915, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1231,6 +1241,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 307165598}
+  - {fileID: 243534789}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16762,6 +16773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8240508296733363848}
   - component: {fileID: 1914608263111841661}
+  - component: {fileID: 8240508296733363852}
   m_Layer: 0
   m_Name: CircleVFX_Blue
   m_TagString: Untagged
@@ -16769,6 +16781,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8240508296733363852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8240508296733363851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: d942d5598edffa14b9fd61b2d9a8ae13, type: 2}
+  player: {fileID: 1560073677}
+  radius: 0
+  Dm: {fileID: 1383878485}
+  OnStart: 0
+  OnEvent: 1
 --- !u!1 &8240508297231469537
 GameObject:
   m_ObjectHideFlags: 0
