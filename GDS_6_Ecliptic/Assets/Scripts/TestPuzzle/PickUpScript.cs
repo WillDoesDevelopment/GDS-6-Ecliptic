@@ -75,7 +75,7 @@ public class PickUpScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
         {
             
-            if(nearestPickUp().CompareTag("PickUp") && holding == false)
+            if(nearestPickUp() != null && nearestPickUp().CompareTag("PickUp") && holding == false)
             {
                 HoldingObj = nearestPickUp();
                 PickUp(nearestPickUp());
@@ -121,12 +121,23 @@ public class PickUpScript : MonoBehaviour
 
         foreach (Collider c in ObjColliders)
         {
-            if(nearest == null || Dist(this.gameObject, c.gameObject)< Dist(this.gameObject, nearest)&& c.CompareTag("PickUp"))
+            Debug.Log(nearest);
+            if(c.CompareTag("PickUp"))
             {
-                nearest = c.gameObject;
-                //Debug.Log(nearest);
+                if (nearest == null )
+                {
+                    nearest = c.gameObject;
+                }
+                else if (Dist(this.gameObject, c.gameObject) < Dist(this.gameObject, nearest))
+                {
+                    Debug.Log("is this distance " + Dist(this.gameObject, c.gameObject) + "smalller than this distance" + Dist(this.gameObject, nearest));
+                    nearest = c.gameObject;
+                    Debug.Log(nearest + "the closest OBJ");
+                    //Debug.Log(nearest);
+                }
             }
         }
+        //Debug.Log(nearest);
         return nearest;
     }
 
