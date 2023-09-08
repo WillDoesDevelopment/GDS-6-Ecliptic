@@ -10,6 +10,7 @@ public class crabScript : MonoBehaviour
     public Vector3 colliderOffset;
     public Vector3 colliderScale;
 
+    public HubManager hubManager;
     public VFXCircleHandler VFXCH;
 
     // Start is called before the first frame update
@@ -32,6 +33,7 @@ public class crabScript : MonoBehaviour
                 {
                     GetComponent<Animator>().SetTrigger("Animate");
                     VFXCH.circleVFXStart(); //dialouge circle stuff :)
+                    StartCoroutine(WaitForX());
                 }
             }
         }
@@ -46,5 +48,12 @@ public class crabScript : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(transform.position + colliderOffset, colliderScale);    //Draw for debugging player hit
 
+    }
+
+    public IEnumerator WaitForX()
+    {
+        yield return new WaitForSeconds(5);
+        hubManager.SendToHub();
+        hubManager.SetGameStage(5);
     }
 }

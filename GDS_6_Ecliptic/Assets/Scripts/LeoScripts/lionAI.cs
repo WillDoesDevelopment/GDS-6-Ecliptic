@@ -234,7 +234,7 @@ public class lionAI : MonoBehaviour
     {
         yield return new WaitForSeconds(x);
         hubManager.SendToHub();
-        hubManager.SetGameStage(3);
+        hubManager.SetGameStage(6);
     }
 
     private void OnDrawGizmos()
