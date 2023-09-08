@@ -121,6 +121,7 @@ public class VFXCircleHandler : MonoBehaviour
         //SCROLL SHADER OBJS
         objs[0].SetActive(true);
         objs[1].SetActive(true);
+        objs[2].SetActive(true);
 
         //TRAIL ALPHA
         var main = trails[0].main;
