@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 910931263}
-  m_IndirectSpecularColor: {r: 0.007159519, g: 0.015119575, b: 0.17190087, a: 1}
+  m_IndirectSpecularColor: {r: 0.0069935066, g: 0.0150458235, b: 0.17135024, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1236,7 +1236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163132736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.85, y: 1.25, z: 0.32}
+  m_LocalPosition: {x: 1.85, y: 1.25, z: 1.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1479,7 +1479,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1560073677}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfb6941888fb15f4c8cbf018b9df56aa, type: 3}
   m_Name: 
@@ -1491,6 +1491,28 @@ MonoBehaviour:
   t: 1
   ropeWidth: 0.15
   maxLength: 8
+  grappleLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &1560073679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560073677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec41a79dea4f9f84580865d0685bf229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  rope: {fileID: 835823348}
+  scope: {fileID: 790579005}
+  length: 8
+  t: 1
+  ropeWidth: 0.15
+  maxLength: 9
   grappleLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1621,13 +1643,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832729165}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 0
+  m_Mass: 10
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!64 &1832729168
 MeshCollider:
