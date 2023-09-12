@@ -6,24 +6,24 @@ using TMPro;
 
 public class AccessAdjust : MonoBehaviour
 {
-    /*public float fOV;
-    public float camSens;
+    [Header("Floats")]
     public float masterVol;
     public float sfxVol;
 
+    [Header("Audio Ref")]
     public GameObject[] BackGAud;
     public GameObject[] sfxAud;
-    public GameObject playerCam;
 
-    public TextMeshProUGUI[] myText;
-    public Slider[] mySlider;
+    [Header("Music Canvas")]
+    public TextMeshProUGUI[] myTextMV;
+    public Slider[] mySliderMV;
+
+    [Header("Effects Canvas")]
+    public TextMeshProUGUI[] myTextSFX;
+    public Slider[] mySliderSFX;
 
     private void Start()
     {
-        playerCam.GetComponent<GameObject>();
-
-        fOV = 60f;
-        camSens = 4;
         masterVol = 0.5f;
         sfxVol = 0.5f;
 
@@ -32,9 +32,6 @@ public class AccessAdjust : MonoBehaviour
 
     private void Update()
     {
-        Camera.main.fieldOfView = fOV;
-        playerCam.GetComponent<CameraMovement>().Sensitivities.x = camSens;
-        playerCam.GetComponent<CameraMovement>().Sensitivities.y = camSens;
 
         for(var i = 0; i < BackGAud.Length; i++)
         {
@@ -49,28 +46,39 @@ public class AccessAdjust : MonoBehaviour
         }
 
     }
-    public void AdjFOV(float newFOV)
-    {
-        myText[0].text = newFOV.ToString("0");
-        fOV = mySlider[0].value;
-    }
-
-
-    public void AdjCamSens(float newCamSens)
-    {
-        myText[1].text = newCamSens.ToString("0");
-        camSens = mySlider[1].value;
-    }
 
     public void AdjMasVol(float newMV)
     {
-        myText[2].text = newMV.ToString("0.0");
-        masterVol = mySlider[2].value;
+
+        for (var i = 0; i < mySliderMV.Length; i++)
+        {
+            newMV = mySliderMV[i].value * 100;
+
+            for (var j = 0; j < myTextMV.Length; j++)
+            {
+                myTextMV[j].text = newMV.ToString("0");
+            }
+
+            masterVol = mySliderMV[i].value;
+        }
+
+        
     }
 
     public void AdjSfx(float newSFX)
     {
-        myText[3].text = newSFX.ToString("0.0");
-        sfxVol = mySlider[3].value;
-    }*/
+
+        for (var i = 0; i < mySliderSFX.Length; i++)
+        {
+            newSFX = mySliderSFX[1].value * 100;
+
+            for (var j = 0; j < myTextSFX.Length; j++)
+            {
+                myTextSFX[1].text = newSFX.ToString("0");
+            }
+
+            sfxVol = mySliderSFX[1].value;
+        }
+
+    }
 }

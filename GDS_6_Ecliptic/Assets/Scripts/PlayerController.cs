@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public float airTime = 0;
     bool grounded = false;    
     public bool canWalk = true;
+    public GameObject pauseMenu;
+    public bool isPaused = false;
       
     //Spawn
     Vector3 spawnPoint;
@@ -29,8 +31,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
-        //HI SRRY CURSOR BUG GO BRRR
+
+        isPaused = false;
 
         // Spawn
         spawnPoint = transform.position;
@@ -52,17 +54,31 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Exit
-        if (Input.GetKey("escape"))
+        if (Input.GetKey("escape") && isPaused == false || Input.GetButton("Cancel") && isPaused == false)
         {
-            Application.Quit();
+                pauseMenu.SetActive(true);
+                canWalk = false;
+                //isPaused = true;
+            
         }
 
-        
+        if(pauseMenu.activeInHierarchy == false)
+        {
+            canWalk = true;
+        }
+
+        /*if (Input.GetKey("escape") && isPaused == true || Input.GetButton("Cancel") && isPaused == true)
+        {
+            pauseMenu.SetActive(false);
+            canWalk = true;
+            isPaused = false;
+
+        }*/
 
         //Movement
         #region Movement
 
-                 
+
         if (grounded == false)
         {
             airTime += Time.deltaTime;
