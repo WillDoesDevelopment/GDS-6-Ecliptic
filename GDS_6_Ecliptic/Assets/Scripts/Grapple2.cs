@@ -8,6 +8,7 @@ public class Grapple2 : MonoBehaviour
     public GameObject target;
     public GameObject rope;
     public GameObject scope;
+    public GameObject pointObject;
     public float length = 8f;
     public float t = 1;
     public float ropeWidth = 0.15f;
@@ -15,7 +16,7 @@ public class Grapple2 : MonoBehaviour
     public LayerMask grappleLayer;
 
     Transform playerPoint;
-    Transform grapplePoint;
+    Vector3 grapplePoint;    
     Vector3 playerXZ;
     Renderer rend;
 
@@ -49,14 +50,16 @@ public class Grapple2 : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0) ^ Input.GetKeyUp(KeyCode.JoystickButton1) ^ Input.GetKeyUp(KeyCode.Return))  //Cast on release
             {
-                var rayPos = transform.position - transform.forward;
+                var rayPos = transform.position;// - transform.forward;
                 RaycastHit hit;
                 Debug.DrawLine(rayPos, rayPos + transform.forward * maxLength, Color.blue, 0.5f);                   //Draw debug line for cast
 
-                if (Physics.SphereCast(new Ray(rayPos, transform.forward), 2.0f, out hit, maxLength - 3.0f, grappleLayer)) //Raycast forward
+                if (Physics.Raycast(new Ray(rayPos, transform.forward), out hit, maxLength , grappleLayer))         //Raycast forward
                 {
                     Debug.DrawLine(hit.point, hit.point + transform.up * 2f, Color.green, 0.5f);                    //Draw debug line on hit
-                    target = hit.transform.gameObject;                                                              //Set target object
+                    target = hit.transform.gameObject;                                                              //Set target object                    
+                    pointObject.transform.position = hit.point;
+                    pointObject.transform.parent = target.transform;
                     rope.SetActive(true);
                 }
 
@@ -82,8 +85,8 @@ public class Grapple2 : MonoBehaviour
         if (target != null)
         {
             playerPoint = transform;
-            grapplePoint = target.transform;
-            length = Vector3.Distance(playerPoint.position, grapplePoint.position);
+            grapplePoint = pointObject.transform.position;
+            length = Vector3.Distance(playerPoint.position, grapplePoint);
 
             //Target
             playerXZ = new Vector3(transform.position.x, target.transform.position.y, transform.position.z);
@@ -96,10 +99,11 @@ public class Grapple2 : MonoBehaviour
             float f = Mathf.Clamp(t - 1f, 0, 0.2f) * 5f;                                       // force modifier when 1.0 < t < 1.2
 
             var forceVec = Vector3.Normalize(playerXZ - target.transform.position) * Time.deltaTime * f * 100000f;    //Calculate force
-            target.GetComponent<Rigidbody>().AddForce(forceVec);                                            //Add force
+            //target.GetComponent<Rigidbody>().AddForce(forceVec);                                            //Add force
+            target.GetComponent<Rigidbody>().AddForceAtPosition(forceVec, pointObject.transform.position);
 
             //Rope
-            rope.transform.position = (playerPoint.position + grapplePoint.position) / 2.0f;
+            rope.transform.position = (playerPoint.position + grapplePoint) / 2.0f;
             rope.transform.localScale = new Vector3(ropeWidth, ropeWidth, length);
             rope.transform.LookAt(grapplePoint);
 
