@@ -52,7 +52,7 @@ public class blockerScr : MonoBehaviour
         if (angle < 0) { angle += 360; }
 
         transform.position = new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle), 0, Mathf.Sin(Mathf.Deg2Rad * angle)) * radius;
-        transform.LookAt(pivotPoint);
+        transform.LookAt(new Vector3(playerTransform.position.x,transform.position.y,playerTransform.position.z));
         
 
         

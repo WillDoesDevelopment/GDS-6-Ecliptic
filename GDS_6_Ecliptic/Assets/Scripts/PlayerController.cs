@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -44,9 +45,11 @@ public class PlayerController : MonoBehaviour
     
     void Respawn()
     {
-        controller.enabled = false;
-        transform.position = spawnPoint;
-        controller.enabled = true;
+        //controller.enabled = false;
+        //transform.position = spawnPoint;
+        //controller.enabled = true;
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
     
 
