@@ -35,14 +35,22 @@ public class AccessAdjust : MonoBehaviour
 
         for(var i = 0; i < BackGAud.Length; i++)
         {
-            BackGAud[i].GetComponent<GameObject>();
-            BackGAud[i].GetComponent<AudioSource>().volume = masterVol;
+            if(BackGAud[i] != null)
+            {
+                BackGAud[i].GetComponent<AudioSource>().volume = masterVol;
+                BackGAud[i].GetComponent<GameObject>();
+
+            }
         }
 
         for (var i = 0; i < sfxAud.Length; i++)
         {
-            sfxAud[i].GetComponent<GameObject>();
-            sfxAud[i].GetComponent<AudioSource>().volume = sfxVol;
+            if (sfxAud[i] != null)
+            {
+                sfxAud[i].GetComponent<GameObject>();
+                sfxAud[i].GetComponent<AudioSource>().volume = sfxVol;
+
+            }
         }
 
     }

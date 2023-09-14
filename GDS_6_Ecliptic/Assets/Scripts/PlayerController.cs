@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Exit
-        if (Input.GetKey("escape") && isPaused == false || Input.GetButton("Cancel") && isPaused == false)
+/*        if (Input.GetKey("escape") && isPaused == false || Input.GetButton("Cancel") && isPaused == false)
         {
                 pauseMenu.SetActive(true);
                 canWalk = false;
@@ -65,10 +65,11 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        if(pauseMenu.activeInHierarchy == false)
+        if(pauseMenu.activeInHierarchy == false )
         {
+            
             canWalk = true;
-        }
+        }*/
 
         /*if (Input.GetKey("escape") && isPaused == true || Input.GetButton("Cancel") && isPaused == true)
         {
