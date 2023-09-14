@@ -72,8 +72,7 @@ public class Grapple2 : MonoBehaviour
         //Release
         if (Input.GetMouseButtonDown(1) ^ Input.GetKeyDown(KeyCode.JoystickButton0) ^ Input.GetKeyDown(KeyCode.RightShift))
         {
-            target = null;
-            rope.SetActive(false);
+            RopeBreak();
         }
         
         
@@ -127,12 +126,18 @@ public class Grapple2 : MonoBehaviour
 
             if (t > 1.2f)                                                                        // Break if stretched
             {
-                target = null;
-                rope.SetActive(false);
+                RopeBreak();
             }
         }
 
+
             
 
+    }
+
+    public void RopeBreak()
+    {
+        target = null;
+        rope.SetActive(false);
     }
 }
