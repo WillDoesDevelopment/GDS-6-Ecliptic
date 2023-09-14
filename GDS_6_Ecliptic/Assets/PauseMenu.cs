@@ -30,6 +30,14 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
+        if(this.gameObject != null)
+        {
+            Time.timeScale = 1f;
+        }
+        else if(this.gameObject != null)
+        {
+            Time.timeScale = 0f;
+        }
         if(isKeyboard == true)
         {
             settingsPanels[1].SetActive(false);
