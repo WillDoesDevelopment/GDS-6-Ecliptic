@@ -121,7 +121,7 @@ public class PickUpScript : MonoBehaviour
 
         foreach (Collider c in ObjColliders)
         {
-            Debug.Log(nearest);
+            //Debug.Log(nearest);
             if(c.CompareTag("PickUp"))
             {
                 if (nearest == null )
