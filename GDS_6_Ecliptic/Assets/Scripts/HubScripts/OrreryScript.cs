@@ -14,6 +14,9 @@ public class OrreryScript : MonoBehaviour
     public float LerpSpeed;
 
     public static int SceneCounter;
+    
+    float t = 0;
+    float startY;
 
     //public DialogueTrigger.DialogueState DialogueState = new DialogueTrigger.DialogueState();
     public DialogueTrigger DT;
@@ -36,10 +39,8 @@ public class OrreryScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-
-        
-        if(DT.dialogue.DialogueMode != Dialogue.DialogueState.Finished)
+    {        
+        if (DT.dialogue.DialogueMode != Dialogue.DialogueState.Finished)
         {
 
             AmbientSpin();
@@ -55,11 +56,57 @@ public class OrreryScript : MonoBehaviour
     {
         for (int i = 0; i < OrreryArms.Length; i++)
         {
-            OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0);
+            OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0); //Check with will if this is based on framerate..................
         }
+        startY = OrreryArms[HubManager.LevelNumber].transform.eulerAngles.y;
     }
     public void SpinToPosition()
     {
+        if(t>1f)
+        {
+            BS.door = OrreryArms[HubManager.LevelNumber].transform.GetChild(0).gameObject;
+
+            if (connected == false)
+            {
+                BS.Connect();
+                connected = true;
+            }
+
+            for (int i = 0; i < OrreryArms.Length; i++) //Stop doors overlapping main door from 80* to 100*
+            {
+                if (i != HubManager.LevelNumber)
+                {
+                    if(OrreryArms[i].transform.eulerAngles.y > 80f - (12f-i) && OrreryArms[i].transform.eulerAngles.y < 100f + (12f-i))
+                    {
+                        OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0);
+                    }                    
+                }
+                
+            }
+        }
+        else
+        {
+            for (int i = 0; i < OrreryArms.Length; i++)
+            {
+                if (i != HubManager.LevelNumber)        //Other doors keep rotating
+                {
+                    OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0);
+                }
+                else
+                {
+                    t += Time.deltaTime;                //t to 90* 0-1   
+                    OrreryArms[i].transform.eulerAngles = new Vector3(0, Mathf.LerpAngle(startY, 90, t), 0); //Main door move to 90* when t = 1 
+
+                }
+            }
+
+        }
+        
+        //if (OrreryArms[HubManager.LevelNumber].transform.eulerAngles.y == 90f)
+
+
+
+        /*
         for (int i = 0; i < OrreryArms.Length; i++)
         {
             if (i != HubManager.LevelNumber)
@@ -86,6 +133,7 @@ public class OrreryScript : MonoBehaviour
             }
 
         }
+        */
     }
 
     public void StartDialogue()
