@@ -13,9 +13,15 @@ public class TaurusManager : MonoBehaviour
     public AINavMesh ANM;
 
     public VFXCircleHandler VFXCH;
+
+    public DoorScript DS;
+
+    private Vector3 PlayerStartPos;
+    private Vector3 BullStartPos;
     void Start()
     {
-        
+        PlayerStartPos = Player.transform.position;
+        BullStartPos = ANM.transform.position;
     }
 
     // Update is called once per frame
@@ -64,8 +70,9 @@ public class TaurusManager : MonoBehaviour
             }
             if(dtEvent.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
             {
-                HB.SetGameStage(2);
-                HB.SendToHub();
+                DS.DS.IsOpen = true;
+                /*HB.SetGameStage(2);
+                HB.SendToHub();*/
 
             }
             // here we will check if dialogue is done
@@ -93,6 +100,8 @@ public class TaurusManager : MonoBehaviour
     }
     public void Reset()
     {
-        Player.transform.position = new Vector3(0f,0.5f,0f);
+        Debug.Log("Resetting");
+        Player.transform.position = PlayerStartPos;
+        //ANM.transform.position = BullStartPos;
     }
 }

@@ -17,6 +17,8 @@ public class AINavMesh : MonoBehaviour
     public DialogueTrigger StartDialogue;
     public bool NavMeshPause = false;
 
+    public TaurusManager TM;
+
     private void Awake()
     {
         foreach (Transform t in positions)
@@ -27,6 +29,7 @@ public class AINavMesh : MonoBehaviour
     }
     void Update()
     {
+        CollisionCheck();
         if(StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished && NavMeshPause == false)
         {
 
@@ -66,10 +69,25 @@ public class AINavMesh : MonoBehaviour
         }
     }
 
+    public void CollisionCheck()
+    {
+        Collider[] Collisions = Physics.OverlapSphere(this.gameObject.transform.position, 2f);
+        //Debug.Log(Collisions.Length);
+        foreach(Collider c in Collisions)
+        {
+            if (c.gameObject == Player)
+            {
+                TM.Reset();
+                Debug.Log("GG loser");
+            }
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject == Player)
+        Debug.Log("Resetting");
+        if (collision.gameObject == Player)
         {
+            TM.Reset();
             Debug.Log("GG loser");
         }
     }
