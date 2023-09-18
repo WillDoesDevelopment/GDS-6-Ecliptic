@@ -98,10 +98,16 @@ public class TaurusManager : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
     }
-    public void Reset()
+    public void Resetting()
     {
-        Debug.Log("Resetting");
-        Player.transform.position = PlayerStartPos;
-        //ANM.transform.position = BullStartPos;
+        Debug.Log(PlayerStartPos);
+        Player.transform.position = PlayerStartPos; 
+        Debug.Log(Player.transform.position);
+
+        if (Player.transform.position == PlayerStartPos)
+        {
+            ANM.transform.position = BullStartPos;
+
+        }
     }
 }
