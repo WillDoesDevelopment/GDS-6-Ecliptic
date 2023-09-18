@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 553995925}
-  m_IndirectSpecularColor: {r: 0.020017367, g: 0, b: 0.043269813, a: 1}
+  m_IndirectSpecularColor: {r: 0.019533943, g: 0, b: 0.04308693, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1796,7 +1796,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1049015575}
-  - component: {fileID: 1049015576}
   - component: {fileID: 1049015577}
   - component: {fileID: 1049015579}
   m_Layer: 0
@@ -1821,33 +1820,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1049015576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1049015574}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 185ee45d4ed516148bc13c6f117b728d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doors:
-  - {fileID: 8478352447027708212}
-  - {fileID: 1391462957}
-  - {fileID: 888899988}
-  - {fileID: 1268483647}
-  - {fileID: 1465271034}
-  - {fileID: 506402896}
-  - {fileID: 1989226951}
-  - {fileID: 2016186274}
-  - {fileID: 142092556}
-  - {fileID: 836444602}
-  - {fileID: 178291316}
-  - {fileID: 423437112}
-  - {fileID: 1861938191}
-  TransitionAnim: {fileID: 0}
 --- !u!114 &1049015577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7737,6 +7709,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!95 &1854417792 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 627074258900672772, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+  m_PrefabInstance: {fileID: 627074257991471828}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1861938189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8158,7 +8135,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 627074257991471828}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 185ee45d4ed516148bc13c6f117b728d, type: 3}
   m_Name: 
@@ -8729,7 +8706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 627074258922851942, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.4350457
+      value: 2.4350586
       objectReference: {fileID: 0}
     - target: {fileID: 627074258922851943, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
       propertyPath: m_Color.a
@@ -8738,6 +8715,18 @@ PrefabInstance:
     - target: {fileID: 627074259186305533, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
       propertyPath: m_Name
       value: hubManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 627074259186305534, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 627074259186305534, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: TransitionAnim
+      value: 
+      objectReference: {fileID: 1854417792}
+    - target: {fileID: 627074259186305534, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: doors.Array.size
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 627074259186305534, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
       propertyPath: doors.Array.data[0]
