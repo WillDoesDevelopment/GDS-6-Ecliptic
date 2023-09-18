@@ -30,7 +30,8 @@ public class AINavMesh : MonoBehaviour
     void Update()
     {
         CollisionCheck();
-        if(StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished && NavMeshPause == false)
+        //if(StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished && NavMeshPause == false)
+        if(DialogueManager.InDialogue == false && NavMeshPause == false)
         {
 
             GetComponent<Renderer>().material.color = Color.red;

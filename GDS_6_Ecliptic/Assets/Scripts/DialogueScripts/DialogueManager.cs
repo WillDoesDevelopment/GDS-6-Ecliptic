@@ -6,6 +6,7 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static bool InDialogue = false;
     // image and text components necessary
     //public PlayerScript PS;
     public Sprite OtherDialogueBoxSprite;
@@ -196,6 +197,8 @@ public class DialogueManager : MonoBehaviour
             TextAnim.SetBool("OtherImgAnimation", false);
             dialogue.DialogueMode = Dialogue.DialogueState.Finished;
             //TextAnim.SetBool("PopUp", false);
+
+            InDialogue = false;
             return;
         }
     }

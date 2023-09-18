@@ -8,6 +8,8 @@ public class HubManager : MonoBehaviour
     public static bool DebugMode = true;
     public GameObject[] doors;
 
+    public Animator TransitionAnim;
+
     public static int LevelNumber = 0;
     // Start is called before the first frame update
     void Start()
@@ -59,9 +61,12 @@ public class HubManager : MonoBehaviour
     // wher called it accesses a Door status script and loads the designated scene
     public void SendToScene(DoorStatus DS)
     {
-        if(DS.IsOpen == true)
+        
+        if (DS.IsOpen == true)
         {
-            SceneManager.LoadScene(DS.SceneNum);
+           
+            StartCoroutine(SendToSceneCoroutine(DS));
+            
         }
     }
     public void AddOneToLevel()
@@ -76,5 +81,13 @@ public class HubManager : MonoBehaviour
     public void SendToHub()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public IEnumerator SendToSceneCoroutine(DoorStatus DS)
+    {
+        //Debug.Log("Happening");
+        TransitionAnim.SetTrigger("Animate");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(DS.SceneNum);
     }
 }

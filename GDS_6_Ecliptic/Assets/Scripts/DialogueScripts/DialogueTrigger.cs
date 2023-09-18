@@ -103,7 +103,7 @@ public class DialogueTrigger : MonoBehaviour
     // is called by iether, OnStartCheck(), OnEventCheck(), or DialogueModeCheck()
     public void TriggerDialogue()
     {
-        
+        DialogueManager.InDialogue = true;
         Dm.EnterAnimExit();
         Dm.StartDialogue(dialogue);
     }

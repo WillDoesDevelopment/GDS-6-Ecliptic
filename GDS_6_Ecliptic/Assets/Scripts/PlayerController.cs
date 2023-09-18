@@ -83,27 +83,28 @@ public class PlayerController : MonoBehaviour
         #region Movement
 
 
-        if (grounded == false)
-        {
-            airTime += Time.deltaTime;
-            inputY += -gravity * Time.deltaTime;
-        }
-        else
-        {
-            airTime = 0;
-            inputY = -0.25f;
-        }
 
-        if (airTime > 10)       //Respawns if falling for too long
-        {
-            Respawn();
-            airTime = 0;
-        }
 
         
 
         if(canWalk)
         {
+            if (grounded == false)
+            {
+                airTime += Time.deltaTime;
+                inputY += -gravity * Time.deltaTime;
+            }
+            else
+            {
+                airTime = 0;
+                inputY = -0.25f;
+            }
+
+            if (airTime > 10)       //Respawns if falling for too long
+            {
+                Respawn();
+                airTime = 0;
+            }
             inputY = Mathf.Clamp(inputY, -maxFallSpeed, maxFallSpeed);
             inputX = Input.GetAxis("Horizontal");
             inputZ = Input.GetAxis("Vertical");
@@ -116,6 +117,7 @@ public class PlayerController : MonoBehaviour
 
 
             #endregion Movement
+
 
 
             //rotation input

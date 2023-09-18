@@ -100,6 +100,9 @@ public class TaurusManager : MonoBehaviour
     }
     public void Resetting()
     {
+        Player.GetComponent<DialogueTrigger>().OnEventCheck();
+        Player.GetComponent<DialogueTrigger>().OnEvent = false;
+
         Debug.Log(PlayerStartPos);
         Player.transform.position = PlayerStartPos; 
         Debug.Log(Player.transform.position);
