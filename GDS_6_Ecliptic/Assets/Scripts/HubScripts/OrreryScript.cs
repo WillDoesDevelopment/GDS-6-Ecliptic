@@ -94,8 +94,9 @@ public class OrreryScript : MonoBehaviour
                 }
                 else
                 {
-                    t += Time.deltaTime;                //t to 90* 0-1   
-                    OrreryArms[i].transform.eulerAngles = new Vector3(0, Mathf.LerpAngle(startY, 90, t), 0); //Main door move to 90* when t = 1 
+                    t += Time.deltaTime * 0.6f;                //t to 90* 0-1   
+                    var u = -(t - 2) * t;               //convert to parabola
+                    OrreryArms[i].transform.eulerAngles = new Vector3(0, Mathf.LerpAngle(startY, 90, u), 0); //Main door move to 90* when t = 1 
 
                 }
             }
