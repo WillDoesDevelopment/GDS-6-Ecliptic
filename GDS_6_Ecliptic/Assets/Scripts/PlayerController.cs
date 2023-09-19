@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public Animator PlayerAnim;
     //Movement
     CharacterController controller;
     float inputX;
@@ -124,9 +126,14 @@ public class PlayerController : MonoBehaviour
             moveVector = Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f) * speed *Time.deltaTime;
             if (moveVector != Vector3.zero)
             {
+                PlayerAnim.SetBool("Walking", true);
                 yRotation = Mathf.Atan2(moveVector.z, moveVector.x) * Mathf.Rad2Deg * -1f + 90f;
                 _rotation = Mathf.SmoothDampAngle(_rotation, yRotation, ref _velocity, 0.1f);
                 transform.rotation = Quaternion.Euler(0f, _rotation , 0f);
+            }
+            else
+            {
+                PlayerAnim.SetBool("Walking", false);
             }
         }
         else
