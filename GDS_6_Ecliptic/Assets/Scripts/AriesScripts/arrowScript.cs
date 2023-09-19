@@ -76,6 +76,7 @@ public class arrowScript : MonoBehaviour
     {
         var newObject = Instantiate(burstPrefab);                                                    //Create Arrow
         newObject.transform.position = transform.position;
+        Destroy(newObject, 1f);
     }
     
     
