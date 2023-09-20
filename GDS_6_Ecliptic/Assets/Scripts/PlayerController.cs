@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public bool canWalk = true;
     public GameObject pauseMenu;
     public bool isPaused = false;
+    bool canStep = true;
+    public AudioSource step;
       
     //Spawn
     Vector3 spawnPoint;
@@ -54,6 +56,17 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(scene.name);
     }
     
+    void Footstep()
+    {
+        Debug.Log("Step");
+        canStep = false;
+        if(step != null)
+        {
+            step.Play();
+        }        
+    }
+
+    //public IEnumerator FootStep
 
     // Update is called once per frame
     void Update()
@@ -128,6 +141,30 @@ public class PlayerController : MonoBehaviour
             {
                 PlayerAnim.SetBool("Walking", true);
                 PlayerAnim.speed = Vector3.Magnitude(Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f));
+                var h = PlayerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                h = h - Mathf.Floor(h);
+                //Steps
+                if(h>0.32f && h < 0.4f && canStep == true)
+                {
+                    Footstep();
+
+                }
+                if(h > 0.6f && h < 0.7f)
+                {
+                    canStep = true;
+                }
+                if (h > 0.82f && h < 0.9f && canStep == true)
+                {
+                    Footstep();
+
+                }
+                if (h > 0.9f || h < 0.2f)
+                {
+                    canStep = true;
+                }
+
+
+
                 yRotation = Mathf.Atan2(moveVector.z, moveVector.x) * Mathf.Rad2Deg * -1f + 90f;
                 _rotation = Mathf.SmoothDampAngle(_rotation, yRotation, ref _velocity, 0.1f);
                 transform.rotation = Quaternion.Euler(0f, _rotation , 0f);
