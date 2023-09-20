@@ -15,7 +15,7 @@ public class introCineCamScript : MonoBehaviour
     public float amtStart = 1;
 
     private float shaderValue = 1f;
-    private float change = 0.1f;
+    private float change = 0.01f;
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class introCineCamScript : MonoBehaviour
         StartCoroutine(panCam());
         amtStart = 2;
 
-        InvokeRepeating("AmtGo", 0.1f, 1f);
+        InvokeRepeating("AmtGo", 0.01f, 0.15f);
     }
 
     private void Update()
