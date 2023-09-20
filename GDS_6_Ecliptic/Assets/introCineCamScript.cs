@@ -11,10 +11,27 @@ public class introCineCamScript : MonoBehaviour
     public GameObject plyer;
     public GameObject star;
     public string levelName;
+    public Material[] glowAmt;
+    public float amtStart = 1;
+
+    private float shaderValue = 1f;
+    private float change = 0.1f;
 
     void Start()
     {
+        glowAmt[0].GetFloat("_Glow_Amount");
+        glowAmt[1].GetFloat("_Glow_Amount");
         StartCoroutine(panCam());
+        amtStart = 2;
+
+        InvokeRepeating("AmtGo", 0.1f, 1f);
+    }
+
+    private void Update()
+    {
+        //amt = Mathf.Lerp(amtStart, amtEnd, Time.deltaTime * 6.0f);
+        //AmtGo();
+        
     }
 
     IEnumerator panCam()
@@ -29,10 +46,20 @@ public class introCineCamScript : MonoBehaviour
 
     IEnumerator outro()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(10f);
         anim.SetTrigger("End");
         yield return new WaitForSeconds(6f);
         SceneManager.LoadScene(levelName);
+
+
+    }
+
+    public void AmtGo()
+    {
+
+            shaderValue -= change;
+            glowAmt[0].SetFloat("_Glow_Amount", shaderValue);
+            glowAmt[1].SetFloat("_Glow_Amount", shaderValue);
 
 
     }
