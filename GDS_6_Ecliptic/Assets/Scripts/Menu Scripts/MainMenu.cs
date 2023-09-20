@@ -9,7 +9,9 @@ public class MainMenu : MonoBehaviour
 
     public GameObject[] canvas;
 
-    public Animator anim;
+    //public Animator anim;
+    public Animator anim2;
+    public GameObject orb;
 
     public void Start()
     {
@@ -18,8 +20,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        canvas[0].SetActive(false);
-        anim.GetComponent<Animator>().SetTrigger("Click");
+        anim2.GetComponent<Animator>().SetTrigger("Woosh");
         StartCoroutine(Load());
         
     }
@@ -55,7 +56,9 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator Load()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1f);
+        orb.SetActive(true);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(level);
     }
 
