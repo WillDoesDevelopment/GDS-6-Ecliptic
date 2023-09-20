@@ -27,7 +27,9 @@ public class PlayerController : MonoBehaviour
     public GameObject pauseMenu;
     public bool isPaused = false;
     bool canStep = true;
-    public AudioSource step;
+    public AudioSource audioSource;
+    public AudioClip[] stepArray;
+    bool playDaftPunk = false;
       
     //Spawn
     Vector3 spawnPoint;
@@ -60,9 +62,12 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Step");
         canStep = false;
-        if(step != null)
+        if(audioSource != null && playDaftPunk)
         {
-            step.Play();
+            audioSource.clip = stepArray[Random.Range(0, stepArray.Length)];
+            audioSource.PlayOneShot(audioSource.clip);
+
+            //step.Play();
         }        
     }
 
@@ -71,6 +76,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            playDaftPunk = !playDaftPunk;
+        }
+
         //Exit
 /*        if (Input.GetKey("escape") && isPaused == false || Input.GetButton("Cancel") && isPaused == false)
         {
