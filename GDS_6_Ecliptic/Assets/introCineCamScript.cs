@@ -8,6 +8,7 @@ public class introCineCamScript : MonoBehaviour
     // Start is called before the first frame update
 
     public Animator anim;
+    public Animator anim2;
     public GameObject plyer;
     public GameObject star;
     public string levelName;
@@ -37,6 +38,8 @@ public class introCineCamScript : MonoBehaviour
 
     IEnumerator panCam()
     {
+        yield return new WaitForSeconds(2f);
+        anim2.SetTrigger("FadeIn");
         yield return new WaitForSeconds(6f);
         anim.SetTrigger("Pan");
         plyer.SetActive(true);
