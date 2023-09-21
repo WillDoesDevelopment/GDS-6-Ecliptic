@@ -11,6 +11,8 @@ public class crabScript : MonoBehaviour
     public Vector3 colliderScale;
 
     public HubManager HM;
+    public DoorScript DS;
+
     public DialogueTrigger EndDialogue;
     public VFXCircleHandler VFXCH;
 
@@ -45,8 +47,9 @@ public class crabScript : MonoBehaviour
 
         if (EndDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            HM.SendToHub();
-            HM.SetGameStage(4);
+            DS.DS.IsOpen = true;
+            /*HM.SendToHub();
+            HM.SetGameStage(4);*/
         }
 
 
