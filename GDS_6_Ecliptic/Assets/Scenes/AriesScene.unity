@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.014260609, g: 0.00050981005, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.011717245, g: 0.00031492015, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1267,8 +1267,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231926473}
-  m_LocalRotation: {x: 0.18812595, y: -0.49091253, z: 0.10947784, w: 0.84358054}
-  m_LocalPosition: {x: -33.605164, y: 10.4, z: -58.973095}
+  m_LocalRotation: {x: 0.2602915, y: -0.08899155, z: 0.024100833, w: 0.9611181}
+  m_LocalPosition: {x: -47.376865, y: 10.232008, z: -64.30168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2341,9 +2341,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1180376096}
-  m_PathPosition: 0
+  m_PathPosition: 0.022625076
   m_PositionUnits: 0
-  m_PathOffset: {x: -0.7855394, y: 5.724697, z: 0.0020838494}
+  m_PathOffset: {x: -0.7855394, y: -1.0385684, z: -1.0627328}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 1
@@ -2354,8 +2354,8 @@ MonoBehaviour:
   m_AutoDolly:
     m_Enabled: 1
     m_PositionOffset: 0
-    m_SearchRadius: 2
-    m_SearchResolution: 5
+    m_SearchRadius: 0
+    m_SearchResolution: 132
 --- !u!114 &453081561
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -2378,8 +2378,8 @@ MonoBehaviour:
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
-  m_SoftZoneWidth: 0.79
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneWidth: 0.25
+  m_SoftZoneHeight: 0.45
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -2772,8 +2772,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510720946}
-  m_LocalRotation: {x: 0.18812595, y: -0.49091253, z: 0.10947784, w: 0.84358054}
-  m_LocalPosition: {x: -33.605164, y: 10.4, z: -58.973095}
+  m_LocalRotation: {x: 0.2602915, y: -0.08899155, z: 0.024100833, w: 0.9611181}
+  m_LocalPosition: {x: -47.376865, y: 10.232008, z: -64.30168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4726,30 +4726,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Resolution: 20
+  m_Resolution: 39
   m_Appearance:
     pathColor: {r: 0, g: 1, b: 0, a: 1}
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     width: 0.84
   m_Looped: 0
   m_Waypoints:
-  - position: {x: 0, y: 0, z: -2.9366875}
+  - position: {x: -13.457314, y: -1.4340887, z: -4.1102905}
     roll: 0
-  - position: {x: 7.8867073, y: 0, z: 3.0338364}
+  - position: {x: -2.6486588, y: 0, z: -0.14371109}
     roll: 0
-  - position: {x: 15.773415, y: 0, z: 3.7549973}
+  - position: {x: 7.6510086, y: 0, z: 3.7549973}
     roll: 0
-  - position: {x: 23.660122, y: 0, z: 5.1469}
+  - position: {x: 23.660122, y: 0, z: 8.099762}
     roll: 0
-  - position: {x: 31.54683, y: 0, z: 7.174534}
+  - position: {x: 35.61987, y: 0, z: 7.9976883}
     roll: 0
-  - position: {x: 36.926285, y: 0, z: 7.4559135}
+  - position: {x: 43.87484, y: 0, z: 7.5553474}
     roll: 0
-  - position: {x: 43.87484, y: 0, z: 7.1346436}
+  - position: {x: 55.20695, y: -5.721007, z: 1.2746277}
     roll: 0
-  - position: {x: 55.20695, y: 0, z: 2.2019577}
-    roll: 0
-  - position: {x: 71.00238, y: -2.8767648, z: -4.9725113}
+  - position: {x: 71.50223, y: -10.6848135, z: -13.316811}
     roll: 0
 --- !u!4 &1180376097
 Transform:
@@ -4759,7 +4757,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180376095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.068443, y: 4.6753025, z: -56.61}
+  m_LocalPosition: {x: -33.068443, y: 12.81, z: -60.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
