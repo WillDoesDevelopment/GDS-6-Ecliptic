@@ -46,7 +46,7 @@ public class crabScript : MonoBehaviour
         if (EndDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             HM.SendToHub();
-            HM.SetGameStage(5);
+            HM.SetGameStage(4);
         }
 
 
