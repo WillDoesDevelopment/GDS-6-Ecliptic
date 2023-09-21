@@ -13,6 +13,7 @@ public class introCineCamScript : MonoBehaviour
     public string levelName;
     public Material[] glowAmt;
     public float amtStart = 1;
+    public AudioSource snd;
 
     private float shaderValue = 1f;
     private float change = 0.01f;
@@ -48,7 +49,9 @@ public class introCineCamScript : MonoBehaviour
     {
         yield return new WaitForSeconds(10f);
         anim.SetTrigger("End");
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(11f);
+        snd.Play();
+        yield return new WaitForSeconds(14f);
         SceneManager.LoadScene(levelName);
 
 
