@@ -42,7 +42,6 @@ public class OrreryScript : MonoBehaviour
     {        
         if (DT.dialogue.DialogueMode != Dialogue.DialogueState.Finished)
         {
-
             AmbientSpin();
 
         }
@@ -139,6 +138,8 @@ public class OrreryScript : MonoBehaviour
 
     public void StartDialogue()
     {
-        StartDialoguetriggers[HubManager.LevelNumber].gameObject.SetActive(true);
+
+          StartDialoguetriggers[HubManager.LevelNumber].gameObject.SetActive(true);
+        
     }
 }
