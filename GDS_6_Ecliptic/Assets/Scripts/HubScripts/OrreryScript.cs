@@ -24,6 +24,7 @@ public class OrreryScript : MonoBehaviour
 
     void Start()
     {
+        BS.door = OrreryArms[HubManager.LevelNumber].transform.GetChild(0).gameObject;
         Cursor.lockState = CursorLockMode.None; //.........................................................Cursor
         StartDialogue();
         BS.Disconnect();
@@ -58,12 +59,13 @@ public class OrreryScript : MonoBehaviour
             OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0); //Check with will if this is based on framerate..................
         }
         startY = OrreryArms[HubManager.LevelNumber].transform.eulerAngles.y;
+        
     }
     public void SpinToPosition()
     {
         if(t>1f)
         {
-            BS.door = OrreryArms[HubManager.LevelNumber].transform.GetChild(0).gameObject;
+            
 
             if (connected == false)
             {
@@ -73,14 +75,14 @@ public class OrreryScript : MonoBehaviour
 
             for (int i = 0; i < OrreryArms.Length; i++) //Stop doors overlapping main door from 80* to 100*
             {
-                if (i != HubManager.LevelNumber)
+                if (BS.door != OrreryArms[i].transform.GetChild(0).gameObject)
                 {
+              
                     if(OrreryArms[i].transform.eulerAngles.y > 80f - (12f-i) && OrreryArms[i].transform.eulerAngles.y < 100f + (12f-i))
                     {
                         OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0);
                     }                    
                 }
-                
             }
         }
         else
@@ -96,6 +98,7 @@ public class OrreryScript : MonoBehaviour
                     t += Time.deltaTime * 0.6f;                //t to 90* 0-1   
                     var u = -(t - 2) * t;               //convert to parabola
                     OrreryArms[i].transform.eulerAngles = new Vector3(0, Mathf.LerpAngle(startY, 90, u), 0); //Main door move to 90* when t = 1 
+                    //Debug.Log(t);
 
                 }
             }
