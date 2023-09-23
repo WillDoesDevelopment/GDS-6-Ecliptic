@@ -91,7 +91,7 @@ public class HubManager : MonoBehaviour
     {
         //Debug.Log("Happening");
         TransitionAnim.SetTrigger("Animate");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(DS.SceneNum);
     }
 }

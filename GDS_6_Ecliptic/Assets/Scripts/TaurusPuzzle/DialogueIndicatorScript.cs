@@ -6,6 +6,8 @@ public class DialogueIndicatorScript : MonoBehaviour
 {
     public Animator DialogueIndicatorAnim;
     public DialogueTrigger DT;
+
+    public bool JustIndicator;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,15 +18,13 @@ public class DialogueIndicatorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(DT.dialogue.DialogueMode == Dialogue.DialogueState.NotStarted)
+        if (!JustIndicator)
         {
-            
-            triggerIndicatorCheck();
-
+            DialogueStatusCheck();
         }
         else
         {
-            DialogueIndicatorAnim.SetBool("Animate", false);
+            triggerIndicatorCheck();
         }
     }
     public void triggerIndicatorCheck()
@@ -34,6 +34,27 @@ public class DialogueIndicatorScript : MonoBehaviour
         {
             //Debug.Log(DT.Proximity());  
             DialogueIndicatorAnim.SetBool("Animate", true);
+            if (JustIndicator)
+            {
+                if(Input.GetKeyDown(KeyCode.Return) ^ Input.GetKeyUp(KeyCode.JoystickButton1))
+                {
+                    this.gameObject.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            DialogueIndicatorAnim.SetBool("Animate", false);
+        }
+    }
+
+    public void DialogueStatusCheck()
+    {
+        if (DT.dialogue.DialogueMode == Dialogue.DialogueState.NotStarted)
+        {
+
+            triggerIndicatorCheck();
+
         }
         else
         {
