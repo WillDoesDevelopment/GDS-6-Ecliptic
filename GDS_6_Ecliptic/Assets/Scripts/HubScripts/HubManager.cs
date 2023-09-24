@@ -101,27 +101,31 @@ public class HubManager : MonoBehaviour
 
     public void InDialogueCheck()
     {
-        if(DialogueManager.InDialogue == true)
+        if(player != null)
         {
-            if (player.GetComponent<Grapple2>() != null)
+            if(DialogueManager.InDialogue == true)
             {
-                player.GetComponent<Grapple2>().enabled = false;
+                if (player.GetComponent<Grapple2>() != null)
+                {
+                    player.GetComponent<Grapple2>().enabled = false;
+                }
+                if (player.GetComponent<PickUpScript>() != null)
+                {
+                    player.GetComponent<PickUpScript>().enabled = false;
+                }
             }
-            if (player.GetComponent<PickUpScript>() != null)
+            else
             {
-                player.GetComponent<Grapple2>().enabled = false;
+                if (player.GetComponent<Grapple2>() != null)
+                {
+                    player.GetComponent<Grapple2>().enabled = true;
+                }
+                if (player.GetComponent<PickUpScript>() != null)
+                {
+                    player.GetComponent<PickUpScript>().enabled = true;
+                }
             }
-        }
-        else
-        {
-            if (player.GetComponent<Grapple2>() != null)
-            {
-                player.GetComponent<Grapple2>().enabled = true;
-            }
-            if (player.GetComponent<PickUpScript>() != null)
-            {
-                player.GetComponent<Grapple2>().enabled = true;
-            }
+
         }
 
     }

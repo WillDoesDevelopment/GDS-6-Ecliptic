@@ -55,7 +55,7 @@ public class introCineCamScript : MonoBehaviour
         yield return new WaitForSeconds(11f);
         snd.Play();
         yield return new WaitForSeconds(14f);
-        SceneManager.LoadScene(levelName);
+        SceneManager.LoadScene(2);
 
 
     }
