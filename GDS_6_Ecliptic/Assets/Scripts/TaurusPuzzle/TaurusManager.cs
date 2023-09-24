@@ -28,6 +28,7 @@ public class TaurusManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         CheckWinCondition();
         GiftPickUpCheck();
         ArtifactCollected();

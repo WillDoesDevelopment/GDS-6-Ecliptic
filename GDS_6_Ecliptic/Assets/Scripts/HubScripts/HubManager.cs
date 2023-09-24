@@ -11,10 +11,12 @@ public class HubManager : MonoBehaviour
     public Animator TransitionAnim;
 
     public static int LevelNumber = 0;
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         //
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -61,6 +63,8 @@ public class HubManager : MonoBehaviour
             }*/
 
         }
+
+        InDialogueCheck();
     }
     // wher called it accesses a Door status script and loads the designated scene
     public void SendToScene(DoorStatus DS)
@@ -93,5 +97,32 @@ public class HubManager : MonoBehaviour
         TransitionAnim.SetTrigger("Animate");
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(DS.SceneNum);
+    }
+
+    public void InDialogueCheck()
+    {
+        if(DialogueManager.InDialogue == true)
+        {
+            if (player.GetComponent<Grapple2>() != null)
+            {
+                player.GetComponent<Grapple2>().enabled = false;
+            }
+            if (player.GetComponent<PickUpScript>() != null)
+            {
+                player.GetComponent<Grapple2>().enabled = false;
+            }
+        }
+        else
+        {
+            if (player.GetComponent<Grapple2>() != null)
+            {
+                player.GetComponent<Grapple2>().enabled = true;
+            }
+            if (player.GetComponent<PickUpScript>() != null)
+            {
+                player.GetComponent<Grapple2>().enabled = true;
+            }
+        }
+
     }
 }

@@ -72,7 +72,7 @@ public class AINavMesh : MonoBehaviour
 
     public void CollisionCheck()
     {
-        Collider[] Collisions = Physics.OverlapSphere(this.gameObject.transform.position, 2f);
+        Collider[] Collisions = Physics.OverlapSphere(this.gameObject.transform.localPosition, 1f);
         //Debug.Log(Collisions.Length);
         foreach(Collider c in Collisions)
         {
