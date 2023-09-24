@@ -18,6 +18,7 @@ public class TaurusManager : MonoBehaviour
 
     private Vector3 PlayerStartPos;
     private Vector3 BullStartPos;
+    public DialogueTrigger DoorDialogue;
     void Start()
     {
         PlayerStartPos = Player.transform.position;
@@ -55,6 +56,7 @@ public class TaurusManager : MonoBehaviour
         DialogueTrigger dtEvent = null;
         if (CollectedItems == 4)
         {
+            DoorDialogue.gameObject.SetActive(false);
             VFXCH.circleVFXStart();
             DialogueTrigger[] DT = this.GetComponents<DialogueTrigger>();
             foreach(DialogueTrigger dt in DT)
