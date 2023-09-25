@@ -16,6 +16,7 @@ public class introCineCamScript : MonoBehaviour
     public float amtStart = 1;
     public AudioSource snd;
 
+
     private float shaderValue = 1f;
     private float change = 0.01f;
 
