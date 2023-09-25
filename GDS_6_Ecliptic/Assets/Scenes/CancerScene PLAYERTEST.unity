@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 910931263}
-  m_IndirectSpecularColor: {r: 0.005008637, g: 0.010991171, b: 0.12444298, a: 1}
+  m_IndirectSpecularColor: {r: 0.0060687885, g: 0.0127544645, b: 0.14520265, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -320,7 +320,7 @@ MonoBehaviour:
   squish: 0
   colliderOffset: {x: 0, y: 1, z: 1}
   colliderScale: {x: 4, y: 0.5, z: 4}
-  HM: {fileID: 2049466030}
+  HM: {fileID: 0}
   DS: {fileID: 13162195}
   VFXCH: {fileID: 1914608263111841661}
   EndDT: {fileID: 0}
@@ -927,7 +927,7 @@ PrefabInstance:
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: HM
       value: 
-      objectReference: {fileID: 2049466030}
+      objectReference: {fileID: 0}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
@@ -2972,7 +2972,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2049466031}
-  - component: {fileID: 2049466030}
   - component: {fileID: 2049466032}
   - component: {fileID: 2049466033}
   m_Layer: 0
@@ -2982,20 +2981,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2049466030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049466029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 185ee45d4ed516148bc13c6f117b728d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doors: []
-  TransitionAnim: {fileID: 0}
 --- !u!4 &2049466031
 Transform:
   m_ObjectHideFlags: 0
