@@ -16,6 +16,7 @@ public class TaurusManager : MonoBehaviour
 
     public DoorScript DS;
 
+    public DialogueTrigger dtEvent;
     private Vector3 PlayerStartPos;
     private Vector3 BullStartPos;
     public DialogueTrigger DoorDialogue;
@@ -54,23 +55,26 @@ public class TaurusManager : MonoBehaviour
     }
     public void CheckWinCondition()
     {
-        DialogueTrigger dtEvent = null;
+        //DialogueTrigger dtEvent = null;
         if (CollectedItems == 4)
         {
+            Debug.Log("running");
             DoorDialogue.gameObject.SetActive(false);
             VFXCH.circleVFXStart();
-            DialogueTrigger[] DT = this.GetComponents<DialogueTrigger>();
+            dtEvent.gameObject.SetActive(true);
+
+            /*            DialogueTrigger[] DT = this.GetComponents<DialogueTrigger>();
             foreach(DialogueTrigger dt in DT)
             {
                 if (dt.OnEvent == true)
                 {
                     dtEvent = dt;
                 }
-            }
-            if(dtEvent.dialogue.DialogueMode == Dialogue.DialogueState.NotStarted)
+            }*/
+            /*if(dtEvent.dialogue.DialogueMode == Dialogue.DialogueState.NotStarted)
             {
                 dtEvent.OnEventCheck();
-            }
+            }*/
             if(dtEvent.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
             {
                 DS.DS.IsOpen = true;
