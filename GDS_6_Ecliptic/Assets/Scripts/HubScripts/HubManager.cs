@@ -72,7 +72,7 @@ public class HubManager : MonoBehaviour
         
         if (DS.IsOpen == true)
         {
-           
+            Debug.Log("working");
             StartCoroutine(SendToSceneCoroutine(DS));
             
         }

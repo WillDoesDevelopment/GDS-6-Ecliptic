@@ -50,8 +50,8 @@ public class crabScript : MonoBehaviour
         if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             DS.DS.IsOpen = true;
-            /*HM.SendToHub();
-            HM.SetGameStage(4);*/
+            HM.SendToHub();
+            HM.SetGameStage(4);
         }
 
 
