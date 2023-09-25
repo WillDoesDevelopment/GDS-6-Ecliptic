@@ -13,8 +13,10 @@ public class crabScript : MonoBehaviour
     public HubManager HM;
     public DoorScript DS;
 
-    public DialogueTrigger EndDialogue;
+    //public DialogueTrigger EndDialogue;
     public VFXCircleHandler VFXCH;
+
+    public GameObject EndDT;
 
     // Start is called before the first frame update
     void Start()
@@ -36,16 +38,16 @@ public class crabScript : MonoBehaviour
                 {
                     GetComponent<Animator>().SetTrigger("Animate");
                     VFXCH.circleVFXStart(); //dialouge circle stuff :)
-                    
-                    EndDialogue.OnEventCheck();
-                    EndDialogue.OnEvent = false;
+                    EndDT.SetActive(true);
+                    /*EndDialogue.OnEventCheck();
+                    EndDialogue.OnEvent = false;*/
                     
 
                 }
             }
         }
 
-        if (EndDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             DS.DS.IsOpen = true;
             /*HM.SendToHub();

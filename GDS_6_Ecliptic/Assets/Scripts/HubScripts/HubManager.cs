@@ -108,6 +108,7 @@ public class HubManager : MonoBehaviour
                 if (player.GetComponent<Grapple2>() != null)
                 {
                     player.GetComponent<Grapple2>().enabled = false;
+                    player.GetComponent<Grapple2>().rope.SetActive(false);
                 }
                 if (player.GetComponent<PickUpScript>() != null)
                 {
