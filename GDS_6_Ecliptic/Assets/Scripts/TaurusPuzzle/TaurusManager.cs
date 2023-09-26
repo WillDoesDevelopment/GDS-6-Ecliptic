@@ -8,6 +8,8 @@ public class TaurusManager : MonoBehaviour
 
     public GameObject Player;
 
+    public GameObject barrierObject;
+
     public HubManager HB;
 
     public AINavMesh ANM;
@@ -21,11 +23,16 @@ public class TaurusManager : MonoBehaviour
     private Vector3 BullStartPos;
     public DialogueTrigger DoorDialogue;
 
+    Renderer rend;
+
     private Artifact currentArtifact;
+
+    public float p;
     void Start()
     {
         PlayerStartPos = Player.transform.position;
         BullStartPos = ANM.transform.position;
+        rend = barrierObject.GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -34,6 +41,23 @@ public class TaurusManager : MonoBehaviour
 
         CheckWinCondition();
         ArtifactCollected();
+        Barrier();
+    }
+
+    public void Barrier()
+    {        
+        var t = Mathf.InverseLerp(8, 6, Vector3.Distance(transform.position, ANM.transform.position));
+        p = t;
+        if(t == 0)
+        {
+            barrierObject.SetActive(false);
+        }
+        else
+        {
+            barrierObject.SetActive(true);
+        }
+
+        rend.material.SetFloat("_Transparency", Mathf.Clamp(t, 0, 1));
     }
 
     public void CheckWinCondition()
@@ -62,7 +86,7 @@ public class TaurusManager : MonoBehaviour
         {
             return;
         }
-        if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.transform.position, HO.transform.position) < 2)
+        if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.transform.position, HO.transform.position) < 3)
         {
             CollectedItems += 1;
             Player.GetComponent<PickUpScript>().holding = false;
