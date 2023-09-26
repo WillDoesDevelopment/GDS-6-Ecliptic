@@ -74,7 +74,7 @@ public class PickUpScript : MonoBehaviour
         ObjColliders = Physics.OverlapSphere(this.transform.position, PickUpRadius);
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
         {
-            
+            Debug.Log("running");
             if(nearestPickUp() != null && nearestPickUp().CompareTag("PickUp") && holding == false)
             {
                 HoldingObj = nearestPickUp();
@@ -84,8 +84,6 @@ public class PickUpScript : MonoBehaviour
             else if (holding == true)
             {
                 PutDown(HoldingObj);
-                holding = false;
-                HoldingObj = PickUpPos;
             }
             
         }
@@ -144,8 +142,11 @@ public class PickUpScript : MonoBehaviour
     // here we reverse what we did in the pickUP function
     public void PutDown(GameObject HoldingObj)
     {
+        HoldingObj = PickUpPos.gameObject;
+        Debug.Log("putting down");
         PickUpPos.transform.DetachChildren();
-
+        holding = false;
+        
         Rigidbody RBTemp = HoldingObj.GetComponent<Rigidbody>();
         if (RBTemp != null)
         {

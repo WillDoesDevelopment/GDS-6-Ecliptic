@@ -20,6 +20,8 @@ public class TaurusManager : MonoBehaviour
     private Vector3 PlayerStartPos;
     private Vector3 BullStartPos;
     public DialogueTrigger DoorDialogue;
+
+    private Artifact currentArtifact;
     void Start()
     {
         PlayerStartPos = Player.transform.position;
@@ -31,28 +33,27 @@ public class TaurusManager : MonoBehaviour
     {
 
         CheckWinCondition();
-        GiftPickUpCheck();
+        //GiftPickUpCheck();
         ArtifactCollected();
     }
 
-    public void GiftPickUpCheck()
+/*    public void GiftPickUpCheck()
     {
+        // everytime we pick up somthing we try get the artifact script and assign it to current artifact (Try get component returns a bool and spits out a variable (ie it spits out in this case a variable called artifact))
         GameObject HeldObj = Player.GetComponent<PickUpScript>().HoldingObj;
+
+
         if (HeldObj != null)
         {
-            if (HeldObj.CompareTag("PickUp"))
+            HeldObj.TryGetComponent<Artifact>(out Artifact artifact);
+            currentArtifact = artifact;
+*//*            if (HeldObj.CompareTag("PickUp"))
             {
-                HeldObj.GetComponent<DialogueTrigger>().OnEventCheck();
-                HeldObj.GetComponent<DialogueTrigger>().OnEvent = false;
                 ANM.NavMeshPause = true;
-                if (HeldObj.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
-                {
-                    ANM.NavMeshPause = false;
-                }
-            }
+            }*//*
 
         }
-    }
+    }*/
     public void CheckWinCondition()
     {
         //DialogueTrigger dtEvent = null;
@@ -110,12 +111,19 @@ public class TaurusManager : MonoBehaviour
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
         Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
-        //Debug.Log(PlayerStartPos);
+        //character controller overwrites position, needs to be disabled before player can go back to the start
         Player.GetComponent<CharacterController>().enabled = false;
         Player.transform.position = PlayerStartPos;
         Player.GetComponent<CharacterController>().enabled = true;
-        //Player.GetComponent<PlayerController>().canWalk = false;
-        //Debug.Log(Player.transform.position);
+
+        if(currentArtifact != null)
+        {
+            currentArtifact.ResetArtifact();
+        }
+        /*if(Player.GetComponent<PickUpScript>().HoldingObj.GetComponent<Artifact>() != null)
+        {
+
+        }*/
 
         if (Player.transform.position == PlayerStartPos)
         {

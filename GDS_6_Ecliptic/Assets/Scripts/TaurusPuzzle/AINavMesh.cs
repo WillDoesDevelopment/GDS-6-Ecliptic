@@ -78,18 +78,9 @@ public class AINavMesh : MonoBehaviour
         {
             if (c.gameObject == Player)
             {
-                Debug.Log(c);
                 TM.Resetting();
             }
         }
     }
-/*    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Resetting");
-        if (collision.gameObject == Player)
-        {
-            TM.Reset();
-            Debug.Log("GG loser");
-        }
-    }*/
+
 }
