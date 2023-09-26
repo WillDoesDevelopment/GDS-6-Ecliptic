@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 910931263}
-  m_IndirectSpecularColor: {r: 0.001110994, g: 0.0018577932, b: 0.020220516, a: 1}
+  m_IndirectSpecularColor: {r: 0.007264799, g: 0.015560757, b: 0.1771557, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1151,7 +1151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58e0b1f5e1e0114cbc6bd90ade3a172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InstructionsAnim: {fileID: 599119678}
+  playerController: {fileID: 1560073681}
+  HB: {fileID: 1512019231}
 --- !u!1001 &655560838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2950,6 +2951,17 @@ MonoBehaviour:
   grappleLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &1560073681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+  m_PrefabInstance: {fileID: 1560073676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560073677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6a2d317e6485843bdc4f93078ae686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1670236077
 PrefabInstance:
   m_ObjectHideFlags: 0

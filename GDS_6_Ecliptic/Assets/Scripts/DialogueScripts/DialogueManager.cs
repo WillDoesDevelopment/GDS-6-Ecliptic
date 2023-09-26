@@ -7,19 +7,20 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     public static bool InDialogue = false;
+
+
     // image and text components necessary
-    //public PlayerScript PS;
     public Sprite OtherDialogueBoxSprite;
     public Image OtherDialogueBox;
-
     public GameObject EnterText;
-
     public TextMeshProUGUI DialogueText;
 
+    // UI components for the right side of the dialogue
     [Header("Other Player Attributes")]
     public TextMeshProUGUI NameText;
     public Image SpriteUI;
 
+    // UI components for the left side of the dialogue
     [Header("Main Player Attributes")]
     public TextMeshProUGUI PlayerNameText;
     public Image PlayerSpriteUI;
@@ -36,12 +37,12 @@ public class DialogueManager : MonoBehaviour
 
     public bool CoroutineRunning = false;
     private bool skip = false;
-    //public bool DialogueMode = false;
 
+
+    // two queues (first in first out) of sentences and types of sentences
     public Queue<string> Sentences;
     public Queue<Dialogue.DialogueType> SentenceType;
 
-    //private bool DialogueMode = false;
 
     // Start is called before the first frame update
 
@@ -59,32 +60,42 @@ public class DialogueManager : MonoBehaviour
         EnterPromptCheck();
 
     }
-
+    // check to see if the enter prompt should appear
     public void EnterPromptCheck()
     {
+        //by default we exit the animation
         EnterAnimExit();
 
+        // if however proximity is true (This gets set by a dialogue trigger) we enter the animation instead
         if (proximityBool == true)
         {
             EnterPrompt();
+            // we set this bool back to false so that if the dialogue trigger next frame sets it to true again we know that we are in proximity
             proximityBool = false;
         }
     }
 
+    // sets the prompt animation to true
     public void EnterPrompt()
     {
 
         EnterAnim.SetBool("FadeIn", true);
 
     }
+    // sets the prompt animation to false
     public void EnterAnimExit()
     {
         EnterAnim.SetBool("FadeIn", false);
 
     }
 
+    // Start dialogue, is given a chunk of data by a dialogue trigger (ie, dialogue trigger sees if its activated and if it is it calls somthing like "dialogueManager.StartDialogue(dialogue))
+    //it then attaches all the data to the appropriate UI, such as images, text and so on
     public void StartDialogue(Dialogue dialogue)
     {
+        //calls this static (global) function in hub manager
+        HubManager.freezePlayerActions(player);
+
 
         dialogue.DialogueMode = Dialogue.DialogueState.InProgress;
         player.GetComponent<PlayerController>().canWalk = false;
@@ -101,6 +112,7 @@ public class DialogueManager : MonoBehaviour
         PlayerSpriteUI.rectTransform.sizeDelta = new Vector2(dialogue.MonologueImage.rect.width, dialogue.MonologueImage.rect.height);
         PlayerNameText.text = dialogue.monologueName;
 
+        // if there was a previous dialogue we have to make sure the queues are empty before filling them
         Sentences.Clear();
         SentenceType.Clear();
 
@@ -115,6 +127,9 @@ public class DialogueManager : MonoBehaviour
         // after the prep and saving to local variables we call the next dialogue
         NextDialogue(dialogue);
     }
+
+    //this animates the text, controlls when the dialogue is skipped and sets the next sentence to be animated
+    //it also shows who is speaking
     public void NextDialogue(Dialogue dialogue)
     {
         if (CoroutineRunning)
@@ -150,12 +165,16 @@ public class DialogueManager : MonoBehaviour
 
         // dequeue sentences as the same time as saving them to a temp variable
         string tempSentence = Sentences.Dequeue();
+
         // incase we are mid way through typeText coroutine
         StopAllCoroutines();
+
         //types each character
         StartCoroutine(TypeText(tempSentence, DialogueText));
-        //Debug.Log("it run");
+
     }
+
+    // animates text
     public IEnumerator TypeText(string sentence, TextMeshProUGUI TxtElement)
     {
         CoroutineRunning = true;
@@ -188,6 +207,9 @@ public class DialogueManager : MonoBehaviour
         
         if (Sentences.Count == 0)
         {
+            // calls this static (global) function in the hub manager
+            HubManager.UnfreezePlayerActions(player);
+
             player.GetComponent<PlayerController>().canWalk = true;
 
             TextAnim.SetBool("PopUp", false);
@@ -202,7 +224,4 @@ public class DialogueManager : MonoBehaviour
             return;
         }
     }
-
-
-
 }

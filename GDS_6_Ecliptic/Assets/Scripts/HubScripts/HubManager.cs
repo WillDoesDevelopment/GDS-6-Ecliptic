@@ -64,7 +64,7 @@ public class HubManager : MonoBehaviour
 
         }
 
-        InDialogueCheck();
+        //InDialogueCheck();
     }
     // wher called it accesses a Door status script and loads the designated scene
     public void SendToScene(DoorStatus DS)
@@ -99,35 +99,36 @@ public class HubManager : MonoBehaviour
         SceneManager.LoadScene(DS.SceneNum);
     }
 
-    public void InDialogueCheck()
+   
+
+    // i put these in seperate functions because there are other instances when one wants to freeze player actions other than dialogue
+    //for instance in an instructions or pause menu
+
+    //in realiity this functionality doesnt belong in the Hub manager but it is convinient to put it here
+    public static void freezePlayerActions(GameObject player)
     {
-        if(player != null)
+        Debug.Log("freezing");
+        if (player.GetComponent<Grapple2>() != null)
         {
-            if(DialogueManager.InDialogue == true)
-            {
-                if (player.GetComponent<Grapple2>() != null)
-                {
-                    player.GetComponent<Grapple2>().enabled = false;
-                    player.GetComponent<Grapple2>().rope.SetActive(false);
-                }
-                if (player.GetComponent<PickUpScript>() != null)
-                {
-                    player.GetComponent<PickUpScript>().enabled = false;
-                }
-            }
-            else
-            {
-                if (player.GetComponent<Grapple2>() != null)
-                {
-                    player.GetComponent<Grapple2>().enabled = true;
-                }
-                if (player.GetComponent<PickUpScript>() != null)
-                {
-                    player.GetComponent<PickUpScript>().enabled = true;
-                }
-            }
-
+            player.GetComponent<Grapple2>().enabled = false;
+            player.GetComponent<Grapple2>().rope.SetActive(false);
         }
+        if (player.GetComponent<PickUpScript>() != null)
+        {
+            player.GetComponent<PickUpScript>().enabled = false;
+        }
+    }
 
+    public static void UnfreezePlayerActions(GameObject player)
+    {
+        Debug.Log("unfreezing");
+        if (player.GetComponent<Grapple2>() != null)
+        {
+            player.GetComponent<Grapple2>().enabled = true;
+        }
+        if (player.GetComponent<PickUpScript>() != null)
+        {
+            player.GetComponent<PickUpScript>().enabled = true;
+        }
     }
 }
