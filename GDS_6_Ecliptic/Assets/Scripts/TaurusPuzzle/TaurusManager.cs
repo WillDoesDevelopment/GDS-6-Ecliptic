@@ -33,7 +33,6 @@ public class TaurusManager : MonoBehaviour
     {
 
         CheckWinCondition();
-
         ArtifactCollected();
     }
 

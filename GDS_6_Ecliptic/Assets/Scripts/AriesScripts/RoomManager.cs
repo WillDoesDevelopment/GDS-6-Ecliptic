@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,12 +43,13 @@ public class RoomManager : MonoBehaviour
         {
             VFXCH.circleVFXStart();
             GoldSheep.transform.parent.GetComponent<Animator>().SetBool("Animate", true);
+            GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
         }
         if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
         {
                                                                                 // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
             NormalSheep.transform.parent.GetComponent<Animator>().SetTrigger("Animate");
-
+            NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
         }
     }
 
