@@ -16,6 +16,8 @@ public class crabScript : MonoBehaviour
     //public DialogueTrigger EndDialogue;
     public VFXCircleHandler VFXCH;
 
+    // need to know about both dialogue prefabs in the scene
+    public GameObject crabDT;
     public GameObject EndDT;
 
     // Start is called before the first frame update
@@ -34,11 +36,15 @@ public class crabScript : MonoBehaviour
         {
             if (hitCollider.gameObject == player)                                           
             {
+                crabDT.SetActive(false); // if we dont talk to the crab before squishing it we want to deactivate the dialogue
                 if (player.GetComponent<PlayerController>().airTime > 0.5)
                 {
-                    GetComponent<Animator>().SetTrigger("Animate");
+                    GetComponent<Animator>().SetTrigger("Animate");//squashes crab
                     VFXCH.circleVFXStart(); //dialouge circle stuff :)
-                    EndDT.SetActive(true);
+                    EndDT.SetActive(true);// we want to activate the dialogue prefab
+
+
+
                     /*EndDialogue.OnEventCheck();
                     EndDialogue.OnEvent = false;*/
                     
@@ -49,9 +55,10 @@ public class crabScript : MonoBehaviour
 
         if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
+            // if the end dialogue is done, open the door
             DS.DS.IsOpen = true;
-            HM.SendToHub();
-            HM.SetGameStage(4);
+/*            HM.SendToHub();
+            HM.SetGameStage(4);*/
         }
 
 
