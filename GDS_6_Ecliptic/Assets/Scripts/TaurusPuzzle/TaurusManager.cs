@@ -33,57 +33,27 @@ public class TaurusManager : MonoBehaviour
     {
 
         CheckWinCondition();
-        //GiftPickUpCheck();
+
         ArtifactCollected();
     }
 
-/*    public void GiftPickUpCheck()
-    {
-        // everytime we pick up somthing we try get the artifact script and assign it to current artifact (Try get component returns a bool and spits out a variable (ie it spits out in this case a variable called artifact))
-        GameObject HeldObj = Player.GetComponent<PickUpScript>().HoldingObj;
-
-
-        if (HeldObj != null)
-        {
-            HeldObj.TryGetComponent<Artifact>(out Artifact artifact);
-            currentArtifact = artifact;
-*//*            if (HeldObj.CompareTag("PickUp"))
-            {
-                ANM.NavMeshPause = true;
-            }*//*
-
-        }
-    }*/
     public void CheckWinCondition()
     {
         //DialogueTrigger dtEvent = null;
         if (CollectedItems == 4)
         {
-            Debug.Log("running");
+            ANM.NMA.SetDestination(ANM.transform.position);
+
             DoorDialogue.gameObject.SetActive(false);
             VFXCH.circleVFXStart();
             dtEvent.gameObject.SetActive(true);
-
-            /*            DialogueTrigger[] DT = this.GetComponents<DialogueTrigger>();
-            foreach(DialogueTrigger dt in DT)
-            {
-                if (dt.OnEvent == true)
-                {
-                    dtEvent = dt;
-                }
-            }*/
-            /*if(dtEvent.dialogue.DialogueMode == Dialogue.DialogueState.NotStarted)
-            {
-                dtEvent.OnEventCheck();
-            }*/
+            // here we will check if dialogue is done
             if(dtEvent.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
             {
                 DS.DS.IsOpen = true;
-                /*HB.SetGameStage(2);
-                HB.SendToHub();*/
+
 
             }
-            // here we will check if dialogue is done
         }
     }
     public void ArtifactCollected()
@@ -103,9 +73,7 @@ public class TaurusManager : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-    }
+// resetting is called by the bull script
     public void Resetting()
     {
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
