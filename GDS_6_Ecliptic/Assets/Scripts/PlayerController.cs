@@ -81,28 +81,7 @@ public class PlayerController : MonoBehaviour
             playDaftPunk = !playDaftPunk;
         }
 
-        //Exit
-/*        if (Input.GetKey("escape") && isPaused == false || Input.GetButton("Cancel") && isPaused == false)
-        {
-                pauseMenu.SetActive(true);
-                canWalk = false;
-                //isPaused = true;
-            
-        }
-
-        if(pauseMenu.activeInHierarchy == false )
-        {
-            
-            canWalk = true;
-        }*/
-
-        /*if (Input.GetKey("escape") && isPaused == true || Input.GetButton("Cancel") && isPaused == true)
-        {
-            pauseMenu.SetActive(false);
-            canWalk = true;
-            isPaused = false;
-
-        }*/
+        
 
         //Movement
         #region Movement

@@ -110,9 +110,12 @@ public class TaurusManager : MonoBehaviour
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
         Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
-        Debug.Log(PlayerStartPos);
-        Player.transform.position = PlayerStartPos; 
-        Debug.Log(Player.transform.position);
+        //Debug.Log(PlayerStartPos);
+        Player.GetComponent<CharacterController>().enabled = false;
+        Player.transform.position = PlayerStartPos;
+        Player.GetComponent<CharacterController>().enabled = true;
+        //Player.GetComponent<PlayerController>().canWalk = false;
+        //Debug.Log(Player.transform.position);
 
         if (Player.transform.position == PlayerStartPos)
         {
