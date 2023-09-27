@@ -27,7 +27,9 @@ public class TaurusManager : MonoBehaviour
 
     private Artifact currentArtifact;
 
-    public float p;
+    public GameObject particleObject;
+    public GameObject beamObject;
+
     void Start()
     {
         PlayerStartPos = Player.transform.position;
@@ -47,7 +49,7 @@ public class TaurusManager : MonoBehaviour
     public void Barrier()
     {        
         var t = Mathf.InverseLerp(8, 6, Vector3.Distance(transform.position, ANM.transform.position));
-        p = t;
+        ;
         if(t == 0)
         {
             barrierObject.SetActive(false);
@@ -84,8 +86,30 @@ public class TaurusManager : MonoBehaviour
         GameObject HO = Player.GetComponent<PickUpScript>().HoldingObj;
         if(HO == null)
         {
+            
             return;
         }
+        
+
+        if(!HO.CompareTag("PickUp"))
+        {
+            beamObject.SetActive(false);
+            particleObject.SetActive(false);
+        }
+        else
+        {
+            beamObject.SetActive(true);
+            beamObject.transform.position = (transform.position + HO.transform.position) / 2.0f;
+            beamObject.transform.localScale = new Vector3(.05f, 0.05f, Vector3.Distance(transform.position, HO.transform.position));
+            beamObject.transform.LookAt(transform.position);
+
+            particleObject.SetActive(true);
+            particleObject.transform.position = HO.transform.position;
+            particleObject.transform.LookAt(transform.position);
+
+
+        }
+
         if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.transform.position, HO.transform.position) < 3)
         {
             CollectedItems += 1;
