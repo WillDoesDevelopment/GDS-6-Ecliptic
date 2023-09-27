@@ -93,16 +93,17 @@ public class TaurusManager : MonoBehaviour
 
         if(!HO.CompareTag("PickUp"))
         {
-            beamObject.SetActive(false);
+            //beamObject.SetActive(false);
             particleObject.SetActive(false);
         }
         else
         {
+            /*
             beamObject.SetActive(true);
             beamObject.transform.position = (transform.position + HO.transform.position) / 2.0f;
             beamObject.transform.localScale = new Vector3(.05f, 0.05f, Vector3.Distance(transform.position, HO.transform.position));
             beamObject.transform.LookAt(transform.position);
-
+            */
             particleObject.SetActive(true);
             particleObject.transform.position = HO.transform.position;
             particleObject.transform.LookAt(transform.position);
