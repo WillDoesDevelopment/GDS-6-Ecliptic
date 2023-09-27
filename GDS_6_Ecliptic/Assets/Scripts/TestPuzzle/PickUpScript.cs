@@ -31,6 +31,10 @@ public class PickUpScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(holding == false)
+        {
+            HoldingObj = PickUpPos.gameObject;
+        }
         // on click we pick up the in range object
         if (ProximityPickUp)
         {
@@ -74,7 +78,8 @@ public class PickUpScript : MonoBehaviour
         ObjColliders = Physics.OverlapSphere(this.transform.position, PickUpRadius);
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
         {
-            if(nearestPickUp() != null && nearestPickUp().CompareTag("PickUp") && holding == false)
+            Debug.Log(HoldingObj);
+            if (nearestPickUp() != null && nearestPickUp().CompareTag("PickUp") && holding == false)
             {
                 Debug.Log("running");
                 HoldingObj = nearestPickUp();
@@ -143,7 +148,7 @@ public class PickUpScript : MonoBehaviour
     public void PutDown(GameObject HoldingObj)
     {
         HoldingObj = PickUpPos.gameObject;
-        Debug.Log("putting down");
+        Debug.Log(HoldingObj);
         PickUpPos.transform.DetachChildren();
         holding = false;
         
