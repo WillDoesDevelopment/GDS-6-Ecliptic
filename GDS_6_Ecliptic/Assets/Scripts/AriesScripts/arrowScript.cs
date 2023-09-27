@@ -65,7 +65,7 @@ public class arrowScript : MonoBehaviour
                     dt.OnEventCheck();
                     dt.OnEvent = false;
                 }
-                Destroy(Temp);
+                //Destroy(Temp);
             }
 
         }

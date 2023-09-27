@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.012045088, g: 0.0003212445, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.011857046, g: 0.00031508377, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1923,7 +1923,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231926473}
-  m_LocalRotation: {x: 0.26567268, y: -0.028433679, z: 0.007839308, w: 0.963612}
+  m_LocalRotation: {x: 0.26567268, y: -0.028433645, z: 0.007839299, w: 0.963612}
   m_LocalPosition: {x: -49.284893, y: 9.99019, z: -63.818653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3450,7 +3450,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510720946}
-  m_LocalRotation: {x: 0.26567268, y: -0.028433679, z: 0.007839308, w: 0.963612}
+  m_LocalRotation: {x: 0.26567268, y: -0.028433645, z: 0.007839299, w: 0.963612}
   m_LocalPosition: {x: -49.284893, y: 9.99019, z: -63.818653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6010,6 +6010,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ram_Animated (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d6a4621d0eb8cb049942f76308bfae3b, type: 3}
+      propertyPath: m_TagString
+      value: Destroyable
+      objectReference: {fileID: 0}
     - target: {fileID: 1303028155423743357, guid: d6a4621d0eb8cb049942f76308bfae3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 2.1862586
@@ -6249,7 +6253,7 @@ BoxCollider:
   m_GameObject: {fileID: 1055099836}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -10469,6 +10473,7 @@ GameObject:
   - component: {fileID: 152902113}
   - component: {fileID: 152902112}
   - component: {fileID: 919132149306631313}
+  - component: {fileID: 919132149306631314}
   m_Layer: 6
   m_Name: Aries_hero_GoldRam
   m_TagString: Untagged
@@ -10489,6 +10494,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.116698764, y: 0.22231677, z: 0.26705417}
   m_Center: {x: 0, y: 0.115, z: -0.08544598}
+--- !u!114 &919132149306631314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149306631311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5b16ffc383e9242bdb740408fec9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &920124018635755093
 MeshFilter:
   m_ObjectHideFlags: 0

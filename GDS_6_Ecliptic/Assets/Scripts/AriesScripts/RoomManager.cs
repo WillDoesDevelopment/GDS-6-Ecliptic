@@ -45,12 +45,15 @@ public class RoomManager : MonoBehaviour
             GoldSheep.transform.parent.GetComponent<Animator>().SetBool("Animate", true);
             GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
         }
-        if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
+        if(NormalSheep.gameObject.activeInHierarchy)
         {
-                                                                                // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
-            NormalSheep.transform.parent.GetComponent<Animator>().SetTrigger("Animate");
-            NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
-        }
+            if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
+            {
+                NormalSheep.transform.parent.GetComponent<Animator>().SetTrigger("Animate");
+                NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
+            }
+
+        }                                                           // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
     }
 
     public bool DialogueEndcheck(DialogueTrigger DialogueObj)
