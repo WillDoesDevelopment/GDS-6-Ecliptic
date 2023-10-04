@@ -15,6 +15,8 @@ public class DoorScript : MonoBehaviour
     public Animator ThisAnim;
 
     public int StageNumber;
+
+    //public AudioSource DoorSnd;
     
     // at the moment each door script needs to know about the hub manager
     public HubManager HM;
@@ -29,9 +31,10 @@ public class DoorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (proximity() && DS.IsOpen ==true)
+        if (proximity() && DS.IsOpen == true)
         {
             ThisAnim.SetBool("Animate", true);
+
         }
         else
         {
@@ -72,5 +75,8 @@ public class DoorScript : MonoBehaviour
         }
 
         //Vector3.Distance(transform.position, Player.transform.position);
+
+
     }
+
 }
