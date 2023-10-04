@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class PauseScript : MonoBehaviour
 {
+    public static bool Controller = true;
     public static bool Paused = false;
 
     public EventSystem eventSystem;
@@ -27,6 +28,7 @@ public class PauseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ControllerOrNot();
         SelectedSNDCheck();
         if (Input.GetKeyDown(KeyCode.Escape)  || Input.GetButtonDown("Cancel") )
         {
@@ -87,6 +89,19 @@ public class PauseScript : MonoBehaviour
         {
             Debug.Log("Change");
             eventSystem.SetSelectedGameObject(SettingsFirstSelect);
+        }
+    }
+
+    public void ControllerOrNot()
+    {
+        var controllers = Input.GetJoystickNames();
+        if (controllers.Length == 0)
+        {
+            PauseScript.Controller = false;
+        }
+        else
+        {
+            PauseScript.Controller = true;
         }
     }
 }

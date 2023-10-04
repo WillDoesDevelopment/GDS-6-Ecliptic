@@ -18,6 +18,8 @@ public class OrreryScript : MonoBehaviour
     float t = 0;
     float startY;
 
+    public GameObject[] discs;
+
     //public DialogueTrigger.DialogueState DialogueState = new DialogueTrigger.DialogueState();
     public DialogueTrigger DT;
     // Start is called before the first frame update
@@ -29,6 +31,8 @@ public class OrreryScript : MonoBehaviour
         StartDialogue();
         BS.Disconnect();
         connected = false;
+
+        ActivateDiscs();
 
         // creates the arrays of random rotations for the Orrery
         /*RandomRotations = new float[OrreryArms.Length];
@@ -51,7 +55,13 @@ public class OrreryScript : MonoBehaviour
             SpinToPosition();
         }
     }
-
+    public void ActivateDiscs()
+    {
+        for (int i = 0; i< HubManager.LevelNumber; i++)
+        {
+            discs[i].SetActive(true);
+        }
+    }
     public void AmbientSpin()
     {
         for (int i = 0; i < OrreryArms.Length; i++)
@@ -63,7 +73,8 @@ public class OrreryScript : MonoBehaviour
     }
     public void SpinToPosition()
     {
-        if(t>1f)
+        discs[HubManager.LevelNumber].SetActive(true);
+        if (t>1f)
         {
             
 

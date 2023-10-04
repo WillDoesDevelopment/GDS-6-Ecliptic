@@ -47,6 +47,10 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject player;
+
+
+    public AudioSource TextSnd;
+    private bool sndIsPlaying = false;
     void Awake()
     {
         OtherDialogueBox.sprite = OtherDialogueBoxSprite;
@@ -177,6 +181,7 @@ public class DialogueManager : MonoBehaviour
     // animates text
     public IEnumerator TypeText(string sentence, TextMeshProUGUI TxtElement)
     {
+        sndIsPlaying = false;
         CoroutineRunning = true;
         DialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
@@ -192,13 +197,28 @@ public class DialogueManager : MonoBehaviour
             }
             if(skip == false)
             {
+                if(sndIsPlaying == false)
+                {
+                    sndIsPlaying = true;
+                    StartCoroutine(typingSnd());
+
+                }
                 yield return new WaitForSeconds(.02f);
+                
 
             }
+            
         }
         //yield return new WaitForSeconds(0);
         skip = false;
         CoroutineRunning = false;
+    }
+    public IEnumerator typingSnd()
+    {
+        TextSnd.pitch = Random.Range(.2f,1);
+        TextSnd.Play();
+        yield return new WaitForSeconds(.07f);
+        sndIsPlaying = false;
     }
 
     // exit dialogue anims

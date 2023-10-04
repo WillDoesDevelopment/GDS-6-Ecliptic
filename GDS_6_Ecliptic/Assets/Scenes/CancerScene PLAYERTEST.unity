@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 910931263}
-  m_IndirectSpecularColor: {r: 0.0067232135, g: 0.014057848, b: 0.16029148, a: 1}
+  m_IndirectSpecularColor: {r: 0.0051028095, g: 0.011235869, b: 0.12746775, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2201,10 +2201,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5366026400890762231, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: SelectSnd
+      value: 
+      objectReference: {fileID: 1745370814}
+    - target: {fileID: 5366026400890762231, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 2139053002}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3271899495693757040, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
 --- !u!1 &1305671985 stripped
 GameObject:
@@ -2691,6 +2696,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738228488}
   m_CullTransparentMesh: 1
+--- !u!82 &1745370814 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 337049226201187926, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+  m_PrefabInstance: {fileID: 1305671984}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1832729165
 GameObject:
   m_ObjectHideFlags: 0
