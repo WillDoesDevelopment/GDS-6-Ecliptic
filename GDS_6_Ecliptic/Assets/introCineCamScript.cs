@@ -51,12 +51,15 @@ public class introCineCamScript : MonoBehaviour
 
     IEnumerator outro()
     {
-        yield return new WaitForSeconds(10f);
-        anim.SetTrigger("End");
-        yield return new WaitForSeconds(11f);
-        snd.Play();
-        yield return new WaitForSeconds(14f);
-        SceneManager.LoadScene(2);
+        //OPHIE DISCOVERS HE HAS HANDS
+        yield return new WaitForSeconds(7f);
+        snd.Play(); // INTRO OBSERVATORY SND PLAYS HERE
+        anim.SetTrigger("End"); // STOP THAT! ZOOM CAMERA OUT
+        //yield return new WaitForSeconds(f);
+
+        
+        yield return new WaitForSeconds(9f);
+        SceneManager.LoadScene(2); // GOES TO HUB AFTER THAT SOUNDS DONE
 
 
     }
