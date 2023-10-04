@@ -70,7 +70,7 @@ public class Grapple2 : MonoBehaviour
         
 
         //Release
-        if (Input.GetMouseButtonDown(1) ^ Input.GetKeyDown(KeyCode.JoystickButton0) ^ Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetMouseButtonDown(1) ^ Input.GetKeyDown(KeyCode.JoystickButton0) ^ Input.GetKeyDown(KeyCode.RightShift) ^ Input.GetKeyDown(KeyCode.LeftShift))
         {
             RopeBreak();
         }
