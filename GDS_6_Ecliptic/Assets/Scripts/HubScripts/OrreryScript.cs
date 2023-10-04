@@ -59,7 +59,7 @@ public class OrreryScript : MonoBehaviour
                 SpinToPosition();
             }
 
-        }
+        } 
 
     }
     public void ActivateDiscs()
