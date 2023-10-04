@@ -16,10 +16,12 @@ public class introCineCamScript : MonoBehaviour
     public float amtStart = 1;
     public AudioSource snd;
 
+    public OrreryScript orreryScript;
 
     private float shaderValue = 1f;
     private float change = 0.01f;
 
+    private bool StartSpin = false;
     void Start()
     {
         glowAmt[0].GetFloat("_Glow_Amount");
@@ -32,6 +34,10 @@ public class introCineCamScript : MonoBehaviour
 
     private void Update()
     {
+        if (StartSpin)
+        {
+            orreryScript.AmbientSpin();
+        }
         //amt = Mathf.Lerp(amtStart, amtEnd, Time.deltaTime * 6.0f);
         //AmtGo();
         
@@ -56,7 +62,7 @@ public class introCineCamScript : MonoBehaviour
         snd.Play(); // INTRO OBSERVATORY SND PLAYS HERE
         anim.SetTrigger("End"); // STOP THAT! ZOOM CAMERA OUT
         //yield return new WaitForSeconds(f);
-
+        StartSpin = true;   
         
         yield return new WaitForSeconds(9f);
         SceneManager.LoadScene(2); // GOES TO HUB AFTER THAT SOUNDS DONE

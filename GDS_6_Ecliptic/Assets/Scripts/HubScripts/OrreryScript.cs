@@ -20,6 +20,8 @@ public class OrreryScript : MonoBehaviour
 
     public GameObject[] discs;
 
+    public bool startMode = false;
+
     //public DialogueTrigger.DialogueState DialogueState = new DialogueTrigger.DialogueState();
     public DialogueTrigger DT;
     // Start is called before the first frame update
@@ -44,16 +46,21 @@ public class OrreryScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
-        if (DT.dialogue.DialogueMode != Dialogue.DialogueState.Finished)
+    {
+        if (startMode == false)
         {
-            AmbientSpin();
+            if (DT.dialogue.DialogueMode != Dialogue.DialogueState.Finished)
+            {
+                AmbientSpin();
+
+            }
+            else
+            {
+                SpinToPosition();
+            }
 
         }
-        else
-        {
-            SpinToPosition();
-        }
+
     }
     public void ActivateDiscs()
     {
@@ -64,12 +71,12 @@ public class OrreryScript : MonoBehaviour
     }
     public void AmbientSpin()
     {
+
         for (int i = 0; i < OrreryArms.Length; i++)
         {
-            OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0); //Check with will if this is based on framerate..................
+            OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i] * Time.deltaTime, 0); //Check with will if this is based on framerate..................
         }
         startY = OrreryArms[HubManager.LevelNumber].transform.eulerAngles.y;
-        
     }
     public void SpinToPosition()
     {
@@ -149,6 +156,7 @@ public class OrreryScript : MonoBehaviour
         }
         */
     }
+    
 
     public void StartDialogue()
     {
