@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public GameObject pauseMenu;
     public bool isPaused = false;
     bool canStep = true;
+    [Range(0f, 1f)] public float stepVolume = 0.8f;
+    [Range(0f, 0.8f)] public float stepPitchVariance = 0.5f;
     public AudioSource audioSource;
     public AudioClip[] stepArray;
     bool playDaftPunk = false;
@@ -62,9 +64,11 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Step");
         canStep = false;
-        if(audioSource != null && playDaftPunk)
+        if(audioSource != null && stepArray != null)
         {
             audioSource.clip = stepArray[Random.Range(0, stepArray.Length)];
+            audioSource.pitch = 1 + Random.Range(-stepPitchVariance, stepPitchVariance);
+            audioSource.volume = stepVolume;
             audioSource.PlayOneShot(audioSource.clip);
 
             //step.Play();
@@ -133,7 +137,7 @@ public class PlayerController : MonoBehaviour
                 var h = PlayerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime;
                 h = h - Mathf.Floor(h);
                 //Steps
-                if(h>0.32f && h < 0.4f && canStep == true)
+                if(h>0.3f && h < 0.4f && canStep == true)
                 {
                     Footstep();
 
@@ -142,7 +146,7 @@ public class PlayerController : MonoBehaviour
                 {
                     canStep = true;
                 }
-                if (h > 0.82f && h < 0.9f && canStep == true)
+                if (h > 0.8f && h < 0.9f && canStep == true)
                 {
                     Footstep();
 
