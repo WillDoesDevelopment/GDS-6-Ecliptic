@@ -6,7 +6,7 @@ public class Grapple3 : MonoBehaviour
 {
 
     public GameObject target;
-    public GameObject rope;
+    //public GameObject rope;
     public GameObject scope;
     public GameObject head;
     public GameObject body;
@@ -31,12 +31,12 @@ public class Grapple3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rope.SetActive(false);        
+        //rope.SetActive(false);        
         scope.SetActive(false);
         head.SetActive(false);
         body.SetActive(false);
 
-        rend = rope.GetComponent<Renderer>();
+        //rend = rope.GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -166,6 +166,7 @@ public class Grapple3 : MonoBehaviour
             else
             {
                 //Attatch and Pull Object
+                t = length / maxLength;
                 AddForce();
             }
         }
@@ -234,7 +235,7 @@ public class Grapple3 : MonoBehaviour
 
     void AddForce()
     {
-        t = length / maxLength;                                                             // % of max length extended
+        //t = length / maxLength;                                                             // % of max length extended
         playerXZ = new Vector3(transform.position.x, target.transform.position.y, transform.position.z);
         float f = Mathf.Clamp(t - 1f, 0, 0.2f) * 5f;                                       // force modifier when 1.0 < t < 1.2
 

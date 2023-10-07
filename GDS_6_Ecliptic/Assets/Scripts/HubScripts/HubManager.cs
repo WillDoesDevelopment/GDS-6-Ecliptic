@@ -108,10 +108,10 @@ public class HubManager : MonoBehaviour
     public static void freezePlayerActions(GameObject player)
     {
         Debug.Log("freezing");
-        if (player.GetComponent<Grapple2>() != null)
+        if (player.GetComponent<Grapple3>() != null)
         {
-            player.GetComponent<Grapple2>().enabled = false;
-            player.GetComponent<Grapple2>().rope.SetActive(false);
+            player.GetComponent<Grapple3>().enabled = false;
+            //player.GetComponent<Grapple3>().rope.SetActive(false);
         }
         if (player.GetComponent<PickUpScript>() != null)
         {
@@ -122,9 +122,9 @@ public class HubManager : MonoBehaviour
     public static void UnfreezePlayerActions(GameObject player)
     {
         Debug.Log("unfreezing");
-        if (player.GetComponent<Grapple2>() != null)
+        if (player.GetComponent<Grapple3>() != null)
         {
-            player.GetComponent<Grapple2>().enabled = true;
+            player.GetComponent<Grapple3>().enabled = true;
         }
         if (player.GetComponent<PickUpScript>() != null)
         {
