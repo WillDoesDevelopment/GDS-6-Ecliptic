@@ -190,6 +190,7 @@ public class Grapple3 : MonoBehaviour
                 retract = false;
                 casting = false;
                 castComplete = false;
+                t = 0;
                 castLength = 0;
                 head.SetActive(false);
                 body.SetActive(false);
@@ -211,10 +212,11 @@ public class Grapple3 : MonoBehaviour
 
 
 
-        //column interaction
+        
 
         if (target != null)
-        {                      
+        {
+            //column interaction
             if (target.GetComponent<columnScript>() != null)
             {
                 //Debug.Log("almost");
@@ -226,7 +228,8 @@ public class Grapple3 : MonoBehaviour
                 }
             }
 
-            if (t > 1.2f)                                                                        // Break if stretched
+            // Break if stretched
+            if (t > 1.2f)                                                                        
             {
                 RopeBreak();
             }
