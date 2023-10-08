@@ -10,9 +10,12 @@ public class arrowScript : MonoBehaviour
     public GameObject burstPrefab;
 
     public RoomManager RM;
+
+    //public AudioSource ArrowSnd;
     // Start is called before the first frame update
     void Start()
     {
+        //ArrowSnd.Play();
         RM = FindObjectOfType<RoomManager>();
     }
 

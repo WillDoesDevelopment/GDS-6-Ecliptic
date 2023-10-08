@@ -14,6 +14,8 @@ public class arrowSpawn : MonoBehaviour
     float sTime;
     public float destroyTime = 10;
 
+    public AudioSource ArrowSound;
+
 
 
     // Start is called before the first frame update
@@ -29,6 +31,7 @@ public class arrowSpawn : MonoBehaviour
 
         if(sTime < 0)
         {
+            //ArrowSound.Play();
             var newObject = Instantiate(Prefab);                                                    //Create Arrow
             newObject.transform.position = transform.position + spawnOffset;                        //Location
             //newObject.transform.localScale = Vector3.one * 0.4f * Random.Range(0.8f, 1.2f);       //Scale
