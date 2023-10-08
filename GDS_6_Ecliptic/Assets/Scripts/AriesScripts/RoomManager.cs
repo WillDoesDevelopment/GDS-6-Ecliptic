@@ -20,6 +20,11 @@ public class RoomManager : MonoBehaviour
     private Quaternion GoldRamStartRot;
 
     public GameObject ExitDoor;
+
+    public AudioSource GoldenRamSnd;
+    public AudioSource NormalRamSnd;
+    public AudioSource deadRamSnd;
+    
     void Start()
     {
         PlayerStartPos = Player.transform.position;
@@ -47,6 +52,7 @@ public class RoomManager : MonoBehaviour
         }
         if(NormalSheep.gameObject.activeInHierarchy)
         {
+            
             if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
             {
                 NormalSheep.transform.parent.GetComponent<Animator>().SetTrigger("Animate");
@@ -71,6 +77,7 @@ public class RoomManager : MonoBehaviour
 
     public void Reset()
     {
+        //deadRamSnd.Play();
         Player.transform.position = PlayerStartPos;
         GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, GoldRamStartRot);
         Destroy(GoldSheep.transform.parent.gameObject);        
