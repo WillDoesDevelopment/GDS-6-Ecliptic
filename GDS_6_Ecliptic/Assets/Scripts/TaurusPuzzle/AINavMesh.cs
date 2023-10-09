@@ -19,6 +19,8 @@ public class AINavMesh : MonoBehaviour
 
     public TaurusManager TM;
 
+    public GameObject[] bullSnds;
+    private bool CoolDownBool = false;
     private void Awake()
     {
         foreach (Transform t in positions)
@@ -29,6 +31,7 @@ public class AINavMesh : MonoBehaviour
     }
     void Update()
     {
+        playSnd();
         CollisionCheck();
         //if(StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished && NavMeshPause == false)
         if(DialogueManager.InDialogue == false && NavMeshPause == false)
@@ -80,6 +83,28 @@ public class AINavMesh : MonoBehaviour
             {
                 TM.Resetting();
             }
+        }
+    }
+
+    public void playSnd()
+    {
+        if(Vector3.Distance(Player.transform.position, this.transform.position) < 5)
+        {
+            if(CoolDownBool == false)
+            {
+                CoolDownBool = true;
+                bullSnds[Random.Range(0,bullSnds.Length)].SetActive(true);
+                StartCoroutine(CoolDown());
+            }
+        }
+    }
+    public IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(10);
+        CoolDownBool = false;
+        foreach(GameObject g in bullSnds)
+        {
+            g.SetActive(false);
         }
     }
 
