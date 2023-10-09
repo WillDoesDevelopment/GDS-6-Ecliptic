@@ -21,10 +21,12 @@ public class RoomManager : MonoBehaviour
 
     public GameObject ExitDoor;
 
-    public AudioSource GoldenRamSnd;
-    public AudioSource NormalRamSnd;
-    public AudioSource deadRamSnd;
-    
+    // best way to play sounds on update is to toggle an active game object they belong to
+    public GameObject GoldenRamSnd;
+    public GameObject NormalRamSnd;
+    public GameObject deadRamSnd;
+
+    private bool isPlayed;
     void Start()
     {
         PlayerStartPos = Player.transform.position;
@@ -38,12 +40,22 @@ public class RoomManager : MonoBehaviour
     {
         //Debug.Log("TestDT" + TestDt);
         //Debug.Log(Aries.GetComponent<DialogueTrigger>());
+        if (DialogueStartedCheck(GoldSheep.GetComponent<DialogueTrigger>()))
+        {
+            PlaySnd(GoldenRamSnd);
+        }
+        if (DialogueStartedCheck(NormalSheep.GetComponent<DialogueTrigger>()))
+        {
+            PlaySnd(NormalRamSnd);
+        }
+
         if (DialogueEndcheck(Aries.GetComponent<DialogueTrigger>()))
         {
             ExitDoor.GetComponent<DoorScript>().DS.IsOpen = true;
             
             
         }
+        
         if (DialogueEndcheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
             VFXCH.circleVFXStart();
@@ -74,10 +86,22 @@ public class RoomManager : MonoBehaviour
             return false;
         }
     }
+    public bool DialogueStartedCheck(DialogueTrigger DialogueObj)
+    {
+
+        if (DialogueObj.dialogue.DialogueMode == Dialogue.DialogueState.InProgress)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     public void Reset()
     {
-        //deadRamSnd.Play();
+        PlaySnd(deadRamSnd);
         Player.transform.position = PlayerStartPos;
         GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, GoldRamStartRot);
         Destroy(GoldSheep.transform.parent.gameObject);        
@@ -88,8 +112,20 @@ public class RoomManager : MonoBehaviour
 
         Temp.GetComponent<Animator>().SetBool("Animate", false);        
         Temp.transform.Find("DialogueTriggerPrefab").gameObject.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+
+        deadRamSnd.SetActive(false);
+        NormalRamSnd.SetActive(false);
+        GoldenRamSnd.SetActive(false);
     }
 
+    public void PlaySnd(GameObject AS)
+    {
+        //GameObject Temp = Instantiate(AS, GameObject.Find("AudioObjs").transform.position,Quaternion.identity);
+
+
+        AS.SetActive(true);
+
+    }
 
 
 }

@@ -107,7 +107,7 @@ public class HubManager : MonoBehaviour
     //in realiity this functionality doesnt belong in the Hub manager but it is convinient to put it here
     public static void freezePlayerActions(GameObject player)
     {
-        Debug.Log("freezing");
+        //Debug.Log("freezing");
         if (player.GetComponent<Grapple3>() != null)
         {
             player.GetComponent<Grapple3>().enabled = false;
