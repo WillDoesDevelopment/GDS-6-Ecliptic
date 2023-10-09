@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grapple3 : MonoBehaviour
 {
-
+    public GameObject startPoint;
     public GameObject target;
     //public GameObject rope;
     public GameObject scope;
@@ -116,7 +116,7 @@ public class Grapple3 : MonoBehaviour
         }
 
         //Casting
-        playerPoint = transform;
+        playerPoint = startPoint.transform;
         grapplePoint = pointObject.transform.position;
         length = Vector3.Distance(playerPoint.position, grapplePoint);
 
