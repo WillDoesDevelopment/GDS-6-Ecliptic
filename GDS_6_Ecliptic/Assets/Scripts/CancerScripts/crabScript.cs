@@ -20,6 +20,7 @@ public class crabScript : MonoBehaviour
     public GameObject crabDT;
     public GameObject EndDT;
 
+    public GameObject AngrySnds;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +53,10 @@ public class crabScript : MonoBehaviour
                 }
             }
         }
-
+        if(EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.InProgress)
+        {
+            AngrySnds.SetActive(true);
+        }
         if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             // if the end dialogue is done, open the door

@@ -68,6 +68,7 @@ public class arrowScript : MonoBehaviour
                     dt.OnEventCheck();
                     dt.OnEvent = false;
                 }
+                RM.PlaySnd(RM.deadRamSnd);
                 //Destroy(Temp);
             }
 
