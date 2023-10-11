@@ -21,6 +21,8 @@ public class PickUpScript : MonoBehaviour
     public bool Raycasting  = false;
     public bool ProximityPickUp = false;
 
+    public AudioSource PickUpSnd;
+
     public Collider[] ObjColliders;
     //private  Collider[] ObjColliders;
     void Start()
@@ -81,6 +83,7 @@ public class PickUpScript : MonoBehaviour
             Debug.Log(HoldingObj);
             if (nearestPickUp() != null && nearestPickUp().CompareTag("PickUp") && holding == false)
             {
+                PickUpSnd.Play();
                 Debug.Log("running");
                 HoldingObj = nearestPickUp();
                 PickUp(nearestPickUp());
