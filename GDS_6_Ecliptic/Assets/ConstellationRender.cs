@@ -12,6 +12,21 @@ public class ConstellationRender : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
+        line = GetComponent<LineRenderer>();
+        pointsCount = line.positionCount;
+        linePoints = new Vector3[pointsCount];
+        for (int i = 0; i < pointsCount; i++)
+        {
+            linePoints[i] = line.GetPosition(i);
+        }
+
+        StartCoroutine(AnimateConst());
+        */
+    }
+
+    void OnEnable()
+    {
         line = GetComponent<LineRenderer>();
         pointsCount = line.positionCount;
         linePoints = new Vector3[pointsCount];

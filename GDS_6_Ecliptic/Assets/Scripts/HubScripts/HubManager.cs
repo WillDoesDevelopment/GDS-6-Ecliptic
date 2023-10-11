@@ -113,10 +113,10 @@ public class HubManager : MonoBehaviour
             player.GetComponent<Grapple3>().enabled = false;
             //player.GetComponent<Grapple3>().rope.SetActive(false);
         }
-        if (player.GetComponent<PickUpScript>() != null)
+/*        if (player.GetComponent<PickUpScript>() != null)
         {
             player.GetComponent<PickUpScript>().enabled = false;
-        }
+        }*/
     }
 
     public static void UnfreezePlayerActions(GameObject player)

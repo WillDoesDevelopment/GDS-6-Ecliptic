@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     
     void Footstep()
     {
-        Debug.Log("Step");
+        //Debug.Log("Step");
         canStep = false;
         if(audioSource != null && stepArray != null)
         {
