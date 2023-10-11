@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ConstellationRender : MonoBehaviour
 {
-    public LineRenderer line;
+    private LineRenderer line;
     public float animSpeed = 5f;
-    public Vector3[] linePoints;
-    public int pointsCount;
+    private Vector3[] linePoints;
+    private int pointsCount;
 
     // Start is called before the first frame update
     void Start()
@@ -20,15 +20,15 @@ public class ConstellationRender : MonoBehaviour
             linePoints[i] = line.GetPosition(i);
         }
 
-        AriesConst();
+        Const();
     }
 
-    public void AriesConst()
+    public void Const()
     {
-        StartCoroutine(Aries());
+        StartCoroutine(AnimateConst());
     }
 
-    IEnumerator Aries()
+    IEnumerator AnimateConst()
     {
         float segDuration = animSpeed / pointsCount;
         for(int i = 0; i < pointsCount - 1; i++)
