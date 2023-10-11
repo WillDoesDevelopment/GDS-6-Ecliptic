@@ -4,15 +4,41 @@ using UnityEngine;
 
 public class ConstTrig : MonoBehaviour
 {
+
+    public GameObject[] constellations;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Aries()
     {
-        
+        constellations[0].SetActive(true);
+    }
+
+    public void Taurus()
+    {
+        constellations[1].SetActive(true);
+
+    }
+
+    public void Cancer()
+    {
+        constellations[2].SetActive(true);
+
+    }
+
+    public void Scorpio()
+    {
+        constellations[3].SetActive(true);
+
+    }
+
+    public void Virgo()
+    {
+        constellations[4].SetActive(true);
+
     }
 }
