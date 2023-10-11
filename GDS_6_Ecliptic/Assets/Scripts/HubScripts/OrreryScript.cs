@@ -98,7 +98,7 @@ public class OrreryScript : MonoBehaviour
               
                     if(OrreryArms[i].transform.eulerAngles.y > 80f - (12f-i) && OrreryArms[i].transform.eulerAngles.y < 100f + (12f-i))
                     {
-                        OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0);
+                        OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0) * Time.deltaTime;
                     }                    
                 }
             }
@@ -109,7 +109,7 @@ public class OrreryScript : MonoBehaviour
             {
                 if (i != HubManager.LevelNumber)        //Other doors keep rotating
                 {
-                    OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i], 0);
+                    OrreryArms[i].transform.eulerAngles += new Vector3(0, RandomRotations[i] * Time.deltaTime, 0);
                 }
                 else
                 {
