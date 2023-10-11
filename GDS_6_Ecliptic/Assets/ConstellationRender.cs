@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ConstellationRender : MonoBehaviour
 {
-    private LineRenderer line;
+   public LineRenderer line;
     public float animSpeed = 5f;
-    private Vector3[] linePoints;
-    private int pointsCount;
+    public Vector3[] linePoints;
+    public int pointsCount;
 
     // Start is called before the first frame update
     void Start()
@@ -20,15 +20,10 @@ public class ConstellationRender : MonoBehaviour
             linePoints[i] = line.GetPosition(i);
         }
 
-        Const();
-    }
-
-    public void Const()
-    {
         StartCoroutine(AnimateConst());
     }
 
-    IEnumerator AnimateConst()
+    public IEnumerator AnimateConst()
     {
         float segDuration = animSpeed / pointsCount;
         for(int i = 0; i < pointsCount - 1; i++)
