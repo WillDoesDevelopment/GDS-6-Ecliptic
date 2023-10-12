@@ -19,6 +19,7 @@ public class OrreryScript : MonoBehaviour
     float startY;
 
     public GameObject[] discs;
+    public GameObject[] constellations;
 
     public bool startMode = false;
 
@@ -69,6 +70,7 @@ public class OrreryScript : MonoBehaviour
             discs[i].SetActive(true);
         }
     }
+
     public void AmbientSpin()
     {
 
@@ -81,6 +83,7 @@ public class OrreryScript : MonoBehaviour
     public void SpinToPosition()
     {
         discs[HubManager.LevelNumber].SetActive(true);
+        constellations[HubManager.LevelNumber].SetActive(true);
         if (t>1f)
         {
             
