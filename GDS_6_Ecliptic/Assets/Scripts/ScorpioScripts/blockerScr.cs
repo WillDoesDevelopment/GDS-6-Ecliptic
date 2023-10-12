@@ -45,6 +45,10 @@ public class blockerScr : MonoBehaviour
                 //Turn Left
                 angle -= Time.deltaTime * radialSpeed;
             }
+            else if(playerAngle < 1.0F && playerAngle > -1.0F)
+            {
+                angle += Time.deltaTime * radialSpeed * playerAngle;
+            }
         }
 
 

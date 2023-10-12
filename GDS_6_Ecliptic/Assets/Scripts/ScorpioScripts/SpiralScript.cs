@@ -36,6 +36,11 @@ public class SpiralScript : MonoBehaviour
                 //Turn Left
                 animPercent -= Time.deltaTime * speed;
             }
+            else if (playerAngle < 1.0F && playerAngle > -1.0F)
+            {
+                //Turn slowly
+                animPercent += Time.deltaTime * speed * playerAngle;
+            }
         }
         animPercent = Mathf.Clamp(animPercent, 0, 0.98f);       
         
