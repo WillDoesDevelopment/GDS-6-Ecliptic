@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class PauseScript : MonoBehaviour
 {
-    public static bool Controller = true;
+    //public static bool Controller = true;
     public static bool Paused = false;
 
     public EventSystem eventSystem;
@@ -19,10 +19,13 @@ public class PauseScript : MonoBehaviour
     public AudioSource PressedSnd;
 
     private GameObject curentlySelected;
+
+    public GameObject[] controlsCanvas;
     // Start is called before the first frame update
     void Start()
     {
         eventSystem = EventSystem.current;
+        ControllerOrNot();
     }
 
     // Update is called once per frame
@@ -68,6 +71,7 @@ public class PauseScript : MonoBehaviour
     public void Pause()
     {
         PauseSnd.Play();
+        ControllerOrNot();
         PauseUI.SetActive(true);
         Time.timeScale = 0f;
         Paused = true;
@@ -94,14 +98,18 @@ public class PauseScript : MonoBehaviour
 
     public void ControllerOrNot()
     {
-        var controllers = Input.GetJoystickNames();
-        if (controllers.Length == 0)
+        Input.GetJoystickNames();
+        if (Input.GetJoystickNames().Length == 0)
         {
-            PauseScript.Controller = false;
+            print("Keyboard");
+            controlsCanvas[0].SetActive(false);
+            controlsCanvas[1].SetActive(true);
         }
         else
         {
-            PauseScript.Controller = true;
+            print("Controller");
+            controlsCanvas[0].SetActive(true);
+            controlsCanvas[1].SetActive(false);
         }
     }
 }

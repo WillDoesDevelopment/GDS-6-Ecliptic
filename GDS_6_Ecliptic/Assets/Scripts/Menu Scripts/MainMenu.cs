@@ -105,13 +105,13 @@ public class MainMenu : MonoBehaviour
         Input.GetJoystickNames();
         if (Input.GetJoystickNames().Length == 0)
         {
-            print("Keyboard");
+            //print("Keyboard");
             controllerCanvas[0].SetActive(false);
             controllerCanvas[1].SetActive(true);
         }
         else
         {
-            print("Controller");
+            //print("Controller");
             controllerCanvas[0].SetActive(true);
             controllerCanvas[1].SetActive(false);
         }
