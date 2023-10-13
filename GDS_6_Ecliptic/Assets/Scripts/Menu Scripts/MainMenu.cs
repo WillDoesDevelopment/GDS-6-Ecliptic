@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
@@ -9,13 +11,33 @@ public class MainMenu : MonoBehaviour
 
     public GameObject[] canvas;
 
+    public GameObject[] controllerCanvas;
+
     public Animator anim;
     public Animator anim2;
     public GameObject orb;
 
+    public EventSystem eventSystem;
+
+    public GameObject PauseUI;
+    public GameObject SettingsFirstSelect;
+    public GameObject PauseFirstSelect;
+
+    private void Awake()
+    {
+
+        controllerCheck();
+ 
+    }
+
     public void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        controllerCheck();
     }
 
     public void LoadGame()
@@ -63,5 +85,36 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(level);
     }
 
+    public void ChangeFirstSelected()
+    {
+        if (eventSystem.currentSelectedGameObject == SettingsFirstSelect)
+        {
+            Debug.Log("ChangeBack");
+            eventSystem.SetSelectedGameObject(PauseFirstSelect);
+
+        }
+        else
+        {
+            Debug.Log("Change");
+            eventSystem.SetSelectedGameObject(SettingsFirstSelect);
+        }
+    }
+
+    public void controllerCheck()
+    {
+        Input.GetJoystickNames();
+        if (Input.GetJoystickNames().Length == 0)
+        {
+            print("Keyboard");
+            controllerCanvas[0].SetActive(false);
+            controllerCanvas[1].SetActive(true);
+        }
+        else
+        {
+            print("Controller");
+            controllerCanvas[0].SetActive(true);
+            controllerCanvas[1].SetActive(false);
+        }
+    }
 
 }
