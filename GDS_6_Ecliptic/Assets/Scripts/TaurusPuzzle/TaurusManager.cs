@@ -113,10 +113,12 @@ public class TaurusManager : MonoBehaviour
 
         if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.transform.position, HO.transform.position) < 3)
         {
+            HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+            HO.transform.DetachChildren();
             CollectedItems += 1;
             Player.GetComponent<PickUpScript>().holding = false;
             //HO.gameObject.SetActive(false);
-            Destroy(HO);
+            HO.SetActive(false);
         }
 
     }
