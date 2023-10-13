@@ -61,13 +61,10 @@ public class arrowScript : MonoBehaviour
                 
                 Temp.SetActive(false);
 
-                DialogueTrigger[] DT = Temp.transform.parent.GetComponents<DialogueTrigger>();
-                
-                foreach(DialogueTrigger dt in DT)
-                {
-                    dt.OnEventCheck();
-                    dt.OnEvent = false;
-                }
+                Temp.GetComponent<DialogueTrigger>().OnEventCheck();
+                Temp.GetComponent<DialogueTrigger>().OnEvent = false;
+
+
                 RM.PlaySnd(RM.deadRamSnd);
                 //Destroy(Temp);
             }
