@@ -36,7 +36,7 @@ public class AINavMesh : MonoBehaviour
         //if(StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished && NavMeshPause == false)
         if(DialogueManager.InDialogue == false && NavMeshPause == false)
         {
-
+            this.GetComponentInChildren<Animator>().speed = 1;
             GetComponent<Renderer>().material.color = Color.red;
             CurrentNavPos = positionQueue.Peek().position;
             if(Proximity(Player.transform.position, visionDist))
@@ -54,7 +54,9 @@ public class AINavMesh : MonoBehaviour
         }
         else
         {
-            
+            // the bull does not move
+
+            this.GetComponentInChildren<Animator>().speed = 0;
             NMA.SetDestination(this.transform.position);
         }
     }
