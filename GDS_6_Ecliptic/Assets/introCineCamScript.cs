@@ -15,6 +15,7 @@ public class introCineCamScript : MonoBehaviour
     public Material[] glowAmt;
     public float amtStart = 1;
     public AudioSource snd;
+    public AudioSource snd2;
 
     public OrreryScript orreryScript;
 
@@ -22,6 +23,9 @@ public class introCineCamScript : MonoBehaviour
     private float change = 0.01f;
 
     private bool StartSpin = false;
+
+    public GameObject[] Doors;
+    public Material[] doorMats;
     void Start()
     {
         glowAmt[0].GetFloat("_Glow_Amount");
@@ -47,9 +51,10 @@ public class introCineCamScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         anim2.SetTrigger("FadeIn");
+        plyer.SetActive(true);
         yield return new WaitForSeconds(6f);
         anim.SetTrigger("Pan");
-        plyer.SetActive(true);
+        
         star.SetActive(false);
 
         StartCoroutine(outro());
@@ -58,7 +63,11 @@ public class introCineCamScript : MonoBehaviour
     IEnumerator outro()
     {
         //OPHIE DISCOVERS HE HAS HANDS
+        yield return new WaitForSeconds(6f);
+        snd2.Play();
+        
         yield return new WaitForSeconds(7f);
+        DoorsOn();
         snd.Play(); // INTRO OBSERVATORY SND PLAYS HERE
         anim.SetTrigger("End"); // STOP THAT! ZOOM CAMERA OUT
         //yield return new WaitForSeconds(f);
@@ -78,6 +87,18 @@ public class introCineCamScript : MonoBehaviour
             glowAmt[1].SetFloat("_Glow_Amount", shaderValue);
 
 
+    }
+
+    public void DoorsOn()
+    {
+        Doors[0].GetComponent<MeshRenderer>().material = doorMats[0];
+        Doors[1].GetComponent<MeshRenderer>().material = doorMats[1];
+        Doors[2].GetComponent<MeshRenderer>().material = doorMats[2];
+        Doors[3].GetComponent<MeshRenderer>().material = doorMats[3];
+        Doors[4].GetComponent<MeshRenderer>().material = doorMats[4];
+
+        doorMats[5].EnableKeyword("_EMISSION");
+        doorMats[6].EnableKeyword("_EMISSION");
     }
 
 }
