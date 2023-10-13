@@ -23,6 +23,8 @@ public class MainMenu : MonoBehaviour
     public GameObject SettingsFirstSelect;
     public GameObject PauseFirstSelect;
 
+    private bool connected = false;
+
     private void Awake()
     {
 
@@ -101,20 +103,25 @@ public class MainMenu : MonoBehaviour
     }
 
     public void controllerCheck()
-    {
-        Input.GetJoystickNames();
-        if (Input.GetJoystickNames().Length == 0)
-        {
-            //print("Keyboard");
-            controllerCanvas[0].SetActive(false);
-            controllerCanvas[1].SetActive(true);
+    { 
+
+            var controllers = Input.GetJoystickNames();
+            if (connected && controllers.Length > 0)
+            {
+                connected = false;
+                
+                controllerCanvas[0].SetActive(true);
+                controllerCanvas[1].SetActive(false);
+            Debug.Log("Connected");
+
+            }
+            else if (!connected && controllers.Length == 0)
+            {
+                connected = true;
+                controllerCanvas[0].SetActive(false);
+                controllerCanvas[1].SetActive(true);
+                Debug.Log("Disconnected");
+            }
         }
-        else
-        {
-            //print("Controller");
-            controllerCanvas[0].SetActive(true);
-            controllerCanvas[1].SetActive(false);
-        }
-    }
 
 }
