@@ -22,6 +22,7 @@ public class Artifact : MonoBehaviour
 
     public void ResetArtifact()
     {
+        Debug.Log("Working");
         player.GetComponent<PickUpScript>().PutDown(this.gameObject);
         player.GetComponent<PickUpScript>().HoldingObj = player.GetComponent<PickUpScript>().PickUpPos.gameObject;
         this.transform.position = startPos;

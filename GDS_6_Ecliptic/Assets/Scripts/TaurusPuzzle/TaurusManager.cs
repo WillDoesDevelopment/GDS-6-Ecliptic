@@ -30,6 +30,9 @@ public class TaurusManager : MonoBehaviour
     public GameObject particleObject;
     public GameObject beamObject;
 
+    public GameObject WinConditionSND;
+    public GameObject GoodJobSND;
+
     void Start()
     {
         PlayerStartPos = Player.transform.position;
@@ -67,6 +70,7 @@ public class TaurusManager : MonoBehaviour
         //DialogueTrigger dtEvent = null;
         if (CollectedItems == 4)
         {
+            WinConditionSND.SetActive(true);
             ANM.NMA.SetDestination(ANM.transform.position);
 
             DoorDialogue.gameObject.SetActive(false);
@@ -116,6 +120,10 @@ public class TaurusManager : MonoBehaviour
             HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             HO.transform.DetachChildren();
             CollectedItems += 1;
+            if(CollectedItems <=3)
+            {
+                GoodJobSND.GetComponent<AudioSource>().Play();
+            }
             Player.GetComponent<PickUpScript>().holding = false;
             //HO.gameObject.SetActive(false);
             HO.SetActive(false);
