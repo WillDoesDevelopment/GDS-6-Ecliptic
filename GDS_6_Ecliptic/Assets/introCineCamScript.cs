@@ -51,11 +51,13 @@ public class introCineCamScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         anim2.SetTrigger("FadeIn");
+        yield return new WaitForSeconds(4f);
         plyer.SetActive(true);
-        yield return new WaitForSeconds(6f);
+        star.SetActive(false);
+        //yield return new WaitForSeconds(2f);
         anim.SetTrigger("Pan");
         
-        star.SetActive(false);
+        
 
         StartCoroutine(outro());
     }
