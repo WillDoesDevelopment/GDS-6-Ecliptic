@@ -34,7 +34,7 @@ public class crabScript : MonoBehaviour
     {
 
         //Collision    
-        Collider[] hitColliders1 = Physics.OverlapBox(transform.position + transform.up * 2f, new Vector3(1.25f, 1.0f, 1.25f)); //Hitbox for player
+        Collider[] hitColliders1 = Physics.OverlapBox(transform.position + colliderOffset, colliderScale / 2f); //Hitbox for player
         foreach (var hitCollider in hitColliders1)
         {
             if (hitCollider.gameObject == player)                                           
