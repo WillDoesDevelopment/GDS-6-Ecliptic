@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StairMovment : MonoBehaviour
+public class StairBottom : MonoBehaviour
 {
 
-    //Only works on the z axis. Restrict other movment in the rigidbody. Sorry - Gyles
+    //Only works on the x axis. Restrict other movment in the rigidbody. Sorry - Gyles
 
-    public float zPosLock;
+    public float xPosLock;
     bool stairLock = false;
 
     public GameObject[] objectIgnoreArray;
@@ -23,9 +23,9 @@ public class StairMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.z < zPosLock && !stairLock)
+        if(transform.position.x > xPosLock && !stairLock)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zPosLock);
+            transform.position = new Vector3(xPosLock, transform.position.y, transform.position.z);
             int LayerDefault = LayerMask.NameToLayer("Default");
             gameObject.layer = LayerDefault;
             gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -36,7 +36,7 @@ public class StairMovment : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - 5f, zPosLock), new Vector3(transform.position.x, transform.position.y + 5f, zPosLock));
+        Gizmos.DrawLine(new Vector3(xPosLock, transform.position.y - 5f, transform.position.z), new Vector3(xPosLock, transform.position.y + 5f, transform.position.z));
 
     }
 }
