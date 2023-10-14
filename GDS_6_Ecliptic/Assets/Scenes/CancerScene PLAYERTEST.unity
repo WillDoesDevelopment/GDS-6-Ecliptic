@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 910931263}
-  m_IndirectSpecularColor: {r: 0.0011699956, g: 0.0020259412, b: 0.022089006, a: 1}
+  m_IndirectSpecularColor: {r: 0.007378649, g: 0.015634293, b: 0.17756695, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5498,6 +5498,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2795425368024822375, guid: c5ff35ca83bda8442ad5912da16e9bc2, type: 3}
   m_PrefabInstance: {fileID: 993258086}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &997199878 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5742242952761254330, guid: 33ea9ce4fe4405543bf5187ea569eb87, type: 3}
+  m_PrefabInstance: {fileID: 1218688108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1002161622
 GameObject:
   m_ObjectHideFlags: 0
@@ -9980,6 +9985,7 @@ GameObject:
   - component: {fileID: 1832729168}
   - component: {fileID: 1832729167}
   - component: {fileID: 1832729166}
+  - component: {fileID: 1832729171}
   m_Layer: 10
   m_Name: StairsCollide
   m_TagString: Untagged
@@ -10043,7 +10049,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 118
   m_CollisionDetection: 0
 --- !u!64 &1832729168
 MeshCollider:
@@ -10074,15 +10080,32 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832729165}
-  m_LocalRotation: {x: -0, y: 0.67817783, z: -0, w: 0.7348979}
-  m_LocalPosition: {x: -15.85, y: 2.5, z: 4.32}
-  m_LocalScale: {x: 4.819038, y: 4.819038, z: 6.023798}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.95, y: 2.317, z: 9.46}
+  m_LocalScale: {x: 4.819038, y: 4.819038, z: 4.5309205}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4693554536237487570}
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 85.403, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1832729171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832729165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3cd112ac682b249ad5011f85e9ac25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zPosLock: 5.8
+  objectIgnoreArray:
+  - {fileID: 5260732589239292371}
+  - {fileID: 997199878}
+  - {fileID: 8880317834057916601}
 --- !u!1001 &1869506557
 PrefabInstance:
   m_ObjectHideFlags: 0
