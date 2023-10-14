@@ -22,6 +22,8 @@ public class Grapple3 : MonoBehaviour
     bool castComplete = false;
     bool retract = false;
     public LayerMask grappleLayer;
+    public AudioClip[] grappleSnd;
+    public AudioSource source;
 
     Transform playerPoint;
     Vector3 grapplePoint;
@@ -49,14 +51,14 @@ public class Grapple3 : MonoBehaviour
             if (Input.GetMouseButton(0) ^ Input.GetKey(KeyCode.JoystickButton1) ^ Input.GetKey(KeyCode.Return))    //Draw indicator
             {
                 scope.SetActive(true);
-                scope.transform.position = transform.position;                
+                scope.transform.position = transform.position;
                 scope.transform.rotation = transform.rotation;
 
                 scopeTimer += Time.deltaTime;
 
                 for (int i = 0; i < scope.transform.childCount; i++)                                                //Display arrows sequentially
-                {                    
-                    scope.transform.GetChild(i).gameObject.SetActive(scopeTimer * 20f > i);                    
+                {
+                    scope.transform.GetChild(i).gameObject.SetActive(scopeTimer * 20f > i);
                 }
 
             }
@@ -68,7 +70,7 @@ public class Grapple3 : MonoBehaviour
 
 
             if (Input.GetMouseButtonUp(0) ^ Input.GetKeyUp(KeyCode.JoystickButton1) ^ Input.GetKeyUp(KeyCode.Return))  //Cast on release
-            {                
+            {
                 casting = true;
                 head.SetActive(true);
                 body.SetActive(true);
@@ -77,7 +79,7 @@ public class Grapple3 : MonoBehaviour
                 //Debug.DrawLine(rayPos, rayPos + transform.forward * maxLength, Color.blue, 0.5f);                   //Draw debug line for cast
 
                 if (Physics.Raycast(new Ray(rayPos, transform.forward), out hit, maxLength))                        //Raycast forward
-                {                    
+                {
                     if (grappleLayer == (grappleLayer | (1 << hit.transform.gameObject.layer)))
                     {
                         //Succesfully hit grappleable object
@@ -88,15 +90,15 @@ public class Grapple3 : MonoBehaviour
                         pointObject.transform.position = hit.point;
                         pointObject.transform.parent = target.transform;
                         //rope.SetActive(true);
-                        
+
                     }
                     else
                     {
                         //Hit other object
                         Debug.Log("other object hit");
                         pointObject.transform.position = hit.point;
-                    }    
-                    
+                    }
+
                 }
                 else
                 {
@@ -111,7 +113,8 @@ public class Grapple3 : MonoBehaviour
 
         //Release
         if (Input.GetMouseButtonDown(1) ^ Input.GetKeyDown(KeyCode.JoystickButton0) ^ Input.GetKeyDown(KeyCode.RightShift))
-        {
+        { 
+            
             RopeBreak();
         }
 
@@ -121,8 +124,7 @@ public class Grapple3 : MonoBehaviour
         length = Vector3.Distance(playerPoint.position, grapplePoint);
 
         if (casting == true)
-        {            
-            
+        {
 
             if (castComplete == false)
             {
@@ -138,6 +140,8 @@ public class Grapple3 : MonoBehaviour
 
                 if (castLength > length)
                 {
+                    source.clip = grappleSnd[0];
+                    source.Play();
                     castLength = length;
                     castComplete = true;                    
                 }
@@ -247,7 +251,9 @@ public class Grapple3 : MonoBehaviour
     }
 
     public void RopeBreak()
-    {        
+    {
+        source.clip = grappleSnd[1];
+        source.Play();
         castComplete = false;
         casting = false;
         retract = true;             //Start retracting

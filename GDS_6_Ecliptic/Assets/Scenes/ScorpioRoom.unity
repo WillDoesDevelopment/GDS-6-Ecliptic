@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1458637538}
-  m_IndirectSpecularColor: {r: 0.0051753623, g: 0.011376157, b: 0.12923062, a: 1}
+  m_IndirectSpecularColor: {r: 0.0007394567, g: 0.0009936667, b: 0.010627129, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3377,9 +3377,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1449026852}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: stepVolume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1323582888}
+    - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: stepPitchVariance
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: stepArray.Array.size
       value: 7
@@ -3387,31 +3395,31 @@ PrefabInstance:
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: stepArray.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: c36fccd2e4531a34c8baa5ab3e6157e8, type: 3}
+      objectReference: {fileID: 8300000, guid: 593d1268fb739a340a2550e4aa0d9433, type: 3}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: stepArray.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 131c883e39c768f4dab01067596913f0, type: 3}
+      objectReference: {fileID: 8300000, guid: e5c6303a08c0429408a3635563f7f7e6, type: 3}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: stepArray.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: aeb84f584cddbe44e935e232d4bd153d, type: 3}
+      objectReference: {fileID: 8300000, guid: 23305b6e603e4264595ed1675180fb28, type: 3}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: stepArray.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: 414212bbb0497bb4a9f9d3d6885d90bd, type: 3}
+      objectReference: {fileID: 8300000, guid: 41a8213e006b65043a279158596985d8, type: 3}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: stepArray.Array.data[4]
       value: 
-      objectReference: {fileID: 8300000, guid: 5d1d6fe50aca6564eaded3ae0edf8b05, type: 3}
+      objectReference: {fileID: 8300000, guid: 0365dcef58301f444ab5ae13a3734f72, type: 3}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: stepArray.Array.data[5]
       value: 
-      objectReference: {fileID: 8300000, guid: 9b340b12a91fe9f46b26e9667acf6e50, type: 3}
+      objectReference: {fileID: 8300000, guid: 41a8213e006b65043a279158596985d8, type: 3}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: stepArray.Array.data[6]
       value: 
-      objectReference: {fileID: 8300000, guid: 34205aa32bc82544a8359a246f133865, type: 3}
+      objectReference: {fileID: 8300000, guid: 0365dcef58301f444ab5ae13a3734f72, type: 3}
     - target: {fileID: 8490829136179490732, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7546,7 +7554,107 @@ MonoBehaviour:
   grappleLayer:
     serializedVersion: 2
     m_Bits: 1024
+  grappleSnd:
+  - {fileID: 8300000, guid: 0af00c954e5d31149b671538fa0823d5, type: 3}
+  - {fileID: 8300000, guid: 675fb45d03c8bc447966a65ca56dd530, type: 3}
+  source: {fileID: 1323582897}
 --- !u!82 &1323582888
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675689302}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1323582897
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
