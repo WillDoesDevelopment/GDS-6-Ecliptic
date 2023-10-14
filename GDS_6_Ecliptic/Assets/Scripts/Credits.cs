@@ -1,25 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour
 {
 
     public GameObject credits;
+    public GameObject title;
+    public string level;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void creditsactive()
     {
-        
+        loadMenu();
+
     }
 
-    private void OnEnable()
+    IEnumerator loadMenu()
     {
+        Debug.Log("Credits");
+        yield return new WaitForSeconds(10f);
         credits.SetActive(true);
+        title.SetActive(false);
+        yield return new WaitForSeconds(90f);
+        SceneManager.LoadScene(level);
     }
 }
