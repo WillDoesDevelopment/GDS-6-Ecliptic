@@ -46,11 +46,6 @@ public class crabScript : MonoBehaviour
                     GetComponent<Animator>().SetTrigger("Animate");//squashes crab
                     VFXCH.circleVFXStart(); //dialouge circle stuff :)
                     EndDT.SetActive(true);// we want to activate the dialogue prefab
-
-
-
-                    /*EndDialogue.OnEventCheck();
-                    EndDialogue.OnEvent = false;*/
                     
 
                 }

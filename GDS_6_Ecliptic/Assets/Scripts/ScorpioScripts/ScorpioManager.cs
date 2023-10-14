@@ -7,6 +7,9 @@ public class ScorpioManager : MonoBehaviour
     // Start is called before the first frame update
     public DialogueTrigger EndDialogue;
     public DoorScript DS;
+
+    public GameObject WinConditionSND;
+    public GameObject SuccessSND;
     void Start()
     {
         
@@ -17,6 +20,7 @@ public class ScorpioManager : MonoBehaviour
     {
         if(EndDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
+            WinConditionSND.SetActive(true);
             DS.DS.IsOpen = true;
         }
     }
