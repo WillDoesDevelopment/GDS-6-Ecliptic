@@ -122,7 +122,7 @@ public class VFXCircleHandler : MonoBehaviour
         objs[0].SetActive(true);
         objs[1].SetActive(true);
         objs[2].SetActive(true);
-        //objs[3].SetActive(true);
+        objs[3].SetActive(true);
 
         //TRAIL ALPHA
         var main = trails[0].main;

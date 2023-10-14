@@ -30,6 +30,7 @@ public class RoomManager : MonoBehaviour
     private bool isPlayed;
     void Start()
     {
+        VFXCH.circleVFXStart();
         PlayerStartPos = Player.transform.position;
         GoldRamStartPos = GoldSheep.transform.parent.transform.position;
         GoldRamStartRot = GoldSheep.transform.parent.transform.rotation;

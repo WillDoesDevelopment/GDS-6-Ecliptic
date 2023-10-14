@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1458637538}
-  m_IndirectSpecularColor: {r: 0.0007394567, g: 0.0009936667, b: 0.010627129, a: 1}
+  m_IndirectSpecularColor: {r: 0.0011699956, g: 0.0020259412, b: 0.022089006, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -336,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &51706169
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2742,9 +2742,29 @@ PrefabInstance:
     - target: {fileID: 1914608262564897126, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
       propertyPath: objs.Array.data[3]
       value: 
+      objectReference: {fileID: 806034268}
+    - target: {fileID: 1914608262564897126, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
+      propertyPath: RemissCol.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914608262564897126, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
+      propertyPath: RemissCol.Array.data[1].a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1914608262564897126, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
       propertyPath: RstartCol.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914608262564897126, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
+      propertyPath: RstartCol.Array.data[1].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914608262564897126, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
+      propertyPath: TstartCol.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914608262564897126, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
+      propertyPath: TstartCol.Array.data[1].a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8240508295664542176, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
@@ -2757,7 +2777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8240508296199074704, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8240508296199074707, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2777,11 +2797,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8240508296729342891, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8240508297271703696, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
       propertyPath: m_Name
       value: CircleVFX_Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240508297271703696, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8240508297271703699, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
       propertyPath: m_RootOrder
@@ -2846,6 +2870,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8240508297271703699, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
   m_PrefabInstance: {fileID: 510065910}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &510065914 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1914608262564897126, guid: 8fe16fed2e81b5d4d8b2fdbc17b3adcd, type: 3}
+  m_PrefabInstance: {fileID: 510065910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a7f9b5811f3c0b44a6b9167f5b85598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &532190389
 GameObject:
   m_ObjectHideFlags: 0
@@ -4485,6 +4520,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788760861}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &806034268 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5203205849167279358, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
+  m_PrefabInstance: {fileID: 1807454690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &846895809
 GameObject:
   m_ObjectHideFlags: 0
@@ -9851,6 +9891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EndDialogue: {fileID: 1807454691}
   DS: {fileID: 221559887}
+  vfx: {fileID: 510065914}
   WinConditionSND: {fileID: 775251307}
   SuccessSND: {fileID: 370663738}
 --- !u!4 &1700282725
@@ -10506,6 +10547,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueTriggerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5203205849167279358, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5806861045126316915, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -10557,7 +10602,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4731691729103838188, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
   m_PrefabInstance: {fileID: 1807454690}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 806034268}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
