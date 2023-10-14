@@ -25,6 +25,7 @@ public class RoomManager : MonoBehaviour
     public GameObject GoldenRamSnd;
     public GameObject NormalRamSnd;
     public GameObject deadRamSnd;
+    public GameObject SuccessSND;
 
     private bool isPlayed;
     void Start()
@@ -52,8 +53,8 @@ public class RoomManager : MonoBehaviour
         if (DialogueEndcheck(Aries.GetComponent<DialogueTrigger>()))
         {
             ExitDoor.GetComponent<DoorScript>().DS.IsOpen = true;
-            
-            
+
+            SuccessSND.SetActive(true);
         }
         
         if (DialogueEndcheck(GoldSheep.GetComponent<DialogueTrigger>()))

@@ -34,12 +34,17 @@ public class MainMenu : MonoBehaviour
 
     public void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
     {
         controllerCheck();
+        Debug.Log(eventSystem.currentSelectedGameObject);
+        if (eventSystem.currentSelectedGameObject == null)
+        {
+            eventSystem.SetSelectedGameObject(PauseFirstSelect);
+        }
     }
 
     public void LoadGame()
