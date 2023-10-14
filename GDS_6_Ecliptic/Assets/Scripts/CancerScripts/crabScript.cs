@@ -21,6 +21,8 @@ public class crabScript : MonoBehaviour
     public GameObject EndDT;
 
     public GameObject AngrySnds;
+    public GameObject WinConditionSND;
+    public GameObject SuccessSND;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,7 @@ public class crabScript : MonoBehaviour
                 crabDT.SetActive(false); // if we dont talk to the crab before squishing it we want to deactivate the dialogue
                 if (player.GetComponent<PlayerController>().airTime > 0.5)
                 {
+                    SuccessSND.SetActive(true);
                     GetComponent<Animator>().SetTrigger("Animate");//squashes crab
                     VFXCH.circleVFXStart(); //dialouge circle stuff :)
                     EndDT.SetActive(true);// we want to activate the dialogue prefab
@@ -59,6 +62,7 @@ public class crabScript : MonoBehaviour
         }
         if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
+            WinConditionSND.SetActive(true);
             // if the end dialogue is done, open the door
             DS.DS.IsOpen = true;
 /*            HM.SendToHub();
