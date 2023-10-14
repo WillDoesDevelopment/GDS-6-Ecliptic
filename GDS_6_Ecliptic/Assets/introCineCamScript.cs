@@ -32,7 +32,8 @@ public class introCineCamScript : MonoBehaviour
         glowAmt[1].GetFloat("_Glow_Amount");
         StartCoroutine(panCam());
         amtStart = 2;
-
+        doorMats[5].DisableKeyword("_EMISSION");
+        doorMats[6].DisableKeyword("_EMISSION");
         InvokeRepeating("AmtGo", 0.01f, 0.15f);
     }
 
