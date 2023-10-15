@@ -26,7 +26,7 @@ public class OrreryScript : MonoBehaviour
     //public DialogueTrigger.DialogueState DialogueState = new DialogueTrigger.DialogueState();
     public DialogueTrigger DT;
     // Start is called before the first frame update
-    public Sprite[] FadeOutSprites;
+
     void Start()
     {
         BS.door = OrreryArms[HubManager.LevelNumber].transform.GetChild(0).gameObject;
@@ -168,8 +168,5 @@ public class OrreryScript : MonoBehaviour
         
     }
 
-    public void SetFadeOutImage()
-    {
 
-    }
 }
