@@ -216,11 +216,8 @@ public class DialogueManager : MonoBehaviour
                 {
                     sndIsPlaying = true;
                     StartCoroutine(typingSnd());
-
                 }
                 yield return new WaitForSeconds(.02f);
-                
-
             }
             
         }

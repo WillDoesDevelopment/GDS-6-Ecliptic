@@ -12,11 +12,16 @@ public class HubManager : MonoBehaviour
 
     public static int LevelNumber = 0;
     private GameObject player;
+    
+
+
+   
     // Start is called before the first frame update
     void Start()
     {
         //
         player = GameObject.Find("Player");
+        
     }
 
     // Update is called once per frame
@@ -131,4 +136,6 @@ public class HubManager : MonoBehaviour
             player.GetComponent<PickUpScript>().enabled = true;
         }
     }
+
+
 }

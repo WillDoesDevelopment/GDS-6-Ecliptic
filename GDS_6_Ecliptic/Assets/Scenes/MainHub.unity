@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 553995925}
-  m_IndirectSpecularColor: {r: 0.01988694, g: 0, b: 0.04301894, a: 1}
+  m_IndirectSpecularColor: {r: 0.020100903, g: 0, b: 0.043308925, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3788,6 +3788,7 @@ MonoBehaviour:
   - {fileID: 927284750}
   startMode: 0
   DT: {fileID: 8168402922491536517}
+  FadeOutSprites: []
 --- !u!114 &1049015579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11545,6 +11546,10 @@ PrefabInstance:
       value: hubManager
       objectReference: {fileID: 0}
     - target: {fileID: 627074259186305534, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: inHub
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 627074259186305534, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -11608,6 +11613,18 @@ PrefabInstance:
       propertyPath: doors.Array.data[12]
       value: 
       objectReference: {fileID: 1861938191}
+    - target: {fileID: 627074259186305534, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: FadeOutSprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 627074259186305534, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: FadeOutSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: afb86a02db27fa844b87171430c1c912, type: 3}
+    - target: {fileID: 627074259186305534, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: FadeOutSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8fc0eb69d16e3d44ca6c369d276cc3e8, type: 3}
     - target: {fileID: 627074259186305535, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -11664,6 +11681,42 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.6000061
       objectReference: {fileID: 0}
+    - target: {fileID: 4847832030693469551, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: inHub
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847832030693469551, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: FadeInImage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847832030693469551, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: FadeOutImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 6a1f784d5fa6d4a4d8f051852c28f191, type: 3}
+    - target: {fileID: 4847832030693469551, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: FadeOutSprites.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847832030693469551, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: FadeOutSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: afb86a02db27fa844b87171430c1c912, type: 3}
+    - target: {fileID: 4847832030693469551, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: FadeOutSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8fc0eb69d16e3d44ca6c369d276cc3e8, type: 3}
+    - target: {fileID: 4847832030693469551, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: FadeOutSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: f6b703dfb23111f4386ce4ed442a8920, type: 3}
+    - target: {fileID: 4847832030693469551, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: FadeOutSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 62335edf02c972c4d9aef32c4b9c8ccf, type: 3}
+    - target: {fileID: 4847832030693469551, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
+      propertyPath: FadeOutSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f6d87252796c9344a4b95c33bf0d0bb, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dec41b7f44b478e4ea5dc8c49ef3ada2, type: 3}
 --- !u!1 &762697221876436146
