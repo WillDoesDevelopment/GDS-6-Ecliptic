@@ -17,6 +17,7 @@ public class Dialogue: ScriptableObject
     { 
         public string sentence; 
         public DialogueType dialogueType;
+        public AudioClip AS;
         //public int OtherSpeaker;
     }
 

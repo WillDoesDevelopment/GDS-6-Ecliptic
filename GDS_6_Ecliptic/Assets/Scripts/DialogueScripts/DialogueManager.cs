@@ -42,6 +42,7 @@ public class DialogueManager : MonoBehaviour
     // two queues (first in first out) of sentences and types of sentences
     public Queue<string> Sentences;
     public Queue<Dialogue.DialogueType> SentenceType;
+    public Queue<AudioClip> CharacterSFX;
 
 
     // Start is called before the first frame update
@@ -50,12 +51,14 @@ public class DialogueManager : MonoBehaviour
 
 
     public AudioSource TextSnd;
+    public AudioSource CharacterSND;
     private bool sndIsPlaying = false;
     void Awake()
     {
         OtherDialogueBox.sprite = OtherDialogueBoxSprite;
         Sentences = new Queue<string>();
         SentenceType = new Queue<Dialogue.DialogueType>();
+        CharacterSFX = new Queue<AudioClip>();
         player = GameObject.Find("Player");
     }
 
@@ -119,12 +122,14 @@ public class DialogueManager : MonoBehaviour
         // if there was a previous dialogue we have to make sure the queues are empty before filling them
         Sentences.Clear();
         SentenceType.Clear();
+        CharacterSFX.Clear();
 
         foreach (Dialogue.DialogueLine info in dialogue.line)
         {
             // add the sentances in our dialogue package to the local sentance queue
             Sentences.Enqueue(info.sentence);
             SentenceType.Enqueue(info.dialogueType);
+            CharacterSFX.Enqueue(info.AS);
         }
 
 
@@ -146,7 +151,17 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
+        // here we check there is an audio component for this dialogue then we deque it, add it to the audiosource component and play it
+        if (CharacterSFX.Peek() != null)
+        {
+            CharacterSND.clip = CharacterSFX.Dequeue();
+            CharacterSND.Play();
 
+        }
+        else
+        {
+            CharacterSFX.Dequeue();
+        }
         // grab the dialogue type from the queue and check what it is, depending on this we will set the approptiate animations
         Dialogue.DialogueType TempType = SentenceType.Dequeue();
 
