@@ -20,27 +20,34 @@ public class GoldSheepScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var h = PlayerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        h = h - Mathf.Floor(h);
-        //Steps
-        if (h > 0.3f && h < 0.4f && canStep == true)
-        {
-            Footstep();
 
-        }
-        if (h > 0.6f && h < 0.7f)
+       if(transform.GetChild(0).GetComponent<Animator>().GetBool("Animate") == true)
         {
-            canStep = true;
-        }
-        if (h > 0.8f && h < 0.9f && canStep == true)
-        {
-            Footstep();
+            var h = PlayerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            h = h - Mathf.Floor(h);
+            //Steps
+            if (h > 0.3f && h < 0.4f && canStep == true)
+            {
+                Footstep();
 
+            }
+            if (h > 0.6f && h < 0.7f)
+            {
+                canStep = true;
+            }
+            if (h > 0.8f && h < 0.9f && canStep == true)
+            {
+                Footstep();
+
+            }
+            if (h > 0.9f || h < 0.2f)
+            {
+                canStep = true;
+            }
         }
-        if (h > 0.9f || h < 0.2f)
-        {
-            canStep = true;
-        }
+            
+        
+        
     }
 
     public void triggerAnim()
