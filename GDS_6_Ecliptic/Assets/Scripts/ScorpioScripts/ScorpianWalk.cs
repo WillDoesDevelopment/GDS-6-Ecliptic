@@ -11,7 +11,7 @@ public class ScorpianWalk : MonoBehaviour
     int i = 0;
 
     float timer = 1f;
-    bool pause = false;
+    bool pause = true;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class ScorpianWalk : MonoBehaviour
         timer -= Time.deltaTime;
         if(timer <0)
         {
-            timer += 0.5f;
+            timer += 0.2f;
 
             if (transform.position != pastPosition)
             {
