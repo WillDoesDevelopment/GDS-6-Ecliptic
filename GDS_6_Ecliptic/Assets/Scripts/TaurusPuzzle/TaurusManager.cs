@@ -25,7 +25,7 @@ public class TaurusManager : MonoBehaviour
 
     Renderer rend;
 
-    private Artifact currentArtifact;
+    public Artifact[] Artifacts;
 
     public GameObject particleObject;
     public GameObject beamObject;
@@ -142,9 +142,9 @@ public class TaurusManager : MonoBehaviour
         Player.transform.position = PlayerStartPos;
         Player.GetComponent<CharacterController>().enabled = true;
 
-        if(currentArtifact != null)
+        foreach(Artifact a in Artifacts)
         {
-            currentArtifact.ResetArtifact();
+            a.ResetArtifact();
         }
         /*if(Player.GetComponent<PickUpScript>().HoldingObj.GetComponent<Artifact>() != null)
         {
