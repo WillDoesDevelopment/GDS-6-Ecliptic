@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1458637538}
-  m_IndirectSpecularColor: {r: 0.00067889603, g: 0.0007294292, b: 0.007649089, a: 1}
+  m_IndirectSpecularColor: {r: 0.0051659495, g: 0.011374315, b: 0.12919807, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1157,6 +1157,10 @@ PrefabInstance:
       propertyPath: ThisAnim
       value: 
       objectReference: {fileID: 1832597828}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: BackToHub
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: DS.IsOpen
       value: 0
@@ -9019,6 +9023,7 @@ MonoBehaviour:
   Radius: 0
   ThisAnim: {fileID: 1485036997}
   StageNumber: 0
+  BackToHub: 0
   HM: {fileID: 0}
 --- !u!65 &1507750022
 BoxCollider:
@@ -11096,6 +11101,7 @@ MonoBehaviour:
   Radius: 3
   ThisAnim: {fileID: 1832597828}
   StageNumber: 4
+  BackToHub: 0
   HM: {fileID: 1416130042}
 --- !u!65 &1861807501
 BoxCollider:

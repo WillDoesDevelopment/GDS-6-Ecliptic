@@ -15,6 +15,7 @@ public class DoorScript : MonoBehaviour
     public Animator ThisAnim;
 
     public int StageNumber;
+    public bool BackToHub;
 
     //public AudioSource DoorSnd;
     
@@ -43,8 +44,17 @@ public class DoorScript : MonoBehaviour
 
         if (Vector3.Distance(transform.position, Player.transform.position) < 2)
         {
-            HM.SendToScene(DS);
-            HM.SetGameStage(StageNumber);
+            if (BackToHub)
+            {
+                HM.SendToHub(DS);
+                HM.SetGameStage(StageNumber);
+            }
+            else
+            {
+                HM.SendToScene(DS);
+                HM.SetGameStage(StageNumber);
+
+            }
         }
     }
 

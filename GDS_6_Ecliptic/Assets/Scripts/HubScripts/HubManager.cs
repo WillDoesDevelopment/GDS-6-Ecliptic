@@ -12,9 +12,9 @@ public class HubManager : MonoBehaviour
 
     public static int LevelNumber = 0;
     private GameObject player;
-    
 
-
+    private bool nextScene;
+    private int DSRoomNum;
    
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,14 @@ public class HubManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (nextScene)
+        {
+            if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
+            {
+                SceneManager.LoadScene(DSRoomNum);
+            }
+
+        }
         if (DebugMode)
         {
             if (Input.GetKeyDown(KeyCode.R))
@@ -91,20 +99,39 @@ public class HubManager : MonoBehaviour
     {
         LevelNumber = stageNum;
     }
-    public void SendToHub()
+    public void SendToHub(DoorStatus DS)
     {
-        SceneManager.LoadScene(2);
+        if (DS.IsOpen == true)
+        {
+            
+            StartCoroutine(SendToHubCo());
+
+        }
     }
 
     public IEnumerator SendToSceneCoroutine(DoorStatus DS)
     {
+        freezePlayerActions(player);
         //Debug.Log("Happening");
+        TransitionAnim.SetTrigger("Prompt");
         TransitionAnim.SetTrigger("Animate");
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(DS.SceneNum);
+        
+        // since adding the timer i needed to set these values so we can check every frame to see if the player presses enter
+        nextScene = true;
+        DSRoomNum = DS.SceneNum;
+    }
+    public IEnumerator SendToHubCo()
+    {
+        
+        //Debug.Log("Happening");
+        TransitionAnim.SetTrigger("Animate");
+        
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(2);
+
     }
 
-   
 
     // i put these in seperate functions because there are other instances when one wants to freeze player actions other than dialogue
     //for instance in an instructions or pause menu
