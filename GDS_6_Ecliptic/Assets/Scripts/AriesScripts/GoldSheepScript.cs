@@ -45,10 +45,7 @@ public class GoldSheepScript : MonoBehaviour
                 canStep = true;
             }
         }
-        if (transform.GetChild(0).GetComponent<Animator>().GetBool("Animate2") == true)
-        {
-            canStep = false;
-        }
+
 
 
 
@@ -58,6 +55,7 @@ public class GoldSheepScript : MonoBehaviour
     public void triggerAnim()
     {
         transform.GetChild(0).GetComponent<Animator>().SetTrigger("Animate2");
+        canStep = false;
     }
 
     void Footstep()

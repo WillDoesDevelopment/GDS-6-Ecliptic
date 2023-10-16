@@ -85,7 +85,6 @@ public class AINavMesh : MonoBehaviour
         else
         {
             // the bull does not move
-
             this.GetComponentInChildren<Animator>().speed = 0;
             NMA.SetDestination(this.transform.position);
         }

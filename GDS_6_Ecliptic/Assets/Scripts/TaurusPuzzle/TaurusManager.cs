@@ -72,6 +72,7 @@ public class TaurusManager : MonoBehaviour
         {
             WinConditionSND.SetActive(true);
             ANM.NMA.SetDestination(ANM.transform.position);
+            ANM.GetComponentInChildren<Animator>().speed = 0;
 
             DoorDialogue.gameObject.SetActive(false);
             VFXCH.circleVFXStart();
