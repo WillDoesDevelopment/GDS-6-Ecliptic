@@ -56,7 +56,7 @@ public class PauseScript : MonoBehaviour
             if(eventSystem.currentSelectedGameObject != curentlySelected)
             {
                 curentlySelected = eventSystem.currentSelectedGameObject;
-                Debug.Log("working");
+                //Debug.Log("working");
                 SelectSnd.Play();
             }
 
@@ -107,13 +107,13 @@ public class PauseScript : MonoBehaviour
         Input.GetJoystickNames();
         if (Input.GetJoystickNames().Length == 0)
         {
-            print("Keyboard");
+            //print("Keyboard");
             controlsCanvas[0].SetActive(false);
             controlsCanvas[1].SetActive(true);
         }
         else
         {
-            print("Controller");
+            //print("Controller");
             controlsCanvas[0].SetActive(true);
             controlsCanvas[1].SetActive(false);
         }

@@ -5,18 +5,18 @@ using UnityEngine.UI;
 using TMPro;
 public class MusicVolume : MonoBehaviour
 {
-    public static float MUSICVOLUME = 0.5f;
-    public static float SFXVOLUME = 0.5f;
+    public static float MUSICVOLUME = 0.0f;
+    public static float SFXVOLUME = 0.0f;
 
     public Slider MusicVol;
     public Slider SFXVol;
 
     public AudioSource BackgroundAudio;
-    public AudioSource[] AllAudio;
+  
 
     public void Awake()
     {
-        AllAudio = GameObject.FindObjectsOfType<AudioSource>();
+        /*AllAudio = GameObject.FindObjectsOfType<AudioSource>();
 
         foreach (AudioSource AS in AllAudio)
         {
@@ -26,7 +26,7 @@ public class MusicVolume : MonoBehaviour
             }
         }
 
-        Debug.Log(AllAudio.Length);
+        Debug.Log(AllAudio.Length);*/
     }
 
     void Start()
@@ -38,10 +38,13 @@ public class MusicVolume : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach( AudioSource AS in AllAudio)
-        {
-            AS.volume = SFXVol.value;
-        }
-        BackgroundAudio.volume = MusicVol.value;
+        /*        foreach( AudioSource AS in AllAudio)
+                {
+                    AS.volume = SFXVol.value;
+                }
+                BackgroundAudio.volume = MusicVol.value;*/
+
+        MUSICVOLUME = MusicVol.value;
+        SFXVOLUME = SFXVol.value;
     }
 }
