@@ -33,6 +33,8 @@ public class PauseScript : MonoBehaviour
     {
         ControllerOrNot();
         SelectedSNDCheck();
+
+        // when pause button is pressed we pause or unpause
         if (Input.GetKeyDown(KeyCode.Escape)  || Input.GetButtonDown("Cancel") )
         {
             if (Paused == false)
@@ -46,12 +48,11 @@ public class PauseScript : MonoBehaviour
 
         }
     }
-
     public void SelectedSNDCheck()
     {
         if(Paused == true)
         {
-           //if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+            //plays the sound if the button has changed
             if(eventSystem.currentSelectedGameObject != curentlySelected)
             {
                 curentlySelected = eventSystem.currentSelectedGameObject;
@@ -63,6 +64,7 @@ public class PauseScript : MonoBehaviour
     }
     public void Resume()
     {
+        // gets rid of menu. will become an animation later
         PauseSnd.Play();
         PauseUI.SetActive(false);
         Time.timeScale = 1f;
@@ -70,6 +72,7 @@ public class PauseScript : MonoBehaviour
     }
     public void Pause()
     {
+        // brings up the pause menu. will be an animation later
         PauseSnd.Play();
         ControllerOrNot();
         PauseUI.SetActive(true);
@@ -78,11 +81,13 @@ public class PauseScript : MonoBehaviour
     }
     public void Quit()
     {
+        // quits the game
         Application.Quit();
     }
 
     public void ChangeFirstSelected()
     {
+        // since we are using controller and there is multiple menus, we need to change the initial selected button
         if(eventSystem.currentSelectedGameObject == SettingsFirstSelect)
         {
             Debug.Log("ChangeBack");
@@ -98,6 +103,7 @@ public class PauseScript : MonoBehaviour
 
     public void ControllerOrNot()
     {
+        // detects if controller and sets the appropriate things active and inactive 
         Input.GetJoystickNames();
         if (Input.GetJoystickNames().Length == 0)
         {
