@@ -18,9 +18,9 @@ public class AudioVolScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(MV!= null)
+        foreach(AudioSource AS in thisAudio)
         {
-            foreach(AudioSource AS in thisAudio)
+            if(MV!= null)
             {
                 if (AS.clip != MV.BackgroundAudio.clip)
                 {
@@ -32,6 +32,11 @@ public class AudioVolScript : MonoBehaviour
                     AS.volume = MusicVolume.MUSICVOLUME;
                 }
 
+            }
+            else
+            {
+                //Debug.Log("Running");
+                AS.volume = MusicVolume.MUSICVOLUME;
             }
         }
     }
