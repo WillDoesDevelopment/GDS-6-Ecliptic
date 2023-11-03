@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.05118826, g: 0.0023567101, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.011188205, g: 0.0002972156, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5331,6 +5331,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 9.609, z: 0}
+--- !u!114 &689838356 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4442052256024596486, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+  m_PrefabInstance: {fileID: 8759757638799762402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &693068176
 GameObject:
   m_ObjectHideFlags: 0
@@ -14962,13 +14973,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 823962653962408510, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 823962653962408510, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 823962653962408510, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794578010504002494, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2794578010504002494, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5366026400330852718, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 689838356}
     - target: {fileID: 5366026400890762224, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: m_Name
       value: NewPauseUI

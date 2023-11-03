@@ -590,6 +590,7 @@ MonoBehaviour:
   Radius: 5
   ThisAnim: {fileID: 1830916836422594956}
   StageNumber: 0
+  BackToHub: 0
   HM: {fileID: 0}
 --- !u!64 &4237895813230988982
 MeshCollider:
@@ -921,6 +922,7 @@ GameObject:
   - component: {fileID: 1830916836422594956}
   - component: {fileID: 3212421342808788547}
   - component: {fileID: 7804658190313711647}
+  - component: {fileID: 26597736232090398}
   m_Layer: 0
   m_Name: DoorPrefab
   m_TagString: Untagged
@@ -1075,6 +1077,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &26597736232090398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944439769904862093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4a79b0c0d90324ebf00c5b45c9ae06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisAudio: []
+  MV: {fileID: 0}
 --- !u!1 &9001963552781182000
 GameObject:
   m_ObjectHideFlags: 0

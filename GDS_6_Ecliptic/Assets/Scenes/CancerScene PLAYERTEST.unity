@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0067232135, g: 0.014057848, b: 0.16029148, a: 1}
+  m_IndirectSpecularColor: {r: 0.0057189744, g: 0.012296554, b: 0.1401093, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3568,6 +3568,7 @@ GameObject:
   - component: {fileID: 599119678}
   - component: {fileID: 599119679}
   - component: {fileID: 599119680}
+  - component: {fileID: 599119681}
   m_Layer: 5
   m_Name: InstructionCanvas
   m_TagString: Untagged
@@ -3787,6 +3788,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &599119681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599119673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4a79b0c0d90324ebf00c5b45c9ae06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisAudio: []
+  MV: {fileID: 0}
 --- !u!1001 &607494364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6799,6 +6814,25 @@ MonoBehaviour:
   - {fileID: 314022460}
   - {fileID: 526676914}
   - {fileID: 1290290128}
+--- !u!1 &1038763460 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8490829135404895646, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+  m_PrefabInstance: {fileID: 1560073676}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1038763462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038763460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4a79b0c0d90324ebf00c5b45c9ae06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisAudio: []
+  MV: {fileID: 0}
 --- !u!1 &1043206244
 GameObject:
   m_ObjectHideFlags: 0
@@ -8873,7 +8907,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6279914843101480275, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
   m_PrefabInstance: {fileID: 738425764}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1634200863}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d0beeeb262ef6846b2f67fe5a9f5864, type: 3}
@@ -10188,6 +10222,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1628511891}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1634200863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6279914843101480274, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
+  m_PrefabInstance: {fileID: 738425764}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1634200865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634200863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4a79b0c0d90324ebf00c5b45c9ae06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisAudio: []
+  MV: {fileID: 0}
 --- !u!1 &1634833794
 GameObject:
   m_ObjectHideFlags: 0
@@ -10730,6 +10783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1708602086}
   - component: {fileID: 1708602085}
+  - component: {fileID: 1708602087}
   m_Layer: 0
   m_Name: Water_Ambience
   m_TagString: Untagged
@@ -10848,6 +10902,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1708602087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708602084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4a79b0c0d90324ebf00c5b45c9ae06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisAudio: []
+  MV: {fileID: 0}
 --- !u!1001 &1718489854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12511,6 +12579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2049466031}
   - component: {fileID: 2049466032}
+  - component: {fileID: 2049466034}
   - component: {fileID: 2049466033}
   m_Layer: 0
   m_Name: Room Manager
@@ -12726,6 +12795,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2049466034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049466029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4a79b0c0d90324ebf00c5b45c9ae06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisAudio: []
+  MV: {fileID: 0}
 --- !u!1001 &2057180640
 PrefabInstance:
   m_ObjectHideFlags: 0
