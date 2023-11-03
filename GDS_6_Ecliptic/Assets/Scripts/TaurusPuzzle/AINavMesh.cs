@@ -148,7 +148,7 @@ public class AINavMesh : MonoBehaviour
         {
             audioSource.clip = stepArray[Random.Range(0, stepArray.Length)];
             audioSource.pitch = 1 + Random.Range(-stepPitchVariance, stepPitchVariance);
-            audioSource.volume = stepVolume;
+            //audioSource.volume = stepVolume;
             audioSource.PlayOneShot(audioSource.clip);
 
             //step.Play();

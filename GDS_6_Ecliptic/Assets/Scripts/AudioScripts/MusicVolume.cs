@@ -5,8 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 public class MusicVolume : MonoBehaviour
 {
-    public static float MUSICVOLUME = 0.0f;
-    public static float SFXVOLUME = 0.0f;
+    public static float MUSICVOLUME = 0.5f;
+    public static float SFXVOLUME = 0.5f;
 
     public Slider MusicVol;
     public Slider SFXVol;
