@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class PauseScript : MonoBehaviour
 {
@@ -22,7 +21,6 @@ public class PauseScript : MonoBehaviour
     private GameObject curentlySelected;
 
     public GameObject[] controlsCanvas;
-    public string level;
     // Start is called before the first frame update
     void Start()
     {
@@ -84,8 +82,7 @@ public class PauseScript : MonoBehaviour
     public void Quit()
     {
         // quits the game
-        SceneManager.LoadScene(level);
-        //Application.Quit();
+        Application.Quit();
     }
 
     public void ChangeFirstSelected()

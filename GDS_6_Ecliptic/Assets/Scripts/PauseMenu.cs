@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -16,7 +15,6 @@ public class PauseMenu : MonoBehaviour
     public bool isKeyboard = false;
     public bool isXbox = false;
     public bool isPS = false;
-    public string level;
 
     // Start is called before the first frame update
     void Start()
@@ -74,11 +72,6 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void tempQuit()
-    {
-        SceneManager.LoadScene(level);
-    }
-
     public void BackBtn()
     {
 
@@ -109,8 +102,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        SceneManager.LoadScene(level);
-        //Application.Quit();
+        Application.Quit();
         print("quit");
     }
 
