@@ -20,10 +20,11 @@ public class AudioVolScript : MonoBehaviour
     {
         foreach(AudioSource AS in thisAudio)
         {
-            if(MV!= null)
+            if(MV != null)
             {
                 if (AS.clip != MV.BackgroundAudio.clip)
                 {
+                    Debug.Log("Working");
                     AS.volume = MusicVolume.SFXVOLUME;
                 }
                 else
@@ -33,10 +34,10 @@ public class AudioVolScript : MonoBehaviour
                 }
 
             }
-            else
+            else if (MV == null)
             {
                 //Debug.Log("Running");
-                AS.volume = MusicVolume.MUSICVOLUME;
+                AS.volume = MusicVolume.SFXVOLUME;
             }
         }
     }
