@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PauseScript : MonoBehaviour
 {
@@ -21,9 +22,14 @@ public class PauseScript : MonoBehaviour
     private GameObject curentlySelected;
 
     public GameObject[] controlsCanvas;
+
+    public HubManager HM;
+
+    public bool Quitting = false;
     // Start is called before the first frame update
     void Start()
     {
+        HM = GameObject.FindObjectOfType<HubManager>();
         eventSystem = EventSystem.current;
         ControllerOrNot();
     }
@@ -76,13 +82,19 @@ public class PauseScript : MonoBehaviour
         PauseSnd.Play();
         ControllerOrNot();
         PauseUI.SetActive(true);
-        Time.timeScale = 0f;
+        if (!Quitting)
+        {
+            Time.timeScale = 0f;
+        }
         Paused = true;
     }
     public void Quit()
     {
         // quits the game
-        Application.Quit();
+        //Application.Quit();
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+        HM.SendToMainCo(0);
     }
 
     public void ChangeFirstSelected()

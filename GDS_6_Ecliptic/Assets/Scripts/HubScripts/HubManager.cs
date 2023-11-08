@@ -31,6 +31,7 @@ public class HubManager : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
             {
+                Debug.Log("Scene Changing");
                 SceneManager.LoadScene(DSRoomNum);
             }
 
@@ -109,6 +110,18 @@ public class HubManager : MonoBehaviour
         }
     }
 
+    public IEnumerator SendToMainCo(int sceneNum)
+    {
+        Time.timeScale = 1;
+        freezePlayerActions(player);
+        Debug.Log("Happening");
+        TransitionAnim.SetTrigger("Prompt");
+        TransitionAnim.SetTrigger("Animate");
+        yield return new WaitForSeconds(2f);
+        Debug.Log("Working");
+        
+        SceneManager.LoadScene(0);
+    }
     public IEnumerator SendToSceneCoroutine(DoorStatus DS)
     {
         freezePlayerActions(player);
@@ -133,13 +146,14 @@ public class HubManager : MonoBehaviour
     }
 
 
+
     // i put these in seperate functions because there are other instances when one wants to freeze player actions other than dialogue
     //for instance in an instructions or pause menu
 
     //in realiity this functionality doesnt belong in the Hub manager but it is convinient to put it here
     public static void freezePlayerActions(GameObject player)
     {
-        Debug.Log("freezing");
+        //Debug.Log("freezing");
         if (player.GetComponent<Grapple3>() != null)
         {
             player.GetComponent<Grapple3>().enabled = false;
