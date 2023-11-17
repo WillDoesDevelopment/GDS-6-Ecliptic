@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-
     public GameObject NormalSheep;
 
     public GameObject Player;
@@ -30,6 +29,7 @@ public class RoomManager : MonoBehaviour
     private bool isPlayed;
     void Start()
     {
+
         VFXCH.circleVFXStart();
         PlayerStartPos = Player.transform.position;
         GoldRamStartPos = GoldSheep.transform.parent.transform.position;

@@ -11,7 +11,7 @@ public class AudioVolScript : MonoBehaviour
     {
         thisAudio = this.GetComponents<AudioSource>();
         MV = GameObject.FindObjectOfType<MusicVolume>();
-        Debug.Log("OnStart");
+        //Debug.Log("OnStart");
         
     }
 

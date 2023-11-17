@@ -65,7 +65,14 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         EnterPromptCheck();
-
+        if (CoroutineRunning)
+        {
+            Debug.Log("this shouldnt happen");
+        }
+        if (skip)
+        {
+            Debug.Log("skipp true");
+        }
     }
     // check to see if the enter prompt should appear
     public void EnterPromptCheck()
@@ -76,20 +83,17 @@ public class DialogueManager : MonoBehaviour
         // if however proximity is true (This gets set by a dialogue trigger) we enter the animation instead
         if (proximityBool == true)
         {
-            EnterPrompt();
             // we set this bool back to false so that if the dialogue trigger next frame sets it to true again we know that we are in proximity
+            EnterPrompt();
             proximityBool = false;
         }
     }
-
-    // sets the prompt animation to true
     public void EnterPrompt()
     {
 
         EnterAnim.SetBool("FadeIn", true);
 
     }
-    // sets the prompt animation to false
     public void EnterAnimExit()
     {
         EnterAnim.SetBool("FadeIn", false);
@@ -143,6 +147,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (CoroutineRunning)
         {
+            Debug.Log("skipping");
             skip = true;
             return;
         }
@@ -224,6 +229,7 @@ public class DialogueManager : MonoBehaviour
         //yield return new WaitForSeconds(0);
         skip = false;
         CoroutineRunning = false;
+
     }
     public IEnumerator typingSnd()
     {
