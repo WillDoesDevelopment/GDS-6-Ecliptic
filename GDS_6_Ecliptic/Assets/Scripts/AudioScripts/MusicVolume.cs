@@ -12,7 +12,6 @@ public class MusicVolume : MonoBehaviour
     public Slider SFXVol;
 
     public AudioSource BackgroundAudio;
-  
 
     public void Awake()
     {

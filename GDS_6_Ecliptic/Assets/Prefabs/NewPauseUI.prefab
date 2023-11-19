@@ -314,7 +314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Master Volume
+  m_text: SFX Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 324bb87a1529bab40b71cd341677b109, type: 2}
   m_sharedMaterial: {fileID: 5537465052364209214, guid: 324bb87a1529bab40b71cd341677b109, type: 2}
@@ -1969,7 +1969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7653645556464076185
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2725,6 +2725,8 @@ MonoBehaviour:
   controlsCanvas:
   - {fileID: 6739295376915104552}
   - {fileID: 6739295375738444380}
+  HM: {fileID: 0}
+  Quitting: 0
 --- !u!82 &3392439464493437048
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2931,6 +2933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisAudio: []
   MV: {fileID: 0}
+  IsBackgroundMusic: 0
 --- !u!1 &5366026401663433566
 GameObject:
   m_ObjectHideFlags: 0
@@ -4376,7 +4379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6840516093704099737
 RectTransform:
   m_ObjectHideFlags: 0
