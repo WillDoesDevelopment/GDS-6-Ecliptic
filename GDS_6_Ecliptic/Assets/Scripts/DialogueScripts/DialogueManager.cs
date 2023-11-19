@@ -65,14 +65,11 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         EnterPromptCheck();
-        if (CoroutineRunning)
+        if (CoroutineRunning && skip)
         {
-            Debug.Log("this shouldnt happen");
+            Debug.Log("Skipping");
         }
-        if (skip)
-        {
-            Debug.Log("skipp true");
-        }
+
     }
     // check to see if the enter prompt should appear
     public void EnterPromptCheck()
@@ -147,7 +144,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (CoroutineRunning)
         {
-            Debug.Log("skipping");
+            //Debug.Log("skipping");
             skip = true;
             return;
         }
