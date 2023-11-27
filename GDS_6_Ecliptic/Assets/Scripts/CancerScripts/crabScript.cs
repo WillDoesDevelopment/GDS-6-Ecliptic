@@ -53,7 +53,7 @@ public class crabScript : MonoBehaviour
         }
         if(EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.InProgress)
         {
-            AngrySnds.SetActive(true);
+            //AngrySnds.SetActive(true);
         }
         if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
