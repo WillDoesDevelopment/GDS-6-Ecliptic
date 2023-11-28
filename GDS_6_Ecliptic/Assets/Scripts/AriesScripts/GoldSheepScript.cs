@@ -5,6 +5,7 @@ using UnityEngine;
 public class GoldSheepScript : MonoBehaviour
 {
     public Animator PlayerAnim;
+    public Animator SheepMovmentAnim;
     bool canStep = true;
     [Range(0f, 1f)] public float stepVolume = 0.8f;
     [Range(0f, 0.8f)] public float stepPitchVariance = 0.5f;
@@ -20,6 +21,7 @@ public class GoldSheepScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
 
        if(transform.GetChild(0).GetComponent<Animator>().GetBool("Animate") == true)
         {
@@ -56,6 +58,7 @@ public class GoldSheepScript : MonoBehaviour
     {
         transform.GetChild(0).GetComponent<Animator>().SetTrigger("Animate2");
         canStep = false;
+        audioSource.enabled = false;
     }
 
     void Footstep()
