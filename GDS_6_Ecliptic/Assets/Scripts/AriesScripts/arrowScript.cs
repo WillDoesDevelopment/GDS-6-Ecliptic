@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// this script belongs to each arrow
 public class arrowScript : MonoBehaviour
 {
     public float speed = 5.0f;

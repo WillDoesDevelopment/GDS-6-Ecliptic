@@ -9,6 +9,8 @@ public class RoomManager : MonoBehaviour
     public GameObject Player;
     public GameObject GoldSheep;
     public GameObject Aries;
+
+    // object that activates vfx circle
     public VFXCircleHandler VFXCH;
 
     public DialogueTrigger TestDt;

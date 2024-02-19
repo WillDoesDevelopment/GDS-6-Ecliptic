@@ -167,7 +167,7 @@ public class HubManager : MonoBehaviour
 
     public static void UnfreezePlayerActions(GameObject player)
     {
-        Debug.Log("unfreezing");
+        //Debug.Log("unfreezing");
         if (player.GetComponent<Grapple3>() != null)
         {
             player.GetComponent<Grapple3>().enabled = true;
