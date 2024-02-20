@@ -12,11 +12,8 @@ public class arrowScript : MonoBehaviour
 
     public RoomManager RM;
 
-    //public AudioSource ArrowSnd;
-    // Start is called before the first frame update
     void Start()
     {
-        //ArrowSnd.Play();
         RM = FindObjectOfType<RoomManager>();
     }
 
@@ -41,39 +38,48 @@ public class arrowScript : MonoBehaviour
         {
             Debug.DrawLine(rayPos, rayPos + transform.up, Color.green, 0.01f);
             GameObject Temp = hit.collider.gameObject;
-            if (Temp.layer == LayerMask.NameToLayer("Wall"))         //Check if hitting wall
-            {
-                Burst();
-                Destroy(gameObject);        
-            }
-            if (Temp.CompareTag("Player"))                               //Check if hitting Player
-            {
-                Burst();
-                Debug.Log("Hit Player");
-                //Destroy(gameObject);
-                RM.Reset();
-            }
-            if (Temp.CompareTag("Destroyable"))                                  //Check if hitting Ram
-            {
-                Burst();                
-                //DialogueTrigger DT = Temp.GetComponent<DialogueTrigger>();
 
-                Debug.Log("Hit Ram");
-                
-                Temp.SetActive(false);
-
-                Temp.GetComponent<DialogueTrigger>().OnEventCheck();
-                Temp.GetComponent<DialogueTrigger>().OnEvent = false;
-
-
-                RM.PlaySnd(RM.deadRamSnd);
-                //Destroy(Temp);
-            }
+            WallCollisionCheck(Temp);
+            PlayerColissionCheck(Temp);
+            RamCollisionCheck(Temp);
 
         }
     }
+    public void WallCollisionCheck(GameObject Temp)
+    {
+        if (Temp.layer == LayerMask.NameToLayer("Wall"))         //Check if hitting wall
+        {
+            Burst();
+            Destroy(gameObject);
+        }
+    }
+    public void PlayerColissionCheck(GameObject Temp)
+    {
+        if (Temp.CompareTag("Player"))                               //Check if hitting Player
+        {
+            Burst();
+            Debug.Log("Hit Player");
+            RM.Reset();
+        }
+    }
+
+    public void RamCollisionCheck(GameObject Temp)
+    {
+        if (Temp.CompareTag("Destroyable"))                                  //Check if hitting Ram
+        {
+            Burst();
+
+            Debug.Log("Hit Ram");
+
+            Temp.SetActive(false);
+
+            Temp.GetComponent<DialogueTrigger>().OnEventCheck();
+            Temp.GetComponent<DialogueTrigger>().OnEvent = false;
 
 
+            RM.PlaySnd(RM.deadRamSnd);
+        }
+    }
     void Burst()
     {
         var newObject = Instantiate(burstPrefab);                                                    //Create Arrow

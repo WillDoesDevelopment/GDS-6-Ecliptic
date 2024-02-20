@@ -36,6 +36,13 @@ public class HubManager : MonoBehaviour
             }
 
         }
+
+        DebugModeCheck();
+
+    }
+
+    public void DebugModeCheck()
+    {
         if (DebugMode)
         {
             if (Input.GetKeyDown(KeyCode.R))
@@ -77,10 +84,10 @@ public class HubManager : MonoBehaviour
             }*/
 
         }
-
-        //InDialogueCheck();
     }
-    // wher called it accesses a Door status script and loads the designated scene
+
+
+    // all the different ways of changing scenes and setting stages for repeated scenes
     public void SendToScene(DoorStatus DS)
     {
         
@@ -91,17 +98,14 @@ public class HubManager : MonoBehaviour
             
         }
     }
-    public void AddOneToLevel()
-    {
-        LevelNumber += 1;
-    }
-
     public void SetGameStage(int stageNum)
     {
+        //this is important for remembering what game stage we are in so that the hub room can respond accordingly
         LevelNumber = stageNum;
     }
     public void SendToHub(DoorStatus DS)
     {
+        //this sends the player to a scene regardless of the value in DS, IE th hub room, In theory we could just use "Send to Scene" but this helps with readability amd allows for a different outro
         if (DS.IsOpen == true)
         {
             
@@ -110,6 +114,9 @@ public class HubManager : MonoBehaviour
         }
     }
 
+
+
+    // all the coroutines below
     public IEnumerator SendToMainCo(int sceneNum)
     {
         Time.timeScale = 1;
@@ -153,21 +160,14 @@ public class HubManager : MonoBehaviour
     //in realiity this functionality doesnt belong in the Hub manager but it is convinient to put it here
     public static void freezePlayerActions(GameObject player)
     {
-        //Debug.Log("freezing");
         if (player.GetComponent<Grapple3>() != null)
         {
             player.GetComponent<Grapple3>().enabled = false;
-            //player.GetComponent<Grapple3>().rope.SetActive(false);
-        }
-/*        if (player.GetComponent<PickUpScript>() != null)
-        {
-            player.GetComponent<PickUpScript>().enabled = false;
-        }*/
-    }
 
+        }
+    }
     public static void UnfreezePlayerActions(GameObject player)
     {
-        //Debug.Log("unfreezing");
         if (player.GetComponent<Grapple3>() != null)
         {
             player.GetComponent<Grapple3>().enabled = true;

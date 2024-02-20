@@ -68,6 +68,9 @@ public class PauseScript : MonoBehaviour
 
         }
     }
+
+    // fun fact, the 3 functions below are not checked in this scripts update esclusively. There is a component on the interactable parts of the menu that calls these functions accordingly, IE, the button to exit
+    //the menu will call the "Resume" function
     public void Resume()
     {
         // gets rid of menu. will become an animation later

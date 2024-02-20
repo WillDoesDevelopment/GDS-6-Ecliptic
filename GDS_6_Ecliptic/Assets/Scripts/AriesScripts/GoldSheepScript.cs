@@ -7,51 +7,56 @@ public class GoldSheepScript : MonoBehaviour
     public Animator PlayerAnim;
     public Animator SheepMovmentAnim;
     bool canStep = true;
+
+    //a random vol and pitch
     [Range(0f, 1f)] public float stepVolume = 0.8f;
     [Range(0f, 0.8f)] public float stepPitchVariance = 0.5f;
+
+    // our footstep audio component and array of audio clips
     public AudioSource audioSource;
     public AudioClip[] stepArray;
+
+    // for funny haha
     bool playDaftPunk = false;
-    // Start is called before the first frame update
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-
        if(transform.GetChild(0).GetComponent<Animator>().GetBool("Animate") == true)
         {
-            var h = PlayerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            h = h - Mathf.Floor(h);
-            //Steps
-            if (h > 0.3f && h < 0.4f && canStep == true)
-            {
-                Footstep();
-
-            }
-            if (h > 0.6f && h < 0.7f)
-            {
-                canStep = true;
-            }
-            if (h > 0.8f && h < 0.9f && canStep == true)
-            {
-                Footstep();
-
-            }
-            if (h > 0.9f || h < 0.2f)
-            {
-                canStep = true;
-            }
+            FootStepCalc();
         }
+    }
 
 
+    //put this here for readability. Here FootStepCalc() checks how far through the animation we are and calls FootStep() function at the right time
+    public void FootStepCalc()
+    {
+        var h = PlayerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        h = h - Mathf.Floor(h);
+        //Steps
+        if (h > 0.3f && h < 0.4f && canStep == true)
+        {
+            Footstep();
 
+        }
+        if (h > 0.6f && h < 0.7f)
+        {
+            canStep = true;
+        }
+        if (h > 0.8f && h < 0.9f && canStep == true)
+        {
+            Footstep();
 
-
+        }
+        if (h > 0.9f || h < 0.2f)
+        {
+            canStep = true;
+        }
     }
 
     public void triggerAnim()

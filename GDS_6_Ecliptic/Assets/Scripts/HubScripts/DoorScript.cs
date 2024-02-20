@@ -32,7 +32,15 @@ public class DoorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (proximity() && DS.IsOpen == true)
+
+        DoorOpenCheck();
+
+        DoorEnteredCheck();
+
+    }
+    public void DoorOpenCheck()
+    {
+        if (proximity(Radius) && DS.IsOpen == true)
         {
             ThisAnim.SetBool("Animate", true);
 
@@ -41,8 +49,10 @@ public class DoorScript : MonoBehaviour
         {
             ThisAnim.SetBool("Animate", false);
         }
-
-        if (Vector3.Distance(transform.position, Player.transform.position) < 2)
+    }
+    public void DoorEnteredCheck()
+    {
+        if (proximity(2))
         {
             if (BackToHub)
             {
@@ -53,28 +63,13 @@ public class DoorScript : MonoBehaviour
             {
                 HM.SendToScene(DS);
                 HM.SetGameStage(StageNumber);
-
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public bool proximity(float Rad)
     {
-        /*
-        Debug.Log("Colliding");
-        // if the door this is attached to collides with player, pass in DoorStatus into the corrisponding hub manager script
-        if(collision.gameObject == Player && DS.IsOpen == true)
-        {
-            HM.SendToScene(DS);
-        }
-        */
-    }
-
-    public bool proximity()
-    {
-        //float playerDistZ = Player.transform.position.z - transform.position.z;
-        //float playerDistX = Player.transform.position.x - transform.position.x;
-        if (Vector3.Distance(transform.position, Player.transform.position) < Radius)
+        if (Vector3.Distance(transform.position, Player.transform.position) < Rad)
         {
             return true;
         }
@@ -83,8 +78,6 @@ public class DoorScript : MonoBehaviour
         {
             return false;
         }
-
-        //Vector3.Distance(transform.position, Player.transform.position);
 
 
     }
