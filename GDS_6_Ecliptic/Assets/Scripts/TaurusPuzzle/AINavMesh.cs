@@ -40,45 +40,36 @@ public class AINavMesh : MonoBehaviour
     }
     void Update()
     {
-        var h = PlayerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        h = h - Mathf.Floor(h);
-        if (h > 0.3f && h < 0.4f && canStep == true)
-        {
-            Footstep();
-
-        }
-        if (h > 0.6f && h < 0.7f)
-        {
-            canStep = true;
-        }
-        if (h > 0.8f && h < 0.9f && canStep == true)
-        {
-            Footstep();
-
-        }
-        if (h > 0.9f || h < 0.2f)
-        {
-            canStep = true;
-        }
+        FootStepCalc();
 
         playSnd();
+
         CollisionCheck();
-        //if(StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished && NavMeshPause == false)
-        if(DialogueManager.InDialogue == false && NavMeshPause == false)
+
+        BullActiveCheck();
+
+    }
+
+    public void BullActiveCheck()
+    {
+        if (DialogueManager.InDialogue == false && NavMeshPause == false)
         {
+            // if we are not in a dialogue and the navigation mesh is not paused. Do this (Bull is active)
             this.GetComponentInChildren<Animator>().speed = 1;
             GetComponent<Renderer>().material.color = Color.red;
             CurrentNavPos = positionQueue.Peek().position;
-            if(Proximity(Player.transform.position, visionDist))
+            if (Proximity(Player.transform.position, visionDist))
             {
+                // if the bull can see the player. do this
                 CurrentNavPos = Player.transform.position;
                 GetComponent<Renderer>().material.color = Color.black;
             }
             else if (Proximity(CurrentNavPos, 1))
             {
+                // if the bull is within range of its navigation postions. do this
                 Transform temp = positionQueue.Dequeue();
                 positionQueue.Enqueue(temp);
-            
+
             }
             NMA.SetDestination(CurrentNavPos);
         }
@@ -89,15 +80,15 @@ public class AINavMesh : MonoBehaviour
             NMA.SetDestination(this.transform.position);
         }
     }
-
+   
     public bool Proximity( Vector3 NavPos, float radius)
     {
-        float playerDistZ = NavPos.z - transform.position.z;
-        float playerDistX = NavPos.x - transform.position.x;
-        if (Mathf.Sqrt(Mathf.Pow(playerDistX, 2) + Mathf.Pow(playerDistZ, 2)) < radius)
+
+        if (Vector3.Distance(transform.position, NavPos) < radius)
         {
             return true;
         }
+
         else
         {
             return false;
@@ -139,6 +130,29 @@ public class AINavMesh : MonoBehaviour
         }
     }
 
+    public void FootStepCalc()
+    {
+        var h = PlayerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        h = h - Mathf.Floor(h);
+        if (h > 0.3f && h < 0.4f && canStep == true)
+        {
+            Footstep();
+
+        }
+        if (h > 0.6f && h < 0.7f)
+        {
+            canStep = true;
+        }
+        if (h > 0.8f && h < 0.9f && canStep == true)
+        {
+            Footstep();
+
+        }
+        if (h > 0.9f || h < 0.2f)
+        {
+            canStep = true;
+        }
+    }
     void Footstep()
     {
         //Debug.Log("Step");
