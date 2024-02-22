@@ -90,29 +90,11 @@ public class PlayerController : MonoBehaviour
         //Movement
         #region Movement
 
-
-
-
-        
-
         if(canWalk)
         {
-            if (grounded == false)
-            {
-                airTime += Time.deltaTime;
-                inputY += -gravity * Time.deltaTime;
-            }
-            else
-            {
-                airTime = 0;
-                inputY = -0.25f;
-            }
 
-            if (airTime > 10)       //Respawns if falling for too long
-            {
-                Respawn();
-                airTime = 0;
-            }
+            FallingCheck();
+
             inputY = Mathf.Clamp(inputY, -maxFallSpeed, maxFallSpeed);
             inputX = Input.GetAxis("Horizontal");
             inputZ = Input.GetAxis("Vertical");
@@ -134,28 +116,8 @@ public class PlayerController : MonoBehaviour
             {
                 PlayerAnim.SetBool("Walking", true);
                 PlayerAnim.speed = Vector3.Magnitude(Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f));
-                var h = PlayerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-                h = h - Mathf.Floor(h);
-                //Steps
-                if(h>0.3f && h < 0.4f && canStep == true)
-                {
-                    Footstep();
 
-                }
-                if(h > 0.6f && h < 0.7f)
-                {
-                    canStep = true;
-                }
-                if (h > 0.8f && h < 0.9f && canStep == true)
-                {
-                    Footstep();
-
-                }
-                if (h > 0.9f || h < 0.2f)
-                {
-                    canStep = true;
-                }
-
+                FootStepCheck();
 
 
                 yRotation = Mathf.Atan2(moveVector.z, moveVector.x) * Mathf.Rad2Deg * -1f + 90f;
@@ -171,5 +133,48 @@ public class PlayerController : MonoBehaviour
         {
             PlayerAnim.SetBool("Walking", false);
         }
-    }      
+    }     
+    public void FallingCheck()
+    {
+        if (grounded == false)
+        {
+            airTime += Time.deltaTime;
+            inputY += -gravity * Time.deltaTime;
+        }
+        else
+        {
+            airTime = 0;
+            inputY = -0.25f;
+        }
+
+        if (airTime > 10)       //Respawns if falling for too long
+        {
+            Respawn();
+            airTime = 0;
+        }
+    }
+    public void FootStepCheck()
+    {
+        var h = PlayerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        h = h - Mathf.Floor(h);
+        //Steps
+        if (h > 0.3f && h < 0.4f && canStep == true)
+        {
+            Footstep();
+
+        }
+        if (h > 0.6f && h < 0.7f)
+        {
+            canStep = true;
+        }
+        if (h > 0.8f && h < 0.9f && canStep == true)
+        {
+            Footstep();
+
+        }
+        if (h > 0.9f || h < 0.2f)
+        {
+            canStep = true;
+        }
+    }
 }

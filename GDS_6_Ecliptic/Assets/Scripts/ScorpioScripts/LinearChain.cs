@@ -22,7 +22,7 @@ public class LinearChain : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, chainPosition, Time.deltaTime * 10f);
             //grapple break here 
-            player.GetComponent<Grapple2>().RopeBreak();
+            //player.GetComponent<Grapple2>().RopeBreak();
             player.GetComponent<Grapple3>().RopeBreak();
         }
     }
