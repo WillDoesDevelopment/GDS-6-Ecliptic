@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class linearScorpian : MonoBehaviour
 {
+    public GameObject ScorpDT;
+
     public GameObject player;
     public Transform point1;
     public Transform point2;
@@ -26,6 +28,8 @@ public class linearScorpian : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DTfollow();
+
         timer += Time.deltaTime;        //Time for pie
         if(timer > 6.28319)
         {
@@ -57,5 +61,10 @@ public class linearScorpian : MonoBehaviour
         transform.LookAt(new Vector3(player.transform.position.x,transform.position.y,player.transform.position.z));
         
         
+    }
+
+    public void DTfollow()
+    {
+        ScorpDT.transform.position = transform.position;
     }
 }
