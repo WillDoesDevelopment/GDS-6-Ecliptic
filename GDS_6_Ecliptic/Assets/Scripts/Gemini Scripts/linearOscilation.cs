@@ -33,7 +33,7 @@ public class linearOscilation : MonoBehaviour
             timer = -timer;                             //any extra time is carried over
             a = -a;                                     //reverse direction
         }
-        timer = Mathf.Clamp(timer, 0, travelTime);      //clamp just in case
+        timer = Mathf.Clamp(timer, 0, travelTime);      //clamp just in case. This shouldn't take affect, but maybe the framerate is bad.
 
         transform.position = Vector3.Lerp(point1.position, point2.position, curve.Evaluate(timer / travelTime));    //lerp between points based on timer input to animation curve
     }

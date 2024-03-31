@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public float airTime = 0;
     bool grounded = false;    
     public bool canWalk = true;
+    public bool walking = false;
+    public float walkingSpeed = 0;
     public GameObject pauseMenu;
     public bool isPaused = false;
     bool canStep = true;
@@ -115,7 +117,9 @@ public class PlayerController : MonoBehaviour
             if (moveVector != Vector3.zero)
             {
                 PlayerAnim.SetBool("Walking", true);
-                PlayerAnim.speed = Vector3.Magnitude(Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f));
+                walking = true; // Used for doppelganger
+                walkingSpeed = Vector3.Magnitude(Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f));
+                PlayerAnim.speed = walkingSpeed;
 
                 FootStepCheck();
 
@@ -127,11 +131,13 @@ public class PlayerController : MonoBehaviour
             else
             {
                 PlayerAnim.SetBool("Walking", false);
+                walking = false;
             }
         }
         else
         {
             PlayerAnim.SetBool("Walking", false);
+            walking = false;
         }
     }     
     public void FallingCheck()
