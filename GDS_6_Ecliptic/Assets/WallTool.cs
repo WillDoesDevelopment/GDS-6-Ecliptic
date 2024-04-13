@@ -16,8 +16,7 @@ public class WallTool : MonoBehaviour
     private Vector3 instPos;
     private float lerpVal;
     private float dist;
-    private int segments;
-    private bool isOn = false;
+    private int segments = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +29,12 @@ public class WallTool : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            mPosA = Input.mousePosition;
+            mPosA = Input.mousePosition ;
             mPosA.z = 25.0f;
+         
 
             objPosA = Camera.main.ScreenToWorldPoint(mPosA);
-            Instantiate(column, objPosA, Quaternion.identity);
+            Instantiate(column, objPosA, column.transform.rotation);
             
         }
 
@@ -42,17 +42,12 @@ public class WallTool : MonoBehaviour
         {
             mPosB = Input.mousePosition;
             mPosB.z = 25.0f;
+        
 
             objPosB = Camera.main.ScreenToWorldPoint(mPosB);
-            Instantiate(column, objPosB, Quaternion.identity);
+            Instantiate(column, objPosB, column.transform.rotation);
             wallSegments();
 
-        }
-
-        if(isOn == true)
-        {
-            
-            isOn = false;
         }
 
     }
@@ -60,14 +55,14 @@ public class WallTool : MonoBehaviour
 
     void wallSegments()
     {
-        segments = Mathf.RoundToInt(Vector3.Distance(objPosA, objPosB) / 0.5f);
-        dist = 1 / segments;
-        for(int i = 0; i < segments; i++)
-        {
-            lerpVal += dist;
-            instPos = Vector3.Lerp(objPosA, objPosB, lerpVal);
-            Instantiate(wall, instPos, Quaternion.identity);
-            return;
-        }
+            segments = Mathf.RoundToInt(Vector3.Distance(objPosA, objPosB));
+            dist = 1 / segments;
+            for(int i = 0; i < segments; i++)
+            {
+                lerpVal += dist;
+                instPos = Vector3.Lerp(objPosA, objPosB, lerpVal);
+                Instantiate(wall, instPos, transform.rotation);
+                return;
+            }
     }
 }
