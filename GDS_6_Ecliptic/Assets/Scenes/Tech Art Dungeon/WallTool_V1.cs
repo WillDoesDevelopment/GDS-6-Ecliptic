@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallTool : MonoBehaviour
+public class WallTool_V1 : MonoBehaviour
 {
     private Vector3 mPosA;
     private Vector3 objPosA;
