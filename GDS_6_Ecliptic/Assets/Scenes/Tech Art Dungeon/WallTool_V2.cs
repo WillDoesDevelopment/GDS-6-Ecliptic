@@ -48,7 +48,7 @@ public class WallTool_V2 : MonoBehaviour
 
             for(int i = 0; i < pilars.Count; i++)
             {
-                Instantiate(wall, pilars[i].transform.position, Quaternion.identity);
+                Instantiate(wall, pilars[i].transform.position, transform.rotation);
             }
     }
 }
