@@ -7,22 +7,41 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "data/dialogue")]
 public class Dialogue: ScriptableObject
 {
+    // setting mode to not started
     public Dialogue()
     {
         DialogueMode = DialogueState.NotStarted;
-        //Debug.Log("setting state to not started " + DialogueMode);
+        //formatDialogueLine()
     }
+
+
     [System.Serializable]
     public struct DialogueLine 
     { 
+        // all the variables per line of dialogue
         public string sentence; 
         public DialogueType dialogueType;
         public AudioClip AS;
+        public int OrderAndChaosVal;
+        
         //public int OtherSpeaker;
     }
 
+    // this is the origonal dialogue list
+    public DialogueLine[] line; 
+    public void formatDialogueLine(ref DialogueLine[] DL)
+    {
+        for (int i = 0; i<DL.Length; i++)
+        {
+            for(int s = 0; s < i; s++)
+            {
+                string sentence = DL[i].sentence;
+                DL[i].sentence = " " + sentence;
 
-    public DialogueLine[] line;
+            }
+        }
+    }
+
     // all required information for the dialogue
     public enum DialogueType
     {
