@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
     public Queue<string> Sentences;
     public Queue<Dialogue.DialogueType> SentenceType;
     public Queue<AudioClip> CharacterSFX;
+    public List<Dialogue.DialogueLine> Decisions = new List<Dialogue.DialogueLine>();
 
 
     // Start is called before the first frame update
@@ -97,6 +98,19 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    public void DetectingDecisions(Dialogue dialogue)
+    {
+        //Dialogue.DialogueLine[] Decisions;
+        for(int i=0; i<dialogue.line.Length; i++)
+        {
+            if(dialogue.IndentVals[i] % 2 != 0)
+            {
+                Decisions.Add(dialogue.line[i]);
+            }
+           
+        }
+        Debug.Log(Decisions.Count);
+    }
     // Start dialogue, is given a chunk of data by a dialogue trigger (ie, dialogue trigger sees if its activated and if it is it calls somthing like "dialogueManager.StartDialogue(dialogue))
     //it then attaches all the data to the appropriate UI, such as images, text and so on
     public void StartDialogue(Dialogue dialogue)
@@ -142,6 +156,7 @@ public class DialogueManager : MonoBehaviour
     //it also shows who is speaking
     public void NextDialogue(Dialogue dialogue)
     {
+        DetectingDecisions(dialogue);
         if (CoroutineRunning)
         {
             //Debug.Log("skipping");

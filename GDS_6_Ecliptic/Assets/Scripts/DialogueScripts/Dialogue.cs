@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "data/dialogue")]
 public class Dialogue: ScriptableObject
 {
+    public int[] IndentVals;
     public DialogueLine[] line;
     public enum DialogueType
     {
@@ -138,13 +139,28 @@ public class Dialogue: ScriptableObject
             //Debug.Log(DL[i].sentence.Trim());
         }   
     }
-    public void DialogueDecisionCheck(ref DialogueLine [] DL)
+    public void CountIndents(ref DialogueLine[] DL)
     {
-        foreach(DialogueLine Dialogue in DL )
+        int[] tempIndentVals = new int[DL.Length];
+        for(int i = 0; i<DL.Length; i++)
         {
-
+            int indentCounter = 0;
+            foreach (char c in DL[i].sentence)
+            {
+                if (c == ' ')
+                {
+                    indentCounter++;
+                }
+                else
+                {
+                    tempIndentVals[i] = indentCounter;
+                    break;
+                }
+            }
         }
+        IndentVals = tempIndentVals;
     }
+ 
 
     // all required information for the dialogue
 
@@ -155,6 +171,6 @@ public class Dialogue: ScriptableObject
     private void OnValidate()
     {
         formatDialogueLine(ref line);
-        
+        CountIndents(ref line);
     }
 }
