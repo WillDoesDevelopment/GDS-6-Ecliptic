@@ -100,12 +100,37 @@ public class DialogueManager : MonoBehaviour
 
     public void DetectingDecisions(Dialogue dialogue)
     {
-        //Dialogue.DialogueLine[] Decisions;
+                                                                                          // just created a list for debugging
+        List<Dialogue.DialogueLine> TempDecisionGroup = new List<Dialogue.DialogueLine>();
+      
+                                                                                          // go through every dialogue line
         for(int i=0; i<dialogue.line.Length; i++)
         {
+                                                                                          // check if the amount a sentence is indented is an odd number as it means that said dailogue line is a decision
             if(dialogue.IndentVals[i] % 2 != 0)
             {
-                Decisions.Add(dialogue.line[i]);
+                TempDecisionGroup.Add(dialogue.line[i]);
+                                                                                          //from the i'th position loop through the rest of the dialogue list and see if anything is indented at the same level
+                for (int v=i+1; v<dialogue.line.Length; v++)
+                { 
+                                                                                          // here we see if i has the same indent val as v
+                    if (dialogue.IndentVals[i] == dialogue.IndentVals[v])
+                    {
+                        Debug.Log("same indent val");
+                                                                                          // here we check if v or i is in the list already 
+                                                                                          //in this case it is part of the same decision
+                        TempDecisionGroup.Add(dialogue.line[v]);
+                    }
+
+                                                                                          // if there is text that is less indented as I that means we have left this decision branch
+                    else if(dialogue.IndentVals[i] > dialogue.IndentVals[v])
+                    {
+                                                                                          //in this case the dialogue branch has ended 
+                        break;
+                    }
+                }
+                Debug.Log(TempDecisionGroup.Count);
+                return;
             }
            
         }
