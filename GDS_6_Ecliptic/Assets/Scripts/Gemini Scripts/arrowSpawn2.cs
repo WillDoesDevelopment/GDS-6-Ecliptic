@@ -35,9 +35,8 @@ public class arrowSpawn2 : MonoBehaviour
             var newObject = Instantiate(Prefab);                                                    //Create Arrow
             newObject.transform.position = transform.position + spawnOffset;                        //Location
             //newObject.transform.localScale = Vector3.one * 0.4f * Random.Range(0.8f, 1.2f);       //Scale
-            newObject.transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);                            //Rotation
-            Debug.Log(transform.eulerAngles.y);
-            Debug.Log("Hello");
+            newObject.transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);         //Rotation
+            
 
             //newObject.transform.parent = transform;                                               //Parent
             newObject.GetComponent<arrowScript>().speed = speed;                                    //Speed

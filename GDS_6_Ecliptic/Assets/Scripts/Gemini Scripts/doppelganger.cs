@@ -7,8 +7,15 @@ public class doppelganger : MonoBehaviour
     public GameObject player;
     public float xOffset = 0;
     public float zOffset = 0;
-    Vector3 offsetVector;
+    
+    float dopX;
+    float dopY;
+    float dopZ;
 
+    Vector3 zeroY;
+    float playerHeight;
+
+    public LayerMask floorLayer;
     public LayerMask wallLayer;
     public GameObject wallF;
     public GameObject wallB;
@@ -21,23 +28,33 @@ public class doppelganger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offsetVector = new Vector3(xOffset, 0, zOffset);
-        //copyAnim = player.GetComponent<PlayerController>().PlayerAnim;
+        zeroY = new Vector3(1, 0, 1);
+        playerHeight = 1.080006f;       
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position + offsetVector;
+        dopX = player.transform.position.x + xOffset;
+        dopZ = player.transform.position.z + zOffset;
+
+        FallingCheck();
+        transform.position = new Vector3(dopX, dopY, dopZ);
         transform.rotation = player.transform.rotation;
+        PlayerWalls();
 
         copyAnim.SetBool("Walking", player.GetComponent<PlayerController>().walking);
-        copyAnim.speed = player.GetComponent<PlayerController>().walkingSpeed;
+        copyAnim.speed = player.GetComponent<PlayerController>().walkingSpeed;  
 
+    }
+
+
+    public void PlayerWalls()
+    {
         var rayPos = transform.position;
         RaycastHit hit;
 
-        Debug.DrawLine(rayPos, rayPos + Vector3.forward * maxLength, Color.green, 0.5f); 
+        Debug.DrawLine(rayPos, rayPos + Vector3.forward * maxLength, Color.green, 0.5f);
         if (Physics.Raycast(new Ray(rayPos, Vector3.forward), out hit, maxLength, wallLayer))                      //Raycast forward
         {
             wallF.transform.position = hit.point - rayPos + player.transform.position;
@@ -64,5 +81,17 @@ public class doppelganger : MonoBehaviour
             wallR.transform.position = hit.point - rayPos + player.transform.position;
         }
         else { wallR.transform.position = new Vector3(0, -10, 0); }
+    }
+    public void FallingCheck()
+    {
+        var rayPos = transform.position + new Vector3(0,5,0);
+        RaycastHit hit;
+
+        Debug.DrawLine(rayPos, rayPos + Vector3.down * maxLength, Color.green, 0.5f);
+        if (Physics.Raycast(new Ray(rayPos, Vector3.down), out hit, maxLength, floorLayer))                      //Raycast forward
+        {
+            dopY = hit.point.y + playerHeight;
+        }
+                
     }
 }
