@@ -13,6 +13,7 @@ public class WallTool_V2 : MonoBehaviour
     private Vector3 instPos;
     private float lerpVal;
     private float dist;
+    private int nextCol = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +49,9 @@ public class WallTool_V2 : MonoBehaviour
 
             for(int i = 0; i < pilars.Count; i++)
             {
-                Instantiate(wall, pilars[i].transform.position, transform.rotation);
+                nextCol = i++;
+                Instantiate(wall, wall.transform.LookAt(pilars[nextCol].transform.position), Quaternion.identity);
+                ;
             }
     }
 }
