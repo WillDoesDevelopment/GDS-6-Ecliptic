@@ -50,8 +50,8 @@ public class WallTool_V2 : MonoBehaviour
             for(int i = 0; i < pilars.Count; i++)
             {
                 nextCol = i++;
-                Instantiate(wall, wall.transform.LookAt(pilars[nextCol].transform.position), Quaternion.identity);
-                ;
+                ///Instantiate(wall, wall.transform.LookAt(pilars[nextCol].transform.position), Quaternion.identity);
+                
             }
     }
 }
