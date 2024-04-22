@@ -45,7 +45,8 @@ public class DialogueManager : MonoBehaviour
                                                         // for the new list method we will need a dialogue index tracker so we can keep track of where we are in the dialogue, this tracker will need to be set back to zero at the 
                                                         // beginning and end of each dialogue. It will have to be incrimented where we origonally called the dequeue() function 
     public int DialogueIndexTracker = 0;
-    
+    public List<int> decisionIndexList = new List<int>();
+
     public GameObject player;
 
 
@@ -102,7 +103,10 @@ public class DialogueManager : MonoBehaviour
         List<Dialogue.DialogueLine> TempDecisionGroup = new List<Dialogue.DialogueLine>();
 
         List<int> decisionIndex = new List<int>();                                                                                  // go through every dialogue line
-
+        if(dialogue.IndentVals.Length == DialogueIndexTracker)
+        {
+            return decisionIndex;
+        }
                                                                                         // check if the amount a sentence is indented is an odd number as it means that said dailogue line is a decision
         if(dialogue.IndentVals[DialogueIndexTracker] % 2 != 0)
         {
@@ -178,9 +182,13 @@ public class DialogueManager : MonoBehaviour
                                                             //it also shows who is speaking
     public void NextDialogue(Dialogue dialogue)
     {
-        List<int> TempDecisionIndex = new List<int>();
-                                                            // this is for debugging purposes
-        TempDecisionIndex = DetectingDecisions(dialogue);
+        for (int i = 0; i < decisionIndexList.Count; i++)
+        {
+            DecisionTexts[i].text = "";
+        }
+        //List<int> TempDecisionIndex = new List<int>();
+        decisionIndexList.Clear();                                                    // this is for debugging purposes
+        decisionIndexList = DetectingDecisions(dialogue);
         if (CoroutineRunning)
         {
             //Debug.Log("skipping");
@@ -189,27 +197,14 @@ public class DialogueManager : MonoBehaviour
         }
 
                                                             // This will not work with the new method!!!!
-/*        if (Sentences.Count == 0)
-        {
-            return;
-        }*/
+
                                                             // this will work with the new method
         if(DialogueIndexTracker > dialogue.line.Length)
         {
             return;
         }
                                                             //this will not work with the new method either
-/*        if (CharacterSFX.Peek() != null)
-        {
-            CharacterSND.clip = CharacterSFX.Dequeue();
-            CharacterSND.Play();
 
-        }
-        else
-        {
-                                                            // this will not work aswell
-            CharacterSFX.Dequeue();
-        }*/
                                                             // intead we will need to do this
 
         if(dialogue.line[DialogueIndexTracker].AS != null)
@@ -245,7 +240,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         // will need to replace all these deque calls with index refrences then adding one to the index
-        //string tempSentence = Sentences.Dequeue();
+
 
         // instead we do this
         string tempSentence = dialogue.line[DialogueIndexTracker].sentence;
@@ -253,22 +248,22 @@ public class DialogueManager : MonoBehaviour
                                                              // incase we are mid way through typeText coroutine
         StopAllCoroutines();
 
-        if (TempDecisionIndex.Count == 0) 
+        if (decisionIndexList.Count == 0) 
         {
             StartCoroutine(TypeText(tempSentence, DialogueText));
         }
         else
         {
             //DialogueText.text = "";
-            for(int i=0; i< TempDecisionIndex.Count; i++)
+            for(int i=0; i< decisionIndexList.Count; i++)
             {
                 
                 DialogueText.text = "";
                 
                 Debug.Log(i.ToString() + "is itterable val");
 
-                Debug.Log(TempDecisionIndex[i]);
-                DecisionTexts[i].text = dialogue.line[TempDecisionIndex[i]].sentence;
+                Debug.Log(decisionIndexList[i]);
+                DecisionTexts[i].text = dialogue.line[decisionIndexList[i]].sentence;
             }
         }
         //types each character
@@ -326,7 +321,7 @@ public class DialogueManager : MonoBehaviour
             HubManager.UnfreezePlayerActions(player);
 
             player.GetComponent<PlayerController>().canWalk = true;
-
+            Debug.Log("EndOfDialogue");
             TextAnim.SetBool("PopUp", false);
             
             
@@ -335,7 +330,7 @@ public class DialogueManager : MonoBehaviour
             dialogue.DialogueMode = Dialogue.DialogueState.Finished;
 
             InDialogue = false;
-            DialogueIndexTracker = 0;
+            //DialogueIndexTracker = 0;
             return;
         }
     }
