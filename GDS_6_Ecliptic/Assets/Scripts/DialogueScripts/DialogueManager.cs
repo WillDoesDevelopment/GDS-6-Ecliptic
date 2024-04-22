@@ -15,6 +15,8 @@ public class DialogueManager : MonoBehaviour
     public GameObject EnterText;
     public TextMeshProUGUI DialogueText;
 
+    public TextMeshProUGUI[] DecisionTexts;
+
     // UI components for the right side of the dialogue
     [Header("Other Player Attributes")]
     public TextMeshProUGUI NameText;
@@ -29,9 +31,6 @@ public class DialogueManager : MonoBehaviour
     public Animator TextAnim;
     public Animator EnterAnim;
 
-   /* public Animator PlayerImgAnim;
-    public Animator OtherImgAnim;*/
-
 
     public bool proximityBool = false;
 
@@ -39,15 +38,14 @@ public class DialogueManager : MonoBehaviour
     private bool skip = false;
 
 
-    // two queues (first in first out) of sentences and types of sentences
-    public Queue<string> Sentences;
+                                                        // two queues (first in first out) of sentences and types of sentences
+    /*public Queue<string> Sentences;
     public Queue<Dialogue.DialogueType> SentenceType;
-    public Queue<AudioClip> CharacterSFX;
-    public List<Dialogue.DialogueLine> Decisions = new List<Dialogue.DialogueLine>();
-
-
-    // Start is called before the first frame update
-
+    public Queue<AudioClip> CharacterSFX;*/
+                                                        // for the new list method we will need a dialogue index tracker so we can keep track of where we are in the dialogue, this tracker will need to be set back to zero at the 
+                                                        // beginning and end of each dialogue. It will have to be incrimented where we origonally called the dequeue() function 
+    public int DialogueIndexTracker = 0;
+    
     public GameObject player;
 
 
@@ -57,9 +55,9 @@ public class DialogueManager : MonoBehaviour
     void Awake()
     {
         OtherDialogueBox.sprite = OtherDialogueBoxSprite;
-        Sentences = new Queue<string>();
+/*        Sentences = new Queue<string>();
         SentenceType = new Queue<Dialogue.DialogueType>();
-        CharacterSFX = new Queue<AudioClip>();
+        CharacterSFX = new Queue<AudioClip>();*/
         player = GameObject.Find("Player");
     }
 
@@ -72,16 +70,16 @@ public class DialogueManager : MonoBehaviour
         }
 
     }
-    // check to see if the enter prompt should appear
+                                                        // check to see if the enter prompt should appear
     public void EnterPromptCheck()
     {
-        //by default we exit the animation
+                                                        //by default we exit the animation
         EnterAnimExit();
 
-        // if however proximity is true (This gets set by a dialogue trigger) we enter the animation instead
+                                                        // if however proximity is true (This gets set by a dialogue trigger) we enter the animation instead
         if (proximityBool == true)
         {
-            // we set this bool back to false so that if the dialogue trigger next frame sets it to true again we know that we are in proximity
+                                                        // we set this bool back to false so that if the dialogue trigger next frame sets it to true again we know that we are in proximity
             EnterPrompt();
             proximityBool = false;
         }
@@ -98,58 +96,58 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-    public void DetectingDecisions(Dialogue dialogue)
+    public List<int> DetectingDecisions(Dialogue dialogue)
     {
                                                                                           // just created a list for debugging
         List<Dialogue.DialogueLine> TempDecisionGroup = new List<Dialogue.DialogueLine>();
-      
-                                                                                          // go through every dialogue line
-        for(int i=0; i<dialogue.line.Length; i++)
-        {
-                                                                                          // check if the amount a sentence is indented is an odd number as it means that said dailogue line is a decision
-            if(dialogue.IndentVals[i] % 2 != 0)
-            {
-                TempDecisionGroup.Add(dialogue.line[i]);
-                                                                                          //from the i'th position loop through the rest of the dialogue list and see if anything is indented at the same level
-                for (int v=i+1; v<dialogue.line.Length; v++)
-                { 
-                                                                                          // here we see if i has the same indent val as v
-                    if (dialogue.IndentVals[i] == dialogue.IndentVals[v])
-                    {
-                        Debug.Log("same indent val");
-                                                                                          // here we check if v or i is in the list already 
-                                                                                          //in this case it is part of the same decision
-                        TempDecisionGroup.Add(dialogue.line[v]);
-                    }
 
-                                                                                          // if there is text that is less indented as I that means we have left this decision branch
-                    else if(dialogue.IndentVals[i] > dialogue.IndentVals[v])
-                    {
-                                                                                          //in this case the dialogue branch has ended 
-                        break;
-                    }
+        List<int> decisionIndex = new List<int>();                                                                                  // go through every dialogue line
+
+                                                                                        // check if the amount a sentence is indented is an odd number as it means that said dailogue line is a decision
+        if(dialogue.IndentVals[DialogueIndexTracker] % 2 != 0)
+        {
+            TempDecisionGroup.Add(dialogue.line[DialogueIndexTracker]);
+            decisionIndex.Add(DialogueIndexTracker);
+            //from the i'th position loop through the rest of the dialogue list and see if anything is indented at the same level
+            for (int v=DialogueIndexTracker+1; v<dialogue.line.Length; v++)
+            { 
+                                                                                        // here we see if i has the same indent val as v
+                if (dialogue.IndentVals[DialogueIndexTracker] == dialogue.IndentVals[v])
+                {
+                    //Debug.Log("same indent val");
+                                                                                        // here we check if v or i is in the list already 
+                                                                                        //in this case it is part of the same decision
+                    TempDecisionGroup.Add(dialogue.line[v]);
+                    decisionIndex.Add(v);
                 }
-                Debug.Log(TempDecisionGroup.Count);
-                return;
+
+                                                                                        // if there is text that is less indented as I that means we have left this decision branch
+                else if(dialogue.IndentVals[DialogueIndexTracker] > dialogue.IndentVals[v])
+                {
+                                                                                        //in this case the dialogue branch has ended 
+                    break;
+                }
             }
-           
+            Debug.Log(TempDecisionGroup.Count);
         }
-        Debug.Log(Decisions.Count);
+        return decisionIndex;
+        
+        //Debug.Log(Decisions.Count);
     }
-    // Start dialogue, is given a chunk of data by a dialogue trigger (ie, dialogue trigger sees if its activated and if it is it calls somthing like "dialogueManager.StartDialogue(dialogue))
-    //it then attaches all the data to the appropriate UI, such as images, text and so on
+                                                            // Start dialogue, is given a chunk of data by a dialogue trigger (ie, dialogue trigger sees if its activated and if it is it calls somthing like "dialogueManager.StartDialogue(dialogue))
+                                                            //it then attaches all the data to the appropriate UI, such as images, text and so on
     public void StartDialogue(Dialogue dialogue)
     {
-        //calls this static (global) function in hub manager
+                                                            //calls this static (global) function in hub manager
         HubManager.freezePlayerActions(player);
 
 
         dialogue.DialogueMode = Dialogue.DialogueState.InProgress;
         player.GetComponent<PlayerController>().canWalk = false;
-        // animates our text ui to pop up
+                                                            // animates our text ui to pop up
         TextAnim.SetBool("PopUp", true);
 
-        // add image and name from our dialogue package that is passed through
+                                                            // add image and name from our dialogue package that is passed through
 
         SpriteUI.GetComponent<Image>().sprite = dialogue.DialogueImage;
         SpriteUI.rectTransform.sizeDelta = new Vector2 (dialogue.DialogueImage.rect.width, dialogue.DialogueImage.rect.height);
@@ -159,42 +157,49 @@ public class DialogueManager : MonoBehaviour
         PlayerSpriteUI.rectTransform.sizeDelta = new Vector2(dialogue.MonologueImage.rect.width, dialogue.MonologueImage.rect.height);
         PlayerNameText.text = dialogue.monologueName;
 
-        // if there was a previous dialogue we have to make sure the queues are empty before filling them
-        Sentences.Clear();
+                                                            // if there was a previous dialogue we have to make sure the queues are empty before filling them
+                                                            // this is unnecessary in the new version
+/*        Sentences.Clear();
         SentenceType.Clear();
         CharacterSFX.Clear();
-
+                                                            // this is also unnecessary in the new version
         foreach (Dialogue.DialogueLine info in dialogue.line)
         {
-            // add the sentances in our dialogue package to the local sentance queue
+                                                            // add the sentances in our dialogue package to the local sentance queue
             Sentences.Enqueue(info.sentence);
             SentenceType.Enqueue(info.dialogueType);
             CharacterSFX.Enqueue(info.AS);
-        }
-
-
-        // after the prep and saving to local variables we call the next dialogue
+        }*/
+                                                            // after the prep and saving to local variables we call the next dialogue
         NextDialogue(dialogue);
     }
 
-    //this animates the text, controlls when the dialogue is skipped and sets the next sentence to be animated
-    //it also shows who is speaking
+                                                            //this animates the text, controlls when the dialogue is skipped and sets the next sentence to be animated
+                                                            //it also shows who is speaking
     public void NextDialogue(Dialogue dialogue)
     {
-        DetectingDecisions(dialogue);
+        List<int> TempDecisionIndex = new List<int>();
+                                                            // this is for debugging purposes
+        TempDecisionIndex = DetectingDecisions(dialogue);
         if (CoroutineRunning)
         {
             //Debug.Log("skipping");
             skip = true;
             return;
         }
-        // check if we are out of dialogue and if so,  dont run the dialogue
-        if (Sentences.Count == 0)
+
+                                                            // This will not work with the new method!!!!
+/*        if (Sentences.Count == 0)
+        {
+            return;
+        }*/
+                                                            // this will work with the new method
+        if(DialogueIndexTracker > dialogue.line.Length)
         {
             return;
         }
-        // here we check there is an audio component for this dialogue then we deque it, add it to the audiosource component and play it
-        if (CharacterSFX.Peek() != null)
+                                                            //this will not work with the new method either
+/*        if (CharacterSFX.Peek() != null)
         {
             CharacterSND.clip = CharacterSFX.Dequeue();
             CharacterSND.Play();
@@ -202,11 +207,26 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+                                                            // this will not work aswell
             CharacterSFX.Dequeue();
-        }
-        // grab the dialogue type from the queue and check what it is, depending on this we will set the approptiate animations
-        Dialogue.DialogueType TempType = SentenceType.Dequeue();
+        }*/
+                                                            // intead we will need to do this
 
+        if(dialogue.line[DialogueIndexTracker].AS != null)
+        {
+            //CharacterSND.clip = CharacterSFX.Dequeue();
+            CharacterSND.clip = dialogue.line[DialogueIndexTracker].AS;
+            CharacterSND.Play();
+        }
+                                                            // this will not work either
+        //Dialogue.DialogueType TempType = SentenceType.Dequeue();
+
+                                                            // instead we do this
+        Dialogue.DialogueType TempType = dialogue.line[DialogueIndexTracker].dialogueType;
+
+        
+
+                                                            // all of this is fine tho  
         if(TempType == Dialogue.DialogueType.OtherDialogue)
         {
             TextAnim.SetBool("OtherImgAnimation", true);
@@ -224,18 +244,38 @@ public class DialogueManager : MonoBehaviour
             TextAnim.SetBool("PlayerImgAnimate", false);
         }
 
-        // dequeue sentences as the same time as saving them to a temp variable
-        string tempSentence = Sentences.Dequeue();
+        // will need to replace all these deque calls with index refrences then adding one to the index
+        //string tempSentence = Sentences.Dequeue();
 
-        // incase we are mid way through typeText coroutine
+        // instead we do this
+        string tempSentence = dialogue.line[DialogueIndexTracker].sentence;
+        DialogueIndexTracker++;
+                                                             // incase we are mid way through typeText coroutine
         StopAllCoroutines();
 
+        if (TempDecisionIndex.Count == 0) 
+        {
+            StartCoroutine(TypeText(tempSentence, DialogueText));
+        }
+        else
+        {
+            //DialogueText.text = "";
+            for(int i=0; i< TempDecisionIndex.Count; i++)
+            {
+                
+                DialogueText.text = "";
+                
+                Debug.Log(i.ToString() + "is itterable val");
+
+                Debug.Log(TempDecisionIndex[i]);
+                DecisionTexts[i].text = dialogue.line[TempDecisionIndex[i]].sentence;
+            }
+        }
         //types each character
-        StartCoroutine(TypeText(tempSentence, DialogueText));
 
     }
 
-    // animates text
+                                                            // animates text
     public IEnumerator TypeText(string sentence, TextMeshProUGUI TxtElement)
     {
         sndIsPlaying = false;
@@ -243,7 +283,7 @@ public class DialogueManager : MonoBehaviour
         DialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            // if you put a slash in text it will do a carrage return
+                                                             // if you put a slash in text it will do a carrage return
             if(letter == '/')
             {
                 TxtElement.text += "<br>";
@@ -263,7 +303,6 @@ public class DialogueManager : MonoBehaviour
             }
             
         }
-        //yield return new WaitForSeconds(0);
         skip = false;
         CoroutineRunning = false;
 
@@ -276,13 +315,14 @@ public class DialogueManager : MonoBehaviour
         sndIsPlaying = false;
     }
 
-    // exit dialogue anims
+                                                            // exit dialogue anims
     public void EndDialogueCheck(Dialogue dialogue)
     {
-        
-        if (Sentences.Count == 0)
+                                                                // this will not work with the new method, instead
+        //if (Sentences.Count == 0)
+        if (DialogueIndexTracker >= dialogue.line.Length)
         {
-            // calls this static (global) function in the hub manager
+                                                                // calls this static (global) function in the hub manager
             HubManager.UnfreezePlayerActions(player);
 
             player.GetComponent<PlayerController>().canWalk = true;
@@ -293,9 +333,9 @@ public class DialogueManager : MonoBehaviour
             TextAnim.SetBool("PlayerImgAnimate", false);
             TextAnim.SetBool("OtherImgAnimation", false);
             dialogue.DialogueMode = Dialogue.DialogueState.Finished;
-            //TextAnim.SetBool("PopUp", false);
 
             InDialogue = false;
+            DialogueIndexTracker = 0;
             return;
         }
     }
