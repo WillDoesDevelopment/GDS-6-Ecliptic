@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.EventSystems;
 public class DialogueManager : MonoBehaviour
 {
     public static bool InDialogue = false;
-
+    public EventSystem eventSystem;
 
     // image and text components necessary
     public Sprite OtherDialogueBoxSprite;
@@ -254,6 +254,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            eventSystem.SetSelectedGameObject(DecisionTexts[0].transform.parent.gameObject);
             //DialogueText.text = "";
             for(int i=0; i< decisionIndexList.Count; i++)
             {

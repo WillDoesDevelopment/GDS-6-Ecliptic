@@ -14,6 +14,7 @@ public class PauseScript : MonoBehaviour
     public GameObject PauseUI;
     public GameObject SettingsFirstSelect;
     public GameObject PauseFirstSelect;
+    public GameObject LastSelected;
 
     public AudioSource PauseSnd;
     public AudioSource SelectSnd;
@@ -73,6 +74,7 @@ public class PauseScript : MonoBehaviour
     //the menu will call the "Resume" function
     public void Resume()
     {
+        eventSystem.SetSelectedGameObject(LastSelected);
         // gets rid of menu. will become an animation later
         PauseSnd.Play();
         PauseUI.SetActive(false);
@@ -81,7 +83,9 @@ public class PauseScript : MonoBehaviour
     }
     public void Pause()
     {
+        LastSelected = eventSystem.currentSelectedGameObject;
         // brings up the pause menu. will be an animation later
+        eventSystem.SetSelectedGameObject(PauseFirstSelect);
         PauseSnd.Play();
         ControllerOrNot();
         PauseUI.SetActive(true);
