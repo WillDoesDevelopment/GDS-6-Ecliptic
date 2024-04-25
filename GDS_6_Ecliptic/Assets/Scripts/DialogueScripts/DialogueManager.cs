@@ -271,6 +271,10 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    public void SendToDialogueIndex(int index)
+    {
+        DialogueIndexTracker = decisionIndexList[index] + 1;
+    }
                                                             // animates text
     public IEnumerator TypeText(string sentence, TextMeshProUGUI TxtElement)
     {
