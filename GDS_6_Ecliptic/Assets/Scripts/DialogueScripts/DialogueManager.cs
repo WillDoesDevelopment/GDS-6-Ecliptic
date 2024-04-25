@@ -182,10 +182,7 @@ public class DialogueManager : MonoBehaviour
                                                             //it also shows who is speaking
     public void NextDialogue(Dialogue dialogue)
     {
-        for (int i = 0; i < decisionIndexList.Count; i++)
-        {
-            DecisionTexts[i].text = "";
-        }
+        DeactivateDecisions(dialogue);
         //List<int> TempDecisionIndex = new List<int>();
         decisionIndexList.Clear();                                                    // this is for debugging purposes
         decisionIndexList = DetectingDecisions(dialogue);
@@ -254,26 +251,38 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            eventSystem.SetSelectedGameObject(DecisionTexts[0].transform.parent.gameObject);
-            //DialogueText.text = "";
-            for(int i=0; i< decisionIndexList.Count; i++)
-            {
-                
-                DialogueText.text = "";
-                
-                Debug.Log(i.ToString() + "is itterable val");
-
-                Debug.Log(decisionIndexList[i]);
-                DecisionTexts[i].text = dialogue.line[decisionIndexList[i]].sentence;
-            }
+            ActivateDecisions(dialogue);
         }
         //types each character
 
     }
+    public void ActivateDecisions(Dialogue dialogue)
+    {
+        eventSystem.SetSelectedGameObject(DecisionTexts[0].transform.parent.gameObject);
+        //DialogueText.text = "";
+        for (int i = 0; i < decisionIndexList.Count; i++)
+        {
+            DecisionTexts[i].transform.parent.gameObject.SetActive(true);
+            DialogueText.text = "";
 
+            Debug.Log(i.ToString() + "is itterable val");
+
+            Debug.Log(decisionIndexList[i]);
+            DecisionTexts[i].text = dialogue.line[decisionIndexList[i]].sentence;
+        }
+    }
+    public void DeactivateDecisions(Dialogue dialogue)
+    {
+        for (int i = 0; i < decisionIndexList.Count; i++)
+        {
+            DecisionTexts[i].transform.parent.gameObject.SetActive(false);
+            DecisionTexts[i].text = "";
+        }
+    }
     public void SendToDialogueIndex(int index)
     {
         DialogueIndexTracker = decisionIndexList[index] + 1;
+        
     }
                                                             // animates text
     public IEnumerator TypeText(string sentence, TextMeshProUGUI TxtElement)
