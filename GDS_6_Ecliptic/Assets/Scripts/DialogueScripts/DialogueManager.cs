@@ -182,6 +182,17 @@ public class DialogueManager : MonoBehaviour
                                                             //it also shows who is speaking
     public void NextDialogue(Dialogue dialogue)
     {
+        if(DialogueIndexTracker != 0)
+            if(dialogue.IndentVals[DialogueIndexTracker] < dialogue.IndentVals[DialogueIndexTracker - 1])
+            {
+                for(int i = DialogueIndexTracker; i< dialogue.IndentVals.Length; i++)
+                {
+                    if(dialogue.IndentVals[i] == 0)
+                    {
+                        DialogueIndexTracker = i;
+                    }
+                }
+            }
         DeactivateDecisions(dialogue);
         //List<int> TempDecisionIndex = new List<int>();
         decisionIndexList.Clear();                                                    // this is for debugging purposes
