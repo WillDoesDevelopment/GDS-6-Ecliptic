@@ -132,7 +132,7 @@ public class DialogueManager : MonoBehaviour
                     break;
                 }
             }
-            Debug.Log(TempDecisionGroup.Count);
+            //Debug.Log(TempDecisionGroup.Count);
         }
         return decisionIndex;
         
@@ -190,6 +190,7 @@ public class DialogueManager : MonoBehaviour
                     if(dialogue.IndentVals[i] == 0)
                     {
                         DialogueIndexTracker = i;
+                        break;
                     }
                 }
             }
@@ -276,9 +277,9 @@ public class DialogueManager : MonoBehaviour
             DecisionTexts[i].transform.parent.gameObject.SetActive(true);
             DialogueText.text = "";
 
-            Debug.Log(i.ToString() + "is itterable val");
+    //        Debug.Log(i.ToString() + "is itterable val");
 
-            Debug.Log(decisionIndexList[i]);
+    //        Debug.Log(decisionIndexList[i]);
             DecisionTexts[i].text = dialogue.line[decisionIndexList[i]].sentence;
         }
     }
@@ -292,8 +293,10 @@ public class DialogueManager : MonoBehaviour
     }
     public void SendToDialogueIndex(int index)
     {
-        DialogueIndexTracker = decisionIndexList[index] + 1;
-        
+        DialogueIndexTracker = decisionIndexList[index]+1;
+        Debug.Log(DialogueIndexTracker);
+        Debug.Log(decisionIndexList.Count);
+
     }
                                                             // animates text
     public IEnumerator TypeText(string sentence, TextMeshProUGUI TxtElement)
