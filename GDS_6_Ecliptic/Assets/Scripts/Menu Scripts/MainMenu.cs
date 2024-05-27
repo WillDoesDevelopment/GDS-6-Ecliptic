@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
+    //basic main menu script
+
     public string level;
 
     public GameObject[] canvas;
@@ -27,7 +29,7 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-
+        //checks if the controller is connected
         controllerCheck();
  
     }
@@ -47,6 +49,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    //the various btn functions that are called with the corrosponding btn
     public void LoadGame()
     {
         
@@ -86,6 +89,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator Load()
     {
+        //actually loads the game and has some animations to go with
         yield return new WaitForSeconds(2f);
         anim.GetComponent<Animator>().SetTrigger("Boop");
         yield return new WaitForSeconds(4f);
@@ -94,6 +98,7 @@ public class MainMenu : MonoBehaviour
 
     public void ChangeFirstSelected()
     {
+        //Using the new input system for UI, swaps the selected btn depending on which canvas is active
         if (eventSystem.currentSelectedGameObject == SettingsFirstSelect)
         {
             Debug.Log("ChangeBack");
@@ -108,8 +113,8 @@ public class MainMenu : MonoBehaviour
     }
 
     public void controllerCheck()
-    { 
-
+    {
+        // checks if the controller is connected
             var controllers = Input.GetJoystickNames();
             if (connected && controllers.Length > 0)
             {

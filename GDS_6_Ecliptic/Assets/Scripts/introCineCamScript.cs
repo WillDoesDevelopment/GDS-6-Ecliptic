@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class introCineCamScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //This script handles the intro cameras, shader animation and rig animation
 
     public Animator anim;
     public Animator anim2;
@@ -28,9 +28,10 @@ public class introCineCamScript : MonoBehaviour
     public Material[] doorMats;
     void Start()
     {
+        //collects all the shaders parameters to start the animation
         glowAmt[0].GetFloat("_Glow_Amount");
         glowAmt[1].GetFloat("_Glow_Amount");
-        StartCoroutine(panCam());
+        StartCoroutine(panCam()); //starts the first camera that follows the orb
         amtStart = 2;
         doorMats[5].DisableKeyword("_EMISSION");
         doorMats[6].DisableKeyword("_EMISSION");
@@ -39,17 +40,17 @@ public class introCineCamScript : MonoBehaviour
 
     private void Update()
     {
+        //starts the orrery script
         if (StartSpin)
         {
             orreryScript.AmbientSpin();
         }
-        //amt = Mathf.Lerp(amtStart, amtEnd, Time.deltaTime * 6.0f);
-        //AmtGo();
         
     }
 
     IEnumerator panCam()
     {
+        //This starts the follow cam which follows the glowing orb and switches the orb out between the character, orb and the shader animation.
         yield return new WaitForSeconds(2f);
         anim2.SetTrigger("FadeIn");
         yield return new WaitForSeconds(4f);
@@ -57,14 +58,15 @@ public class introCineCamScript : MonoBehaviour
         star.SetActive(false);
         //yield return new WaitForSeconds(2f);
         anim.SetTrigger("Pan");
-        
-        
 
         StartCoroutine(outro());
     }
 
     IEnumerator outro()
     {
+
+        //outro function, this plays the final animation of ophie 
+
         //OPHIE DISCOVERS HE HAS HANDS
         yield return new WaitForSeconds(6f);
         snd2.Play();
@@ -84,7 +86,7 @@ public class introCineCamScript : MonoBehaviour
 
     public void AmtGo()
     {
-
+        //This triggers the shader animation lerp that changes the glow from the material 1 to 0.
             shaderValue -= change;
             glowAmt[0].SetFloat("_Glow_Amount", shaderValue);
             glowAmt[1].SetFloat("_Glow_Amount", shaderValue);
@@ -94,6 +96,7 @@ public class introCineCamScript : MonoBehaviour
 
     public void DoorsOn()
     {
+        //This turns the emission on for all the doors, the platform and the podium.
         Doors[0].GetComponent<MeshRenderer>().material = doorMats[0];
         Doors[1].GetComponent<MeshRenderer>().material = doorMats[1];
         Doors[2].GetComponent<MeshRenderer>().material = doorMats[2];

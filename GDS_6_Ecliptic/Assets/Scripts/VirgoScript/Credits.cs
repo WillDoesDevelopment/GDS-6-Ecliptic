@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour
 {
+    //this script handles the end credits of where our current public demo ends
 
     public GameObject credits;
     public GameObject title;
@@ -21,6 +22,7 @@ public class Credits : MonoBehaviour
 
     }
 
+    //this runs through the credits animation, turns off the title and at the end of the credits reel, goes back to the first scene (the very start main menu of the game essentially resetting it)
     IEnumerator loadMenu()
     {
         Debug.Log("Credits");

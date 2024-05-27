@@ -6,6 +6,9 @@ using TMPro;
 
 public class AccessAdjust : MonoBehaviour
 {
+
+    //This handles the sfx and music controls and canvas
+
     [Header("Floats")]
     public float masterVol;
     public float sfxVol;
@@ -32,7 +35,7 @@ public class AccessAdjust : MonoBehaviour
 
     private void Update()
     {
-
+        //updating the volumes based on the master and sfx
         for(var i = 0; i < BackGAud.Length; i++)
         {
             if(BackGAud[i] != null)
@@ -57,6 +60,7 @@ public class AccessAdjust : MonoBehaviour
 
     public void AdjMasVol(float newMV)
     {
+        //creates a new mv value depending on where the slider is 
 
         for (var i = 0; i < mySliderMV.Length; i++)
         {
@@ -75,6 +79,7 @@ public class AccessAdjust : MonoBehaviour
 
     public void AdjSfx(float newSFX)
     {
+        //creates a new sfx value depending on where the slider is
 
         for (var i = 0; i < mySliderSFX.Length; i++)
         {

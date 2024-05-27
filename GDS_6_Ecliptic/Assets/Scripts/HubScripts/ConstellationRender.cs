@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ConstellationRender : MonoBehaviour
 {
+
+    //This uses the points in the line renderer to animate the line segments for each constellation
+
    public LineRenderer line;
     public float animSpeed = 5f;
     public Vector3[] linePoints;
@@ -12,21 +15,12 @@ public class ConstellationRender : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        line = GetComponent<LineRenderer>();
-        pointsCount = line.positionCount;
-        linePoints = new Vector3[pointsCount];
-        for (int i = 0; i < pointsCount; i++)
-        {
-            linePoints[i] = line.GetPosition(i);
-        }
-
-        StartCoroutine(AnimateConst());
-        */
+   
     }
 
     void OnEnable()
     {
+        //when constellation is turned on by the door and bridge trigger, this runs
         line = GetComponent<LineRenderer>();
         pointsCount = line.positionCount;
         linePoints = new Vector3[pointsCount];
@@ -40,6 +34,7 @@ public class ConstellationRender : MonoBehaviour
 
     public IEnumerator AnimateConst()
     {
+        //this controls the animation of the constellation drawing
         float segDuration = animSpeed / pointsCount;
         for(int i = 0; i < pointsCount - 1; i++)
         {

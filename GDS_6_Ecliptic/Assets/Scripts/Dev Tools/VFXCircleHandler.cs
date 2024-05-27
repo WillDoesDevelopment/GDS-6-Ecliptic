@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class VFXCircleHandler : MonoBehaviour
 {
+    // This script houses all of the VFX components to the dialouge triggers at the end of each room. This will be expanded on as the game is polished further
+
     [Header("VFX References")] //References for the children in the VFX Circle GameObj
     public ParticleSystem[] trails;
     public ParticleSystem[] rings;
@@ -109,13 +111,6 @@ public class VFXCircleHandler : MonoBehaviour
         scrollMats[1].SetColor("_Emission", ScrollCol[0]);
 
     }
-
-    private void Start()
-    {
-        
-    }
-
-
     public void circleVFXStart()
     {
         //SCROLL SHADER OBJS

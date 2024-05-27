@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class PauseMenu : MonoBehaviour
 {
 
+    //Pause System which handles all the canvas's in the pause canvas
+
     public GameObject[] Pause;
     public GameObject dialouge;
     public GameObject[] settingsPanels;
@@ -19,6 +21,7 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //makes sure that the pause menu is off on game start
         Pause[0].SetActive(true);
         //dialouge.SetActive(false);
         for (var i = 0; i < settingsPanels.Length; i++)
@@ -30,6 +33,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
+        //These are the switches that turn the specific canvas's on and off depending on what input device is detected.
         if(this.gameObject != null)
         {
             Time.timeScale = 1f;
@@ -74,7 +78,7 @@ public class PauseMenu : MonoBehaviour
 
     public void BackBtn()
     {
-
+        //This handles the back button on the canvases
         ES.firstSelectedGameObject = pBtn;
 
         for (var i = 0; i < settingsPanels.Length; i++)
@@ -86,7 +90,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-
+        //This handles the resume btn
         ES.firstSelectedGameObject = pBtn;
 
         for (var i = 0; i < settingsPanels.Length; i++)
@@ -102,12 +106,14 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        //this is the fucntion for the quit btn
         Application.Quit();
         print("quit");
     }
 
     public void Settings()
     {
+        //This triggers the correct btn and canvas depending on the input device connected.
         settingsPanels[3].SetActive(true);
         Pause[0].SetActive(false);
 

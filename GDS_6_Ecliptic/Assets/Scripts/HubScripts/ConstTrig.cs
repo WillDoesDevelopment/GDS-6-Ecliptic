@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ConstTrig : MonoBehaviour
 {
+    //very simple script so that it can be referenced by the orrery/hub scripts
 
     public GameObject[] constellations;
 
