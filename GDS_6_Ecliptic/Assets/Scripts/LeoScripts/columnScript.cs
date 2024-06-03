@@ -6,6 +6,9 @@ public class columnScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool fall = false;
+    public GameObject floorSegment;
+    public GameObject barrierObject;
+    public GameObject brokenColumn;
     
     void Start()
     {

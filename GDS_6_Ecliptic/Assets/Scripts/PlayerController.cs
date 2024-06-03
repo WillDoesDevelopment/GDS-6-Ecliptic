@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     float inputZ;
     public Vector3 moveVector;
     Vector3 moveDirection = Vector3.zero;
+    public Vector3 AutoWalkDestination;
     public float _rotation;
     float _velocity;
     public float yRotation;    
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     bool grounded = false;    
     public bool canWalk = true;
     public bool walking = false;
+    public bool autoWalking = false;
     public float walkingSpeed = 0;
     public GameObject pauseMenu;
     public bool isPaused = false;
@@ -100,6 +102,8 @@ public class PlayerController : MonoBehaviour
             inputY = Mathf.Clamp(inputY, -maxFallSpeed, maxFallSpeed);
             inputX = Input.GetAxis("Horizontal");
             inputZ = Input.GetAxis("Vertical");
+
+            if(autoWalking) { AutoWalk(); }            
 
             moveDirection = new Vector3(inputX, 0, inputZ);
             moveDirection = Vector3.ClampMagnitude(moveDirection, 1.0f) * speed;
@@ -182,5 +186,21 @@ public class PlayerController : MonoBehaviour
         {
             canStep = true;
         }
+
+    }
+
+    public void AutoWalk()
+    {
+        //Simple linear auto walk function
+        Vector3 xz = new Vector3(1, 0, 1);
+        Vector3 autoDir = Vector3.Normalize(Vector3.Scale(AutoWalkDestination, xz) - Vector3.Scale(transform.position, xz));
+
+        var a = Vector3.Distance(Vector3.Scale(AutoWalkDestination, xz), Vector3.Scale(transform.position, xz));
+        var b = Mathf.InverseLerp(0.0f, 2.0f, a);
+        var c = Mathf.Lerp(0.2f, 1.0f, b);
+
+        inputX = autoDir.x * c;
+        inputZ = autoDir.z * c;
+        if(a < 0.1) { autoWalking = false; }
     }
 }
