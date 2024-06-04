@@ -30,6 +30,9 @@ public class Grapple3 : MonoBehaviour
     Vector3 playerXZ;
     Renderer rend;
 
+    public float explosionForce = 500f;
+    public float explosionRadius = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,9 +69,7 @@ public class Grapple3 : MonoBehaviour
         
         //Grapple Follow
         GrappleFollowCheck();
-
-        //collumn code for leo room
-        CollumnInteractionCheck();       
+                      
     }
 
     void AddForce()
@@ -201,7 +202,15 @@ public class Grapple3 : MonoBehaviour
             {
                 //Attatch and Pull Object
                 t = length / maxLength;
-                AddForce();
+                if (target.GetComponent<columnScript>() == null)
+                {
+                    AddForce();
+                }
+                else
+                {
+                    CollumnInteraction();
+                }
+                    
             }
         }
     }
@@ -247,28 +256,15 @@ public class Grapple3 : MonoBehaviour
         }
     }
 
-    public void CollumnInteractionCheck()
-    {
-        if (target != null)
+    public void CollumnInteraction()
+    {       
+        if (t > 1)
         {
-            //column interaction
-            if (target.GetComponent<columnScript>() != null)
-            {
-                //Debug.Log("almost");
-
-                if (t > 1)
-                {
-                    target.GetComponent<columnScript>().fall = true;
-                    RopeBreak();
-                }
-            }
-
-            // Break if stretched
-            if (t > 1.2f)
-            {
-                RopeBreak();
-            }
-        }
+            target.GetComponent<columnScript>().fall = true;
+            target.GetComponent<columnScript>().FallUpdate();
+            RopeBreak();
+            ExplosionForce();
+        }                 
     }
     
         public void RopeBreak()
@@ -278,5 +274,18 @@ public class Grapple3 : MonoBehaviour
         castComplete = false;
         casting = false;
         retract = true;             //Start retracting
+    }
+
+    void ExplosionForce()
+    {
+        Vector3 explosionPos = target.transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+            if (rb != null)
+                rb.AddExplosionForce(explosionForce, explosionPos, explosionRadius);
+        }
     }
 }
