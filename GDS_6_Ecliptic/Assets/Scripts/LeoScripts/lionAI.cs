@@ -227,7 +227,7 @@ public class lionAI : MonoBehaviour
         Collider[] hitColliders2 = Physics.OverlapBox(transform.position, new Vector3(1.0f, 1.0f, 1.0f)); //Hitbox for columns. Hitboxes need rotation.........
         foreach (var hitCollider in hitColliders2)
         {
-            if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Column"))            //collumn falls
+            if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Grapple"))            //collumn falls
             {                      
                 hitCollider.gameObject.GetComponent<columnScript>().fall = true;
             }  

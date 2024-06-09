@@ -264,6 +264,7 @@ public class Grapple3 : MonoBehaviour
             target.GetComponent<columnScript>().FallUpdate();
             RopeBreak();
             ExplosionForce();
+            target = null;
         }                 
     }
     

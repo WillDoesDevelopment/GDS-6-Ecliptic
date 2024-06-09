@@ -77,6 +77,7 @@ public class columnScript : MonoBehaviour
 
     void BreakStage3()
     {
+        barrierObject.GetComponent<barrierSegment>().move = true;
         Destroy(gameObject, 0.0f);
     }
 }
