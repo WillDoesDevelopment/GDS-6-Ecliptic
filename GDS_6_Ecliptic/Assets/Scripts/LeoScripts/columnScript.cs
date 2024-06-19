@@ -50,13 +50,13 @@ public class columnScript : MonoBehaviour
             stage1Lock = true;
         }
 
-        if (timer > 5 && stage2Lock == false)
+        if (timer > 4 && stage2Lock == false)
         {
             BreakStage2();
             stage2Lock = true;
         }
 
-        if (timer > 10 && stage3Lock == false)
+        if (timer > 4 && stage3Lock == false)
         {
             BreakStage3();
             stage3Lock = true;
@@ -78,6 +78,6 @@ public class columnScript : MonoBehaviour
     void BreakStage3()
     {
         barrierObject.GetComponent<barrierSegment>().move = true;
-        Destroy(gameObject, 0.0f);
+        gameObject.SetActive(false);        
     }
 }
