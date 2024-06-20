@@ -8,7 +8,7 @@ public class barrierSegment : MonoBehaviour
     Vector3 endPos;
     float startDist = 40f;
     float dist = 0;
-    float speed = 3;
+    float speed = 10;    
     public bool move = false;
 
     Vector3 lineStart;
@@ -38,17 +38,18 @@ public class barrierSegment : MonoBehaviour
             lineStart = transform.position + transform.TransformDirection(new Vector3(0, -4, 20));
             lineEnd1 = transform.position + transform.TransformDirection(new Vector3(-20, -4, -15));
             lineEnd2 = transform.position + transform.TransformDirection(new Vector3(+20, -4, -15));
-            
+                       
+
             //if(Physics.Linecast(lineStart, lineEnd, out RaycastHit hit, LayerMask))
-            if (Physics.Linecast(lineStart, lineEnd1, out RaycastHit hit1, LayerMask.GetMask("Floor")))            
+            while (Physics.Linecast(lineStart, lineEnd1, out RaycastHit hit1, LayerMask.GetMask("Floor")))            
             {
-                hit1.transform.gameObject.GetComponent<floorScript>().solid = false;
-                hit1.transform.gameObject.layer = LayerMask.GetMask("Default");
+                hit1.transform.gameObject.GetComponent<floorScript>().fall = true;
+                hit1.transform.gameObject.layer = LayerMask.GetMask("Default");                
             }
 
-            if (Physics.Linecast(lineStart, lineEnd2, out RaycastHit hit2, LayerMask.GetMask("Floor")))
+            while (Physics.Linecast(lineStart, lineEnd2, out RaycastHit hit2, LayerMask.GetMask("Floor")))
             {
-                hit2.transform.gameObject.GetComponent<floorScript>().solid = false;
+                hit2.transform.gameObject.GetComponent<floorScript>().fall = true;
                 hit2.transform.gameObject.layer = LayerMask.GetMask("Default");
             }
 

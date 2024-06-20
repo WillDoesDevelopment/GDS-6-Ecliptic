@@ -49,7 +49,7 @@ public class floorCollapse : MonoBehaviour
         {
             if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Floor"))
             {
-                hitCollider.transform.GetComponent<floorScript>().solid = false;
+                hitCollider.transform.GetComponent<floorScript>().fall = true;
             }
 
         }
