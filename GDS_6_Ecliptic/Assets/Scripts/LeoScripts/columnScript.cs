@@ -29,6 +29,7 @@ public class columnScript : MonoBehaviour
             FallUpdate();
         }
 
+        /*
         if (Input.GetKeyDown(KeyCode.P))
         {
             Destroy(gameObject, 0.0f);
@@ -38,6 +39,7 @@ public class columnScript : MonoBehaviour
         {
             fall = true;
         }
+        */
     }
 
     public void FallUpdate()

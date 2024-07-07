@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public int health = 3;
     public Animator PlayerAnim;
     //Movement
     CharacterController controller;
@@ -18,15 +18,15 @@ public class PlayerController : MonoBehaviour
     public Vector3 AutoWalkDestination;
     public float _rotation;
     float _velocity;
-    public float yRotation;    
-    [Range(0f, 10f)] public float speed = 5;        
+    public float yRotation;
+    [Range(0f, 10f)] public float speed = 5;
     [Range(0f, 20f)] public float gravity = 10;
     [Range(0f, 100f)] public float maxFallSpeed = 10;
     public float airTime = 0;
-    bool grounded = false;    
+    bool grounded = false;
+    public PlayerState playerState = PlayerState.Walk;
     public bool canWalk = true;
     public bool walking = false;
-    public bool autoWalking = false;
     public float walkingSpeed = 0;
     public GameObject pauseMenu;
     public bool isPaused = false;
@@ -35,8 +35,12 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 0.8f)] public float stepPitchVariance = 0.5f;
     public AudioSource audioSource;
     public AudioClip[] stepArray;
-    bool playDaftPunk = false;
-      
+    float timer = 0;
+    public AnimationCurve knockbackV;
+    public AnimationCurve knockbackH;
+    Vector3 knockbackStartPos;
+    Vector3 knockbackEndPos;
+
     //Spawn
     Vector3 spawnPoint;
 
@@ -44,106 +48,112 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         isPaused = false;
 
         // Spawn
         spawnPoint = transform.position;
 
         // Movement
-        controller = GetComponent<CharacterController>();                
-        
-    }
-    
-    void Respawn()
-    {
-        //controller.enabled = false;
-        //transform.position = spawnPoint;
-        //controller.enabled = true;
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
-    }
-    
-    void Footstep()
-    {
-        //Debug.Log("Step");
-        canStep = false;
-        if(audioSource != null && stepArray != null)
-        {
-            audioSource.clip = stepArray[Random.Range(0, stepArray.Length)];
-            audioSource.pitch = 1 + Random.Range(-stepPitchVariance, stepPitchVariance);
-            //audioSource.volume = stepVolume;
-            audioSource.PlayOneShot(audioSource.clip);
+        controller = GetComponent<CharacterController>();
 
-            //step.Play();
-        }        
+        //Placeholder values
+        knockbackStartPos = transform.position;
+        knockbackEndPos = transform.position + Vector3.left * 10f;
+
     }
 
-    //public IEnumerator FootStep
+
+
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha9))
+        //Debug remove for build
+        if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            playDaftPunk = !playDaftPunk;
+            playerState = PlayerState.Knockback;
         }
 
-        
+        //if(canWalk)
 
-        //Movement
-        #region Movement
-
-        if(canWalk)
+        if (playerState == PlayerState.Walk)
         {
-
-            FallingCheck();
-
-            inputY = Mathf.Clamp(inputY, -maxFallSpeed, maxFallSpeed);
-            inputX = Input.GetAxis("Horizontal");
-            inputZ = Input.GetAxis("Vertical");
-
-            if(autoWalking) { AutoWalk(); }            
-
-            moveDirection = new Vector3(inputX, 0, inputZ);
-            moveDirection = Vector3.ClampMagnitude(moveDirection, 1.0f) * speed;
-            moveDirection = new Vector3(moveDirection.x, inputY, moveDirection.z);
-                   
-            grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0; //credit benjamin esposito First Person Drifter
-
-
-            #endregion Movement
-
-
-
-            //rotation input
-            moveVector = Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f) * speed *Time.deltaTime;
-            if (moveVector != Vector3.zero)
-            {
-                PlayerAnim.SetBool("Walking", true);
-                walking = true; // Used for doppelganger
-                walkingSpeed = Vector3.Magnitude(Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f));
-                PlayerAnim.speed = walkingSpeed;
-
-                FootStepCheck();
-
-
-                yRotation = Mathf.Atan2(moveVector.z, moveVector.x) * Mathf.Rad2Deg * -1f + 90f;
-                _rotation = Mathf.SmoothDampAngle(_rotation, yRotation, ref _velocity, 0.1f);
-                transform.rotation = Quaternion.Euler(0f, _rotation , 0f);
-            }
-            else
-            {
-                PlayerAnim.SetBool("Walking", false);
-                walking = false;
-            }
+            PlayerInput();
+            Movement();
         }
         else
         {
             PlayerAnim.SetBool("Walking", false);
             walking = false;
         }
-    }     
+
+        if (playerState == PlayerState.Paused)
+        {
+
+        }
+        else if (playerState == PlayerState.Autowalk)
+        {
+            AutoWalk();
+            Movement();
+        }
+        else if (playerState == PlayerState.Dialouge)
+        {
+
+        }
+        else if (playerState == PlayerState.Freeze)
+        {
+
+        }
+        else if (playerState == PlayerState.Knockback)
+        {
+            Knockback();
+        }
+        else if (playerState == PlayerState.Damage)
+        {
+            Damage();
+        }
+    }
+
+    void PlayerInput()
+    {
+        FallingCheck();
+
+        inputY = Mathf.Clamp(inputY, -maxFallSpeed, maxFallSpeed);
+        inputX = Input.GetAxis("Horizontal");
+        inputZ = Input.GetAxis("Vertical");
+    }
+    void Movement()
+    {
+        moveDirection = new Vector3(inputX, 0, inputZ);
+        moveDirection = Vector3.ClampMagnitude(moveDirection, 1.0f) * speed;
+        moveDirection = new Vector3(moveDirection.x, inputY, moveDirection.z);
+
+        grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0; //credit benjamin esposito First Person Drifter
+
+
+
+        //rotation input
+        moveVector = Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f) * speed * Time.deltaTime;
+        if (moveVector != Vector3.zero)
+        {
+            PlayerAnim.SetBool("Walking", true);
+            walking = true; // Used for doppelganger
+            walkingSpeed = Vector3.Magnitude(Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f));
+            PlayerAnim.speed = walkingSpeed;
+
+            FootStepCheck();
+
+            yRotation = Mathf.Atan2(moveVector.z, moveVector.x) * Mathf.Rad2Deg * -1f + 90f;
+            _rotation = Mathf.SmoothDampAngle(_rotation, yRotation, ref _velocity, 0.1f);
+            transform.rotation = Quaternion.Euler(0f, _rotation, 0f);
+        }
+        else
+        {
+            PlayerAnim.SetBool("Walking", false);
+            walking = false;
+        }
+    }
+
     public void FallingCheck()
     {
         if (grounded == false)
@@ -157,7 +167,7 @@ public class PlayerController : MonoBehaviour
             inputY = -0.25f;
         }
 
-        if (airTime > 10)       //Respawns if falling for too long
+        if (airTime > 8)       //Respawns if falling for too long
         {
             Respawn();
             airTime = 0;
@@ -195,12 +205,64 @@ public class PlayerController : MonoBehaviour
         Vector3 xz = new Vector3(1, 0, 1);
         Vector3 autoDir = Vector3.Normalize(Vector3.Scale(AutoWalkDestination, xz) - Vector3.Scale(transform.position, xz));
 
-        var a = Vector3.Distance(Vector3.Scale(AutoWalkDestination, xz), Vector3.Scale(transform.position, xz));
-        var b = Mathf.InverseLerp(0.0f, 2.0f, a);
-        var c = Mathf.Lerp(0.2f, 1.0f, b);
+        var a = Vector3.Distance(Vector3.Scale(AutoWalkDestination, xz), Vector3.Scale(transform.position, xz)); //Distance to destination
+        var b = Mathf.InverseLerp(0.0f, 2.0f, a);   //Slow movement when within 2m of destination
+        var c = Mathf.Lerp(0.2f, 1.0f, b);          //Slow by this factor
 
         inputX = autoDir.x * c;
         inputZ = autoDir.z * c;
-        if(a < 0.1) { autoWalking = false; }
+        if(a < 0.1) { playerState = PlayerState.Walk; } //Stop when within 0.1m of destination
+    }
+
+    void Knockback()
+    {
+        timer += Time.deltaTime;
+
+        //Add player falling animation here
+
+        var a = Mathf.Clamp01(knockbackH.Evaluate(timer / 4f));
+
+        transform.position = Vector3.Lerp(knockbackStartPos, knockbackEndPos, a);
+        transform.position += new Vector3(0, knockbackV.Evaluate(a), 0);
+
+        if(a == 1f)
+        {
+            timer = 0;
+            playerState = PlayerState.Walk;
+        }
+    }
+
+    void Respawn()
+    {
+        //controller.enabled = false;
+        //transform.position = spawnPoint;
+        //controller.enabled = true;
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
+
+    void Footstep()
+    {
+        //Debug.Log("Step");
+        canStep = false;
+        if (audioSource != null && stepArray != null)
+        {
+            audioSource.clip = stepArray[Random.Range(0, stepArray.Length)];
+            audioSource.pitch = 1 + Random.Range(-stepPitchVariance, stepPitchVariance);
+            //audioSource.volume = stepVolume;
+            audioSource.PlayOneShot(audioSource.clip);
+
+        }
+    }
+
+    void Damage()
+    {
+        health -= 1;
+        if(health == 0)
+        {
+            //Restert or faint or something
+        }
+        playerState = PlayerState.Knockback;
+        Knockback();
     }
 }

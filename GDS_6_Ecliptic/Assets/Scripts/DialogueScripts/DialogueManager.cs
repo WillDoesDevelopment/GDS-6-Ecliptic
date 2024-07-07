@@ -147,7 +147,7 @@ public class DialogueManager : MonoBehaviour
 
 
         dialogue.DialogueMode = Dialogue.DialogueState.InProgress;
-        player.GetComponent<PlayerController>().canWalk = false;
+        player.GetComponent<PlayerController>().playerState = PlayerState.Dialouge;
                                                             // animates our text ui to pop up
         TextAnim.SetBool("PopUp", true);
 
@@ -348,7 +348,7 @@ public class DialogueManager : MonoBehaviour
                                                                 // calls this static (global) function in the hub manager
             HubManager.UnfreezePlayerActions(player);
 
-            player.GetComponent<PlayerController>().canWalk = true;
+            player.GetComponent<PlayerController>().playerState = PlayerState.Walk;
             Debug.Log("EndOfDialogue");
             TextAnim.SetBool("PopUp", false);
             
