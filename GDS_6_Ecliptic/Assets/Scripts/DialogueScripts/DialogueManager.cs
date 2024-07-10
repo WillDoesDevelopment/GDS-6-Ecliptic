@@ -275,8 +275,8 @@ public class DialogueManager : MonoBehaviour
         TextAnim.SetBool("DecisionUIAnimate", true);
         for (int i = 0; i < decisionIndexList.Count; i++)
         {
-            /*DecisionTexts[i].transform.parent.gameObject.SetActive(true);
-            DialogueText.text = "";*/
+            DecisionTexts[i].transform.parent.gameObject.SetActive(true);
+            //DialogueText.text = "";
 
     //        Debug.Log(i.ToString() + "is itterable val");
 
@@ -290,7 +290,7 @@ public class DialogueManager : MonoBehaviour
         TextAnim.SetBool("DecisionUIAnimate", false);
         for (int i = 0; i < decisionIndexList.Count; i++)
         {
-            //DecisionTexts[i].transform.parent.gameObject.SetActive(false);
+            DecisionTexts[i].transform.parent.gameObject.SetActive(false);
             DecisionTexts[i].text = "";
         }
     }
