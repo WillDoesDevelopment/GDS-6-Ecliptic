@@ -272,22 +272,25 @@ public class DialogueManager : MonoBehaviour
     {
         eventSystem.SetSelectedGameObject(DecisionTexts[0].transform.parent.gameObject);
         //DialogueText.text = "";
+        TextAnim.SetBool("DecisionUIAnimate", true);
         for (int i = 0; i < decisionIndexList.Count; i++)
         {
-            DecisionTexts[i].transform.parent.gameObject.SetActive(true);
-            DialogueText.text = "";
+            /*DecisionTexts[i].transform.parent.gameObject.SetActive(true);
+            DialogueText.text = "";*/
 
     //        Debug.Log(i.ToString() + "is itterable val");
 
     //        Debug.Log(decisionIndexList[i]);
             DecisionTexts[i].text = dialogue.line[decisionIndexList[i]].sentence;
+            DecisionTexts[i].color = new Vector4(1,1,1,0) ;
         }
     }
     public void DeactivateDecisions(Dialogue dialogue)
     {
+        TextAnim.SetBool("DecisionUIAnimate", false);
         for (int i = 0; i < decisionIndexList.Count; i++)
         {
-            DecisionTexts[i].transform.parent.gameObject.SetActive(false);
+            //DecisionTexts[i].transform.parent.gameObject.SetActive(false);
             DecisionTexts[i].text = "";
         }
     }
