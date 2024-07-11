@@ -69,6 +69,7 @@ public class DialogueTrigger : MonoBehaviour
         
         if (dialogue.DialogueMode == Dialogue.DialogueState.NotStarted)
         {
+            /*
             // check if we are in range
             if (Proximity())
             {
@@ -80,7 +81,7 @@ public class DialogueTrigger : MonoBehaviour
                 }
 
             }
-
+            */
         }
         else if (dialogue.DialogueMode == Dialogue.DialogueState.InProgress)
         {

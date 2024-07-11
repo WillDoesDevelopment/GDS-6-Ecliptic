@@ -147,7 +147,7 @@ public class DialogueManager : MonoBehaviour
 
 
         dialogue.DialogueMode = Dialogue.DialogueState.InProgress;
-        player.GetComponent<PlayerController>().playerState = PlayerState.Dialouge;
+        player.GetComponent<PlayerController>().playerState = PlayerState.Dialogue;
                                                             // animates our text ui to pop up
         TextAnim.SetBool("PopUp", true);
 

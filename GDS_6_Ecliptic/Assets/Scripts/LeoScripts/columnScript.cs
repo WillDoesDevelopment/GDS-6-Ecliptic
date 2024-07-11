@@ -9,6 +9,8 @@ public class columnScript : MonoBehaviour
     public GameObject floorSegment;
     public GameObject barrierObject;
     public GameObject brokenColumn;
+    public GameObject lion;
+    public GameObject Shield;
 
     float timer = 0f;
 
@@ -27,6 +29,11 @@ public class columnScript : MonoBehaviour
         if (fall == true)
         {
             FallUpdate();
+        }
+
+        if (fall == false && lion.GetComponent<lionAI>().stage == 2)
+        {
+            Shield.SetActive(true);
         }
 
         /*
@@ -67,6 +74,7 @@ public class columnScript : MonoBehaviour
 
     void BreakStage1()
     {
+        Shield.SetActive(false);
         brokenColumn.SetActive(true);
         GetComponent<CapsuleCollider>().enabled = false;
         GetComponent<MeshRenderer>().enabled = false;
@@ -75,6 +83,7 @@ public class columnScript : MonoBehaviour
     void BreakStage2()
     {
         brokenColumn.SetActive(false);
+        lion.GetComponent<lionAI>().columnCount -= 1;
     }
 
     void BreakStage3()

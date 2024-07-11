@@ -71,7 +71,8 @@ public class PlayerController : MonoBehaviour
         //Debug remove for build
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            playerState = PlayerState.Knockback;
+            //playerState = PlayerState.Knockback;
+            Damage();
         }
 
         //if(canWalk)
@@ -96,7 +97,7 @@ public class PlayerController : MonoBehaviour
             AutoWalk();
             Movement();
         }
-        else if (playerState == PlayerState.Dialouge)
+        else if (playerState == PlayerState.Dialogue)
         {
 
         }
@@ -220,7 +221,7 @@ public class PlayerController : MonoBehaviour
 
         //Add player falling animation here
 
-        var a = Mathf.Clamp01(knockbackH.Evaluate(timer / 4f));
+        var a = Mathf.Clamp01(knockbackH.Evaluate(timer / 2f));
 
         transform.position = Vector3.Lerp(knockbackStartPos, knockbackEndPos, a);
         transform.position += new Vector3(0, knockbackV.Evaluate(a), 0);
@@ -255,14 +256,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Damage()
+    public void Damage()
     {
         health -= 1;
         if(health == 0)
         {
-            //Restert or faint or something
+            Respawn();
+            //Restart or faint or something
         }
         playerState = PlayerState.Knockback;
+        knockbackStartPos = transform.position;
+        knockbackEndPos = transform.position + transform.forward * -10f;
         Knockback();
     }
 }

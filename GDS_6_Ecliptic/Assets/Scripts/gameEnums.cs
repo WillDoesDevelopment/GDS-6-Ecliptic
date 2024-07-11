@@ -2,9 +2,20 @@ public enum PlayerState
 {
     Freeze,
     Paused,
-    Dialouge,
+    Dialogue,
     Walk,
     Autowalk,
     Knockback,
     Damage
+}
+
+public enum LionState
+{
+    Cutscene,
+    Follow,
+    Charge,
+    Pounce,
+    Wait,
+    Defeat,
+    Falling
 }

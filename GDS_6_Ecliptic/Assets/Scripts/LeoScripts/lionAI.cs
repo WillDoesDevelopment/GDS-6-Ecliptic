@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class lionAI : MonoBehaviour
 {
+    public LionState lionState = LionState.Cutscene;
     public HubManager hubManager;
     public RoomManager RM;
-    public GameObject Player;
+    public GameObject player;
     public GameObject ColumnParent;
     public GameObject particle1;
     public GameObject particle2;
@@ -24,7 +25,8 @@ public class lionAI : MonoBehaviour
     Vector3 target;
     Vector3 pounceTarget;
     float rayDist = 10;
-    public int state = 2;
+    public int stage = 1;
+    public int columnCount = 6;
     public float rotationSpeed = 4;
     float timer = 10;
     public float followTime = 10f;
@@ -57,124 +59,68 @@ public class lionAI : MonoBehaviour
         StartDialogue.OnEventCheck();
         StartDialogue.OnEvent = false;
 
-        
+        if(columnCount <4 && columnCount > 0)
+        {
+            stage = 2;
+        }
+        if(columnCount == 0)
+        {
+            lionState = LionState.Defeat;
+            columnCount = -1;
+        }
 
-        if (StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished && state == 0)
+        if (StartDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished && lionState == LionState.Cutscene)
         {
             forward = transform.forward;
-            target = Player.transform.position;
+            target = player.transform.position;
             particle1.SetActive(false);
             particle2.SetActive(false);
             particle3.SetActive(false);
             barrier.SetActive(false);
-            state = 1;
+            lionState = LionState.Follow;
             timer = followTime;
         }
 
-        if (state == 1)          //Following
+        if (lionState == LionState.Follow)          //Following
         {
-            particle3.SetActive(false);
-            rayDist = Vector3.Distance(transform.position, Player.transform.position) - 3.0f;
-            var rayPos = transform.position;
-            RaycastHit hit;
-
-            forward = Vector3.Normalize(Vector3.Scale(Player.transform.position - transform.position, new Vector3(1, 0, 1)));
-            angle = 0.0f;
-
-            for (var i = 0; i < 100; i++)
-            {
-                Debug.DrawLine(rayPos, rayPos + forward * 2.0f, Color.blue, 0.01f);
-                if (Physics.SphereCast(new Ray(rayPos, forward), 2.0f, out hit, rayDist))
-                {
-                    inv = inv * -1.0f;
-                    angle += 1.0f;
-                    forward = Quaternion.Euler(0, angle * inv, 0) * forward;
-                }
-                else
-                {
-                    target = rayPos + forward * 10.0f;
-                    break;
-                }
-            }
-            if (rayDist > 1)
-            {
-                transform.LookAt(target);
-                transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
-            }
-
-            timer -= Time.deltaTime;
-            if(timer < 0) 
-            {
-                timer = chargeTime;
-                state = 2; 
-            }
+            Follow();
         }
 
-        if(state == 2)          //Charging
+        else if(lionState == LionState.Charge)           //Charging
         {
-            particle1.SetActive(true);
-            forward = Vector3.Normalize(Vector3.Scale(Player.transform.position - transform.position , new Vector3(1,0,1)));            
-            
-            Quaternion targetRotation = Quaternion.LookRotation(forward, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-            timer -= Time.deltaTime;
-            if (timer < 0)
-            {
-                pounceTarget = transform.position + transform.forward * pounceDistance;
-                timer = waitTime;
-                state = 3;
-            }
+            Charge();
         }
 
-        if (state == 3)         //Waiting
+        else if (lionState == LionState.Wait)            //Waiting
         {
-            particle1.SetActive(false);
-            particle2.SetActive(true);
-            timer -= Time.deltaTime;
-            if (timer < 0)
-            {
-                timer = pounceTime;
-                state = 4;
-            }
+            Wait();
         }
 
-        if (state == 4)         //Pouncing
+        else if (lionState == LionState.Pounce)          //Pouncing
         {
-            particle2.SetActive(false);
-            particle3.SetActive(true);
-            transform.position = Vector3.MoveTowards(transform.position, pounceTarget, Time.deltaTime * 40.0f);
-            timer -= Time.deltaTime;
-            if (timer < 0)
-            {
-                timer = followTime;
-                state = 1;
-            }
-
-
-            RaycastHit hit;                                                                     //raycast for wall boundary
-            if (Physics.Raycast(new Ray(transform.position, transform.forward), out hit, 5.0f)) //Raycast forward
-            {
-                GameObject Temp = hit.collider.gameObject;
-                if (Temp.layer == LayerMask.NameToLayer("Wall"))                                //Check if hitting wall Layer
-                {
-                    pounceTarget = transform.position;                                          //Stop moving
-                    //timer = followTime;
-                    //state = 1;
-                }
-            }
+            Pounce();
         }
 
-        if(ColumnParent.transform.childCount == 0 && state != 5)                                //Level Ends
+        else if (lionState == LionState.Defeat)          //Defeat
+        {
+            Defeat();
+        }
+
+        else if (lionState == LionState.Falling)          //Falling
+        {
+            Falling();
+        }
+
+        if (ColumnParent.transform.childCount == 0 && lionState != LionState.Defeat)                                //Level Ends
         {
             x = Mathf.Floor(transform.position.x + 0.5f);
             y = transform.position.y;
             z = Mathf.Floor(transform.position.z + 0.5f);
             Pos = new Vector3(x, y, z);
-            state = 5;
+            lionState = LionState.Defeat;
         }
-
-        if (state == 5)     //Collapse
+        /*
+        if (lionState == LionState.Defeat)     //Collapse
         {
             particle1.SetActive(false);
             particle2.SetActive(false);
@@ -208,20 +154,19 @@ public class lionAI : MonoBehaviour
             transform.position = transform.position - Vector3.up * Time.deltaTime * 2.0f;            
             //Destroy(gameObject, 4.0f);
         }
+        */
 
         //Collision    
         Collider[] hitColliders1 = Physics.OverlapBox(transform.position + transform.forward * 2f, new Vector3(1.25f, 1.0f, 1.25f)); //Hitbox for player
         foreach (var hitCollider in hitColliders1)
         {            
-            if (hitCollider.gameObject == Player)                                           //Room restarts
+            if (hitCollider.gameObject == player)                                           
             {
-                //RM.Reset();
-                DeathDialogue.OnEventCheck();
-                DeathDialogue.OnEvent = false;
-                Debug.Log("Restart room");                                                  //Need restart function here.....................................
-                DeathDialogue.dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
-                Scene scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(scene.name);
+                if(player.GetComponent<PlayerController>().playerState == PlayerState.Walk) //Player takes damage
+                {
+                    player.GetComponent<PlayerController>().Damage();
+                }
+                                
             }
         }
         Collider[] hitColliders2 = Physics.OverlapBox(transform.position, new Vector3(1.0f, 1.0f, 1.0f)); //Hitbox for columns. Hitboxes need rotation.........
@@ -234,6 +179,114 @@ public class lionAI : MonoBehaviour
         }
         
     }
+
+    void Cutscene()
+    {
+
+    }
+
+    void Follow()
+    {
+        particle3.SetActive(false);
+        rayDist = Vector3.Distance(transform.position, player.transform.position) - 3.0f;
+        var rayPos = transform.position;
+        RaycastHit hit;
+
+        forward = Vector3.Normalize(Vector3.Scale(player.transform.position - transform.position, new Vector3(1, 0, 1)));
+        angle = 0.0f;
+
+        for (var i = 0; i < 100; i++)
+        {
+            Debug.DrawLine(rayPos, rayPos + forward * 2.0f, Color.blue, 0.01f);
+            if (Physics.SphereCast(new Ray(rayPos, forward), 2.0f, out hit, rayDist))
+            {
+                inv = inv * -1.0f;
+                angle += 1.0f;
+                forward = Quaternion.Euler(0, angle * inv, 0) * forward;
+            }
+            else
+            {
+                target = rayPos + forward * 10.0f;
+                break;
+            }
+        }
+        if (rayDist > 1)
+        {
+            transform.LookAt(target);
+            transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
+        }
+
+        timer -= Time.deltaTime;
+        if (timer < 0)
+        {
+            timer = chargeTime;
+            lionState = LionState.Charge;
+        }
+    }
+    void Charge()
+    {
+        particle1.SetActive(true);
+        forward = Vector3.Normalize(Vector3.Scale(player.transform.position - transform.position, new Vector3(1, 0, 1)));
+
+        Quaternion targetRotation = Quaternion.LookRotation(forward, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        timer -= Time.deltaTime;
+        if (timer < 0)
+        {
+            pounceTarget = transform.position + transform.forward * pounceDistance;
+            timer = waitTime;
+            lionState = LionState.Wait;
+        }
+    }
+    void Pounce()
+    {
+        particle2.SetActive(false);
+        particle3.SetActive(true);
+        transform.position = Vector3.MoveTowards(transform.position, pounceTarget, Time.deltaTime * 40.0f);
+        timer -= Time.deltaTime;
+        if (timer < 0)
+        {
+            timer = followTime;
+            lionState = LionState.Follow;
+        }
+
+
+        RaycastHit hit;                                                                     //raycast for wall boundary
+        if (Physics.Raycast(new Ray(transform.position, transform.forward), out hit, 5.0f)) //Raycast forward
+        {
+            GameObject Temp = hit.collider.gameObject;
+            if (Temp.layer == LayerMask.NameToLayer("Wall"))                                //Check if hitting wall Layer
+            {
+                pounceTarget = transform.position;                                          //Stop moving
+                                                                                            //timer = followTime;
+                                                                                            //state = 1;
+            }
+        }
+    }
+    void Wait()
+    {
+        particle1.SetActive(false);
+        particle2.SetActive(true);
+        timer -= Time.deltaTime;
+        if (timer < 0)
+        {
+            timer = pounceTime;
+            lionState = LionState.Pounce;
+        }
+    }
+    void Defeat()
+    {
+        player.GetComponent<PlayerController>().playerState = PlayerState.Autowalk;
+        lionState = LionState.Falling;
+    }
+
+    void Falling()
+    {
+        transform.position = transform.position - Vector3.up * Time.deltaTime * 2.0f;
+        //Add in end condition
+    }
+
     public void collapse(float radius)
     {
         Collider[] hitColliders = Physics.OverlapSphere(Pos, radius);
