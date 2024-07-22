@@ -14,6 +14,7 @@ public class lionAI : MonoBehaviour
     public GameObject particle2;
     public GameObject particle3;
     public GameObject barrier;
+    public GameObject roarObject;
     public DialogueTrigger StartDialogue;
     public DialogueTrigger EndDialogue;
     public DialogueTrigger DeathDialogue;
@@ -34,6 +35,10 @@ public class lionAI : MonoBehaviour
     public float waitTime = 2f;
     public float pounceTime = 2.5f;
     public float pounceDistance = 14f;
+    public float roarTime = 5f;
+    bool roar1Lock = false;
+    bool roar2Lock = false;
+    bool roar3Lock = false;
 
     //Floor collapse
     float floorTimer = 0.0f;
@@ -99,6 +104,11 @@ public class lionAI : MonoBehaviour
         else if (lionState == LionState.Pounce)          //Pouncing
         {
             Pounce();
+        }
+
+        else if (lionState == LionState.Roar)          //Pouncing
+        {
+            Roar();
         }
 
         else if (lionState == LionState.Defeat)          //Defeat
@@ -219,8 +229,17 @@ public class lionAI : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer < 0)
         {
-            timer = chargeTime;
-            lionState = LionState.Charge;
+            if(Random.Range(0,2) == 0)
+            {
+                timer = chargeTime;
+                lionState = LionState.Charge;
+            }
+            else
+            {
+                timer = roarTime;
+                lionState = LionState.Roar;
+            }
+            
         }
     }
     void Charge()
@@ -263,6 +282,44 @@ public class lionAI : MonoBehaviour
                                                                                             //state = 1;
             }
         }
+    }
+
+    void Roar()
+    {
+        timer -= Time.deltaTime;
+
+        if (timer < 4 && roar1Lock == false)
+        {
+            RoarSpawn(45);
+            roar1Lock = true;
+        }
+        if (timer < 3 && roar2Lock == false)
+        {
+            RoarSpawn(0);
+            roar2Lock = true;
+        }
+        if (timer < 2 && roar3Lock == false)
+        {
+            RoarSpawn(-45);
+            roar3Lock = true;
+        }
+        if (timer < 0)
+        {
+            roar1Lock = false;
+            roar2Lock = false;
+            roar3Lock = false;
+            timer = followTime;
+            lionState = LionState.Follow;
+        }
+
+    }
+
+    void RoarSpawn(float roarAngle)
+    {
+        var newObject = Instantiate(roarObject);                                                            //Create Object
+        newObject.transform.position = transform.position;                                                  //Location
+        newObject.transform.localScale = Vector3.one;                                                       //Scale        
+        newObject.transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y + roarAngle, 0);  //Rotation
     }
     void Wait()
     {

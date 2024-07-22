@@ -15,6 +15,7 @@ public enum LionState
     Follow,
     Charge,
     Pounce,
+    Roar,
     Wait,
     Defeat,
     Falling

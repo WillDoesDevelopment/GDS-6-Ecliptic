@@ -8,7 +8,7 @@ public class floorScript : MonoBehaviour
     public bool fall = false;
     float timer = 0;
     public float a = 0;
-    float shakeSpeed = 5f;
+    float shakeSpeed = 4.5f;
     float shakeDist = 0.1f;
     Vector3 startPos;
 
