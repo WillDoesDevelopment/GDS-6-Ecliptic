@@ -8,6 +8,7 @@ public class HexSpawner : MonoBehaviour
     public float scale = 1;
     public int width = 10;
     public int length = 10;
+    public bool circle = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,9 +40,25 @@ public class HexSpawner : MonoBehaviour
                 {
                     newObject.transform.position = new Vector3((i+ 0.5f) * scale, 0, j * scale * 0.866025f);    //Location
                 }
-                       
+                                       
                 newObject.transform.localScale = Vector3.one * scale;                                   //Scale                
                 newObject.transform.parent = transform;                                                 //Set as child
+
+                if (circle == true)
+                {
+                    var r = length * scale / 2f;
+                    var x = newObject.transform.position.x;
+                    var y = newObject.transform.position.z;
+                    if (y > Mathf.Sqrt(r * r - (x - r) * (x - r))+ r)
+                    {
+                        DestroyImmediate(newObject);
+                    }
+
+                    if (y < -Mathf.Sqrt(r * r - (x - r) * (x - r)) + r)
+                    {
+                        DestroyImmediate(newObject);
+                    }
+                }
             }
         }
 

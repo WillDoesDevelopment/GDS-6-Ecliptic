@@ -25,14 +25,18 @@ public class RoarAttack : MonoBehaviour
         }
         transform.position += transform.forward * speed * Time.deltaTime;
 
-        lineStart = transform.position + transform.right;
-        lineEnd = transform.position - transform.right;
+        lineStart = transform.position + transform.right * 2;
+        lineEnd = transform.position - transform.right * 2;
 
         if (Physics.Linecast(lineStart, lineEnd, out RaycastHit hit, LayerMask.GetMask("Default")))
         {
             if(hit.transform.name == "Player")
             {
-                hit.transform.gameObject.GetComponent<PlayerController>().playerState = PlayerState.Damage;
+                if(hit.transform.gameObject.GetComponent<PlayerController>().playerState == PlayerState.Walk)
+                {
+                    hit.transform.gameObject.GetComponent<PlayerController>().playerState = PlayerState.Damage;
+                }
+                
             }            
         }
     }

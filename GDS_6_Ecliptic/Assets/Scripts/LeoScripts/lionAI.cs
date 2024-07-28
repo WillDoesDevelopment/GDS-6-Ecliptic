@@ -8,6 +8,7 @@ public class lionAI : MonoBehaviour
     public LionState lionState = LionState.Cutscene;
     public HubManager hubManager;
     public RoomManager RM;
+    PlayerController playerController;
     public GameObject player;
     public GameObject ColumnParent;
     public GameObject particle1;
@@ -27,6 +28,7 @@ public class lionAI : MonoBehaviour
     Vector3 pounceTarget;
     float rayDist = 10;
     public int stage = 1;
+    int difficulty = 2;
     public int columnCount = 6;
     public float rotationSpeed = 4;
     float timer = 10;
@@ -39,6 +41,9 @@ public class lionAI : MonoBehaviour
     bool roar1Lock = false;
     bool roar2Lock = false;
     bool roar3Lock = false;
+    bool roar4Lock = false;
+    bool roar5Lock = false;
+    public int stateCounter = 0;
 
     //Floor collapse
     float floorTimer = 0.0f;
@@ -53,14 +58,15 @@ public class lionAI : MonoBehaviour
     void Start()
     {
         RM = FindObjectOfType<RoomManager>();
-        
-        
+        playerController = player.GetComponent<PlayerController>();
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Difficulty();
         StartDialogue.OnEventCheck();
         StartDialogue.OnEvent = false;
 
@@ -172,9 +178,9 @@ public class lionAI : MonoBehaviour
         {            
             if (hitCollider.gameObject == player)                                           
             {
-                if(player.GetComponent<PlayerController>().playerState == PlayerState.Walk) //Player takes damage
+                if(playerController.playerState == PlayerState.Walk) //Player takes damage
                 {
-                    player.GetComponent<PlayerController>().Damage();
+                    playerController.Damage();
                 }
                                 
             }
@@ -229,13 +235,17 @@ public class lionAI : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer < 0)
         {
-            if(Random.Range(0,2) == 0)
+            if(Random.Range(0,6) >= stateCounter)       //do maths on probability later
             {
+                stateCounter += 1;
+                if (stateCounter < 3) { stateCounter = 3; }
                 timer = chargeTime;
                 lionState = LionState.Charge;
             }
             else
             {
+                stateCounter -= 1;
+                if (stateCounter > 3) { stateCounter = 3; }
                 timer = roarTime;
                 lionState = LionState.Roar;
             }
@@ -266,7 +276,7 @@ public class lionAI : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer < 0)
         {
-            timer = followTime;
+            timer = followTime - difficulty;
             lionState = LionState.Follow;
         }
 
@@ -288,27 +298,39 @@ public class lionAI : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        if (timer < 4 && roar1Lock == false)
+        if (timer < 3 && roar1Lock == false && difficulty > 2)
         {
-            RoarSpawn(45);
+            RoarSpawn(80);
             roar1Lock = true;
         }
-        if (timer < 3 && roar2Lock == false)
+        if (timer < 2.5f && roar2Lock == false && difficulty > 1)
         {
-            RoarSpawn(0);
+            RoarSpawn(40);
             roar2Lock = true;
         }
         if (timer < 2 && roar3Lock == false)
         {
-            RoarSpawn(-45);
+            RoarSpawn(0);
             roar3Lock = true;
+        }
+        if (timer < 1.5f && roar4Lock == false && difficulty > 1)
+        {
+            RoarSpawn(-40);
+            roar4Lock = true;
+        }
+        if (timer < 1 && roar5Lock == false && difficulty > 2)
+        {
+            RoarSpawn(-80);
+            roar5Lock = true;
         }
         if (timer < 0)
         {
             roar1Lock = false;
             roar2Lock = false;
             roar3Lock = false;
-            timer = followTime;
+            roar4Lock = false;
+            roar5Lock = false;
+            timer = followTime - difficulty;
             lionState = LionState.Follow;
         }
 
@@ -317,8 +339,8 @@ public class lionAI : MonoBehaviour
     void RoarSpawn(float roarAngle)
     {
         var newObject = Instantiate(roarObject);                                                            //Create Object
-        newObject.transform.position = transform.position;                                                  //Location
-        newObject.transform.localScale = Vector3.one;                                                       //Scale        
+        newObject.transform.position = transform.position + new Vector3(0, -1, 0);                          //Location
+        //newObject.transform.localScale = Vector3.one;                                                       //Scale        
         newObject.transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y + roarAngle, 0);  //Rotation
     }
     void Wait()
@@ -334,7 +356,7 @@ public class lionAI : MonoBehaviour
     }
     void Defeat()
     {
-        player.GetComponent<PlayerController>().playerState = PlayerState.Autowalk;
+        playerController.playerState = PlayerState.Autowalk;
         lionState = LionState.Falling;
     }
 
@@ -344,6 +366,31 @@ public class lionAI : MonoBehaviour
         //Add in end condition
     }
 
+    void Difficulty()
+    {
+        if(stage == 1)
+        {
+            if(playerController.health == 1)
+            {
+                difficulty = 1;
+            }
+            else
+            {
+                difficulty = 2;
+            }
+        }
+        else
+        {
+            if (playerController.health == 1)
+            {
+                difficulty = 2;
+            }
+            else
+            {
+                difficulty = 3;
+            }
+        }
+    }
     public void collapse(float radius)
     {
         Collider[] hitColliders = Physics.OverlapSphere(Pos, radius);
