@@ -58,8 +58,17 @@ public class arrowScript : MonoBehaviour
         if (Temp.CompareTag("Player"))                               //Check if hitting Player
         {
             Burst();
-            Debug.Log("Hit Player");
-            RM.Reset();
+            if(Temp.gameObject.GetComponent<PlayerController>().health > 1)
+            {
+                Temp.gameObject.GetComponent<PlayerController>().Damage();
+                Debug.Log("arrow hit");
+            }
+            else
+            {
+                Temp.gameObject.GetComponent<PlayerController>().health = 3;
+                RM.Reset();
+            }
+            //Temp.GetComponent<PlayerController>().playerState = PlayerState.Walk;
         }
     }
 
@@ -85,6 +94,7 @@ public class arrowScript : MonoBehaviour
         var newObject = Instantiate(burstPrefab);                                                    //Create Arrow
         newObject.transform.position = transform.position;
         Destroy(newObject, 1f);
+        this.gameObject.SetActive(false);
     }
     
     

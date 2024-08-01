@@ -36,7 +36,8 @@ public class healthUIManager : MonoBehaviour
         for (int i = 0; i < PC.health; i++)
         {
             HealthUIList[i].SetActive(true);
-            Debug.Log(i);
+            //Debug.Log(i);
+
         }
     }
 }
