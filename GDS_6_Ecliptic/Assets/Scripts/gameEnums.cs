@@ -11,6 +11,7 @@ public enum PlayerState
 
 public enum LionState
 {
+    Idle,
     Cutscene,
     Follow,
     Charge,

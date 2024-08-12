@@ -29,7 +29,7 @@ public class lionAI : MonoBehaviour
     float rayDist = 10;
     public int stage = 1;
     int difficulty = 2;
-    public int columnCount = 6;
+    public int columnCount = 7;
     public float rotationSpeed = 4;
     float timer = 10;
     public float followTime = 10f;
@@ -67,8 +67,8 @@ public class lionAI : MonoBehaviour
     void Update()
     {
         Difficulty();
-        StartDialogue.OnEventCheck();
-        StartDialogue.OnEvent = false;
+        //StartDialogue.OnEventCheck();
+        //StartDialogue.OnEvent = false;
 
         if(columnCount <4 && columnCount > 0)
         {

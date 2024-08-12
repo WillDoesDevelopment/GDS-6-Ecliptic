@@ -6,9 +6,9 @@ public class barrierSegment : MonoBehaviour
 {
     Vector3 startPos;
     Vector3 endPos;
-    float startDist = 40f;
+    public float startDist = 40f;
     float dist = 0;
-    float speed = 10;    
+    public float speed = 10;    
     public bool move = false;
 
     Vector3 lineStart;
