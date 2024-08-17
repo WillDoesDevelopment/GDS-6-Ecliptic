@@ -65,10 +65,7 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         EnterPromptCheck();
-        if (CoroutineRunning && skip)
-        {
-            Debug.Log("Skipping");
-        }
+
 
     }
                                                         // check to see if the enter prompt should appear
@@ -102,7 +99,7 @@ public class DialogueManager : MonoBehaviour
                                                                                           // just created a list for debugging
         List<Dialogue.DialogueLine> TempDecisionGroup = new List<Dialogue.DialogueLine>();
 
-        List<int> decisionIndex = new List<int>();                                                                                  // go through every dialogue line
+        List<int> decisionIndex = new List<int>();                                       // go through every dialogue line
         if(dialogue.IndentVals.Length == DialogueIndexTracker)
         {
             return decisionIndex;
@@ -112,21 +109,21 @@ public class DialogueManager : MonoBehaviour
         {
             TempDecisionGroup.Add(dialogue.line[DialogueIndexTracker]);
             decisionIndex.Add(DialogueIndexTracker);
-            //from the i'th position loop through the rest of the dialogue list and see if anything is indented at the same level
-            for (int v=DialogueIndexTracker+1; v<dialogue.line.Length; v++)
+                                                                                        //from the i'th position loop through the rest of the dialogue list and see if anything is indented at the same level
+            for (int i = DialogueIndexTracker+1; i<dialogue.line.Length; i++)
             { 
-                                                                                        // here we see if i has the same indent val as v
-                if (dialogue.IndentVals[DialogueIndexTracker] == dialogue.IndentVals[v])
+                                                                                        // here we see if i has the same indent val as v in order to see if its a decision that belongs to the same choice
+                if (dialogue.IndentVals[DialogueIndexTracker] == dialogue.IndentVals[i])
                 {
                     //Debug.Log("same indent val");
                                                                                         // here we check if v or i is in the list already 
                                                                                         //in this case it is part of the same decision
-                    TempDecisionGroup.Add(dialogue.line[v]);
-                    decisionIndex.Add(v);
+                    TempDecisionGroup.Add(dialogue.line[i]);
+                    decisionIndex.Add(i);
                 }
 
                                                                                         // if there is text that is less indented as I that means we have left this decision branch
-                else if(dialogue.IndentVals[DialogueIndexTracker] > dialogue.IndentVals[v])
+                else if(dialogue.IndentVals[DialogueIndexTracker] > dialogue.IndentVals[i])
                 {
                                                                                         //in this case the dialogue branch has ended 
                     break;
@@ -160,20 +157,7 @@ public class DialogueManager : MonoBehaviour
         PlayerSpriteUI.GetComponent<Image>().sprite = dialogue.MonologueImage;
         PlayerSpriteUI.rectTransform.sizeDelta = new Vector2(dialogue.MonologueImage.rect.width, dialogue.MonologueImage.rect.height);
         PlayerNameText.text = dialogue.monologueName;
-
                                                             // if there was a previous dialogue we have to make sure the queues are empty before filling them
-                                                            // this is unnecessary in the new version
-/*        Sentences.Clear();
-        SentenceType.Clear();
-        CharacterSFX.Clear();
-                                                            // this is also unnecessary in the new version
-        foreach (Dialogue.DialogueLine info in dialogue.line)
-        {
-                                                            // add the sentances in our dialogue package to the local sentance queue
-            Sentences.Enqueue(info.sentence);
-            SentenceType.Enqueue(info.dialogueType);
-            CharacterSFX.Enqueue(info.AS);
-        }*/
                                                             // after the prep and saving to local variables we call the next dialogue
         NextDialogue(dialogue);
     }
@@ -182,18 +166,11 @@ public class DialogueManager : MonoBehaviour
                                                             //it also shows who is speaking
     public void NextDialogue(Dialogue dialogue)
     {
-        if(DialogueIndexTracker != 0)
-            if(dialogue.IndentVals[DialogueIndexTracker] < dialogue.IndentVals[DialogueIndexTracker - 1])
-            {
-                for(int i = DialogueIndexTracker; i< dialogue.IndentVals.Length; i++)
-                {
-                    if(dialogue.IndentVals[i] == 0)
-                    {
-                        DialogueIndexTracker = i;
-                        break;
-                    }
-                }
-            }
+
+        if(dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        {
+            return;
+        }
         DeactivateDecisions(dialogue);
         //List<int> TempDecisionIndex = new List<int>();
         decisionIndexList.Clear();                                                    // this is for debugging purposes
@@ -204,31 +181,25 @@ public class DialogueManager : MonoBehaviour
             skip = true;
             return;
         }
-
-                                                            // This will not work with the new method!!!!
-
                                                             // this will work with the new method
         if(DialogueIndexTracker > dialogue.line.Length)
         {
-            return;
+            TextAnim.SetBool("PlayerImgAnimate", false);
+            TextAnim.SetBool("OtherImgAnimation", false);
+            return; 
         }
-                                                            //this will not work with the new method either
 
                                                             // intead we will need to do this
 
         if(dialogue.line[DialogueIndexTracker].AS != null)
         {
-            //CharacterSND.clip = CharacterSFX.Dequeue();
             CharacterSND.clip = dialogue.line[DialogueIndexTracker].AS;
             CharacterSND.Play();
         }
-                                                            // this will not work either
-        //Dialogue.DialogueType TempType = SentenceType.Dequeue();
 
                                                             // instead we do this
         Dialogue.DialogueType TempType = dialogue.line[DialogueIndexTracker].dialogueType;
 
-        
 
                                                             // all of this is fine tho  
         if(TempType == Dialogue.DialogueType.OtherDialogue)
@@ -239,6 +210,7 @@ public class DialogueManager : MonoBehaviour
         }
         else if(TempType == Dialogue.DialogueType.Monologue)
         {
+            Debug.Log("PlayerAnimBeingSetToOn");
             TextAnim.SetBool("OtherImgAnimation", false);
             TextAnim.SetBool("PlayerImgAnimate", true);
         }
@@ -348,19 +320,20 @@ public class DialogueManager : MonoBehaviour
         //if (Sentences.Count == 0)
         if (DialogueIndexTracker >= dialogue.line.Length)
         {
-                                                                // calls this static (global) function in the hub manager
             HubManager.UnfreezePlayerActions(player);
 
             player.GetComponent<PlayerController>().playerState = PlayerState.Walk;
-            Debug.Log("EndOfDialogue");
+            //Debug.Log("EndOfDialogue");
             TextAnim.SetBool("PopUp", false);
             
             
             TextAnim.SetBool("PlayerImgAnimate", false);
+            Debug.Log(TextAnim.GetBool("PlayerImgAnimate"));
             TextAnim.SetBool("OtherImgAnimation", false);
             dialogue.DialogueMode = Dialogue.DialogueState.Finished;
 
             InDialogue = false;
+            DialogueIndexTracker = 0;                                           // calls this static (global) function in the hub manager
             //DialogueIndexTracker = 0;
             return;
         }

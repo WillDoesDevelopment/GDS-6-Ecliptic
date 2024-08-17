@@ -85,7 +85,6 @@ public class PlayerController : MonoBehaviour
         else
         {
 
-            Debug.Log("not walking");
             PlayerAnim.SetBool("Walking", false);
             walking = false;
         }
@@ -227,7 +226,7 @@ public class PlayerController : MonoBehaviour
 
         transform.position = Vector3.Lerp(knockbackStartPos, knockbackEndPos, a);
         transform.position += new Vector3(0, knockbackV.Evaluate(a), 0);
-        Debug.Log(a);
+        //Debug.Log(a);
 
         if(a == 1f)
         {

@@ -28,7 +28,6 @@ public class healthUIManager : MonoBehaviour
 
     public void HealthUIDisplay()
     {
-        Debug.Log("running");
         foreach(GameObject g in HealthUIList)
         {
             g.SetActive(false);
