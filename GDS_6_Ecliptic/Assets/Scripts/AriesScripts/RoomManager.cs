@@ -62,8 +62,8 @@ public class RoomManager : MonoBehaviour
         
         if (DialogueEndcheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
-            VFXCH.circleVFXStart();
-            GoldSheep.transform.parent.GetComponent<Animator>().SetBool("Animate", true);
+            VFXCH.circleVFXStart(); 
+            GoldSheep.transform.parent.GetComponent<Animator>().SetTrigger("AnimateTrig");
             GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
         }
         if(NormalSheep.gameObject.activeInHierarchy)
