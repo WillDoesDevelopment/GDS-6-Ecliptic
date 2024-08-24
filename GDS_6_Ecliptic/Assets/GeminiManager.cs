@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GeminiManager : MonoBehaviour
@@ -13,13 +14,12 @@ public class GeminiManager : MonoBehaviour
     //public GameObject startDT;
     public GameObject EndDT;
 
-    public GameObject WinConditionSND;
-    public GameObject SuccessSND;
+    public AudioSource SuccessSND;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        VFXCH.circleVFXStart();
     }
 
     // Update is called once per frame
@@ -28,18 +28,12 @@ public class GeminiManager : MonoBehaviour
         
         if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            SuccessSND.ge;
+            SuccessSND.Play();
             DS.DS.IsOpen = true;
- 
+            Destroy(EndDT);
+            return;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Gemini") 
-        {
-            WinConditionSND.SetActive(true);
-        }
-        
-    }
+    
 }
