@@ -60,6 +60,7 @@ public class crabScript : MonoBehaviour
             WinConditionSND.SetActive(true);
             // if the end dialogue is done, open the door
             DS.DS.IsOpen = true;
+            Destroy(gameObject);
 /*            HM.SendToHub();
             HM.SetGameStage(4);*/
         }
