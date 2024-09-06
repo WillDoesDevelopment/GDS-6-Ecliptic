@@ -37,7 +37,7 @@ public class lionAI : MonoBehaviour
     public float waitTime = 2f;
     public float pounceTime = 2.5f;
     public float pounceDistance = 14f;
-    public float roarTime = 5f;
+    public float roarTime = 2.5f;
     bool roar1Lock = false;
     bool roar2Lock = false;
     bool roar3Lock = false;
@@ -235,20 +235,24 @@ public class lionAI : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer < 0)
         {
-            if(Random.Range(0,6) >= stateCounter)       //do maths on probability later
+            if (stateCounter == 1)
             {
-                stateCounter += 1;
-                if (stateCounter < 3) { stateCounter = 3; }
+                stateCounter = 0;
+                timer = chargeTime;
+                lionState = LionState.Charge;
+            }
+            else if (Random.Range(0, 2) == 1)
+            {
+                stateCounter = 0;
                 timer = chargeTime;
                 lionState = LionState.Charge;
             }
             else
             {
-                stateCounter -= 1;
-                if (stateCounter > 3) { stateCounter = 3; }
+                stateCounter = 1;
                 timer = roarTime;
                 lionState = LionState.Roar;
-            }
+            }           
             
         }
     }
@@ -298,27 +302,27 @@ public class lionAI : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        if (timer < 3 && roar1Lock == false && difficulty > 2)
+        if (timer < 2.0f && roar1Lock == false && difficulty > 2)
         {
             RoarSpawn(80);
             roar1Lock = true;
         }
-        if (timer < 2.5f && roar2Lock == false && difficulty > 1)
+        if (timer < 1.7f && roar2Lock == false && difficulty > 1)
         {
             RoarSpawn(40);
             roar2Lock = true;
         }
-        if (timer < 2 && roar3Lock == false)
+        if (timer < 1.4f && roar3Lock == false)
         {
             RoarSpawn(0);
             roar3Lock = true;
         }
-        if (timer < 1.5f && roar4Lock == false && difficulty > 1)
+        if (timer < 1.1f && roar4Lock == false && difficulty > 1)
         {
             RoarSpawn(-40);
             roar4Lock = true;
         }
-        if (timer < 1 && roar5Lock == false && difficulty > 2)
+        if (timer < 0.8f && roar5Lock == false && difficulty > 2)
         {
             RoarSpawn(-80);
             roar5Lock = true;
@@ -357,6 +361,7 @@ public class lionAI : MonoBehaviour
     void Defeat()
     {
         playerController.playerState = PlayerState.Autowalk;
+        playerController.AutoWalkDestination = new Vector3(30, 0, 30);  //Autowalk destination
         lionState = LionState.Falling;
     }
 

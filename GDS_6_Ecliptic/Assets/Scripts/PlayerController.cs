@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public int health = 3;
+    public GameObject mainCamera;
     public Animator PlayerAnim;
     //Movement
     CharacterController controller;
@@ -126,16 +127,27 @@ public class PlayerController : MonoBehaviour
     }
     void Movement()
     {
+        //translation
         moveDirection = new Vector3(inputX, 0, inputZ);
         moveDirection = Vector3.ClampMagnitude(moveDirection, 1.0f) * speed;
         moveDirection = new Vector3(moveDirection.x, inputY, moveDirection.z);
 
+        //camera correction
+        if(playerState == PlayerState.Walk & mainCamera != null)
+        {
+            moveDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y,0) * moveDirection;
+        }
         grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0; //credit benjamin esposito First Person Drifter
 
 
 
         //rotation input
         moveVector = Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f) * speed * Time.deltaTime;
+        //camera correction
+        if (playerState == PlayerState.Walk & mainCamera != null)
+        {
+            moveVector = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0) * moveVector;
+        }
         if (moveVector != Vector3.zero)
         {
             PlayerAnim.SetBool("Walking", true);
@@ -213,7 +225,7 @@ public class PlayerController : MonoBehaviour
 
         inputX = autoDir.x * c;
         inputZ = autoDir.z * c;
-        if(a < 0.1) { playerState = PlayerState.Walk; } //Stop when within 0.1m of destination
+        if(a < 0.1) { playerState = PlayerState.Dialogue; } //Stop when within 0.1m of destination
     }
 
     void Knockback()
