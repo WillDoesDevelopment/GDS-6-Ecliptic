@@ -9,12 +9,14 @@ public class arrowScript : MonoBehaviour
     public float destroyTime = 10;
     float arrowLength = 1.3f;
     public GameObject burstPrefab;
+    GameObject player;
 
     public RoomManager RM;
 
     void Start()
     {
         RM = FindObjectOfType<RoomManager>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -58,16 +60,20 @@ public class arrowScript : MonoBehaviour
         if (Temp.CompareTag("Player"))                               //Check if hitting Player
         {
             Burst();
-            if(Temp.gameObject.GetComponent<PlayerController>().health > 1)
+            player.GetComponent<PlayerController>().Damage();
+            Debug.Log("arrow hit");
+            /*
+            if (player.GetComponent<PlayerController>().health > 1)
             {
-                Temp.gameObject.GetComponent<PlayerController>().Damage();
+                player.GetComponent<PlayerController>().Damage();
                 Debug.Log("arrow hit");
             }
             else
             {
-                Temp.gameObject.GetComponent<PlayerController>().health = 3;
+                player.GetComponent<PlayerController>().health = 3;
                 RM.Reset();
             }
+            */
             //Temp.GetComponent<PlayerController>().playerState = PlayerState.Walk;
         }
     }

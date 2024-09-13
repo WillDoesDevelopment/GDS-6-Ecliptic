@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float _rotation;
     float _velocity;
     public float yRotation;
+    [Range(0f, 100f)] public float animSpeed = 8;
     [Range(0f, 10f)] public float speed = 5;
     [Range(0f, 20f)] public float gravity = 10;
     [Range(0f, 100f)] public float maxFallSpeed = 10;
@@ -37,6 +38,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] stepArray;
     float timer = 0;
+    public float knockbackTime = 2f;
+    public float knockbackDist = 10f;
     public AnimationCurve knockbackV;
     public AnimationCurve knockbackH;
     Vector3 knockbackStartPos;
@@ -152,7 +155,8 @@ public class PlayerController : MonoBehaviour
         {
             PlayerAnim.SetBool("Walking", true);
             walking = true; // Used for doppelganger
-            walkingSpeed = Vector3.Magnitude(Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f));
+            //walkingSpeed = Vector3.Magnitude(Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f));
+            walkingSpeed = Vector3.Magnitude(moveVector) * animSpeed;
             PlayerAnim.speed = walkingSpeed;
 
             FootStepCheck();
@@ -234,7 +238,7 @@ public class PlayerController : MonoBehaviour
 
         //Add player falling animation here
 
-        var a = Mathf.Clamp01(knockbackH.Evaluate(timer / 2f));
+        var a = Mathf.Clamp01(knockbackH.Evaluate(timer / knockbackTime));
 
         transform.position = Vector3.Lerp(knockbackStartPos, knockbackEndPos, a);
         transform.position += new Vector3(0, knockbackV.Evaluate(a), 0);
@@ -280,7 +284,7 @@ public class PlayerController : MonoBehaviour
         }
         playerState = PlayerState.Knockback;
         knockbackStartPos = transform.position;
-        knockbackEndPos = transform.position + transform.forward * -10f;
+        knockbackEndPos = transform.position - transform.forward * knockbackDist;
         Knockback();
     }
 }

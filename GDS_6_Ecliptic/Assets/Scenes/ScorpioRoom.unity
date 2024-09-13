@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1458637538}
-  m_IndirectSpecularColor: {r: 0.0008823001, g: 0.0012777346, b: 0.01374716, a: 1}
+  m_IndirectSpecularColor: {r: 0.0067232135, g: 0.014057848, b: 0.16029148, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4071,6 +4071,14 @@ PrefabInstance:
     - target: {fileID: 8490829136179490724, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: animSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: pauseMenu
@@ -8823,6 +8831,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0af00c954e5d31149b671538fa0823d5, type: 3}
   - {fileID: 8300000, guid: 675fb45d03c8bc447966a65ca56dd530, type: 3}
   source: {fileID: 1323582897}
+  explosionForce: 500
+  explosionRadius: 5
 --- !u!82 &1323582888
 AudioSource:
   m_ObjectHideFlags: 0
