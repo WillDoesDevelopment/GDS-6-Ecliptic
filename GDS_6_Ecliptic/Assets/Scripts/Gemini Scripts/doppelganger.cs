@@ -105,7 +105,7 @@ public class doppelganger : MonoBehaviour
     }
     public void FallingCheck()
     {
-        var rayPos = transform.position + new Vector3(0,5,0);
+        var rayPos = transform.position + new Vector3(0,1,0);
         RaycastHit hit;
 
         Debug.DrawLine(rayPos, rayPos + Vector3.down * maxLength, Color.green, 0.5f);

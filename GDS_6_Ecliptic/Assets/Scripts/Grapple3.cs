@@ -202,14 +202,22 @@ public class Grapple3 : MonoBehaviour
             {
                 //Attatch and Pull Object
                 t = length / maxLength;
-                if (target.GetComponent<columnScript>() == null)
+                if (t>1) //at max length
                 {
-                    AddForce();
+                    if (target.GetComponent<columnScript>() == null) 
+                    {                        
+                        AddForce(); //not at max length, add force
+                    }
+                    else
+                    {
+                        CollumnInteraction(); //if interacting with column
+                    }
                 }
-                else
+                if (t>1.2)
                 {
-                    CollumnInteraction();
+                    RopeBreak();//break rope
                 }
+                
                     
             }
         }
