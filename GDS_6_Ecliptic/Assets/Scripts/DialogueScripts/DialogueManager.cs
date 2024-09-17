@@ -222,7 +222,7 @@ public class DialogueManager : MonoBehaviour
         }
         else if(TempType == Dialogue.DialogueType.Monologue)
         {
-            Debug.Log("PlayerAnimBeingSetToOn");
+            //Debug.Log("PlayerAnimBeingSetToOn");
             TextAnim.SetBool("OtherImgAnimation", false);
             TextAnim.SetBool("PlayerImgAnimate", true);
         }
@@ -262,7 +262,7 @@ public class DialogueManager : MonoBehaviour
             DecisionTexts[i].transform.parent.gameObject.SetActive(true);
             //DialogueText.text = "";
 
-    //        Debug.Log(i.ToString() + "is itterable val");
+            Debug.Log(i.ToString() + "is itterable val");
 
     //        Debug.Log(decisionIndexList[i]);
             DecisionTexts[i].text = dialogue.line[decisionIndexList[i]].sentence;
@@ -340,7 +340,7 @@ public class DialogueManager : MonoBehaviour
             
             
             TextAnim.SetBool("PlayerImgAnimate", false);
-            Debug.Log(TextAnim.GetBool("PlayerImgAnimate"));
+            //Debug.Log(TextAnim.GetBool("PlayerImgAnimate"));
             TextAnim.SetBool("OtherImgAnimation", false);
             dialogue.DialogueMode = Dialogue.DialogueState.Finished;
 

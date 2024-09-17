@@ -21,7 +21,7 @@ public class healthUIManager : MonoBehaviour
         if(tempHealth!= PC.health)
         {
             HealthUIDisplay();
-            Debug.Log(PC.health);
+            //Debug.Log(PC.health);
             tempHealth = PC.health;
         }
     }

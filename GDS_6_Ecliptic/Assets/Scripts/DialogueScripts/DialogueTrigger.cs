@@ -88,11 +88,11 @@ public class DialogueTrigger : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.Return) ^ Input.GetKeyUp(KeyCode.JoystickButton1) )
             {
-                Debug.Log("CallingNextDialogue");
+                //Debug.Log("CallingNextDialogue");
                 // end dialogue must be done first otherwise our Next dialogue in dialogue manager will check for no sentences left and stop the dialogue before we can exit the dialogue in dialogue trigger
                if(Dm.CoroutineRunning == false)
                 {
-                    Debug.Log("endingDialogue");
+                    //Debug.Log("endingDialogue");
                     Dm.EndDialogueCheck(dialogue);
                 }
                 Dm.NextDialogue(dialogue);

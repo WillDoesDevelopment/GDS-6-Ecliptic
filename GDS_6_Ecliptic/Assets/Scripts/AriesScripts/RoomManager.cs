@@ -9,6 +9,7 @@ public class RoomManager : MonoBehaviour
     public GameObject Player;
     public GameObject GoldSheep;
     public GameObject Aries;
+    public GameObject ResetRamObj;
 
     // object that activates vfx circle
     public VFXCircleHandler VFXCH;
@@ -25,6 +26,7 @@ public class RoomManager : MonoBehaviour
     // best way to play sounds on update is to toggle an active game object they belong to
     public GameObject GoldenRamSnd;
     public GameObject NormalRamSnd;
+
     public GameObject deadRamSnd;
     public GameObject SuccessSND;
 
@@ -42,6 +44,7 @@ public class RoomManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        displayResetRam();
         //Debug.Log("TestDT" + TestDt);
         //Debug.Log(Aries.GetComponent<DialogueTrigger>());
         if (DialogueStartedCheck(GoldSheep.GetComponent<DialogueTrigger>()))
@@ -65,6 +68,7 @@ public class RoomManager : MonoBehaviour
             VFXCH.circleVFXStart(); 
             GoldSheep.transform.parent.GetComponent<Animator>().SetTrigger("AnimateTrig");
             GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
+            
         }
         if(NormalSheep.gameObject.activeInHierarchy)
         {
@@ -103,30 +107,57 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+
+    public void displayResetRam()
+    {
+        if (Vector3.Distance(ResetRamObj.transform.position, GoldSheep.transform.position) > 5)
+        {
+            ResetRamObj.GetComponent<Animator>().SetBool("FadeIn", true);
+            ResetRamObj.GetComponent<DialogueTrigger>().enabled = true;
+            if (DialogueEndcheck(ResetRamObj.GetComponent<DialogueTrigger>()))
+            {
+                resetGoldRam();
+                ResetRamObj.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+            }
+        }
+        else
+        {
+            ResetRamObj.GetComponent<Animator>().SetBool("FadeIn", false);
+            ResetRamObj.GetComponent<DialogueTrigger>().enabled = false;
+        }
+    }
     public void Reset()
     {
         PlaySnd(deadRamSnd);
+
+
         Player.transform.position = PlayerStartPos;
-        GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, GoldRamStartRot);
-        Destroy(GoldSheep.transform.parent.gameObject);        
-        GoldSheep = Temp.transform.Find("DialogueTriggerPrefab").gameObject;
+
+        // golden ram being reset
+        resetGoldRam();
 
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
         Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
-        Temp.GetComponent<Animator>().SetBool("Animate", false);        
-        Temp.transform.Find("DialogueTriggerPrefab").gameObject.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
-
+        
+        //turn off audios
         deadRamSnd.SetActive(false);
         NormalRamSnd.SetActive(false);
         GoldenRamSnd.SetActive(false);
     }
 
+    public void resetGoldRam()
+    {
+        GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, GoldRamStartRot);
+        Destroy(GoldSheep.transform.parent.gameObject);
+        GoldSheep = Temp.transform.Find("DialogueTriggerPrefab").gameObject;
+        Temp.GetComponent<Animator>().SetBool("Animate", false);
+        Temp.transform.Find("DialogueTriggerPrefab").gameObject.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+    }
+
     public void PlaySnd(GameObject AS)
     {
         //GameObject Temp = Instantiate(AS, GameObject.Find("AudioObjs").transform.position,Quaternion.identity);
-
-
         AS.SetActive(true);
 
     }
