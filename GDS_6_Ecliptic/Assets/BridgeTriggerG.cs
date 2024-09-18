@@ -10,7 +10,7 @@ public class BridgeTriggerG : MonoBehaviour
 
     public Renderer rend1;
     public Renderer rend2;
-    float shaderTimer = 110;
+    float shaderTimer = 115;
     bool isColliding = false;
 
 

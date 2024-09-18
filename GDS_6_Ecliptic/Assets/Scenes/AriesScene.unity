@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.018503495, g: 0.00069184724, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.012720862, g: 0.0003182118, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9262,7 +9262,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264635917}
   m_LocalRotation: {x: -0, y: -0.9927593, z: -0, w: -0.120121025}
-  m_LocalPosition: {x: -48.678, y: 3.307, z: -48.139}
+  m_LocalPosition: {x: -50.6, y: 3.307, z: -48.139}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -11514,6 +11514,7 @@ MonoBehaviour:
   Player: {fileID: 1442537224}
   GoldSheep: {fileID: 1509297792}
   Aries: {fileID: 2125654454}
+  ResetRamObj: {fileID: 0}
   VFXCH: {fileID: 3970566854044868061}
   TestDt: {fileID: 1509297793}
   HM: {fileID: 2039047842}
@@ -17013,6 +17014,30 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2600301402100459862, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_text
+      value: 'Interact &
+
+        Grapple'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600301402100459863, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 162
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600301402496600250, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_text
+      value: 'Cancel &
+
+        Ungrapple'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600301402496600251, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -119.70003
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728799479131046370, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2794578010504002494, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -17029,6 +17054,10 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 689838356}
+    - target: {fileID: 5366026400625008939, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5366026400890762224, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: m_Name
       value: NewPauseUI
@@ -17124,6 +17153,42 @@ PrefabInstance:
     - target: {fileID: 6233191022747387762, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739295375738444380, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739295376386823888, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -166
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739295376386823888, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 199
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739295376386823891, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_text
+      value: 'Interact &
+
+        Grapple'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739295376915104552, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739295377388357168, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 199.00017
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739295377388357168, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -112.00011
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739295377388357171, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_text
+      value: 'Cancel &
+
+        Ungrapple'
       objectReference: {fileID: 0}
     - target: {fileID: 8871980666058247708, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: BackgroundAudio
