@@ -252,6 +252,7 @@ public class DialogueManager : MonoBehaviour
         //types each character
 
     }
+    
     public void ActivateDecisions(Dialogue dialogue)
     {
         eventSystem.SetSelectedGameObject(DecisionTexts[0].transform.parent.gameObject);
