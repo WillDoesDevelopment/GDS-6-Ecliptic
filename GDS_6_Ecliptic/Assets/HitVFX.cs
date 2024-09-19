@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HitVFX : MonoBehaviour
@@ -7,6 +8,7 @@ public class HitVFX : MonoBehaviour
     public Material[] glowAmt;
     public float shaderValue = 0;
     public bool isHit = false;
+    public float hitLength = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,18 +22,52 @@ public class HitVFX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isHit == false)
-        {
-            shaderValue = 0;
-            glowAmt[0].SetFloat("_Glow_Amount", shaderValue);
-            glowAmt[1].SetFloat("_Glow_Amount", shaderValue);
-        }
 
         if (isHit == true)
         {
-            shaderValue = 1;
-            glowAmt[0].SetFloat("_Glow_Amount", shaderValue);
-            glowAmt[1].SetFloat("_Glow_Amount", shaderValue);
+            StartCoroutine(Hit());
         }
     }
+
+    IEnumerator Hit()
+    {
+        shaderValue = 1;
+        glowAmt[0].SetFloat("_Glow_Amount", shaderValue);
+        glowAmt[1].SetFloat("_Glow_Amount", shaderValue);
+
+        yield return new WaitForSeconds(hitLength);
+
+        shaderValue = 0;
+        glowAmt[0].SetFloat("_Glow_Amount", shaderValue);
+        glowAmt[1].SetFloat("_Glow_Amount", shaderValue);
+
+        yield return new WaitForSeconds(hitLength);
+
+        shaderValue = 1;
+        glowAmt[0].SetFloat("_Glow_Amount", shaderValue);
+        glowAmt[1].SetFloat("_Glow_Amount", shaderValue);
+
+        yield return new WaitForSeconds(hitLength);
+
+        shaderValue = 0;
+        glowAmt[0].SetFloat("_Glow_Amount", shaderValue);
+        glowAmt[1].SetFloat("_Glow_Amount", shaderValue);
+
+        yield return new WaitForSeconds(hitLength);
+
+        shaderValue = 1;
+        glowAmt[0].SetFloat("_Glow_Amount", shaderValue);
+        glowAmt[1].SetFloat("_Glow_Amount", shaderValue);
+
+        yield return new WaitForSeconds(hitLength);
+
+        shaderValue = 0;
+        glowAmt[0].SetFloat("_Glow_Amount", shaderValue);
+        glowAmt[1].SetFloat("_Glow_Amount", shaderValue);
+
+        yield return new WaitForSeconds(hitLength);
+        isHit = false;
+
+    }
+    
 }
