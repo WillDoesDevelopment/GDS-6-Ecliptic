@@ -4,25 +4,32 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
+    [Header("Ram Objects")]
     public GameObject NormalSheep;
-
     public GameObject Player;
     public GameObject GoldSheep;
     public GameObject Aries;
     public GameObject ResetRamObj;
 
+    [Header("Orb Objects")]
+    public GameObject startDia;
+    public GameObject orb;
+
+    [Header("VFX & Managers")]
     // object that activates vfx circle
     public VFXCircleHandler VFXCH;
-
     public DialogueTrigger TestDt;
     public HubManager HM;
 
+    [Header("Positions")]
     private Vector3 PlayerStartPos;
     private Vector3 GoldRamStartPos;
     private Quaternion GoldRamStartRot;
 
+    [Header("Door Objects")]
     public GameObject ExitDoor;
 
+    [Header("Audio")]
     // best way to play sounds on update is to toggle an active game object they belong to
     public GameObject GoldenRamSnd;
     public GameObject NormalRamSnd;
@@ -31,9 +38,10 @@ public class RoomManager : MonoBehaviour
     public GameObject SuccessSND;
 
     private bool isPlayed;
+    public bool isOrbed = false;
     void Start()
     {
-
+        orb.GetComponent<OrbMovementAries>().OrbIdle();
         VFXCH.circleVFXStart();
         PlayerStartPos = Player.transform.position;
         GoldRamStartPos = GoldSheep.transform.parent.transform.position;
@@ -70,7 +78,14 @@ public class RoomManager : MonoBehaviour
             GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
             
         }
-        if(NormalSheep.gameObject.activeInHierarchy)
+
+        if (DialogueEndcheck(startDia.GetComponent<DialogueTrigger>()) && isOrbed == false)
+        {
+            orb.GetComponent<OrbMovementAries>().OrbMove();
+
+        }
+
+        if (NormalSheep.gameObject.activeInHierarchy)
         {
             
             if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))

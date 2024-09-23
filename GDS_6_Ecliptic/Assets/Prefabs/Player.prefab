@@ -285,15 +285,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b6a2d317e6485843bdc4f93078ae686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
+  mainCamera: {fileID: 0}
   PlayerAnim: {fileID: 4627170737264463835}
   moveVector: {x: 0, y: 0, z: 0}
+  AutoWalkDestination: {x: 0, y: 0, z: 0}
   _rotation: 0
   yRotation: 0
+  animSpeed: 16
   speed: 4
   gravity: 10
   maxFallSpeed: 10
   airTime: 0
+  playerState: 3
   canWalk: 1
+  walking: 0
+  walkingSpeed: 0
   pauseMenu: {fileID: 0}
   isPaused: 0
   stepVolume: 0.8
@@ -305,6 +312,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9a806813389775f4d9cd289268b77d3e, type: 3}
   - {fileID: 8300000, guid: 23305b6e603e4264595ed1675180fb28, type: 3}
   - {fileID: 8300000, guid: e5c6303a08c0429408a3635563f7f7e6, type: 3}
+  knockbackTime: 2
+  knockbackDist: 10
+  knockbackV:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  knockbackH:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!143 &8490829136179490778
 CharacterController:
   m_ObjectHideFlags: 0

@@ -5,35 +5,30 @@ using UnityEngine;
 
 public class OrbMovementAries : MonoBehaviour
 {
-    public Animator Anim;
-    public Transform[] Points;
-    public float speed;
-    public int pointsIndex;
+    public Animator OrbAnim;
+    public Animator MoveAnim;
+    public GameObject RM;
 
-    // Start is called before the first frame update
     void Start()
     {
-        transform.position = Points[pointsIndex].transform.position;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OrbIdle()
     {
-        if(pointsIndex <= Points.Length - 1)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, Points[pointsIndex].transform.position, speed * Time.deltaTime);
-            
-            if(transform.position == Points[pointsIndex].transform.position )
-            {
-                pointsIndex++;
-                Anim.SetBool("isMoving", true);
-            }
-
-            if(pointsIndex == Points.Length)
-            {
-                pointsIndex = 0;
-                Anim.SetBool("isMoving", false);
-            }
-        }
+        OrbAnim.GetComponent<Animator>().SetTrigger("Idle");
     }
+
+    public void OrbFinish()
+    {
+        OrbAnim.GetComponent<Animator>().SetTrigger("Idle");
+        RM.GetComponent<RoomManager>().isOrbed = true;
+    }
+
+    public void OrbMove()
+    {
+        OrbAnim.GetComponent<Animator>().SetTrigger("Move");
+        MoveAnim.GetComponent<Animator>().SetTrigger("orbMoving");
+    }
+
 }

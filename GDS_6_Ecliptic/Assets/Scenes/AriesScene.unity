@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.011188205, g: 0.0002972156, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12885807, g: 0.006832022, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9367,6 +9367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1264635918}
   - component: {fileID: 1264635919}
+  - component: {fileID: 1264635920}
   m_Layer: 0
   m_Name: Aries_Orb
   m_TagString: Untagged
@@ -9382,7 +9383,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264635917}
   m_LocalRotation: {x: -0, y: -0.9927593, z: -0, w: -0.120121025}
-  m_LocalPosition: {x: -51.16, y: 1.34, z: -46.39}
+  m_LocalPosition: {x: -48.93, y: 1.34, z: -44.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9402,6 +9403,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f42da3657496444fb508133341d4dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OrbAnim: {fileID: 1972398932}
+  MoveAnim: {fileID: 1264635920}
+  RM: {fileID: 1625424131}
+--- !u!95 &1264635920
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264635917}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f6ce7578b1ddfb14985a4b7ebf30e662, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1289554006
 GameObject:
   m_ObjectHideFlags: 0
@@ -11635,6 +11659,8 @@ MonoBehaviour:
   GoldSheep: {fileID: 1509297792}
   Aries: {fileID: 2125654454}
   ResetRamObj: {fileID: 1973490406}
+  startDia: {fileID: 2069176716}
+  orb: {fileID: 1264635917}
   VFXCH: {fileID: 3970566854044868061}
   TestDt: {fileID: 1509297793}
   HM: {fileID: 2039047842}
@@ -11643,6 +11669,7 @@ MonoBehaviour:
   NormalRamSnd: {fileID: 41227929}
   deadRamSnd: {fileID: 1436753099}
   SuccessSND: {fileID: 241924982}
+  isOrbed: 0
 --- !u!4 &1625424133
 Transform:
   m_ObjectHideFlags: 0
@@ -12976,7 +13003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: animSpeed
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: pauseMenu
