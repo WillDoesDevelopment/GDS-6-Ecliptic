@@ -951,7 +951,6 @@ GameObject:
   - component: {fileID: 492376566}
   - component: {fileID: 492376565}
   - component: {fileID: 492376564}
-  - component: {fileID: 492376567}
   - component: {fileID: 492376568}
   m_Layer: 0
   m_Name: CM StateDrivenCamera
@@ -1043,44 +1042,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &492376567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492376563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c1aef585d7ea1d49883baebcc4ae1bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 492376564}
-  anim2: {fileID: 667736946}
-  plyer: {fileID: 1325669071}
-  star: {fileID: 0}
-  levelName: MainHub
-  glowAmt:
-  - {fileID: 2100000, guid: 764dab506cf13a04da6a6b798dedf896, type: 2}
-  - {fileID: 2100000, guid: d4105c2b087a3b541874acd4e14d792e, type: 2}
-  amtStart: 2
-  snd: {fileID: 204136112}
-  snd2: {fileID: 492376568}
-  orreryScript: {fileID: 1049015577}
-  Doors:
-  - {fileID: 8478352447027708212}
-  - {fileID: 1391462957}
-  - {fileID: 888899988}
-  - {fileID: 1268483647}
-  - {fileID: 1465271034}
-  doorMats:
-  - {fileID: 2100000, guid: 4f7939d24a986844d9ff23bb4ea41cfd, type: 2}
-  - {fileID: 2100000, guid: 815c7991d3602b04ea33d3ce1da639d9, type: 2}
-  - {fileID: 2100000, guid: 4ae727236f755f74d91f72f651d82e84, type: 2}
-  - {fileID: 2100000, guid: c6c60ef30d604ff45a95a1d0f389e682, type: 2}
-  - {fileID: 2100000, guid: ac8e06340c27db74abf5964f708bd9c0, type: 2}
-  - {fileID: 2100000, guid: 474489bb3bccc904a822ac6da2339a02, type: 2}
-  - {fileID: 2100000, guid: e69529657fe7e82478406f12af35db7c, type: 2}
 --- !u!82 &492376568
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2008,6 +1969,7 @@ GameObject:
   - component: {fileID: 1049015575}
   - component: {fileID: 1049015576}
   - component: {fileID: 1049015577}
+  - component: {fileID: 1049015580}
   - component: {fileID: 1049015579}
   m_Layer: 0
   m_Name: HubManager
@@ -2129,6 +2091,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e19e79ebf7b5c42b24cc15d23b50c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1049015580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049015574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 110d56992cd85474db22c3ec3bdb9efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plyer: {fileID: 0}
+  levelName: Mainhub
+  snd: {fileID: 0}
+  snd2: {fileID: 0}
+  orreryScript: {fileID: 1049015577}
+  Doors: []
+  doorMats: []
 --- !u!1 &1149771771
 GameObject:
   m_ObjectHideFlags: 0
