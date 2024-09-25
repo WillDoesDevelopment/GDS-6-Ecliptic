@@ -50,36 +50,49 @@ public class MainMenu : MonoBehaviour
     }
 
     //the various btn functions that are called with the corrosponding btn
-    public void LoadGame()
+    public void LoadGame(string sceneName)
     {
+        HubManager.demoScene = sceneName;
+        Debug.Log(HubManager.demoScene);
         
         anim2.GetComponent<Animator>().SetTrigger("Woosh");
         StartCoroutine(Load());
         
     }
 
+    public void ActivateDemoCanvas()
+    {
+        canvas[2].SetActive(true);
+
+        canvas[1].SetActive(false);
+        canvas[0].SetActive(false);
+    }
     public void CtrLoad()
     {
-        canvas[0].SetActive(false);
         canvas[1].SetActive(true);
+        
+        canvas[0].SetActive(false);
+        canvas[2].SetActive(false);
     }
-    public void SaveLoad()
+    /*public void SaveLoad()
     {
         canvas[0].SetActive(false);
         canvas[2].SetActive(true);
-    }
+    }*/
 
     public void BackBtn()
     {
-        canvas[1].SetActive(false);
         canvas[0].SetActive(true);
+
+        canvas[1].SetActive(false);
+        canvas[2].SetActive(false);
     }
 
-    public void BackMenuBtn()
+    /*public void BackMenuBtn()
     {
         canvas[2].SetActive(false);
         canvas[0].SetActive(true);
-    }
+    }*/
 
     public void QuitGame()
     {
@@ -96,20 +109,21 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(level);
     }
 
-    public void ChangeFirstSelected()
+    public void ChangeFirstSelected(GameObject firstSelected)
     {
+        eventSystem.SetSelectedGameObject(firstSelected);
         //Using the new input system for UI, swaps the selected btn depending on which canvas is active
-        if (eventSystem.currentSelectedGameObject == SettingsFirstSelect)
+        /*if (eventSystem.currentSelectedGameObject == SettingsFirstSelect)
         {
-            Debug.Log("ChangeBack");
+            //Debug.Log("ChangeBack");
             eventSystem.SetSelectedGameObject(PauseFirstSelect);
 
         }
         else
         {
-            Debug.Log("Change");
+            //Debug.Log("Change");
             eventSystem.SetSelectedGameObject(SettingsFirstSelect);
-        }
+        }*/
     }
 
     public void controllerCheck()

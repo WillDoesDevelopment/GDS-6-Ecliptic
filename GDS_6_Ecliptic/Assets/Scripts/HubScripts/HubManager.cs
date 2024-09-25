@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class HubManager : MonoBehaviour
 {
+    public static string demoScene = "";
+
     public static bool DebugMode = true;
     public GameObject[] doors;
 
@@ -31,7 +33,7 @@ public class HubManager : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
             {
-                Debug.Log("Scene Changing");
+                //Debug.Log("Scene Changing");
                 SceneManager.LoadScene(DSRoomNum);
             }
 
