@@ -34,7 +34,7 @@ public class geminibeats : MonoBehaviour
             DT.OnEventCheck();
             Ophieno2.SetActive(true);
             DT.OnEvent = false;
-
         }
+
     }
 }
