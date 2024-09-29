@@ -50,10 +50,10 @@ public class MainMenu : MonoBehaviour
     }
 
     //the various btn functions that are called with the corrosponding btn
-    public void LoadGame(string sceneName)
+    public void LoadGame(int SceneNumber)
     {
-        HubManager.demoScene = sceneName;
-        Debug.Log(HubManager.demoScene);
+        HubManager.demoSceneNum = SceneNumber;
+        Debug.Log(HubManager.demoSceneNum);
         
         anim2.GetComponent<Animator>().SetTrigger("Woosh");
         StartCoroutine(Load());

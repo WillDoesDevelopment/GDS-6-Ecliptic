@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class HubManager : MonoBehaviour
 {
-    public static string demoScene = "";
+    public static int demoSceneNum;
 
     public static bool DebugMode = true;
     public GameObject[] doors;
@@ -29,6 +29,7 @@ public class HubManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(LevelNumber);
         if (nextScene)
         {
             if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
@@ -134,7 +135,6 @@ public class HubManager : MonoBehaviour
     public IEnumerator SendToSceneCoroutine(DoorStatus DS)
     {
         freezePlayerActions(player);
-        //Debug.Log("Happening");
         TransitionAnim.SetTrigger("Prompt");
         TransitionAnim.SetTrigger("Animate");
         yield return new WaitForSeconds(2f);
