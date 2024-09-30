@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class GeminiManager : MonoBehaviour
 {
-    public DoorScript DS;
-
     //public DialogueTrigger EndDialogue;
     public VFXCircleHandler VFXCH;
 
@@ -29,7 +27,6 @@ public class GeminiManager : MonoBehaviour
         if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             SuccessSND.Play();
-            DS.DS.IsOpen = true;
             Destroy(EndDT);
             return;
         }
