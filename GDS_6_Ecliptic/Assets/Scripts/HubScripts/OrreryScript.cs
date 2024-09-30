@@ -65,10 +65,10 @@ public class OrreryScript : MonoBehaviour
     }
     public void ActivateDiscs()
     {
-        for (int i = 0; i< HubManager.LevelNumber; i++)
+        /*for (int i = 0; i< HubManager.LevelNumber; i++)
         {
             discs[i].SetActive(true);
-        }
+        }*/
     }
 
     public void AmbientSpin()
@@ -82,8 +82,8 @@ public class OrreryScript : MonoBehaviour
     }
     public void SpinToPosition()
     {
-        discs[HubManager.LevelNumber].SetActive(true);
-        constellations[HubManager.LevelNumber].SetActive(true);
+        //discs[HubManager.LevelNumber].SetActive(true);
+        //constellations[HubManager.LevelNumber].SetActive(true);
         if (t>1f)
         {
             

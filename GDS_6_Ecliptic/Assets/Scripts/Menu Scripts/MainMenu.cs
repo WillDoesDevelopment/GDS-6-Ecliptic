@@ -52,11 +52,12 @@ public class MainMenu : MonoBehaviour
     //the various btn functions that are called with the corrosponding btn
     public void LoadGame(int SceneNumber)
     {
-        HubManager.demoSceneNum = SceneNumber;
-        Debug.Log(HubManager.demoSceneNum);
+        HubManager.LevelNumber = SceneNumber;
+
         
         anim2.GetComponent<Animator>().SetTrigger("Woosh");
-        StartCoroutine(Load());
+        SceneManager.LoadScene(2);
+        //StartCoroutine(Load());
         
     }
 
