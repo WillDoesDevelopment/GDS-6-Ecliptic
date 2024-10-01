@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a85ca3d1363287d49b1989a5faa9d1e1
+guid: 2a88088f0bdcda543b291b7816ffb4e8
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -8,17 +8,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Crab_BandaidOrb_Mat
-    second: {fileID: 2100000, guid: 5cf9c55fb8d629b42929f619f1c99508, type: 2}
+    second: {fileID: 2100000, guid: 62822df3db5e9e64e884c2a39133ee5f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Crab_Body_Orb_Mat
-    second: {fileID: 2100000, guid: 236a8bb8a028b2d418a459c23f8948f6, type: 2}
+    second: {fileID: 2100000, guid: 054215030005d6d48a82abcd6f62c979, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Crab_ClawOrb_Mat
-    second: {fileID: 2100000, guid: 21011520abd4f4340b94a2b84d4b56f1, type: 2}
+    second: {fileID: 2100000, guid: 46c09aa362bf0b440a372c742b773c8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Crab_Leg_Mat
+    second: {fileID: 2100000, guid: 4103104d841bbba499908e62053eaaa1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -46,7 +51,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      internalID: 1827226128182048838
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -81,7 +115,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
