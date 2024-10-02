@@ -15,6 +15,7 @@ public class CancerOrb : MonoBehaviour
 
     IEnumerator WalkOrb1()
     {
+        yield return new WaitForSeconds(1.0f);
         orbAnim.SetTrigger("Walk");
         parentAnim.SetTrigger("Creb");
     }
