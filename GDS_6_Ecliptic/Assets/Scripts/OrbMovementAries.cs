@@ -21,6 +21,7 @@ public class OrbMovementAries : MonoBehaviour
 
     public void OrbFinish()
     {
+        OrbAnim.GetComponent<Animator>().SetBool("Finished", true);
         OrbAnim.GetComponent<Animator>().SetTrigger("Idle");
         RM.GetComponent<RoomManager>().isOrbed = true;
     }
@@ -29,6 +30,7 @@ public class OrbMovementAries : MonoBehaviour
     {
         OrbAnim.GetComponent<Animator>().SetTrigger("Move");
         MoveAnim.GetComponent<Animator>().SetTrigger("orbMoving");
+        
     }
 
 }
