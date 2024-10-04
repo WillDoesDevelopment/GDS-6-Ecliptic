@@ -10,6 +10,7 @@ public class geminibeats : MonoBehaviour
     public Dialogue prevDia;
     public BoxCollider BC;
     public VFXCircleHandler VFXCH;
+    public GameObject purpleOrb;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class geminibeats : MonoBehaviour
         {
             DT.OnEventCheck();
             Ophieno2.SetActive(true);
+            purpleOrb.SetActive(true);
             DT.OnEvent = false;
         }
 
