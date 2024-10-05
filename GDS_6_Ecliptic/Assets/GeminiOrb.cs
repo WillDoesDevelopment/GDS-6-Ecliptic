@@ -32,6 +32,7 @@ public class GeminiOrb : MonoBehaviour
 
         if (FwdDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
+            AnimatorL.GetComponent<Animator>().ResetTrigger("Circle");
             AnimatorL.GetComponent<Animator>().SetTrigger("Fwd");
             AnimatorR.GetComponent<Animator>().SetTrigger("FwdR");
         }

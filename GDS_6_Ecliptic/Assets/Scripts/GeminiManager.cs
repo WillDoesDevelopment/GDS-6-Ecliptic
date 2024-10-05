@@ -14,6 +14,8 @@ public class GeminiManager : MonoBehaviour
 
     public AudioSource SuccessSND;
 
+    private bool played = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +26,10 @@ public class GeminiManager : MonoBehaviour
     void Update()
     {
         
-        if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished && played == false)
         {
             SuccessSND.Play();
-            Destroy(EndDT);
-            return;
+            played = true;
         }
     }
 
