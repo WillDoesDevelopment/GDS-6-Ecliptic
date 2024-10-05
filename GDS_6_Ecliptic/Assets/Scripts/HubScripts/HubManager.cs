@@ -29,7 +29,7 @@ public class HubManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(LevelNumber);
+        //Debug.Log(LevelNumber);
         if (nextScene)
         {
             if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
@@ -170,6 +170,7 @@ public class HubManager : MonoBehaviour
     }
     public static void UnfreezePlayerActions(GameObject player)
     {
+        //Debug.Log("unfreeze");
         if (player.GetComponent<Grapple3>() != null)
         {
             player.GetComponent<Grapple3>().enabled = true;

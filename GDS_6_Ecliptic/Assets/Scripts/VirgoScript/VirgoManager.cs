@@ -11,6 +11,7 @@ public class VirgoManager : MonoBehaviour
     public GameObject credits;
     public GameObject title;
     public string level;
+    public PlayerController CC;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,8 @@ public class VirgoManager : MonoBehaviour
     {
         if (DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
+            ?//Debug.Log("freezing");
+            CC.playerState = PlayerState.Paused;
             VirtualCam.SetActive(true);
             StartCoroutine(loadMenu());
         }
