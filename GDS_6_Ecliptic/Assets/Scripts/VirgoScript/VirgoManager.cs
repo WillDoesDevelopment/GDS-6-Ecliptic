@@ -28,7 +28,7 @@ public class VirgoManager : MonoBehaviour
     {
         if (DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            ?//Debug.Log("freezing");
+            //Debug.Log("freezing");
             CC.playerState = PlayerState.Paused;
             VirtualCam.SetActive(true);
             StartCoroutine(loadMenu());
