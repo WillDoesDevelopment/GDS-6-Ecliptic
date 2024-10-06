@@ -10,6 +10,7 @@ public class RoomManager : MonoBehaviour
     public GameObject GoldSheep;
     public GameObject Aries;
     public GameObject ResetRamObj;
+    public GameObject Resetdialogue;
 
     [Header("Orb Objects")]
     public GameObject startDia;
@@ -129,14 +130,16 @@ public class RoomManager : MonoBehaviour
         {
             ResetRamObj.GetComponent<Animator>().SetBool("FadeIn", true);
             ResetRamObj.GetComponent<DialogueTrigger>().enabled = true;
+            Resetdialogue.SetActive(true);
             if (DialogueEndcheck(ResetRamObj.GetComponent<DialogueTrigger>()))
             {
                 resetGoldRam();
-                ResetRamObj.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+                Resetdialogue.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
             }
         }
         else
         {
+            Resetdialogue.SetActive(false);
             ResetRamObj.GetComponent<Animator>().SetBool("FadeIn", false);
             ResetRamObj.GetComponent<DialogueTrigger>().enabled = false;
         }
