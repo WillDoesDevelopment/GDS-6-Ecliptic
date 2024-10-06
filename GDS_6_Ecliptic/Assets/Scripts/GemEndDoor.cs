@@ -7,6 +7,7 @@ public class GemEndDoor : MonoBehaviour
     public GameObject Ophieno2;
     public GameObject SnakeDT;
     public GameObject polcasDT;
+    public GameObject doorDT;
     public GameObject snek;
 
     // Start is called before the first frame update
@@ -18,13 +19,16 @@ public class GemEndDoor : MonoBehaviour
     private void Update()
     {
 
-        if (SnakeDT.GetComponent<DialogueTrigger>().OnEvent == true && polcasDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        if (/*SnakeDT.GetComponent<DialogueTrigger>().OnEvent == true &&*/ polcasDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            SnakeDT.GetComponent<DialogueTrigger>().OnEventCheck();
-            SnakeDT.GetComponent<DialogueTrigger>().OnEvent = false;
-            snek.SetActive(false);
-            print("Snek Hit");
+           SnakeDT.SetActive(true);
 
+        }
+
+        if(SnakeDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        {
+            snek.SetActive(false);
+            doorDT.SetActive(true);
         }
     }
 

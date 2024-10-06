@@ -5,7 +5,6 @@ using UnityEngine;
 public class GeminiOrb : MonoBehaviour
 {
     [Header("Dialogue Triggers")]
-    public GameObject VFXDT;
     public GameObject FwdDT;
     public GameObject EndDT;
 
@@ -25,14 +24,9 @@ public class GeminiOrb : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (VFXDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.InProgress)
-        {
-            AnimatorL.GetComponent<Animator>().SetTrigger("Circle");
-        }
 
         if (FwdDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            AnimatorL.GetComponent<Animator>().ResetTrigger("Circle");
             AnimatorL.GetComponent<Animator>().SetTrigger("Fwd");
             AnimatorR.GetComponent<Animator>().SetTrigger("FwdR");
         }
