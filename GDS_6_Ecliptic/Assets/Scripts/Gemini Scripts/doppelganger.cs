@@ -119,7 +119,7 @@ public class doppelganger : MonoBehaviour
     void MirrorCheck()
     {
         Debug.DrawLine(new Vector3(-10,1,100), new Vector3(10,1,100),Color.cyan, 0.5f);
-        if (transform.position.z > 100)
+        if (transform.position.z > 110)
         {
             mirror = true;
             mirrorInt = -1;
