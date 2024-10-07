@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.038630266, g: 0.18288043, b: 0.29038423, a: 1}
+  m_IndirectSpecularColor: {r: 0.038671814, g: 0.18494356, b: 0.29361847, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1882,6 +1882,7 @@ GameObject:
   - component: {fileID: 80166282}
   - component: {fileID: 80166281}
   - component: {fileID: 80166280}
+  - component: {fileID: 80166285}
   m_Layer: 0
   m_Name: linearCube2
   m_TagString: Spike
@@ -2006,6 +2007,58 @@ Transform:
   m_Father: {fileID: 1082680161}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &80166285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80166279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409649234eaacad4583c4dfcab2dfeaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 5.5
+  length: 5.5
+  player: {fileID: 8490829134853015848}
+  doppleganger: {fileID: 8490829135625862348}
+  playerHitVFX: {fileID: 1556622816120934376}
+  dopplegangerHitVFX: {fileID: 0}
+  knockbackV:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 5.8239923
+      outSlope: 4.688712
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.056025892
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28984058
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4.6630173
+      outSlope: 2
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.029166698
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Point2: {x: -5, y: 1, z: 58}
 --- !u!4 &83359264 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6979095560554392078, guid: 8404485dde9503a44a3e2c72a601cf9b, type: 3}
@@ -8384,6 +8437,7 @@ MonoBehaviour:
   player: {fileID: 8490829134853015848}
   xOffset: 10
   zOffset: 0
+  fall: 1
   mirror: 0
   floorLayer:
     serializedVersion: 2
@@ -11233,6 +11287,7 @@ GameObject:
   - component: {fileID: 406874595}
   - component: {fileID: 406874594}
   - component: {fileID: 406874593}
+  - component: {fileID: 406874598}
   m_Layer: 0
   m_Name: linearCube
   m_TagString: Spike
@@ -11357,6 +11412,58 @@ Transform:
   m_Father: {fileID: 1082680161}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &406874598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406874592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409649234eaacad4583c4dfcab2dfeaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 5.5
+  length: 5.5
+  player: {fileID: 8490829134853015848}
+  doppleganger: {fileID: 8490829135625862348}
+  playerHitVFX: {fileID: 1556622816120934376}
+  dopplegangerHitVFX: {fileID: 0}
+  knockbackV:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 5.8239923
+      outSlope: 4.688712
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.056025892
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28984058
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4.6630173
+      outSlope: 2
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.029166698
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Point2: {x: -5, y: 1, z: 58}
 --- !u!4 &411334818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9159695350665112188, guid: e7d88f73d7bca4a48b9d838a9d2aff02, type: 3}
@@ -12033,6 +12140,7 @@ GameObject:
   - component: {fileID: 432702827}
   - component: {fileID: 432702826}
   - component: {fileID: 432702825}
+  - component: {fileID: 432702830}
   m_Layer: 0
   m_Name: linearCube2 (1)
   m_TagString: Spike
@@ -12157,6 +12265,58 @@ Transform:
   m_Father: {fileID: 1082680161}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &432702830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432702824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409649234eaacad4583c4dfcab2dfeaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 5.5
+  length: 5.5
+  player: {fileID: 8490829134853015848}
+  doppleganger: {fileID: 8490829135625862348}
+  playerHitVFX: {fileID: 1556622816120934376}
+  dopplegangerHitVFX: {fileID: 0}
+  knockbackV:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 5.8239923
+      outSlope: 4.688712
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.056025892
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28984058
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4.6630173
+      outSlope: 2
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.029166698
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Point2: {x: -5, y: 1, z: 58}
 --- !u!1 &441704805
 GameObject:
   m_ObjectHideFlags: 0
@@ -19976,6 +20136,7 @@ GameObject:
   - component: {fileID: 814370582}
   - component: {fileID: 814370581}
   - component: {fileID: 814370580}
+  - component: {fileID: 814370585}
   m_Layer: 0
   m_Name: linearCube (1)
   m_TagString: Spike
@@ -20100,6 +20261,58 @@ Transform:
   m_Father: {fileID: 1082680161}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &814370585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814370579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409649234eaacad4583c4dfcab2dfeaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 5.5
+  length: 5.5
+  player: {fileID: 8490829134853015848}
+  doppleganger: {fileID: 8490829135625862348}
+  playerHitVFX: {fileID: 1556622816120934376}
+  dopplegangerHitVFX: {fileID: 0}
+  knockbackV:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 5.8239923
+      outSlope: 4.688712
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.056025892
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28984058
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4.6630173
+      outSlope: 2
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.029166698
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Point2: {x: -5, y: 1, z: 58}
 --- !u!1001 &817084065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51499,7 +51712,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8490829135625862348}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a01d1a3177cd0d14caebd73af156248e, type: 3}
   m_Name: 
@@ -81597,7 +81810,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8490829134853015848}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a01d1a3177cd0d14caebd73af156248e, type: 3}
   m_Name: 

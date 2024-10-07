@@ -8,6 +8,7 @@ public class doppelganger : MonoBehaviour
     public float xOffset = 0;
     public float zOffset = 0;
 
+    public bool fall = true;
     public bool mirror = false;
     int mirrorInt = 1;
     
@@ -105,14 +106,22 @@ public class doppelganger : MonoBehaviour
     }
     public void FallingCheck()
     {
-        var rayPos = transform.position + new Vector3(0,1,0);
-        RaycastHit hit;
-
-        Debug.DrawLine(rayPos, rayPos + Vector3.down * maxLength, Color.green, 0.5f);
-        if (Physics.Raycast(new Ray(rayPos, Vector3.down), out hit, maxLength, floorLayer))                      //Raycast forward
+        if(fall)
         {
-            dopY = hit.point.y + playerHeight;
+            var rayPos = transform.position + new Vector3(0, 1, 0);
+            RaycastHit hit;
+
+            Debug.DrawLine(rayPos, rayPos + Vector3.down * maxLength, Color.green, 0.5f);
+            if (Physics.Raycast(new Ray(rayPos, Vector3.down), out hit, maxLength, floorLayer))                      //Raycast forward
+            {
+                dopY = hit.point.y + playerHeight;
+            }
         }
+        else
+        {
+            dopY = player.transform.position.y;
+        }
+        
                 
     }
 
