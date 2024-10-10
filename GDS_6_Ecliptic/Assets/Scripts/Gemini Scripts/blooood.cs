@@ -6,6 +6,8 @@ public class blooood : MonoBehaviour
 {
     public GameObject particleObject;
     public ParticleSystem system;
+    public HitVFX hitVFX;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,10 @@ public class blooood : MonoBehaviour
         {
             if (collider.gameObject.tag == "Spike")
             {
+                hitVFX.GetComponent<HitVFX>().isHit = true;
                 particleObject.transform.position = transform.position;
-                
+                player.GetComponent<PlayerController>().Damage();
+
                 system.Emit(2);
                 break;
             }

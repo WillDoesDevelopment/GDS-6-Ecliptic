@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     public float _rotation;
     float _velocity;
     public float yRotation;
-    [Range(0f, 100f)] public float animSpeed = 8;
+    //[Range(0f, 100f)] public float animSpeed = 8;
+    float animSpeed = 0.2f;
     [Range(0f, 10f)] public float speed = 5;
     [Range(0f, 20f)] public float gravity = 10;
     [Range(0f, 100f)] public float maxFallSpeed = 10;
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             //playerState = PlayerState.Knockback;
-            Damage();
+            //Damage();
         }
 
         //if(canWalk)
@@ -156,7 +157,8 @@ public class PlayerController : MonoBehaviour
             PlayerAnim.SetBool("Walking", true);
             walking = true; // Used for doppelganger
             //walkingSpeed = Vector3.Magnitude(Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f));
-            walkingSpeed = Vector3.Magnitude(moveVector) * animSpeed;
+            //walkingSpeed = Vector3.Magnitude(moveVector) * animSpeed;
+            walkingSpeed = Vector3.Magnitude(Vector3.ClampMagnitude(new Vector3(inputX, 0, inputZ), 1.0f)) * animSpeed * speed;
             PlayerAnim.speed = walkingSpeed;
 
             FootStepCheck();

@@ -57,10 +57,11 @@ public class crabScript : MonoBehaviour
         }
         if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
+            GetComponent<Animator>().SetTrigger("Animate2");
             WinConditionSND.SetActive(true);
             // if the end dialogue is done, open the door
             DS.DS.IsOpen = true;
-            Destroy(gameObject);
+            //Destroy(gameObject);
 /*            HM.SendToHub();
             HM.SetGameStage(4);*/
         }
