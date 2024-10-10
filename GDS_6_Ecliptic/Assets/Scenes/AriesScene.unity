@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.011823954, g: 0.00031635113, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.022917993, g: 0.00096461765, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2178,11 +2178,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 40
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
   orthographic: 0
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4192,7 +4192,7 @@ PrefabInstance:
       objectReference: {fileID: 1973490411}
     - target: {fileID: 3328316474621911865, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4731691729103838188, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: Dm
@@ -4308,10 +4308,10 @@ MonoBehaviour:
   m_LookAt: {fileID: 1442537235}
   m_Follow: {fileID: 1442537235}
   m_Lens:
-    FieldOfView: 40
-    OrthographicSize: 10
-    NearClipPlane: 0.1
-    FarClipPlane: 5000
+    FieldOfView: 60
+    OrthographicSize: 5
+    NearClipPlane: 0.3
+    FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -8474,6 +8474,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 149a50204fa43be42a1a9d8286391716, type: 3}
   m_PrefabInstance: {fileID: 1176777653}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1083828276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5203205849167279358, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
+  m_PrefabInstance: {fileID: 507024048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1093139926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11663,6 +11668,7 @@ MonoBehaviour:
   GoldSheep: {fileID: 1509297792}
   Aries: {fileID: 2125654454}
   ResetRamObj: {fileID: 1973490406}
+  Resetdialogue: {fileID: 1083828276}
   startDia: {fileID: 2069176716}
   orb: {fileID: 1264635917}
   VFXCH: {fileID: 3970566854044868061}
@@ -16761,6 +16767,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 459500725}
     m_Modifications:
+    - target: {fileID: 821784020157364524, guid: a2b71ab2bbd18e34290c95bf213935a1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3e171b790fe659749890f94c5ed42ce0, type: 2}
+    - target: {fileID: 3440059625560380526, guid: a2b71ab2bbd18e34290c95bf213935a1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3e171b790fe659749890f94c5ed42ce0, type: 2}
     - target: {fileID: 3827495471791837944, guid: a2b71ab2bbd18e34290c95bf213935a1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -16809,10 +16823,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5146275040644793376, guid: a2b71ab2bbd18e34290c95bf213935a1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3e171b790fe659749890f94c5ed42ce0, type: 2}
+    - target: {fileID: 5146275041508806930, guid: a2b71ab2bbd18e34290c95bf213935a1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3e171b790fe659749890f94c5ed42ce0, type: 2}
     - target: {fileID: 5452262880699175245, guid: a2b71ab2bbd18e34290c95bf213935a1, type: 3}
       propertyPath: m_Name
       value: Aries_Std_Room
       objectReference: {fileID: 0}
+    - target: {fileID: 7037547575013723000, guid: a2b71ab2bbd18e34290c95bf213935a1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3e171b790fe659749890f94c5ed42ce0, type: 2}
+    - target: {fileID: 7473784033443334090, guid: a2b71ab2bbd18e34290c95bf213935a1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3e171b790fe659749890f94c5ed42ce0, type: 2}
+    - target: {fileID: 8263725152546984376, guid: a2b71ab2bbd18e34290c95bf213935a1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3e171b790fe659749890f94c5ed42ce0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2b71ab2bbd18e34290c95bf213935a1, type: 3}
 --- !u!4 &5166384019250442037
