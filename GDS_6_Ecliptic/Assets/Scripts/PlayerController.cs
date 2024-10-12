@@ -260,6 +260,7 @@ public class PlayerController : MonoBehaviour
         //controller.enabled = true;
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+       
     }
 
     void Footstep()
