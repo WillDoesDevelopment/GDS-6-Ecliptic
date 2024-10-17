@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,7 @@ public class RoomManager : MonoBehaviour
     public GameObject GoldSheep;
     public GameObject Aries;
     public GameObject ResetRamObj;
+    public GameObject Resetdialogue;
 
     [Header("Orb Objects")]
     public GameObject startDia;
@@ -19,6 +20,8 @@ public class RoomManager : MonoBehaviour
     // object that activates vfx circle
     public VFXCircleHandler VFXCH;
     public DialogueTrigger TestDt;
+    public DialogueTrigger sheepDeathDT;
+
     public HubManager HM;
 
     [Header("Positions")]
@@ -70,13 +73,13 @@ public class RoomManager : MonoBehaviour
 
             SuccessSND.SetActive(true);
         }
-        
+
         if (DialogueEndcheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
-            VFXCH.circleVFXStart(); 
+            VFXCH.circleVFXStart();
             GoldSheep.transform.parent.GetComponent<Animator>().SetTrigger("AnimateTrig");
             GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
-            
+
         }
 
         if (DialogueEndcheck(startDia.GetComponent<DialogueTrigger>()) && isOrbed == false)
@@ -87,19 +90,30 @@ public class RoomManager : MonoBehaviour
 
         if (NormalSheep.gameObject.activeInHierarchy)
         {
-            
+            //GoldSheep.SetActive(true);
             if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
             {
+                GoldSheep.SetActive(false);
                 NormalSheep.transform.parent.GetComponent<Animator>().SetTrigger("Animate");
                 NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
+
             }
 
-        }                                                           // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
+        }
+        else
+        {
+            if (DialogueEndcheck(sheepDeathDT))
+            {
+
+                GoldSheep.SetActive(true);
+            }
+        }
+        // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
     }
 
     public bool DialogueEndcheck(DialogueTrigger DialogueObj)
     {
-        
+
         if (DialogueObj.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             return true;
@@ -129,14 +143,16 @@ public class RoomManager : MonoBehaviour
         {
             ResetRamObj.GetComponent<Animator>().SetBool("FadeIn", true);
             ResetRamObj.GetComponent<DialogueTrigger>().enabled = true;
+            Resetdialogue.SetActive(true);
             if (DialogueEndcheck(ResetRamObj.GetComponent<DialogueTrigger>()))
             {
                 resetGoldRam();
-                ResetRamObj.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+                Resetdialogue.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
             }
         }
         else
         {
+            Resetdialogue.SetActive(false);
             ResetRamObj.GetComponent<Animator>().SetBool("FadeIn", false);
             ResetRamObj.GetComponent<DialogueTrigger>().enabled = false;
         }
@@ -154,7 +170,7 @@ public class RoomManager : MonoBehaviour
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
         Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
-        
+
         //turn off audios
         deadRamSnd.SetActive(false);
         NormalRamSnd.SetActive(false);
