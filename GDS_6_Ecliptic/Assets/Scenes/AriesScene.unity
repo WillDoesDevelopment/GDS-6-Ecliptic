@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.014881528, g: 0.00055610144, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.011174995, g: 0.00030754055, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8547,6 +8547,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 550a28ddeab387047b1314541cebd0a1, type: 3}
+--- !u!1 &1135282294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5203205849167279358, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
+  m_PrefabInstance: {fileID: 507024048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1136539103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11659,11 +11664,12 @@ MonoBehaviour:
   GoldSheep: {fileID: 1509297792}
   Aries: {fileID: 2125654454}
   ResetRamObj: {fileID: 1973490406}
-  sheepDeathDT: {fileID: 1055099844}
+  Resetdialogue: {fileID: 1135282294}
   startDia: {fileID: 2069176716}
   orb: {fileID: 1264635917}
   VFXCH: {fileID: 3970566854044868061}
   TestDt: {fileID: 1509297793}
+  sheepDeathDT: {fileID: 1055099844}
   HM: {fileID: 2039047842}
   ExitDoor: {fileID: 2051854785}
   GoldenRamSnd: {fileID: 1242558145}
@@ -14921,7 +14927,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973490406}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
   m_Name: 
@@ -17162,7 +17168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6279914845069936499, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -5.999817
+      value: -5.999878
       objectReference: {fileID: 0}
     - target: {fileID: 6279914845088880967, guid: b2f665e1bfca1da45b6388a79f7d8223, type: 3}
       propertyPath: m_fontColor32.rgba

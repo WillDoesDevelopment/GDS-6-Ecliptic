@@ -82,8 +82,12 @@ public class OrreryScript : MonoBehaviour
     }
     public void SpinToPosition()
     {
-        discs[HubManager.LevelNumber].SetActive(true);
-        constellations[HubManager.LevelNumber].SetActive(true);
+        if (HubManager.LevelNumber > discs.Length)
+        {
+            discs[HubManager.LevelNumber].SetActive(true);
+
+            constellations[HubManager.LevelNumber].SetActive(true);
+        }
         if (t>1f)
         {
             

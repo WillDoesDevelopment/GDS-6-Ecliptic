@@ -96,6 +96,7 @@ public class RoomManager : MonoBehaviour
                 GoldSheep.SetActive(false);
                 NormalSheep.transform.parent.GetComponent<Animator>().SetTrigger("Animate");
                 NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
+                
 
             }
 
@@ -104,7 +105,7 @@ public class RoomManager : MonoBehaviour
         {
             if (DialogueEndcheck(sheepDeathDT))
             {
-
+                NormalSheep.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
                 GoldSheep.SetActive(true);
             }
         }
