@@ -22,7 +22,7 @@ public class GeminiTrig : MonoBehaviour
     {
         if (prevDia.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            dialoguecanv[2].GetComponent<RectTransform>().transform.localScale = new Vector3(0.02f, 0.16f, 0.16f);
+            dialoguecanv[2].GetComponent<RectTransform>().transform.localScale = new Vector3(0.04f, 0.32f, 0.32f);
             dialoguecanv[0].GetComponent<Image>().sprite = playerOld[0];
             dialoguecanv[1].GetComponent<Image>().sprite = playerOld[1];
         }
@@ -31,8 +31,8 @@ public class GeminiTrig : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
             print("HIT PLAYER");
+            dialoguecanv[2].GetComponent<RectTransform>().transform.localScale = new Vector3(0.02f, 0.16f, 0.16f);
             WinConditionSND.GetComponent<AudioSource>().Play();
-            dialoguecanv[2].GetComponent<RectTransform>().transform.localScale = new Vector3(0.04f, 0.32f, 0.32f);
             dialoguecanv[0].GetComponent<Image>().sprite = playerNew[0];
             dialoguecanv[1].GetComponent<Image>().sprite = playerNew[1];
 
