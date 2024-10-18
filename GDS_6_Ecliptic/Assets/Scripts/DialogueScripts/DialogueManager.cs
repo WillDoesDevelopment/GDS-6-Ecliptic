@@ -171,7 +171,8 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
-        if (DialogueIndexTracker != 0 && DialogueIndexTracker!> dialogue.IndentVals.Length)
+        if (DialogueIndexTracker != 0 && DialogueIndexTracker < dialogue.IndentVals.Length)
+        {
             if (dialogue.IndentVals[DialogueIndexTracker] < dialogue.IndentVals[DialogueIndexTracker - 1])
             {
                 for (int i = DialogueIndexTracker; i < dialogue.IndentVals.Length; i++)
@@ -183,6 +184,8 @@ public class DialogueManager : MonoBehaviour
                     }
                 }
             }
+
+        }
         DeactivateDecisions(dialogue);
         //List<int> TempDecisionIndex = new List<int>();
         decisionIndexList.Clear();                                                    // this is for debugging purposes
