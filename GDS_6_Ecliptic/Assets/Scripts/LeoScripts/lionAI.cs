@@ -127,6 +127,7 @@ public class lionAI : MonoBehaviour
             Falling();
         }
 
+        /*
         if (ColumnParent.transform.childCount == 0 && lionState != LionState.Defeat)                                //Level Ends
         {
             x = Mathf.Floor(transform.position.x + 0.5f);
@@ -134,7 +135,9 @@ public class lionAI : MonoBehaviour
             z = Mathf.Floor(transform.position.z + 0.5f);
             Pos = new Vector3(x, y, z);
             lionState = LionState.Defeat;
-        }
+        } 
+        */
+        
         /*
         if (lionState == LionState.Defeat)     //Collapse
         {
@@ -302,27 +305,27 @@ public class lionAI : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        if (timer < 2.0f && roar1Lock == false && difficulty > 2)
+        if (timer < 0.7f * roarTime && roar1Lock == false && difficulty > 2)
         {
             RoarSpawn(80);
             roar1Lock = true;
         }
-        if (timer < 1.7f && roar2Lock == false && difficulty > 1)
+        if (timer < 0.6f * roarTime && roar2Lock == false && difficulty > 1)
         {
             RoarSpawn(40);
             roar2Lock = true;
         }
-        if (timer < 1.4f && roar3Lock == false)
+        if (timer < 0.5f * roarTime && roar3Lock == false)
         {
             RoarSpawn(0);
             roar3Lock = true;
         }
-        if (timer < 1.1f && roar4Lock == false && difficulty > 1)
+        if (timer < 0.4f * roarTime && roar4Lock == false && difficulty > 1)
         {
             RoarSpawn(-40);
             roar4Lock = true;
         }
-        if (timer < 0.8f && roar5Lock == false && difficulty > 2)
+        if (timer < 0.3f * roarTime && roar5Lock == false && difficulty > 2)
         {
             RoarSpawn(-80);
             roar5Lock = true;

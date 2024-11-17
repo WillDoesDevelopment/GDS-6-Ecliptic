@@ -5,7 +5,7 @@ using UnityEngine;
 public class RoarAttack : MonoBehaviour
 {
     float timer = 5f;
-    float speed = 3f;
+    float speed = 4f;
     Vector3 lineStart;
     Vector3 lineEnd;
     
