@@ -76,7 +76,8 @@ public class Grapple3 : MonoBehaviour
     {
         //t = length / maxLength;                                                             // % of max length extended
         playerXZ = new Vector3(transform.position.x, target.transform.position.y, transform.position.z);
-        float f = Mathf.Clamp(t - 1f, 0, 0.2f) * 5f;                                       // force modifier when 1.0 < t < 1.2
+        //float f = Mathf.Clamp(t - 1f, 0, 0.2f) * 5f;                                       // remove later
+        float f = Mathf.InverseLerp(0.6f, 1.2f, t);                                           // force modifier when 0.6 < t < 1.2
 
         var forceVec = Vector3.Normalize(playerXZ - target.transform.position) * Time.deltaTime * f * 100000f;    //Calculate force            
         target.GetComponent<Rigidbody>().AddForceAtPosition(forceVec, pointObject.transform.position);            //Add force
@@ -202,13 +203,13 @@ public class Grapple3 : MonoBehaviour
             {
                 //Attatch and Pull Object
                 t = length / maxLength;
-                if (t>1) //at max length
+                if (t > 0.6f) //Start affecting objects
                 {
                     if (target.GetComponent<columnScript>() == null) 
                     {                        
                         AddForce(); //not at max length, add force
                     }
-                    else
+                    else if (t > 1)
                     {
                         CollumnInteraction(); //if interacting with column
                     }
