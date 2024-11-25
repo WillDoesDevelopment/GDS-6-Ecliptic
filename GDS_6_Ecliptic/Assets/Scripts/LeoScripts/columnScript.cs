@@ -78,17 +78,18 @@ public class columnScript : MonoBehaviour
         brokenColumn.SetActive(true);
         GetComponent<CapsuleCollider>().enabled = false;
         GetComponent<MeshRenderer>().enabled = false;
+        lion.GetComponent<lionAI>().columnCount -= 1;
     }
 
     void BreakStage2()
     {
         brokenColumn.SetActive(false);
-        lion.GetComponent<lionAI>().columnCount -= 1;
+        barrierObject.GetComponent<barrierSegment>().move = true;
+        gameObject.SetActive(false);
     }
 
     void BreakStage3()
     {
-        barrierObject.GetComponent<barrierSegment>().move = true;
-        gameObject.SetActive(false);        
+              
     }
 }
