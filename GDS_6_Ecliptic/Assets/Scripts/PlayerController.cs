@@ -46,6 +46,10 @@ public class PlayerController : MonoBehaviour
     Vector3 knockbackStartPos;
     Vector3 knockbackEndPos;
 
+    //Debug - remove for release
+    public Vector3 teleportPos;
+    
+
     //Spawn
     Vector3 spawnPoint;
 
@@ -78,6 +82,9 @@ public class PlayerController : MonoBehaviour
         {
             //playerState = PlayerState.Knockback;
             //Damage();
+            controller.enabled = false;
+            transform.position = teleportPos;
+            controller.enabled = true;
         }
 
         //if(canWalk)
