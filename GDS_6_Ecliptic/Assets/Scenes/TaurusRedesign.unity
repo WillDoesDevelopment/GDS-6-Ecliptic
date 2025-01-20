@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0027430225, g: 0.0026368978, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.031839713, g: 0.058241874, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1491,6 +1491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bull: {fileID: 2006514971}
   Artifact: {fileID: 116755605}
+  TargetObject: {fileID: 0}
   PlayerResetPos: {x: 0, y: 0, z: 0}
   ArtifactResetPos: {x: 0, y: 0, z: 0}
   BullResetPos: {x: 0, y: 0, z: 0}
@@ -7561,6 +7562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bull: {fileID: 1602554271}
   Artifact: {fileID: 369014824}
+  TargetObject: {fileID: 680509371}
   PlayerResetPos: {x: 0, y: 0, z: 0}
   ArtifactResetPos: {x: 0, y: 0, z: 0}
   BullResetPos: {x: 0, y: 0, z: 0}
@@ -8656,6 +8658,7 @@ MonoBehaviour:
   - {fileID: 116755612}
   taurusStageCounter: 0
   Player: {fileID: 772081480}
+  particleObject: {fileID: 2028866771}
 --- !u!1 &562402634
 GameObject:
   m_ObjectHideFlags: 0
@@ -13741,6 +13744,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &613144399 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8944439769904862093, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 1859104228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &614849841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14003,6 +14011,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &680509371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8944439769904862093, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 1727953158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &701301359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25388,6 +25401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bull: {fileID: 1694990388}
   Artifact: {fileID: 1525499483}
+  TargetObject: {fileID: 613144399}
   PlayerResetPos: {x: 46.58, y: 0.752, z: -118.4}
   ArtifactResetPos: {x: 51.48, y: 0, z: -123.24}
   BullResetPos: {x: 0, y: 0, z: 0}
@@ -36486,7 +36500,7 @@ PrefabInstance:
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: HM
       value: 
-      objectReference: {fileID: 888469159}
+      objectReference: {fileID: 0}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
@@ -36505,7 +36519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: DS.IsOpen
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: DS.SceneNum
@@ -38027,7 +38041,7 @@ PrefabInstance:
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: HM
       value: 
-      objectReference: {fileID: 888469159}
+      objectReference: {fileID: 0}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
