@@ -55,12 +55,19 @@ public class lionAI : MonoBehaviour
 
 
     LayerMask hitObject;
+
+    public Material mat;
+    private float alphaFloat = 0f;
+    private float aStart = 0f;
+    private float aEnd = 1f;
+    private float t = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
         RM = FindObjectOfType<RoomManager>();
         playerController = player.GetComponent<PlayerController>();
-
+        mat.GetFloat("_Clip_Amt");
 
     }
 
@@ -70,6 +77,8 @@ public class lionAI : MonoBehaviour
         Difficulty();
         //StartDialogue.OnEventCheck();
         //StartDialogue.OnEvent = false;
+
+     
 
         if(columnCount <4 && columnCount > 0)
         {
@@ -126,6 +135,12 @@ public class lionAI : MonoBehaviour
         else if (lionState == LionState.Falling)          //Falling
         {
             Falling();
+            //got this working!! but it disrupts the state change :<< so it isnt properly working rn pls help!!!
+            /*alphaFloat = Mathf.Lerp(aStart, aEnd, t);
+
+            t += 0.2f * Time.deltaTime;
+
+            mat.SetFloat("_Clip_Amt", alphaFloat);*/
         }
 
         /*
@@ -373,6 +388,7 @@ public class lionAI : MonoBehaviour
     void Falling()
     {
         transform.position = transform.position - Vector3.up * Time.deltaTime * 2.0f;
+
         //Add in end condition
     }
 
