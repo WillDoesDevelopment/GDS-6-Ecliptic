@@ -116,12 +116,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (playerState == PlayerState.Freeze)
         {
-            
-        }
-        else if (playerState == PlayerState.Passive)
-        {
-            Passive();
-            Movement();
+
         }
         else if (playerState == PlayerState.Knockback)
         {
@@ -263,14 +258,6 @@ public class PlayerController : MonoBehaviour
             timer = 0;
             playerState = PlayerState.Walk;
         }
-    }
-
-    void Passive()
-    {
-        FallingCheck();
-        inputY = Mathf.Clamp(inputY, -maxFallSpeed, maxFallSpeed);
-        inputX = 0f;
-        inputZ = 0f;
     }
 
     void Respawn()

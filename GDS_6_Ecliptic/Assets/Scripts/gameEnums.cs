@@ -1,7 +1,6 @@
 public enum PlayerState
 {
     Freeze,
-    Passive,
     Paused,
     Dialogue,
     Walk,
