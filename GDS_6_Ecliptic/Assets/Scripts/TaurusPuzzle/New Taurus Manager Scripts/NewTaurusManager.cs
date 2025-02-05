@@ -39,7 +39,7 @@ public abstract class TaurusStage : MonoBehaviour
         }
     }
 
-    public bool ArtifactCheck(GameObject Player, GameObject particleObject)
+    public bool ArtifactCheck(GameObject Player, GameObject particleObject, int stageCounter)
     {
         GameObject HO = Player.GetComponent<PickUpScript>().HoldingObj;
         if (HO == null)
@@ -100,7 +100,6 @@ public abstract class TaurusStage : MonoBehaviour
 
 public class NewTaurusManager : MonoBehaviour
 {
-
     public TaurusStage[] TaurusStages;
     public int taurusStageCounter;
 
@@ -114,10 +113,19 @@ public class NewTaurusManager : MonoBehaviour
 
     public void Update()
     {
+        Debug.Log(taurusStageCounter);
         TaurusStages[taurusStageCounter].ResetCheck(Player);
-        if (TaurusStages[taurusStageCounter].ArtifactCheck(Player, particleObject))
+        if (TaurusStages[taurusStageCounter].ArtifactCheck(Player, particleObject, taurusStageCounter))
         {
-            taurusStageCounter += 1;
+            if (taurusStageCounter < 2)
+            {
+                taurusStageCounter += 1;
+
+            }
+            else
+            {
+                return;
+            }
         }
 
     }
