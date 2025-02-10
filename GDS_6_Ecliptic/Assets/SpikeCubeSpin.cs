@@ -13,8 +13,7 @@ public class SpikeCubeSpin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float t = Time.deltaTime;
-        //transform.eulerAngles = Mathf.Lerp(0, 360, t);
+        transform.Rotate(0f, 100 * Time.deltaTime, 0f, Space.Self);
 
 
     }
