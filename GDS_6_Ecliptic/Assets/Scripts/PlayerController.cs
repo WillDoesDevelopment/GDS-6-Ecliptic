@@ -46,10 +46,6 @@ public class PlayerController : MonoBehaviour
     Vector3 knockbackStartPos;
     Vector3 knockbackEndPos;
 
-    //Debug - remove for release
-    public Vector3 teleportPos;
-    
-
     //Spawn
     Vector3 spawnPoint;
 
@@ -82,9 +78,6 @@ public class PlayerController : MonoBehaviour
         {
             //playerState = PlayerState.Knockback;
             //Damage();
-            controller.enabled = false;
-            transform.position = teleportPos;
-            controller.enabled = true;
         }
 
         //if(canWalk)
@@ -116,12 +109,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (playerState == PlayerState.Freeze)
         {
-            
-        }
-        else if (playerState == PlayerState.Passive)
-        {
-            Passive();
-            Movement();
+
         }
         else if (playerState == PlayerState.Knockback)
         {
@@ -265,14 +253,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Passive()
-    {
-        FallingCheck();
-        inputY = Mathf.Clamp(inputY, -maxFallSpeed, maxFallSpeed);
-        inputX = 0f;
-        inputZ = 0f;
-    }
-
     void Respawn()
     {
         //controller.enabled = false;
@@ -280,6 +260,7 @@ public class PlayerController : MonoBehaviour
         //controller.enabled = true;
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+       
     }
 
     void Footstep()

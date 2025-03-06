@@ -24,7 +24,7 @@ public class DoorScript : MonoBehaviour
     void Start()
     {
         // instead of finding it in editor for each door
-        //HM = FindObjectOfType<HubManager>();
+        HM = FindObjectOfType<HubManager>();
 
         ThisAnim = this.GetComponentInParent<Animator>();
     }
@@ -52,20 +52,17 @@ public class DoorScript : MonoBehaviour
     }
     public void DoorEnteredCheck()
     {
-        if (HM != null)
+        if (proximity(2))
         {
-            if (proximity(2))
+            if (BackToHub)
             {
-                if (BackToHub)
-                {
-                    HM.SendToHub(DS);
-                    HM.SetGameStage(StageNumber);
-                }
-                else
-                {
-                    HM.SendToScene(DS);
-                    HM.SetGameStage(StageNumber);
-                }
+                HM.SendToHub(DS);
+                HM.SetGameStage(StageNumber);
+            }
+            else
+            {
+                HM.SendToScene(DS);
+                HM.SetGameStage(StageNumber);
             }
         }
     }

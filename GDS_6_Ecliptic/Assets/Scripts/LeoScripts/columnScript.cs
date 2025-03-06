@@ -12,10 +12,6 @@ public class columnScript : MonoBehaviour
     public GameObject lion;
     public GameObject Shield;
 
-    public Material mat;
-    private float alphaFloat = 0f;
-    private float change = 0.2f;
-
     float timer = 0f;
 
     bool stage1Lock = false;
@@ -24,9 +20,7 @@ public class columnScript : MonoBehaviour
 
     void Start()
     {
-        alphaFloat = 0f;
-        mat.GetFloat("_Clip_Amt");
-        mat.SetFloat("_Clip_Amt", alphaFloat);
+
     }
 
     // Update is called once per frame
@@ -35,16 +29,12 @@ public class columnScript : MonoBehaviour
         if (fall == true)
         {
             FallUpdate();
-            InvokeRepeating("DissolveTrigger", 0.5f, 10f);
         }
 
         if (fall == false && lion.GetComponent<lionAI>().stage == 2)
         {
             Shield.SetActive(true);
-            
-
         }
-
 
         /*
         if (Input.GetKeyDown(KeyCode.P))
@@ -57,9 +47,6 @@ public class columnScript : MonoBehaviour
             fall = true;
         }
         */
-
-
-
     }
 
     public void FallUpdate()
@@ -70,20 +57,18 @@ public class columnScript : MonoBehaviour
         {
             BreakStage1();
             stage1Lock = true;
-            
         }
 
-        if (timer > 8 && stage2Lock == false)
+        if (timer > 4 && stage2Lock == false)
         {
             BreakStage2();
             stage2Lock = true;
         }
 
-        if (timer > 8 && stage3Lock == false)
+        if (timer > 4 && stage3Lock == false)
         {
             BreakStage3();
             stage3Lock = true;
-
         }
     }
 
@@ -93,28 +78,17 @@ public class columnScript : MonoBehaviour
         brokenColumn.SetActive(true);
         GetComponent<CapsuleCollider>().enabled = false;
         GetComponent<MeshRenderer>().enabled = false;
-        lion.GetComponent<lionAI>().columnCount -= 1;
     }
 
     void BreakStage2()
     {
         brokenColumn.SetActive(false);
-        barrierObject.GetComponent<barrierSegment>().move = true;
-        gameObject.SetActive(false);
-
+        lion.GetComponent<lionAI>().columnCount -= 1;
     }
 
     void BreakStage3()
     {
-              
+        barrierObject.GetComponent<barrierSegment>().move = true;
+        gameObject.SetActive(false);        
     }
-
-    void DissolveTrigger()
-    {
-        mat.GetFloat("_Clip_Amt");
-
-        alphaFloat += change;
-        mat.SetFloat("_Clip_Amt", alphaFloat);
-    }
-
 }

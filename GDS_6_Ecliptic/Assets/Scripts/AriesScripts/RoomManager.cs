@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,13 +73,13 @@ public class RoomManager : MonoBehaviour
 
             SuccessSND.SetActive(true);
         }
-
+        
         if (DialogueEndcheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
-            VFXCH.circleVFXStart();
+            VFXCH.circleVFXStart(); 
             GoldSheep.transform.parent.GetComponent<Animator>().SetTrigger("AnimateTrig");
             GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
-
+            
         }
 
         if (DialogueEndcheck(startDia.GetComponent<DialogueTrigger>()) && isOrbed == false)
@@ -96,7 +96,6 @@ public class RoomManager : MonoBehaviour
                 GoldSheep.SetActive(false);
                 NormalSheep.transform.parent.GetComponent<Animator>().SetTrigger("Animate");
                 NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
-                
 
             }
 
@@ -105,7 +104,7 @@ public class RoomManager : MonoBehaviour
         {
             if (DialogueEndcheck(sheepDeathDT))
             {
-                NormalSheep.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+
                 GoldSheep.SetActive(true);
             }
         }
@@ -114,7 +113,7 @@ public class RoomManager : MonoBehaviour
 
     public bool DialogueEndcheck(DialogueTrigger DialogueObj)
     {
-
+        
         if (DialogueObj.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             return true;
@@ -171,7 +170,7 @@ public class RoomManager : MonoBehaviour
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
         Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
-
+        
         //turn off audios
         deadRamSnd.SetActive(false);
         NormalRamSnd.SetActive(false);
