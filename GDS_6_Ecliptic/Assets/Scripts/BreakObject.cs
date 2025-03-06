@@ -7,16 +7,14 @@ public class BreakObject : MonoBehaviour
     // Start is called before the first frame update
     public bool smash = false;
 
-    /*                                                          Shader VFX
-    public Material mat;
-    private float alphaFloat = 0f;
-    private float change = 0.2f;
-    */
+    Renderer[] allChildren;
 
     float timer = 0f;
+    public float stage2Time = 3.0f;
+    public float stage3Time = 4.0f;
 
     bool stage1Lock = false;
-    bool stage2Lock = false;
+    //bool stage2Lock = false;
     bool stage3Lock = false;
 
     public bool explodeForce = false;
@@ -24,12 +22,8 @@ public class BreakObject : MonoBehaviour
     public float explosionRadius = 1f;
 
     void Start()
-    {
-        /*                                                      Shader VFX
-        alphaFloat = 0f;
-        mat.GetFloat("_Clip_Amt");
-        mat.SetFloat("_Clip_Amt", alphaFloat);
-        */
+    {        
+        
     }
 
     // Update is called once per frame
@@ -52,13 +46,12 @@ public class BreakObject : MonoBehaviour
             stage1Lock = true;
         }
 
-        if (timer > 3 && stage2Lock == false)
+        if (timer > stage2Time)
         {
-            BreakStage2();
-            stage2Lock = true;
+            BreakStage2();            
         }
 
-        if (timer > 4 && stage3Lock == false)
+        if (timer > stage3Time && stage3Lock == false)
         {
             BreakStage3();
             stage3Lock = true;
@@ -68,6 +61,8 @@ public class BreakObject : MonoBehaviour
 
     void BreakStage1() //Break
     {     
+        //Should add layer filter for physics interaction
+
         if (TryGetComponent(out MeshCollider MC))
         {
             MC.enabled = false;
@@ -86,30 +81,24 @@ public class BreakObject : MonoBehaviour
         {
             ExplosionForce();
         }
+
+        allChildren = GetComponentsInChildren<Renderer>();
     }
 
     void BreakStage2() //Dissolve
-    {
-        //InvokeRepeating("DissolveTrigger", 0.5f, 10f);        Shader VFX
-
+    {                      
+        foreach (Renderer rend in allChildren)
+        {
+            rend.material.SetFloat("_Clip_Amt", Mathf.InverseLerp(stage2Time, stage3Time, timer));//Shader VFX  
+        }
     }
 
     void BreakStage3() //Deactivate
     {        
         gameObject.SetActive(false);
     }
-
-    /*                                                          Shader VFX
-    void DissolveTrigger()
-    {
-        mat.GetFloat("_Clip_Amt");
-
-        alphaFloat += change;
-        mat.SetFloat("_Clip_Amt", alphaFloat);
-    }
-    */
-
-        void ExplosionForce()
+    
+    void ExplosionForce()
     {
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
