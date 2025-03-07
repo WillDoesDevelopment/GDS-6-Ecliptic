@@ -89,7 +89,7 @@ public class BreakObject : MonoBehaviour
     {                      
         foreach (Renderer rend in allChildren)
         {
-            rend.material.SetFloat("_Clip_Amt", Mathf.InverseLerp(stage2Time, stage3Time, timer));//Shader VFX  
+            rend.material.SetFloat("_Clip_Amt", Mathf.InverseLerp(stage2Time, stage3Time, timer)+ 0.01f);//Shader VFX  
         }
     }
 
