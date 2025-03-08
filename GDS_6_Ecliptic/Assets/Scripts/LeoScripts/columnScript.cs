@@ -12,7 +12,11 @@ public class columnScript : MonoBehaviour
     public GameObject lion;
     public GameObject Shield;
 
+    Renderer[] allChildren;
+
     float timer = 0f;
+    public float stage2Time = 6.0f;
+    public float stage3Time = 8.0f;
 
     bool stage1Lock = false;
     bool stage2Lock = false;
@@ -20,7 +24,7 @@ public class columnScript : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -28,7 +32,7 @@ public class columnScript : MonoBehaviour
     {
         if (fall == true)
         {
-            FallUpdate();
+            FallUpdate();            
         }
 
         if (fall == false && lion.GetComponent<lionAI>().stage == 2)
@@ -56,16 +60,15 @@ public class columnScript : MonoBehaviour
         if (stage1Lock == false)
         {
             BreakStage1();
-            stage1Lock = true;
+            stage1Lock = true;            
         }
 
-        if (timer > 4 && stage2Lock == false)
+        if (timer > stage2Time)
         {
-            BreakStage2();
-            stage2Lock = true;
+            BreakStage2();            
         }
 
-        if (timer > 4 && stage3Lock == false)
+        if (timer > stage3Time && stage3Lock == false)
         {
             BreakStage3();
             stage3Lock = true;
@@ -78,17 +81,23 @@ public class columnScript : MonoBehaviour
         brokenColumn.SetActive(true);
         GetComponent<CapsuleCollider>().enabled = false;
         GetComponent<MeshRenderer>().enabled = false;
+        lion.GetComponent<lionAI>().columnCount -= 1;
+
+        allChildren = GetComponentsInChildren<Renderer>();
     }
 
     void BreakStage2()
     {
-        brokenColumn.SetActive(false);
-        lion.GetComponent<lionAI>().columnCount -= 1;
+        foreach (Renderer rend in allChildren)
+        {
+            rend.material.SetFloat("_Clip_Amt", Mathf.InverseLerp(stage2Time, stage3Time, timer));//Shader VFX  
+        }
     }
 
     void BreakStage3()
     {
+        brokenColumn.SetActive(false);
         barrierObject.GetComponent<barrierSegment>().move = true;
-        gameObject.SetActive(false);        
+        gameObject.SetActive(false);
     }
 }
