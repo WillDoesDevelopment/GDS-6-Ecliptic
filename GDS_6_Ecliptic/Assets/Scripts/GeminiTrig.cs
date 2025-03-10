@@ -10,6 +10,7 @@ public class GeminiTrig : MonoBehaviour
     public GameObject[] dialoguecanv;
     public Sprite[] playerNew;
     public Sprite[] playerOld;
+    public GameObject orbbb;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class GeminiTrig : MonoBehaviour
             dialoguecanv[2].GetComponent<RectTransform>().transform.localScale = new Vector3(0.02f, 0.16f, 0.16f);
             dialoguecanv[0].GetComponent<Image>().sprite = playerOld[0];
             dialoguecanv[1].GetComponent<Image>().sprite = playerOld[1];
+            Destroy(orbbb);
         }
     }
 
