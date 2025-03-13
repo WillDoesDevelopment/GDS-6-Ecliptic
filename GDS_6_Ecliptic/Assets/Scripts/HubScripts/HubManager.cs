@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class HubManager : MonoBehaviour
 {
-    public static int demoSceneNum;
-
     public static bool DebugMode = true;
     public GameObject[] doors;
 
@@ -29,12 +27,11 @@ public class HubManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(LevelNumber);
         if (nextScene)
         {
             if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
             {
-                //Debug.Log("Scene Changing");
+                Debug.Log("Scene Changing");
                 SceneManager.LoadScene(DSRoomNum);
             }
 
@@ -96,7 +93,7 @@ public class HubManager : MonoBehaviour
         
         if (DS.IsOpen == true)
         {
-            //Debug.Log("working");
+            Debug.Log("working");
             StartCoroutine(SendToSceneCoroutine(DS));
             
         }
@@ -135,6 +132,7 @@ public class HubManager : MonoBehaviour
     public IEnumerator SendToSceneCoroutine(DoorStatus DS)
     {
         freezePlayerActions(player);
+        //Debug.Log("Happening");
         TransitionAnim.SetTrigger("Prompt");
         TransitionAnim.SetTrigger("Animate");
         yield return new WaitForSeconds(2f);
@@ -170,7 +168,6 @@ public class HubManager : MonoBehaviour
     }
     public static void UnfreezePlayerActions(GameObject player)
     {
-        //Debug.Log("unfreeze");
         if (player.GetComponent<Grapple3>() != null)
         {
             player.GetComponent<Grapple3>().enabled = true;

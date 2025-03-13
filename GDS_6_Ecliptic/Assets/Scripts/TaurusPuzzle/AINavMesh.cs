@@ -44,7 +44,7 @@ public class AINavMesh : MonoBehaviour
 
         playSnd();
 
-        CollisionCheck();
+        //CollisionCheck();
 
         BullActiveCheck();
 
@@ -95,7 +95,7 @@ public class AINavMesh : MonoBehaviour
         }
     }
 
-    public void CollisionCheck()
+    /*public void CollisionCheck()
     {
         Collider[] Collisions = Physics.OverlapSphere(this.gameObject.transform.localPosition, 1f);
         foreach(Collider c in Collisions)
@@ -106,7 +106,7 @@ public class AINavMesh : MonoBehaviour
                 TM.Resetting();
             }
         }
-    }
+    }*/
 
     public void playSnd()
     {

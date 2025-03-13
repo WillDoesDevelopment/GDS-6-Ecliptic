@@ -76,7 +76,8 @@ public class Grapple3 : MonoBehaviour
     {
         //t = length / maxLength;                                                             // % of max length extended
         playerXZ = new Vector3(transform.position.x, target.transform.position.y, transform.position.z);
-        float f = Mathf.Clamp(t - 1f, 0, 0.2f) * 5f;                                       // force modifier when 1.0 < t < 1.2
+        //float f = Mathf.Clamp(t - 1f, 0, 0.2f) * 5f;                                       // remove later
+        float f = Mathf.InverseLerp(0.6f, 1.2f, t);                                           // force modifier when 0.6 < t < 1.2
 
         var forceVec = Vector3.Normalize(playerXZ - target.transform.position) * Time.deltaTime * f * 100000f;    //Calculate force            
         target.GetComponent<Rigidbody>().AddForceAtPosition(forceVec, pointObject.transform.position);            //Add force
@@ -200,25 +201,32 @@ public class Grapple3 : MonoBehaviour
             }
             else
             {
-                //Attatch and Pull Object
                 t = length / maxLength;
-                if (t>1) //at max length
+                //Check if breakable
+                if (target.GetComponent<BreakObject>() != null)
                 {
-                    if (target.GetComponent<columnScript>() == null) 
-                    {                        
-                        AddForce(); //not at max length, add force
-                    }
-                    else
-                    {
-                        CollumnInteraction(); //if interacting with column
-                    }
+                    SmashInteraction(); //break object
                 }
-                if (t>1.2)
+                else
+                {
+                    //Attatch and Pull Object
+                    
+                    if (t > 0.6f) //Start affecting objects
+                    {
+                        if (target.GetComponent<columnScript>() == null)
+                        {
+                            AddForce(); //not at max length, add force
+                        }
+                        else if (t > 1)
+                        {
+                            CollumnInteraction(); //if interacting with column
+                        }
+                    }                    
+                }
+                if (t > 1.2)
                 {
                     RopeBreak();//break rope
                 }
-                
-                    
             }
         }
     }
@@ -275,8 +283,15 @@ public class Grapple3 : MonoBehaviour
             target = null;
         }                 
     }
-    
-        public void RopeBreak()
+
+    public void SmashInteraction()
+    {
+        target.GetComponent<BreakObject>().smash = true;        
+        RopeBreak();        
+        target = null;
+    }
+
+    public void RopeBreak()
     {
         source.clip = grappleSnd[1];
         source.Play();
