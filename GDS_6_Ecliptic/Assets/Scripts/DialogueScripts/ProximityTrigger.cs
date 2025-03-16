@@ -5,7 +5,8 @@ using UnityEngine;
 public class ProximityTrigger : MonoBehaviour
 {
     public GameObject player;
-    public PlayerState setPlayerState = PlayerState.Dialogue;
+    public bool setPlayerState = true;
+    public PlayerState newPlayerState = PlayerState.Dialogue;
     public DialogueTrigger dialogueTrigger;
     public float width = 1f;
     public float length = 1f;
@@ -27,12 +28,18 @@ public class ProximityTrigger : MonoBehaviour
         {
             if (hitCollider.gameObject == player)
             {
-                playerController.playerState = setPlayerState;
-                dialogueTrigger.OnEvent = false;
-                dialogueTrigger.TriggerDialogue();
+                if (setPlayerState)
+                {
+                    playerController.playerState = newPlayerState;
+                }
 
+                if (dialogueTrigger != null)
+                {
+                    dialogueTrigger.OnEvent = false;
+                    dialogueTrigger.TriggerDialogue();
+                }
 
-                if(autowalk)
+                if (autowalk)
                 {
                     playerController.AutoWalkDestination = autowalkPos;
                     playerController.playerState = PlayerState.Autowalk;
