@@ -17,12 +17,12 @@ public class linearScorpian : MonoBehaviour
     Vector3 targetPoint;
     float offset = 1.0f;
     float timer = 0;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        lineAngle = Vector3.Normalize(point1.position - point2.position);
+
     }
 
     // Update is called once per frame
@@ -31,11 +31,12 @@ public class linearScorpian : MonoBehaviour
         DTfollow();
 
         timer += Time.deltaTime;        //Time for pie
-        if(timer > 6.28319)
+        if (timer > 6.28319)
         {
             timer -= 6.28319f;
         }
 
+        /*
         RaycastHit hit;
         if (Physics.Raycast(new Ray(transform.position, lineAngle), out hit, 50f))  //Raycast left
         {
@@ -47,24 +48,26 @@ public class linearScorpian : MonoBehaviour
             limit2 = hit.point + lineAngle * offset;
             Debug.DrawLine(hit.point, hit.point + transform.up, Color.blue, 0.01f);
         }
+        */
 
-        
-        playerVec = player.transform.position - point1.position;                            //Vector to player
-        line = Vector3.Project(playerVec, lineAngle);                                       //Vector to closest point to player on line angle
-
-        Debug.DrawLine(point1.position, point1.position + line, Color.green, 0.01f);
-
-        targetPoint = point1.position + line + 0.5f * Mathf.Sin(timer * 3.0f) * lineAngle;
-        targetPoint = new Vector3(Mathf.Clamp(targetPoint.x, Mathf.Min(limit1.x, limit2.x), Mathf.Max(limit1.x, limit2.x)),targetPoint.y, Mathf.Clamp(targetPoint.z, Mathf.Min(limit1.z, limit2.z), Mathf.Max(limit1.z, limit2.z))); //omg i hope this works
-
+        targetPoint = GetClosestPointOnFiniteLine(player.transform.position, point1.position, point2.position);
         transform.position = targetPoint;
-        transform.LookAt(new Vector3(player.transform.position.x,transform.position.y,player.transform.position.z));
-        
-        
+        transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+
+
     }
 
     public void DTfollow()
     {
         ScorpDT.transform.position = transform.position;
+    }
+
+    Vector3 GetClosestPointOnFiniteLine(Vector3 point, Vector3 line_start, Vector3 line_end)
+    {
+        Vector3 line_direction = line_end - line_start;
+        float line_length = line_direction.magnitude;
+        line_direction.Normalize();
+        float project_length = Mathf.Clamp(Vector3.Dot(point - line_start, line_direction), 0f, line_length);
+        return line_start + line_direction * project_length;
     }
 }
