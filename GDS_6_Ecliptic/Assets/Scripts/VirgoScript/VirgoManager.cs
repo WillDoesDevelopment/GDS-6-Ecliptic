@@ -11,6 +11,9 @@ public class VirgoManager : MonoBehaviour
     public GameObject credits;
     public GameObject title;
     public string level;
+    public PlayerController CC;
+    private bool isFinished = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,23 +24,40 @@ public class VirgoManager : MonoBehaviour
     void Update()
     {
         CreditsCheck();
+
+        if (Input.GetKey(KeyCode.Return) ^ Input.GetKey(KeyCode.JoystickButton1) && isFinished == true)
+        {
+           
+                StartCoroutine(Bye());
+            
+        }
     }
 
     public void CreditsCheck()
     {
         if (DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            VirtualCam.SetActive(true);
+            CC.playerState = PlayerState.Paused;
             StartCoroutine(loadMenu());
         }
     }
     IEnumerator loadMenu()
     {
         Debug.Log("Credits");
-        yield return new WaitForSeconds(10f);
         credits.SetActive(true);
-        title.SetActive(false);
-        yield return new WaitForSeconds(90f);
+        yield return new WaitForSeconds(1f);
+        isFinished = true;
+
+    }
+
+    IEnumerator Bye()
+    {
+        print("Going");
+        yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(level);
     }
+
+
+
+
 }

@@ -44,7 +44,6 @@ public class lionAI : MonoBehaviour
     bool roar4Lock = false;
     bool roar5Lock = false;
     public int stateCounter = 0;
-    public LayerMask obstacles;
 
     //Floor collapse
     float floorTimer = 0.0f;
@@ -55,19 +54,12 @@ public class lionAI : MonoBehaviour
 
 
     LayerMask hitObject;
-
-    public Material mat;
-    private float alphaFloat = 0f;
-    private float aStart = 0f;
-    private float aEnd = 1f;
-    private float t = 0.0f;
-
     // Start is called before the first frame update
     void Start()
     {
         RM = FindObjectOfType<RoomManager>();
         playerController = player.GetComponent<PlayerController>();
-        mat.GetFloat("_Clip_Amt");
+
 
     }
 
@@ -77,8 +69,6 @@ public class lionAI : MonoBehaviour
         Difficulty();
         //StartDialogue.OnEventCheck();
         //StartDialogue.OnEvent = false;
-
-     
 
         if(columnCount <4 && columnCount > 0)
         {
@@ -135,15 +125,8 @@ public class lionAI : MonoBehaviour
         else if (lionState == LionState.Falling)          //Falling
         {
             Falling();
-            //got this working!! but it disrupts the state change :<< so it isnt properly working rn pls help!!!
-            /*alphaFloat = Mathf.Lerp(aStart, aEnd, t);
-
-            t += 0.2f * Time.deltaTime;
-
-            mat.SetFloat("_Clip_Amt", alphaFloat);*/
         }
 
-        /*
         if (ColumnParent.transform.childCount == 0 && lionState != LionState.Defeat)                                //Level Ends
         {
             x = Mathf.Floor(transform.position.x + 0.5f);
@@ -151,9 +134,7 @@ public class lionAI : MonoBehaviour
             z = Mathf.Floor(transform.position.z + 0.5f);
             Pos = new Vector3(x, y, z);
             lionState = LionState.Defeat;
-        } 
-        */
-        
+        }
         /*
         if (lionState == LionState.Defeat)     //Collapse
         {
@@ -207,7 +188,7 @@ public class lionAI : MonoBehaviour
         Collider[] hitColliders2 = Physics.OverlapBox(transform.position, new Vector3(1.0f, 1.0f, 1.0f)); //Hitbox for columns. Hitboxes need rotation.........
         foreach (var hitCollider in hitColliders2)
         {
-            if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Grapple") && lionState == LionState.Pounce)            //collumn falls
+            if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Grapple"))            //collumn falls
             {                      
                 hitCollider.gameObject.GetComponent<columnScript>().fall = true;
             }  
@@ -223,7 +204,7 @@ public class lionAI : MonoBehaviour
     void Follow()
     {
         particle3.SetActive(false);
-        rayDist = Vector3.Distance(transform.position, player.transform.position); // - 3.0f;
+        rayDist = Vector3.Distance(transform.position, player.transform.position) - 3.0f;
         var rayPos = transform.position;
         RaycastHit hit;
 
@@ -233,10 +214,10 @@ public class lionAI : MonoBehaviour
         for (var i = 0; i < 100; i++)
         {
             Debug.DrawLine(rayPos, rayPos + forward * 2.0f, Color.blue, 0.01f);
-            if (Physics.SphereCast(new Ray(rayPos, forward), 2.0f, out hit, rayDist,obstacles))
+            if (Physics.SphereCast(new Ray(rayPos, forward), 2.0f, out hit, rayDist))
             {
-                inv = inv * -1.0f;  //alternate angle
-                angle += 1.0f;      //fan out from center
+                inv = inv * -1.0f;
+                angle += 1.0f;
                 forward = Quaternion.Euler(0, angle * inv, 0) * forward;
             }
             else
@@ -245,23 +226,22 @@ public class lionAI : MonoBehaviour
                 break;
             }
         }
-        //if (rayDist > 1)
+        if (rayDist > 1)
         {
-            //transform.LookAt(target);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(forward, Vector3.up), 100*Time.deltaTime);
+            transform.LookAt(target);
             transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
         }
 
         timer -= Time.deltaTime;
         if (timer < 0)
         {
-            if (stateCounter == 1) //Can't roar twice in a row
+            if (stateCounter == 1)
             {
                 stateCounter = 0;
                 timer = chargeTime;
                 lionState = LionState.Charge;
             }
-            else if (Random.Range(0, 2) == 1) //choose next state
+            else if (Random.Range(0, 2) == 1)
             {
                 stateCounter = 0;
                 timer = chargeTime;
@@ -322,27 +302,27 @@ public class lionAI : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        if (timer < 0.7f * roarTime && roar1Lock == false && difficulty > 2)
+        if (timer < 2.0f && roar1Lock == false && difficulty > 2)
         {
             RoarSpawn(80);
             roar1Lock = true;
         }
-        if (timer < 0.6f * roarTime && roar2Lock == false && difficulty > 1)
+        if (timer < 1.7f && roar2Lock == false && difficulty > 1)
         {
             RoarSpawn(40);
             roar2Lock = true;
         }
-        if (timer < 0.5f * roarTime && roar3Lock == false)
+        if (timer < 1.4f && roar3Lock == false)
         {
             RoarSpawn(0);
             roar3Lock = true;
         }
-        if (timer < 0.4f * roarTime && roar4Lock == false && difficulty > 1)
+        if (timer < 1.1f && roar4Lock == false && difficulty > 1)
         {
             RoarSpawn(-40);
             roar4Lock = true;
         }
-        if (timer < 0.3f * roarTime && roar5Lock == false && difficulty > 2)
+        if (timer < 0.8f && roar5Lock == false && difficulty > 2)
         {
             RoarSpawn(-80);
             roar5Lock = true;
@@ -388,7 +368,6 @@ public class lionAI : MonoBehaviour
     void Falling()
     {
         transform.position = transform.position - Vector3.up * Time.deltaTime * 2.0f;
-
         //Add in end condition
     }
 

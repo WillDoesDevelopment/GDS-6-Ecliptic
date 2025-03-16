@@ -20,7 +20,7 @@ public class LeoRoom : MonoBehaviour
         if (EndDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             //hubManager.SendToHub();
-            hubManager.SetGameStage(4);
+            hubManager.SetGameStage(6);
         }
     }
 }
