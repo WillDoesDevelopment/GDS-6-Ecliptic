@@ -7,6 +7,7 @@ public class LeoRoom : MonoBehaviour
 
     public HubManager hubManager;
     public DialogueTrigger EndDialogue;
+    public GameObject door;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +20,9 @@ public class LeoRoom : MonoBehaviour
     {
         if (EndDialogue.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
+            door.SetActive(true);
             //hubManager.SendToHub();
-            hubManager.SetGameStage(6);
+            //hubManager.SetGameStage(6);
         }
     }
 }
