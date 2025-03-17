@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class lionAI : MonoBehaviour
 {
@@ -62,13 +63,22 @@ public class lionAI : MonoBehaviour
     private float aEnd = 1f;
     private float t = 0.0f;
 
+    //Camera
+    private GameObject[] vCameras;
+    public CinemachineVirtualCamera setCamera;
+
+    //Room end door     Could move this to a room manager IDK how the dialogue works.
+    public GameObject endDoor;
+    public DoorScript DS;
+    public GameObject endDialogueTrigger;
+
     // Start is called before the first frame update
     void Start()
     {
         RM = FindObjectOfType<RoomManager>();
         playerController = player.GetComponent<PlayerController>();
         mat.GetFloat("_Clip_Amt");
-
+        vCameras = GameObject.FindGameObjectsWithTag("Vcam");
     }
 
     // Update is called once per frame
@@ -382,6 +392,18 @@ public class lionAI : MonoBehaviour
     {
         playerController.playerState = PlayerState.Autowalk;
         playerController.AutoWalkDestination = new Vector3(30, 0, 30);  //Autowalk destination
+        
+        foreach (GameObject cam in vCameras)
+        {
+
+            cam.GetComponent<CinemachineVirtualCamera>().Priority = 10;
+        }
+        setCamera.Priority = 11;
+
+        endDialogueTrigger.SetActive(true);
+        endDoor.SetActive(true);
+        DS.DS.IsOpen = true;
+
         lionState = LionState.Falling;
     }
 
