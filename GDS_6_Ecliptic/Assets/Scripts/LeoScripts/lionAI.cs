@@ -10,6 +10,7 @@ public class lionAI : MonoBehaviour
     public HubManager hubManager;
     public RoomManager RM;
     PlayerController playerController;
+    public Animator Animator;
     public GameObject player;
     public GameObject ColumnParent;
     public GameObject particle1;
@@ -270,18 +271,21 @@ public class lionAI : MonoBehaviour
                 stateCounter = 0;
                 timer = chargeTime;
                 lionState = LionState.Charge;
+                Animator.SetTrigger("PounceTrig");
             }
             else if (Random.Range(0, 2) == 1) //choose next state
             {
                 stateCounter = 0;
                 timer = chargeTime;
                 lionState = LionState.Charge;
+                Animator.SetTrigger("PounceTrig");
             }
             else
             {
                 stateCounter = 1;
                 timer = roarTime;
                 lionState = LionState.Roar;
+                Animator.SetTrigger("RoarTrig");
             }           
             
         }
