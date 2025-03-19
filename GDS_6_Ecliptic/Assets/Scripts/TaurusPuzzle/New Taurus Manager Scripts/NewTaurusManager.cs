@@ -42,6 +42,7 @@ public abstract class TaurusStage : MonoBehaviour
     public bool ArtifactCheck(GameObject Player, GameObject particleObject, int stageCounter)
     {
         GameObject HO = Player.GetComponent<PickUpScript>().HoldingObj;
+
         if (HO == null)
         {
             return false;
@@ -57,8 +58,11 @@ public abstract class TaurusStage : MonoBehaviour
             particleObject.transform.LookAt(transform.position);
             
         }
+            Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3);
+
         if (HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3)
         {
+            Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3);
             TargetObject.transform.GetChild(0).GetComponent<DoorScript>().DS.IsOpen = true;
             HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             HO.transform.DetachChildren();
@@ -68,7 +72,7 @@ public abstract class TaurusStage : MonoBehaviour
                 GoodJobSND.GetComponent<AudioSource>().Play();
             }*/
             Player.GetComponent<PickUpScript>().holding = false;
-            //HO.gameObject.SetActive(false);
+            HO.gameObject.SetActive(false);
             HO.SetActive(false);
             return true;
         }
@@ -113,7 +117,7 @@ public class NewTaurusManager : MonoBehaviour
 
     public void Update()
     {
-        Debug.Log(taurusStageCounter);
+        
         TaurusStages[taurusStageCounter].ResetCheck(Player);
         if (TaurusStages[taurusStageCounter].ArtifactCheck(Player, particleObject, taurusStageCounter))
         {
