@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class PauseMenu : MonoBehaviour
     public bool isKeyboard = false;
     public bool isXbox = false;
     public bool isPS = false;
+
+    public float startTime = 0f;
+    public float holdTime = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +77,17 @@ public class PauseMenu : MonoBehaviour
             isKeyboard = false;
 
             settingsPanels[2].SetActive(true);
+        }
+
+        if (Input.GetButtonDown("RESET TO MENU"))
+        {
+            startTime = Time.time;
+            if (startTime + holdTime >= Time.time) 
+            { 
+                SceneManager.LoadScene(0); 
+            }
+                
+
         }
     }
 
