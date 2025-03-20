@@ -98,6 +98,7 @@ public class lionAI : MonoBehaviour
         if (columnCount == 0)
         {
             lionState = LionState.Defeat;
+            Animator.SetTrigger("IdleTrig");
             columnCount = -1;
         }
 
@@ -109,6 +110,7 @@ public class lionAI : MonoBehaviour
             particle2.SetActive(false);
             particle3.SetActive(false);
             barrier.SetActive(false);
+            Animator.SetTrigger("FollowTrig");
             lionState = LionState.Follow;
             timer = followTime;
         }
