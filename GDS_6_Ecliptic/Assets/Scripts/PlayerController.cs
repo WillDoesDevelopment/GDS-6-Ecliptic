@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject mainCamera;
     public Animator PlayerAnim;
     //Movement
+    Ecliptic02 InputController;
     CharacterController controller;
     float inputX;
     float inputY;
@@ -57,6 +59,11 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InputController = new Ecliptic02();
+        InputController.Enable();
+        //InputController.controlSchemes[0]
+        //InputController.bindingMask = InputBinding.MaskByGroup("Switch Pro");
+
         isPaused = false;
 
         // Spawn
@@ -138,8 +145,14 @@ public class PlayerController : MonoBehaviour
         FallingCheck();
 
         inputY = Mathf.Clamp(inputY, -maxFallSpeed, maxFallSpeed);
-        inputX = Input.GetAxis("Horizontal");
-        inputZ = Input.GetAxis("Vertical");
+        //inputX = Input.GetAxis("Horizontal");                         //Default control input
+        //inputZ = Input.GetAxis("Vertical");
+
+        inputX = 2* InputController.Player.Move.ReadValue<Vector2>().x;    //New Control Input
+        inputZ = 2* InputController.Player.Move.ReadValue<Vector2>().y;     //*2 because i couldn't calibrate the controller. I don't know how :( - Gyles
+        //Debug.Log(InputController.Player.Move.ReadValue<Vector2>());
+        //Debug.Log(InputController.controlSchemes[0]);
+
     }
     void Movement()
     {
