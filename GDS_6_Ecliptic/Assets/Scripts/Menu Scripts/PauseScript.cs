@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseScript : MonoBehaviour
 {
+    Ecliptic02 InputController;
     //public static bool Controller = true;
     public static bool Paused = false;
 
@@ -35,6 +37,8 @@ public class PauseScript : MonoBehaviour
     {
         HM = GameObject.FindObjectOfType<HubManager>();
         eventSystem = EventSystem.current;
+        InputController = new Ecliptic02();
+        InputController.Enable();
         ControllerOrNot();
     }
 
@@ -45,7 +49,7 @@ public class PauseScript : MonoBehaviour
         SelectedSNDCheck();
 
         // when pause button is pressed we pause or unpause
-        if (Input.GetKeyDown(KeyCode.Escape)  || Input.GetButtonDown("Cancel") )
+        if (Input.GetKeyDown(KeyCode.Escape)  || InputController.Player.Pause.triggered) //|| Input.GetButtonDown("Cancel")
         {
             if (Paused == false)
             {
