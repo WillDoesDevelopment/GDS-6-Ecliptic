@@ -808,7 +808,7 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
                     ""path"": ""<HID::Nintendo Wireless Gamepad>/button2"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Switch Pro"",
+                    ""groups"": ""Switch Pro;Gamepad"",
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -830,7 +830,7 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Gamepad;Switch Pro"",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -841,7 +841,7 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
                     ""path"": ""<Joystick>/trigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Switch Pro"",
+                    ""groups"": ""Switch Pro;Gamepad"",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
