@@ -914,39 +914,6 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bb9e6b34-44bf-4381-ac63-5aa15d19f677"",
-                    ""path"": ""<XRController>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""671bdb59-2f41-498f-97c0-67814ca9f66c"",
-                    ""path"": ""<HID::Nintendo Wireless Gamepad>/button2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Switch Pro"",
-                    ""action"": ""Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3cf328af-80e7-46b0-8d8b-e10a9eb0e16e"",
-                    ""path"": ""<XInputController>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""4c191405-5738-4d4b-a523-c6a301dbf754"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
