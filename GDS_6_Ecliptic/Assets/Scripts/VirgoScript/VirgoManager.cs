@@ -28,7 +28,7 @@ public class VirgoManager : MonoBehaviour
         if (Input.GetKey(KeyCode.Return) ^ Input.GetKey(KeyCode.JoystickButton1) && isFinished == true)
         {
            
-                StartCoroutine(Bye());
+                
             
         }
     }
@@ -47,6 +47,7 @@ public class VirgoManager : MonoBehaviour
         credits.SetActive(true);
         yield return new WaitForSeconds(1f);
         isFinished = true;
+        StartCoroutine(Bye());
 
     }
 

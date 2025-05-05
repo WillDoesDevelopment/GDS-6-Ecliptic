@@ -56,7 +56,7 @@ public class MainMenu : MonoBehaviour
 
         
         anim2.GetComponent<Animator>().SetTrigger("Woosh");
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
         //StartCoroutine(Load());
         
     }
