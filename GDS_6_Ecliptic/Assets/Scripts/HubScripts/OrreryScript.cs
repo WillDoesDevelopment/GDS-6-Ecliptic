@@ -84,9 +84,7 @@ public class OrreryScript : MonoBehaviour
     {
         if (HubManager.LevelNumber > discs.Length)
         {
-            discs[HubManager.LevelNumber].SetActive(true);
-
-            constellations[HubManager.LevelNumber].SetActive(true);
+            
         }
         if (t>1f)
         {
@@ -96,6 +94,8 @@ public class OrreryScript : MonoBehaviour
             {
                 BS.Connect();
                 connected = true;
+                discs[HubManager.LevelNumber].SetActive(true);
+                constellations[HubManager.LevelNumber].SetActive(true);
             }
 
             for (int i = 0; i < OrreryArms.Length; i++) //Stop doors overlapping main door from 80* to 100*
