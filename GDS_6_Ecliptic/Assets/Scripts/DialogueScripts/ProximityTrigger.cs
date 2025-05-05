@@ -8,6 +8,8 @@ public class ProximityTrigger : MonoBehaviour
     public bool setPlayerState = true;
     public PlayerState newPlayerState = PlayerState.Dialogue;
     public DialogueTrigger dialogueTrigger;
+    public GameObject[] activateObjects;
+    public GameObject[] deactivateObjects;
     public float width = 1f;
     public float length = 1f;
     public bool autowalk = false;
@@ -43,6 +45,16 @@ public class ProximityTrigger : MonoBehaviour
                 {
                     playerController.AutoWalkDestination = autowalkPos;
                     playerController.playerState = PlayerState.Autowalk;
+                }
+
+                foreach(GameObject gameObject in activateObjects)
+                {
+                    gameObject.SetActive(true);
+                }
+
+                foreach (GameObject gameObject in deactivateObjects)
+                {
+                    gameObject.SetActive(false);
                 }
 
                 gameObject.SetActive(false);

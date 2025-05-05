@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour
             inputY = -0.25f;
         }
 
-        if (airTime > 8)       //Respawns if falling for too long
+        if (airTime > 4)       //Respawns if falling for too long
         {
             Respawn();
             airTime = 0;
@@ -286,7 +286,7 @@ public class PlayerController : MonoBehaviour
         inputZ = 0f;
     }
 
-    void Respawn()
+    public void Respawn()
     {
         //controller.enabled = false;
         //transform.position = spawnPoint;
