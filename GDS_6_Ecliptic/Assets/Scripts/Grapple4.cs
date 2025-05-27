@@ -95,6 +95,7 @@ public class Grapple4 : MonoBehaviour
         {
             usesGravity = rigidbody.useGravity;
             rigidbody.useGravity = false;
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
         target.transform.position += new Vector3(0, 0.4f, 0);       //move target up slighlty (Change if needed)
     }
@@ -104,6 +105,7 @@ public class Grapple4 : MonoBehaviour
         if (target.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
         {
             rigidbody.useGravity = usesGravity;
+            rigidbody.constraints = RigidbodyConstraints.None;
         }        
         target = null;
     }
@@ -202,8 +204,12 @@ public class Grapple4 : MonoBehaviour
                 target = hit.transform.gameObject;                                                              //Set target object                    
                 pointObject.transform.position = hit.point;
                 pointObject.transform.parent = target.transform;
-                OutlineCreate();    //put in check for breakable object here!!! 
-                SetupTarget();
+                if (target.GetComponent<BreakObject>() == null && target.GetComponent<columnScript>() == null)  //Check for physics based targets
+                {
+                    OutlineCreate();
+                    SetupTarget();
+                }
+                
             }
             else
             {
