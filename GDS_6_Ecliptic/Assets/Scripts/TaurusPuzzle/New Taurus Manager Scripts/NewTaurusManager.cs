@@ -55,7 +55,7 @@ public abstract class TaurusStage : MonoBehaviour
         {
             particleObject.SetActive(true);
             particleObject.transform.position = HO.transform.position;
-            particleObject.transform.LookAt(transform.position);
+            particleObject.transform.LookAt(TargetObject.transform.position);
             
         }
             Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3);
@@ -63,7 +63,7 @@ public abstract class TaurusStage : MonoBehaviour
         if (HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3)
         {
             Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3);
-            TargetObject.transform.GetChild(0).GetComponent<DoorScript>().DS.IsOpen = true;
+            TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
             HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             HO.transform.DetachChildren();
 /*            CollectedItems += 1;
