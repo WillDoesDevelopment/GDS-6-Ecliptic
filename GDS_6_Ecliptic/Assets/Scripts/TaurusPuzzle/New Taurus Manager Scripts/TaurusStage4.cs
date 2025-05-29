@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
-public class TaurusStage2 : TaurusStage
+public class TaurusStage4 : TaurusStage
 {
-
-
-    public override void VReset(GameObject Player) 
-    {
+    public override void VReset(GameObject Player) {
         Player.transform.position = PlayerResetPos;
     }
-    // Start is called before the first frame update
     void Start()
     {
         SetResetPos();
