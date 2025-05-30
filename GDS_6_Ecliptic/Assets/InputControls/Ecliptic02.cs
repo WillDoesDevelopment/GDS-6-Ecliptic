@@ -44,6 +44,24 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Accept"",
+                    ""type"": ""Button"",
+                    ""id"": ""13ee55b9-6e7c-406d-a169-2a1fa2bb0ece"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""e7e18119-d622-4c8e-a6d5-429b63c7a97e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -204,7 +222,7 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
@@ -253,6 +271,94 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Switch Pro"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99b1bb61-639a-42f2-bd10-19d5d466bc4b"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7a4f001-3d4b-485e-847b-f56e04545eba"",
+                    ""path"": ""<HID::Nintendo Wireless Gamepad>/button2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85f4a319-5b38-4464-90ac-bbd3518d35af"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a5c3f9b-71a3-4f1a-a82f-333f2f801d8a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e74e973-2695-4bdc-9035-52681d6d940c"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab8a1981-b76a-4baa-b027-9fb729802aa3"",
+                    ""path"": ""<HID::Nintendo Wireless Gamepad>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbd7f996-328b-4217-899e-c0c0320442ae"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc1fbc26-e105-44b7-a5ff-8622ad40ba08"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1004,6 +1110,8 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_Accept = m_Player.FindAction("Accept", throwIfNotFound: true);
+        m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1073,12 +1181,16 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_Accept;
+    private readonly InputAction m_Player_Back;
     public struct PlayerActions
     {
         private @Ecliptic02 m_Wrapper;
         public PlayerActions(@Ecliptic02 wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @Accept => m_Wrapper.m_Player_Accept;
+        public InputAction @Back => m_Wrapper.m_Player_Back;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1094,6 +1206,12 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Accept.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAccept;
+                @Accept.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAccept;
+                @Accept.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAccept;
+                @Back.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1104,6 +1222,12 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Accept.started += instance.OnAccept;
+                @Accept.performed += instance.OnAccept;
+                @Accept.canceled += instance.OnAccept;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
             }
         }
     }
@@ -1239,6 +1363,8 @@ public partial class @Ecliptic02 : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnAccept(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

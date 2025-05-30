@@ -12,10 +12,39 @@ public abstract class TaurusStage : MonoBehaviour
     public Vector3 PlayerResetPos;
     public Vector3 ArtifactResetPos;
     public Vector3 BullResetPos;
-    
+
+    public GameObject barrierObject;
+    Renderer rend;
+    public AINavMesh ANM;
+
     // Start is called before the first frame update
     public abstract void VReset(GameObject Player);
 
+    private void Start()
+    {
+        rend = barrierObject.GetComponent<Renderer>();
+    }
+
+    private void Update()
+    {
+        Barrier();
+    }
+
+    public void Barrier()
+    {
+        var t = Mathf.InverseLerp(8, 6, Vector3.Distance(transform.position, ANM.transform.position));
+        ;
+        if (t == 0)
+        {
+            barrierObject.SetActive(false);
+        }
+        else
+        {
+            barrierObject.SetActive(true);
+        }
+
+        rend.material.SetFloat("_Transparency", Mathf.Clamp(t, 0, 1));
+    }
 
     public void ResetCheck(GameObject Player)
     {
@@ -55,7 +84,7 @@ public abstract class TaurusStage : MonoBehaviour
         {
             particleObject.SetActive(true);
             particleObject.transform.position = HO.transform.position;
-            particleObject.transform.LookAt(transform.position);
+            particleObject.transform.LookAt(TargetObject.transform.position);
             
         }
             Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3);
@@ -63,7 +92,7 @@ public abstract class TaurusStage : MonoBehaviour
         if (HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3)
         {
             Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3);
-            TargetObject.transform.GetChild(0).GetComponent<DoorScript>().DS.IsOpen = true;
+            TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
             HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             HO.transform.DetachChildren();
 /*            CollectedItems += 1;
@@ -110,6 +139,7 @@ public class NewTaurusManager : MonoBehaviour
     public GameObject Player;
     public GameObject particleObject;
 
+
     private void Start()
     {
         
@@ -121,7 +151,7 @@ public class NewTaurusManager : MonoBehaviour
         TaurusStages[taurusStageCounter].ResetCheck(Player);
         if (TaurusStages[taurusStageCounter].ArtifactCheck(Player, particleObject, taurusStageCounter))
         {
-            if (taurusStageCounter < 2)
+            if (taurusStageCounter < 3)
             {
                 taurusStageCounter += 1;
 
