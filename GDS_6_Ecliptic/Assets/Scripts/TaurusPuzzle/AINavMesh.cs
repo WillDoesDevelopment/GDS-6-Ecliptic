@@ -17,7 +17,7 @@ public class AINavMesh : MonoBehaviour
     public DialogueTrigger StartDialogue;
     public bool NavMeshPause = false;
 
-    public TaurusManager TM;
+    public NewTaurusManager TM;
 
     public GameObject[] bullSnds;
     private bool CoolDownBool = false;
