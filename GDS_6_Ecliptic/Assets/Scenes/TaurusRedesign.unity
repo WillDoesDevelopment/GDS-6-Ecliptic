@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0027277095, g: 0.0026297115, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0024183993, g: 0.0022179987, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1072,6 +1072,7 @@ MonoBehaviour:
   bull: {fileID: 1602554271}
   Artifact: {fileID: 116755605}
   TargetObject: {fileID: 1984325638}
+  BeamTarget: {fileID: 807944957}
   PlayerResetPos: {x: -83.84, y: 1.05, z: 2.1100001}
   ArtifactResetPos: {x: 0, y: 0, z: 0}
   BullResetPos: {x: -83.84, y: 1.05, z: 2.1100001}
@@ -1306,7 +1307,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 7
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -7069,6 +7070,7 @@ MonoBehaviour:
   bull: {fileID: 1602554271}
   Artifact: {fileID: 369014824}
   TargetObject: {fileID: 1313919469}
+  BeamTarget: {fileID: 778222640}
   PlayerResetPos: {x: -7.21, y: 0.752, z: -93.92}
   ArtifactResetPos: {x: -32.18, y: 0, z: -108.43}
   BullResetPos: {x: 0, y: 0, z: 0}
@@ -8277,6 +8279,7 @@ MonoBehaviour:
   bull: {fileID: 1694990388}
   Artifact: {fileID: 514661400}
   TargetObject: {fileID: 680509371}
+  BeamTarget: {fileID: 1202548483}
   PlayerResetPos: {x: -71.71, y: 0, z: -107.62}
   ArtifactResetPos: {x: -93.95, y: 0, z: -108.45}
   BullResetPos: {x: 0, y: 0, z: 0}
@@ -15224,6 +15227,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776621895}
   m_Mesh: {fileID: -5495902117074765545, guid: ffd625ae8e49e9746bd1d4287804d929, type: 3}
+--- !u!1 &778222640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 778222641}
+  m_Layer: 0
+  m_Name: BeamTargetMaze2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &778222641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778222640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -33.08, y: -4.23, z: -101.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 32
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &778790481
 GameObject:
   m_ObjectHideFlags: 0
@@ -15404,6 +15438,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8722793ff85cde14e9d6e35b4a4f364d, type: 3}
   m_PrefabInstance: {fileID: 805408960}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &807944957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 807944958}
+  m_Layer: 0
+  m_Name: BeamTargetMaze3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &807944958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807944957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -72.22, y: -1.97, z: -23.76}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 34
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &816721106
 GameObject:
   m_ObjectHideFlags: 0
@@ -24501,6 +24566,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1202548483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1202548484}
+  m_Layer: 0
+  m_Name: BeamTargetMaze2A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1202548484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202548483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -21.85, y: -5.57, z: -68.98}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 33
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1203755864 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3779745573541866595, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
@@ -27389,6 +27485,7 @@ MonoBehaviour:
   bull: {fileID: 1694990388}
   Artifact: {fileID: 1525499483}
   TargetObject: {fileID: 613144399}
+  BeamTarget: {fileID: 1731437588}
   PlayerResetPos: {x: 46.58, y: 0.752, z: -118.4}
   ArtifactResetPos: {x: 48.17, y: 0, z: -127.02}
   BullResetPos: {x: 0.34000015, y: 1.77, z: 0.11025009}
@@ -39590,6 +39687,37 @@ Transform:
   m_Father: {fileID: 1152287585}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1731437588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1731437589}
+  m_Layer: 0
+  m_Name: BeamTargetMaze1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1731437589
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731437588}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.54, y: -1.97, z: -103.58}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1753090657 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8240508296199074704, guid: e2e238da49cc2004da4c8b80ec767e90, type: 3}
@@ -41316,7 +41444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918801859}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.93, y: -1.11, z: -93.23}
+  m_LocalPosition: {x: -6.93, y: -16.61, z: -93.23}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42456,7 +42584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028866771}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 26.4, y: 2.41, z: -106.15}
+  m_LocalPosition: {x: 24.54, y: -2.58, z: -103.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -43201,7 +43329,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 7
       minScalar: 5
       maxCurve:
         serializedVersion: 2

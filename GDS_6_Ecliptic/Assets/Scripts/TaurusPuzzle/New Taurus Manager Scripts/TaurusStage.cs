@@ -7,6 +7,7 @@ public class TaurusStage : MonoBehaviour
     public GameObject bull;
     public GameObject Artifact;
     public GameObject TargetObject;
+    public GameObject BeamTarget;
 
 
     public Vector3 PlayerResetPos;
@@ -67,7 +68,12 @@ public class TaurusStage : MonoBehaviour
         }
     }
 
-    public bool ArtifactCheck(GameObject Player, GameObject particleObject, int stageCounter)
+    public GameObject GetTargetObject()
+    {
+        return TargetObject;
+    }
+
+    public bool ArtifactCheck(GameObject Player, GameObject particleObject, int stageCounter, GameObject TargetObject)
     {
         GameObject HO = Player.GetComponent<PickUpScript>().HoldingObj;
 
@@ -83,16 +89,15 @@ public class TaurusStage : MonoBehaviour
         {
             particleObject.SetActive(true);
             particleObject.transform.position = HO.transform.position;
-            particleObject.transform.position = HO.transform.position;
-            particleObject.transform.LookAt(TargetObject.transform.position);
+            particleObject.transform.LookAt(BeamTarget.transform.position);
 
         }
-        Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3);
+        Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
 
-        if (HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3)
+        if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3)
         {
-            Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3);
-            TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
+            Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
+            this.TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
             HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             HO.transform.DetachChildren();
             /*            CollectedItems += 1;

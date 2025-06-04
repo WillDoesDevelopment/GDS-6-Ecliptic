@@ -22,7 +22,7 @@ public class NewTaurusManager : MonoBehaviour
     {
         
         TaurusStages[taurusStageCounter].ResetCheck(Player);
-        if (TaurusStages[taurusStageCounter].ArtifactCheck(Player, particleObject, taurusStageCounter))
+        if (TaurusStages[taurusStageCounter].ArtifactCheck(Player, particleObject, taurusStageCounter, TaurusStages[taurusStageCounter].GetTargetObject()))
         {
             if (taurusStageCounter < 3)
             {
