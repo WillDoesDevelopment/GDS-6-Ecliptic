@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 public class NewTaurusManager : MonoBehaviour
@@ -35,6 +38,11 @@ public class NewTaurusManager : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            MazeStateChange(MazeState.CentreMaze, MazeState.StartMaze);
+        }
+
     }
 
     
@@ -43,4 +51,21 @@ public class NewTaurusManager : MonoBehaviour
         //this function needs to check the players location, bulls location and 
     }
 
+    public void MazeStateChange(MazeState mazeEnter, MazeState mazeExit)
+    {
+        TaurusStage stageEnter = Array.Find(TaurusStages, p => p.maze == mazeEnter);
+        TaurusStage stageExit = Array.Find(TaurusStages, p => p.maze == mazeExit);
+
+        stageEnter.MazeActiveToggle(false);
+        stageExit.MazeActiveToggle(true);
+    }
+
+}
+
+public enum MazeState
+{
+    StartMaze,
+    CentreMaze,
+    TreeMaze,
+    FinalMaze
 }

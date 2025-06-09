@@ -9,6 +9,7 @@ public class TaurusStage : MonoBehaviour
     public GameObject TargetObject;
     public GameObject BeamTarget;
 
+    public bool isOff = true;
 
     public Vector3 PlayerResetPos;
     public Vector3 ArtifactResetPos;
@@ -18,16 +19,26 @@ public class TaurusStage : MonoBehaviour
     public Renderer rend;
     public AINavMesh ANM;
 
+    public MazeState maze;
+
     // Start is called before the first frame update
 
     private void Start()
     {
         rend = barrierObject.GetComponent<Renderer>();
+        MazeActiveToggle(true);
     }
 
     private void Update()
     {
         Barrier();
+    }
+
+    public void MazeActiveToggle(bool isActive)
+    {
+        isOff = isActive;
+        Debug.Log(isOff);
+        BullToggle(isOff);
     }
 
     public void Barrier()
@@ -92,7 +103,7 @@ public class TaurusStage : MonoBehaviour
             particleObject.transform.LookAt(BeamTarget.transform.position);
 
         }
-        Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
+        //Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
 
         if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3)
         {
@@ -131,4 +142,8 @@ public class TaurusStage : MonoBehaviour
         ArtifactResetPos = Artifact.transform.position;
     }
 
+    public void BullToggle(bool toggle)
+    {
+        ANM.NavMeshPause = toggle;
+    }
 }

@@ -15,7 +15,7 @@ public class AINavMesh : MonoBehaviour
     public Transform[] positions;
 
     public DialogueTrigger StartDialogue;
-    public bool NavMeshPause = false;
+    public bool NavMeshPause = true;
 
     public NewTaurusManager TM;
 
