@@ -17,7 +17,7 @@ public class TaurusStage : MonoBehaviour
 
     public GameObject barrierObject;
     public Renderer rend;
-    public AINavMesh ANM;
+    public AINavMesh? ANM;
 
     public MazeState maze;
 
