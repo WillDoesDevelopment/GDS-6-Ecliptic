@@ -14,7 +14,7 @@ public class AINavMesh : MonoBehaviour
     public Queue<Transform> positionQueue = new Queue<Transform>();
     public Transform[] positions;
 
-    public DialogueTrigger StartDialogue;
+    //public DialogueTrigger StartDialogue; Not referenced?
     public bool NavMeshPause = true;
 
     public NewTaurusManager TM;

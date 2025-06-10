@@ -26,7 +26,6 @@ public class TaurusStage : MonoBehaviour
     private void Start()
     {
         rend = barrierObject.GetComponent<Renderer>();
-        MazeActiveToggle(true);
     }
 
     private void Update()
@@ -34,11 +33,13 @@ public class TaurusStage : MonoBehaviour
         Barrier();
     }
 
-    public void MazeActiveToggle(bool isActive)
+    public void MazeActiveToggle(bool toggle)
     {
-        isOff = isActive;
-        Debug.Log(isOff);
-        BullToggle(isOff);
+        if (ANM != null)
+        {
+            ANM.NavMeshPause = toggle;
+            Debug.Log("I'm a little bull and I've hurt my knee... " + toggle);
+        }
     }
 
     public void Barrier()
@@ -140,10 +141,5 @@ public class TaurusStage : MonoBehaviour
     {
         BullResetPos = bull.transform.position;
         ArtifactResetPos = Artifact.transform.position;
-    }
-
-    public void BullToggle(bool toggle)
-    {
-        ANM.NavMeshPause = toggle;
     }
 }

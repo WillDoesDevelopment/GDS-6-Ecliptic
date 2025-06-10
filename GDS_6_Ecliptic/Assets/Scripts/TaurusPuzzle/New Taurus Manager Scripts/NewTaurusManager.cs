@@ -15,10 +15,16 @@ public class NewTaurusManager : MonoBehaviour
     public GameObject Player;
     public GameObject particleObject;
 
+    public GameObject DT;
 
     private void Start()
     {
         
+    }
+
+    private void Awake()
+    {
+        TaurusStages[0].MazeActiveToggle(false);
     }
 
     public void Update()
@@ -27,6 +33,7 @@ public class NewTaurusManager : MonoBehaviour
         TaurusStages[taurusStageCounter].ResetCheck(Player);
         if (TaurusStages[taurusStageCounter].ArtifactCheck(Player, particleObject, taurusStageCounter, TaurusStages[taurusStageCounter].GetTargetObject()))
         {
+               
             if (taurusStageCounter < 3)
             {
                 taurusStageCounter += 1;
@@ -38,10 +45,12 @@ public class NewTaurusManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Z))
+        /*if (DT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            MazeStateChange(MazeState.CentreMaze, MazeState.StartMaze);
-        }
+            MazeStateChange(MazeState.StartMaze, MazeState.CentreMaze);
+            //TaurusStages[0].MazeActiveToggle(true);
+            print("Yeehaw");
+        }*/
 
     }
 
