@@ -24,7 +24,7 @@ public class NewTaurusManager : MonoBehaviour
 
     private void Awake()
     {
-        TaurusStages[0].MazeActiveToggle(false);
+        MazeStateChange(MazeState.StartMaze, MazeState.CentreMaze);
     }
 
     public void Update()
