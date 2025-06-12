@@ -31,7 +31,7 @@ public class HubCamAnim : MonoBehaviour
 
     IEnumerator ZoomIn()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3.5f);
         anim.SetTrigger("Enhance");
     }
 
