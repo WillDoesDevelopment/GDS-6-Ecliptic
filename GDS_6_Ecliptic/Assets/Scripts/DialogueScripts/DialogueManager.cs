@@ -335,9 +335,6 @@ public class DialogueManager : MonoBehaviour
         //if (Sentences.Count == 0)
         if (DialogueIndexTracker >= dialogue.line.Length)
         {
-            HubManager.UnfreezePlayerActions(player);
-
-            player.GetComponent<PlayerController>().playerState = PlayerState.Walk;
             //Debug.Log("EndOfDialogue");
             TextAnim.SetBool("PopUp", false);
             
@@ -350,7 +347,17 @@ public class DialogueManager : MonoBehaviour
             InDialogue = false;
             DialogueIndexTracker = 0;                                           // calls this static (global) function in the hub manager
             //DialogueIndexTracker = 0;
+            StartCoroutine(WaitForCamera());
             return;
         }
     }
+
+
+    IEnumerator WaitForCamera()
+    {
+        yield return new WaitForSeconds(1.6f);
+        HubManager.UnfreezePlayerActions(player);
+        player.GetComponent<PlayerController>().playerState = PlayerState.Walk;
+    }
+
 }
