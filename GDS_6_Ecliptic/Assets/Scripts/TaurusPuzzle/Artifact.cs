@@ -5,6 +5,8 @@ using UnityEngine;
 public class Artifact : MonoBehaviour
 {
     public GameObject player;
+    public Animator anim;
+    public GameObject ItemIndicator;
 
     private Vector3 startPos;
     // Start is called before the first frame update
@@ -25,6 +27,8 @@ public class Artifact : MonoBehaviour
         Debug.Log("Working");
         player.GetComponent<PickUpScript>().PutDown(this.gameObject);
         player.GetComponent<PickUpScript>().HoldingObj = player.GetComponent<PickUpScript>().PickUpPos.gameObject;
+        anim.SetBool("Bob", true);
+        ItemIndicator.SetActive(false);
         this.transform.position = startPos;
     }
 

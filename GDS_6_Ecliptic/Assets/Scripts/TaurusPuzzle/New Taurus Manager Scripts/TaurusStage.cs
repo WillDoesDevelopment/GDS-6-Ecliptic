@@ -8,6 +8,9 @@ public class TaurusStage : MonoBehaviour
     public GameObject Artifact;
     public GameObject TargetObject;
     public GameObject BeamTarget;
+    public GameObject ItemIndicator;
+
+    public Animator anim;
 
     public bool isOff = true;
 
@@ -26,6 +29,7 @@ public class TaurusStage : MonoBehaviour
     private void Start()
     {
         rend = barrierObject.GetComponent<Renderer>();
+        anim.SetBool("Bob", true);
     }
 
     private void Update()
@@ -96,9 +100,12 @@ public class TaurusStage : MonoBehaviour
         if (!HO.CompareTag("PickUp"))
         {
             particleObject.SetActive(false);
+            
         }
         else
         {
+            anim.SetBool("Bob", false);
+            ItemIndicator.SetActive(false);
             particleObject.SetActive(true);
             particleObject.transform.position = HO.transform.position;
             particleObject.transform.LookAt(BeamTarget.transform.position);
