@@ -9,6 +9,9 @@ public class TaurusStage : MonoBehaviour
     public GameObject TargetObject;
     public GameObject BeamTarget;
     public GameObject ItemIndicator;
+    public GameObject vfxCircle;
+
+    public DialogueTrigger DT;
 
     public Animator anim;
 
@@ -135,14 +138,40 @@ public class TaurusStage : MonoBehaviour
         }
     }
 
-    public void StageWinCondition()
+    public void StageWinCondition(GameObject Player, GameObject particleObject, int stageCounter, GameObject TargetObject)
     {
+        GameObject HO = Player.GetComponent<PickUpScript>().HoldingObj;
+        if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3)
+        {
+            
+            HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+            HO.transform.DetachChildren();
+            Player.GetComponent<PickUpScript>().holding = false;
+            HO.gameObject.SetActive(false);
+            HO.SetActive(false);
+            vfxCircle.SetActive(true);
 
+ 
+        }
+        else
+        {
+            return;
+        }
+
+
+        if(DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        {
+            RoomWinDondition();
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void RoomWinDondition()
     {
-
+        this.TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
     }
     public void SetResetPos()
     {

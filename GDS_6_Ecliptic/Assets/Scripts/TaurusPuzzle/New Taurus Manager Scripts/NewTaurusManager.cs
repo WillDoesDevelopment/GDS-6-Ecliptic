@@ -43,14 +43,12 @@ public class NewTaurusManager : MonoBehaviour
             {
                 return;
             }
-        }
 
-        /*if (DT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
-        {
-            MazeStateChange(MazeState.StartMaze, MazeState.CentreMaze);
-            //TaurusStages[0].MazeActiveToggle(true);
-            print("Yeehaw");
-        }*/
+            if(taurusStageCounter == 3)
+            {
+                TaurusStages[3].StageWinCondition(Player, particleObject, taurusStageCounter, TaurusStages[taurusStageCounter].GetTargetObject());
+            }
+        }
 
     }
 
