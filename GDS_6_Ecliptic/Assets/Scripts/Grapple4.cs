@@ -58,17 +58,17 @@ public class Grapple4 : MonoBehaviour
     void Update()
     {       
 
-        if (InputController.Player.Accept.IsPressed())                      //Press A button
+        if (InputController.Player.Accept.IsPressed() && target == null)                      //Press A button
         {
             DrawScope();
         }
 
-        if (InputController.Player.Accept.WasReleasedThisFrame())           //Release A button
+        if (InputController.Player.Accept.WasReleasedThisFrame() && target == null)           //Release A button
         {
             GrappleHitCheck();
         }
 
-        if (InputController.Player.Back.IsPressed() && target != null)      //Press B button
+        if (InputController.Player.Back.IsPressed() && target != null)                        //Press B button
         {
             RopeBreak();
         }
