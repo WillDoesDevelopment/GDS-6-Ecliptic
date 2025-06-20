@@ -15,7 +15,7 @@ public class NewTaurusManager : MonoBehaviour
     public GameObject Player;
     public GameObject particleObject;
 
-    public GameObject DT;
+    public DialogueTrigger DT;
 
     private void Start()
     {
@@ -33,7 +33,7 @@ public class NewTaurusManager : MonoBehaviour
         TaurusStages[taurusStageCounter].ResetCheck(Player);
         if (TaurusStages[taurusStageCounter].ArtifactCheck(Player, particleObject, taurusStageCounter, TaurusStages[taurusStageCounter].GetTargetObject()))
         {
-               
+
             if (taurusStageCounter < 3)
             {
                 taurusStageCounter += 1;
@@ -44,12 +44,14 @@ public class NewTaurusManager : MonoBehaviour
                 return;
             }
 
-            if(taurusStageCounter == 3)
-            {
-                TaurusStages[3].StageWinCondition(Player, particleObject, taurusStageCounter, TaurusStages[taurusStageCounter].GetTargetObject());
-            }
+            
         }
 
+        if (taurusStageCounter == 3 && DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        {
+            print("New Taurus Triggers");
+            TaurusStages[3].StageWinCondition();
+        }
     }
 
     

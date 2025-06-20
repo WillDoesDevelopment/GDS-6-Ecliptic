@@ -38,6 +38,15 @@ public class TaurusStage : MonoBehaviour
     private void Update()
     {
         Barrier();
+
+        if (DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        {
+            RoomWinDondition();
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void MazeActiveToggle(bool toggle)
@@ -118,8 +127,7 @@ public class TaurusStage : MonoBehaviour
 
         if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3)
         {
-            Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
-            this.TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
+            //Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
             HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             HO.transform.DetachChildren();
             /*            CollectedItems += 1;
@@ -130,7 +138,14 @@ public class TaurusStage : MonoBehaviour
             Player.GetComponent<PickUpScript>().holding = false;
             HO.gameObject.SetActive(false);
             HO.SetActive(false);
+
+            if (stageCounter <= 2)
+            {
+                this.TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
+            }
+
             return true;
+
         }
         else
         {
@@ -138,35 +153,12 @@ public class TaurusStage : MonoBehaviour
         }
     }
 
-    public void StageWinCondition(GameObject Player, GameObject particleObject, int stageCounter, GameObject TargetObject)
+    public void StageWinCondition()
     {
-        GameObject HO = Player.GetComponent<PickUpScript>().HoldingObj;
-        if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3)
-        {
-            
-            HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
-            HO.transform.DetachChildren();
-            Player.GetComponent<PickUpScript>().holding = false;
-            HO.gameObject.SetActive(false);
-            HO.SetActive(false);
-            vfxCircle.SetActive(true);
 
- 
-        }
-        else
-        {
-            return;
-        }
-
-
-        if(DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
-        {
-            RoomWinDondition();
-        }
-        else
-        {
-            return;
-        }
+        vfxCircle.SetActive(true);
+        Debug.Log("I got to here!");
+       
     }
 
     public void RoomWinDondition()
