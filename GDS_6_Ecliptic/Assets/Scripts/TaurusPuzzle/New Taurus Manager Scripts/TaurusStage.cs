@@ -78,7 +78,7 @@ public class TaurusStage : MonoBehaviour
     {
         if (Vector3.Distance(Player.transform.position, bull.transform.position) < 1f)
         {
-
+            Player.GetComponent<PlayerController>().Damage();
             Player.GetComponent<DialogueTrigger>().OnEventCheck();
             Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
