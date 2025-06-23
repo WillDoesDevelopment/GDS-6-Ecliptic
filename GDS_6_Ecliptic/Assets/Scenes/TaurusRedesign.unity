@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.018639825, g: 0.031386644, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.029806403, g: 0.05401643, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -756,6 +756,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0967393bedab81946901cdab431a6bab, type: 2}
+    - target: {fileID: 3779745573541866595, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
+      propertyPath: m_Name
+      value: Maze1Barrier
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
 --- !u!1001 &80255773
@@ -1097,6 +1101,7 @@ MonoBehaviour:
   rend: {fileID: 307033146}
   ANM: {fileID: 1602554274}
   maze: 1
+  barrierBuffer: 8
 --- !u!65 &132372448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6678,7 +6683,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300168725}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.26, y: 0.22, z: 6.62}
+  m_LocalPosition: {x: 12.61, y: 0.22, z: 5.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7382,6 +7387,7 @@ MonoBehaviour:
   rend: {fileID: 1203755866}
   ANM: {fileID: 1694990394}
   maze: 0
+  barrierBuffer: 8
 --- !u!65 &388734332
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8495,7 +8501,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534823608}
   m_LocalRotation: {x: 0.00025323482, y: 0.013041884, z: -0.00005178401, w: 0.999915}
-  m_LocalPosition: {x: -0.033, y: 1.05, z: -0.008}
+  m_LocalPosition: {x: -0.0037, y: 1.05, z: -0.0113}
   m_LocalScale: {x: 0.15142623, y: 0.040052798, z: 0.15142626}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8786,7 +8792,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546538623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.74, y: 0.21706915, z: -10.45}
+  m_LocalPosition: {x: 15.04, y: 0.22, z: -9.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14395,6 +14401,7 @@ MonoBehaviour:
   rend: {fileID: 307033146}
   ANM: {fileID: 2036377057}
   maze: 2
+  barrierBuffer: 3
 --- !u!65 &698748169
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25690,7 +25697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0206
+      value: -0.004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25698,7 +25705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0081
+      value: -0.0134
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25730,23 +25737,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 592664080621265513, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.9539573
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 592664080621265513, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.19079147
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 592664080621265513, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.9539573
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 592664080621265513, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000009383
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 592664080621265513, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_Name
@@ -25759,10 +25766,14 @@ PrefabInstance:
     - target: {fileID: 3566390031902043909, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0967393bedab81946901cdab431a6bab, type: 2}
+      objectReference: {fileID: 2100000, guid: c00aa2780c3135844b602ec3a6773055, type: 2}
     - target: {fileID: 3779745573541866595, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
       propertyPath: m_Name
       value: Maze2Barrier
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779745573541866595, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad9771d446ef9ff4fbf0e94d19606eea, type: 3}
@@ -41879,7 +41890,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842746987}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.78, y: 0.21706915, z: -11.03}
+  m_LocalPosition: {x: -6.07, y: 0.22, z: -8.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44833,6 +44844,7 @@ MonoBehaviour:
   rend: {fileID: 307033146}
   ANM: {fileID: 2036377057}
   maze: 3
+  barrierBuffer: 3
 --- !u!65 &2062012287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45115,7 +45127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099958529}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.71, y: 0.21706915, z: 9.07}
+  m_LocalPosition: {x: 17.41, y: 0.22, z: 9.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

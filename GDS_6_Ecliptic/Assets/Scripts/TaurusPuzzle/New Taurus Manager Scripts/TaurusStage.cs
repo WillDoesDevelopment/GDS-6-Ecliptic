@@ -27,6 +27,8 @@ public class TaurusStage : MonoBehaviour
 
     public MazeState maze;
 
+    [SerializeField] private float barrierBuffer;
+
     // Start is called before the first frame update
 
     private void Start()
@@ -54,24 +56,35 @@ public class TaurusStage : MonoBehaviour
         if (ANM != null)
         {
             ANM.NavMeshPause = toggle;
-            Debug.Log("I'm a little bull and I've hurt my knee... " + toggle);
         }
     }
 
     public void Barrier()
     {
-        var t = Mathf.InverseLerp(8, 6, Vector3.Distance(barrierObject.transform.position, ANM.transform.position));
-        ;
-        if (t == 0)
+        /*
+         * 1. Calc Distance to Bull
+         * 
+         * 2. Subtract Radius
+         * 
+         * 3. Convert to percentage?
+         */
+
+        float bullDist = Vector3.Distance(barrierObject.transform.position, ANM.transform.position);
+        
+        if (bullDist >= barrierBuffer)
         {
             barrierObject.SetActive(false);
+            print(bull + "... is getting here");
         }
         else
         {
             barrierObject.SetActive(true);
+            print(bull + "... is NOT getting here");
         }
 
-        rend.material.SetFloat("_Transparency", Mathf.Clamp(t, 0, 1));
+        
+
+        rend.material.SetFloat("_Transparency", Mathf.Clamp(bullDist, 0, 1));
     }
 
     public void ResetCheck(GameObject Player)
