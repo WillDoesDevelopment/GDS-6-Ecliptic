@@ -313,6 +313,14 @@ public class PlayerController : MonoBehaviour
         //controller.enabled = true;
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+
+        DialogueTrigger[] diaTriggers = FindObjectsOfType<DialogueTrigger>();
+
+        foreach(DialogueTrigger DT in diaTriggers)
+        {
+            DT.dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+        }
+
     }
 
     void Footstep()

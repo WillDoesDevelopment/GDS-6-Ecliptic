@@ -10,6 +10,7 @@ public class TaurusStage : MonoBehaviour
     public GameObject BeamTarget;
     public GameObject ItemIndicator;
     public GameObject vfxCircle;
+    public GameObject player;
 
     public DialogueTrigger DT;
 
@@ -43,7 +44,7 @@ public class TaurusStage : MonoBehaviour
 
         if (DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            RoomWinDondition();
+            RoomWinDondition(Artifact, player);
         }
         else
         {
@@ -139,22 +140,22 @@ public class TaurusStage : MonoBehaviour
         //Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
 
         if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3)
-        {
-            //Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
-            HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
-            HO.transform.DetachChildren();
-            /*            CollectedItems += 1;
+        {           /*            CollectedItems += 1;
                         if (CollectedItems <= 3)
                         {
                             GoodJobSND.GetComponent<AudioSource>().Play();
                         }*/
-            Player.GetComponent<PickUpScript>().holding = false;
-            HO.gameObject.SetActive(false);
-            HO.SetActive(false);
+            //Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
+            
 
             if (stageCounter <= 2)
             {
                 this.TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
+                HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+                HO.transform.DetachChildren();
+                Player.GetComponent<PickUpScript>().holding = false;
+                HO.gameObject.SetActive(false);
+                HO.SetActive(false);
             }
 
             return true;
@@ -174,9 +175,15 @@ public class TaurusStage : MonoBehaviour
        
     }
 
-    public void RoomWinDondition()
+    public void RoomWinDondition(GameObject HO, GameObject Player)
     {
+        print("Activated Now!");
         this.TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
+        HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+        HO.transform.DetachChildren();
+        Player.GetComponent<PickUpScript>().holding = false;
+        HO.gameObject.SetActive(false);
+        HO.SetActive(false);
     }
     public void SetResetPos()
     {

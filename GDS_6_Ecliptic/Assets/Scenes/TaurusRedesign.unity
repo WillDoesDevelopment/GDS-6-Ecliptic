@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.029806403, g: 0.05401643, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0028464855, g: 0.0025645471, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1091,6 +1091,7 @@ MonoBehaviour:
   BeamTarget: {fileID: 778222640}
   ItemIndicator: {fileID: 1069472518}
   vfxCircle: {fileID: 8240508297719625444}
+  player: {fileID: 772081480}
   DT: {fileID: 1423161468}
   anim: {fileID: 132372446}
   isOff: 1
@@ -7377,6 +7378,7 @@ MonoBehaviour:
   BeamTarget: {fileID: 1731437588}
   ItemIndicator: {fileID: 1174861233}
   vfxCircle: {fileID: 8240508297719625444}
+  player: {fileID: 772081480}
   DT: {fileID: 1423161468}
   anim: {fileID: 388734330}
   isOff: 1
@@ -14391,6 +14393,7 @@ MonoBehaviour:
   BeamTarget: {fileID: 1202548483}
   ItemIndicator: {fileID: 764468931}
   vfxCircle: {fileID: 8240508297719625444}
+  player: {fileID: 772081480}
   DT: {fileID: 1423161468}
   anim: {fileID: 698748173}
   isOff: 1
@@ -15630,7 +15633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: knockbackH.m_Curve.Array.data[1].time
-      value: 0.99780273
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: knockbackV.m_Curve.Array.data[0].time
@@ -15641,8 +15644,12 @@ PrefabInstance:
       value: 0.9802551
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: knockbackH.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: knockbackH.m_Curve.Array.data[1].value
-      value: 0.81367874
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: knockbackV.m_Curve.Array.data[0].value
@@ -15654,7 +15661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: knockbackH.m_Curve.Array.data[0].inSlope
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: knockbackH.m_Curve.Array.data[1].inSlope
@@ -15670,7 +15677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: knockbackH.m_Curve.Array.data[0].outSlope
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: knockbackH.m_Curve.Array.data[1].outSlope
@@ -15694,11 +15701,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: knockbackH.m_Curve.Array.data[0].tangentMode
-      value: 0
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: knockbackH.m_Curve.Array.data[1].tangentMode
-      value: 0
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: knockbackV.m_Curve.Array.data[0].tangentMode
@@ -44834,6 +44841,7 @@ MonoBehaviour:
   BeamTarget: {fileID: 807944957}
   ItemIndicator: {fileID: 1882854144}
   vfxCircle: {fileID: 8240508297719625444}
+  player: {fileID: 772081480}
   DT: {fileID: 1423161468}
   anim: {fileID: 2062012285}
   isOff: 1
