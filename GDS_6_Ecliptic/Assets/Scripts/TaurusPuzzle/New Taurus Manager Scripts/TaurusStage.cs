@@ -83,6 +83,7 @@ public class TaurusStage : MonoBehaviour
             print(bull + "... is NOT getting here");
         }
 
+        print(bull + "is" + bullDist);
         
 
         rend.material.SetFloat("_Transparency", Mathf.Clamp(bullDist, 0, 1));
