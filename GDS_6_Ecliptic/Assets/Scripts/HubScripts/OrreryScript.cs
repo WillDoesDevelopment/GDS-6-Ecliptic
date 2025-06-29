@@ -29,6 +29,7 @@ public class OrreryScript : MonoBehaviour
 
     void Start()
     {
+      
         BS.door = OrreryArms[HubManager.LevelNumber].transform.GetChild(0).gameObject;
         Cursor.lockState = CursorLockMode.None; //.........................................................Cursor
         StartDialogue();
