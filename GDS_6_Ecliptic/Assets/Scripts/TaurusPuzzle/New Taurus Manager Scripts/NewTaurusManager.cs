@@ -1,105 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using UnityEditor.SceneManagement;
 using UnityEngine;
-
-public abstract class TaurusStage : MonoBehaviour
-{
-    public GameObject bull;
-    public GameObject Artifact;
-    public GameObject TargetObject;
-
-
-    public Vector3 PlayerResetPos;
-    public Vector3 ArtifactResetPos;
-    public Vector3 BullResetPos;
-    
-    // Start is called before the first frame update
-    public abstract void VReset(GameObject Player);
-
-
-    public void ResetCheck(GameObject Player)
-    {
-        if (Vector3.Distance(Player.transform.position, bull.transform.position) < 1f)
-        {
-
-            Player.GetComponent<DialogueTrigger>().OnEventCheck();
-            Player.GetComponent<DialogueTrigger>().OnEvent = false;
-
-            //this telliports the player without being over written by the character controller
-            Player.GetComponent<CharacterController>().enabled = false;
-            Player.transform.position = PlayerResetPos;
-            Player.GetComponent<CharacterController>().enabled = true;
-
-
-            Debug.Log(Player.transform.position);
-
-            Artifact.transform.position = ArtifactResetPos;
-            bull.transform.position = BullResetPos;
-
-        }
-    }
-
-    public bool ArtifactCheck(GameObject Player, GameObject particleObject, int stageCounter)
-    {
-        GameObject HO = Player.GetComponent<PickUpScript>().HoldingObj;
-
-        if (HO == null)
-        {
-            return false;
-        }
-        if (!HO.CompareTag("PickUp"))
-        {
-            particleObject.SetActive(false);
-        }
-        else
-        {
-            particleObject.SetActive(true);
-            particleObject.transform.position = HO.transform.position;
-            particleObject.transform.LookAt(transform.position);
-            
-        }
-            Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3);
-
-        if (HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3)
-        {
-            Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(TargetObject.transform.position, HO.transform.position) < 3);
-            TargetObject.transform.GetChild(0).GetComponent<DoorScript>().DS.IsOpen = true;
-            HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
-            HO.transform.DetachChildren();
-/*            CollectedItems += 1;
-            if (CollectedItems <= 3)
-            {
-                GoodJobSND.GetComponent<AudioSource>().Play();
-            }*/
-            Player.GetComponent<PickUpScript>().holding = false;
-            HO.gameObject.SetActive(false);
-            HO.SetActive(false);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    public void StageWinCondition()
-    {
-
-    }
-
-    public void RoomWinDondition()
-    {
-
-    }
-    public void SetResetPos()
-    {
-        BullResetPos = bull.transform.position;
-        ArtifactResetPos = Artifact.transform.position;
-    }
-
-}
-
-
-
+using UnityEngine.UIElements;
 
 
 public class NewTaurusManager : MonoBehaviour
@@ -110,18 +15,26 @@ public class NewTaurusManager : MonoBehaviour
     public GameObject Player;
     public GameObject particleObject;
 
+    public DialogueTrigger DT;
+
     private void Start()
     {
         
+    }
+
+    private void Awake()
+    {
+        MazeStateChange(MazeState.StartMaze, MazeState.CentreMaze);
     }
 
     public void Update()
     {
         
         TaurusStages[taurusStageCounter].ResetCheck(Player);
-        if (TaurusStages[taurusStageCounter].ArtifactCheck(Player, particleObject, taurusStageCounter))
+        if (TaurusStages[taurusStageCounter].ArtifactCheck(Player, particleObject, taurusStageCounter, TaurusStages[taurusStageCounter].GetTargetObject()))
         {
-            if (taurusStageCounter < 2)
+
+            if (taurusStageCounter < 3)
             {
                 taurusStageCounter += 1;
 
@@ -130,8 +43,15 @@ public class NewTaurusManager : MonoBehaviour
             {
                 return;
             }
+
+            
         }
 
+        if (taurusStageCounter == 3 && DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        {
+            print("New Taurus Triggers");
+            TaurusStages[3].StageWinCondition();
+        }
     }
 
     
@@ -140,4 +60,21 @@ public class NewTaurusManager : MonoBehaviour
         //this function needs to check the players location, bulls location and 
     }
 
+    public void MazeStateChange(MazeState mazeEnter, MazeState mazeExit)
+    {
+        TaurusStage stageEnter = Array.Find(TaurusStages, p => p.maze == mazeEnter);
+        TaurusStage stageExit = Array.Find(TaurusStages, p => p.maze == mazeExit);
+
+        stageEnter.MazeActiveToggle(false);
+        stageExit.MazeActiveToggle(true);
+    }
+
+}
+
+public enum MazeState
+{
+    StartMaze,
+    CentreMaze,
+    TreeMaze,
+    FinalMaze
 }

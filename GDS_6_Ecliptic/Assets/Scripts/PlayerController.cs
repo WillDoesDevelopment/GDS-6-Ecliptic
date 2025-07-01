@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     public bool canWalk = true;
     public bool walking = false;
     public float walkingSpeed = 0;
+    public bool canJump = false;
+    float jumpCooldown = 1.0f;
+    bool inputJump = false;
     public GameObject pauseMenu;
     public bool isPaused = false;
     bool canStep = true;
@@ -99,7 +102,8 @@ public class PlayerController : MonoBehaviour
         if (playerState == PlayerState.Walk)
         {
             PlayerInput();
-            Movement();
+            Jump();
+            Movement();            
         }
         else
         {
@@ -153,6 +157,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(InputController.Player.Move.ReadValue<Vector2>());
         //Debug.Log(InputController.controlSchemes[0]);
 
+        inputJump = InputController.Player.Jump.WasPressedThisFrame();
     }
     void Movement()
     {
@@ -201,6 +206,7 @@ public class PlayerController : MonoBehaviour
 
     public void FallingCheck()
     {
+        grounded = (controller.collisionFlags & CollisionFlags.Below) != 0;
         if (grounded == false)
         {
             airTime += Time.deltaTime;
@@ -216,6 +222,20 @@ public class PlayerController : MonoBehaviour
         {
             Respawn();
             airTime = 0;
+        }
+    }
+
+    public void Jump()
+    {
+        if (grounded && inputJump && jumpCooldown == 0f && canJump)
+        {
+            inputY = 4.0f;
+            jumpCooldown = 0.2f;
+        }
+        else if (jumpCooldown > 0)
+        {
+            jumpCooldown -= Time.deltaTime;
+            if (jumpCooldown < 0) { jumpCooldown = 0; }
         }
     }
     public void FootStepCheck()
@@ -293,6 +313,14 @@ public class PlayerController : MonoBehaviour
         //controller.enabled = true;
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+
+        DialogueTrigger[] diaTriggers = FindObjectsOfType<DialogueTrigger>();
+
+        foreach(DialogueTrigger DT in diaTriggers)
+        {
+            DT.dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+        }
+
     }
 
     void Footstep()

@@ -6,7 +6,7 @@ using UnityEngine;
 public class GeminiManager : MonoBehaviour
 {
     //public DialogueTrigger EndDialogue;
-    public VFXCircleHandler VFXCH;
+    //public VFXCircleHandler VFXCH;
 
     // need to know about both dialogue prefabs in the scene
     //public GameObject startDT;
@@ -19,7 +19,7 @@ public class GeminiManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        VFXCH.circleVFXStart();
+        //VFXCH.circleVFXStart();
     }
 
     // Update is called once per frame

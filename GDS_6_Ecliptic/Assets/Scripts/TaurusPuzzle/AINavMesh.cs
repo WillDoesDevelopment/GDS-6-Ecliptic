@@ -14,10 +14,10 @@ public class AINavMesh : MonoBehaviour
     public Queue<Transform> positionQueue = new Queue<Transform>();
     public Transform[] positions;
 
-    public DialogueTrigger StartDialogue;
-    public bool NavMeshPause = false;
+    //public DialogueTrigger StartDialogue; Not referenced?
+    public bool NavMeshPause = true;
 
-    public TaurusManager TM;
+    public NewTaurusManager TM;
 
     public GameObject[] bullSnds;
     private bool CoolDownBool = false;
