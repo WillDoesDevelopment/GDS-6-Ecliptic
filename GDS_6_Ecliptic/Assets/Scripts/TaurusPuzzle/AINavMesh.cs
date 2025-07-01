@@ -103,7 +103,7 @@ public class AINavMesh : MonoBehaviour
             if (c.gameObject == Player)
             {
               
-                TM.Resetting();
+                //TM.Resetting();
             }
         }
     }
