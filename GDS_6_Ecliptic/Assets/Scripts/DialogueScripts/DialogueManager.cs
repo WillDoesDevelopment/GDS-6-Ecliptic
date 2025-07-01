@@ -355,7 +355,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator WaitForCamera()
     {
-        yield return new WaitForSeconds(1.6f);
+        yield return new WaitForSeconds(0.1f);
         HubManager.UnfreezePlayerActions(player);
         player.GetComponent<PlayerController>().playerState = PlayerState.Walk;
     }
