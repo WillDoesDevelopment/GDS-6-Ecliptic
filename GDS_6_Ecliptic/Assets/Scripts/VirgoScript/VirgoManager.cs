@@ -44,8 +44,9 @@ public class VirgoManager : MonoBehaviour
     IEnumerator loadMenu()
     {
         Debug.Log("Credits");
-        credits.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
+        title.SetActive(true);
+        yield return new WaitForSeconds(3f);
         isFinished = true;
         StartCoroutine(Bye());
 
@@ -54,7 +55,8 @@ public class VirgoManager : MonoBehaviour
     IEnumerator Bye()
     {
         print("Going");
-        yield return new WaitForSeconds(5f);
+        credits.SetActive(true);
+        yield return new WaitForSeconds(15f);
         SceneManager.LoadScene(level);
     }
 

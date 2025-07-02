@@ -151,7 +151,7 @@ public class TaurusStage : MonoBehaviour
 
             if (stageCounter <= 2)
             {
-                this.TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
+                this.TargetObject.transform.GetChild(1).GetComponent<DoorScript1>().DS.IsOpen = true;
                 HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                 HO.transform.DetachChildren();
                 Player.GetComponent<PickUpScript>().holding = false;
