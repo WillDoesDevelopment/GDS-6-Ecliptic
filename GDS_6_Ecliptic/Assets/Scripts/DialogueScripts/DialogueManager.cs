@@ -267,6 +267,11 @@ public class DialogueManager : MonoBehaviour
         eventSystem.SetSelectedGameObject(DecisionTexts[0].transform.parent.gameObject);
         //DialogueText.text = "";
         TextAnim.SetBool("DecisionUIAnimate", true);
+
+        for (int i = 0; i < decisionIndexList.Count; i++)
+        {
+            DecisionTexts[i].transform.parent.gameObject.SetActive(false);
+        }
         for (int i = 0; i < decisionIndexList.Count; i++)
         {
             DecisionTexts[i].transform.parent.gameObject.SetActive(true);
