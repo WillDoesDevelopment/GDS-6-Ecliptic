@@ -171,7 +171,7 @@ public class TaurusStage : MonoBehaviour
     public void StageWinCondition()
     {
 
-        vfxCircle.SetActive(true);
+        vfxCircle.GetComponent<VFXCircleHandler>().circleVFXStart();
         Debug.Log("I got to here!");
        
     }

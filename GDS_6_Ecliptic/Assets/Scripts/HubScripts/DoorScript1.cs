@@ -24,7 +24,7 @@ public class DoorScript1 : MonoBehaviour
     void Start()
     {
         // instead of finding it in editor for each door
-        HM = FindObjectOfType<HubManager>();
+        //HM = FindObjectOfType<HubManager>();
 
         ThisAnim = this.GetComponentInParent<Animator>();
     }
