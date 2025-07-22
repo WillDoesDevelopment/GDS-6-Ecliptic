@@ -31,15 +31,18 @@ public class LibraScaleBalance : MonoBehaviour
     //Set to current version of grapple!!!!!!!!!!!!!!!!!!!!!!!!!!!! This is probably not ideal sorry- Gyles
     public Grapple4 playerGrapple;
 
-    //Scale behaviour parameters
-    public float successAngleDeg = 0f;
-    public float maxAngleDeg = 20f;
-    public float speed = 10f;
 
-    
-    public float targetAngleDeg;
+    public float targetAngleDeg = 0f;
     public float CurrentRotZ;
     public float WeightVal = 0;
+    
+    //Keep track of previous angle
+    bool prevAngleSide = false;
+    bool thisAngleSide = false;
+
+    //Situation checks
+    public bool passAngle = false;
+    public bool weightEqual = false;
 
     bool repeatLock = false;
 
@@ -51,12 +54,32 @@ public class LibraScaleBalance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(repeatLock == false)
-        {
+        if (repeatLock == false)
+        {            
+            CheckAngle();
             SumWeight();
-            SetTarget();
-            MoveScale();
-        }        
+
+            if(passAngle && weightEqual)
+            {
+                OpenDoor();
+            }
+        }
+    }
+
+    void CheckAngle()
+    {
+        CurrentRotZ = transform.localEulerAngles.z;
+
+        if (targetAngleDeg > CurrentRotZ)
+        {
+            CurrentRotZ += 360f;
+        }
+
+        thisAngleSide = targetAngleDeg + 180 > CurrentRotZ;
+        passAngle = (thisAngleSide != prevAngleSide);        
+
+        prevAngleSide = targetAngleDeg + 180 > CurrentRotZ;
+
     }
 
     void SumWeight()
@@ -85,36 +108,30 @@ public class LibraScaleBalance : MonoBehaviour
                 WeightVal += (int)weight.itemWeight;
             }
         }
-    }
 
-    void SetTarget()
-    { 
-     if(WeightVal == 0)
-        {
-            targetAngleDeg = successAngleDeg;
-        }
-        else
-        {
-            targetAngleDeg = -Mathf.Sign(WeightVal) * maxAngleDeg;
-        }
-    }
-
-    void MoveScale()
-    {        
-        CurrentRotZ = Mathf.MoveTowardsAngle(CurrentRotZ, targetAngleDeg, speed * Time.deltaTime);
-        transform.localEulerAngles = new Vector3(0, 0, CurrentRotZ);        
-
-        if(transform.localEulerAngles.z == targetAngleDeg)
-        {
-            OpenDoor();
-        }
+        weightEqual = (WeightVal == 0);
+        
     }
 
     void OpenDoor()
     {
+        //Door
+        Debug.Log("Open Door: " + doorScript.transform.gameObject);
         doorScript.DS.IsOpen = true;
         DoorMeshRenderer.material = DoorOpenMat;
+
+        //Scale
+        transform.eulerAngles = new Vector3(0, 0, targetAngleDeg);
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
         repeatLock = true;
     }
- 
+
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere representing the sphere collider
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(panLeftTransform.position, OverlapSphereRange);
+        Gizmos.DrawWireSphere(panRightTransform.position, OverlapSphereRange);
+    }
 }
