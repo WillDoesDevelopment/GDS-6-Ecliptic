@@ -121,7 +121,7 @@ public class LibraScaleBalance : MonoBehaviour
         DoorMeshRenderer.material = DoorOpenMat;
 
         //Scale
-        transform.eulerAngles = new Vector3(0, 0, targetAngleDeg);
+        transform.localEulerAngles = new Vector3(0, 0, targetAngleDeg);
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
         repeatLock = true;
