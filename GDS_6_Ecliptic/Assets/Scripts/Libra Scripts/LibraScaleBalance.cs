@@ -13,6 +13,10 @@ public class LibraScaleBalance : MonoBehaviour
     public float deadLoadLeft;
     public float deadLoadRight;
 
+    //Total load multiplier
+    public float loadMultiplierLeft = 1f;
+    public float loadMultiplierRight = 1f;
+
     // Physics.SphereOverlap creates an array of colliders and this is where we store them
     Collider[] weightsLeft;
     Collider[] weightsRight;
@@ -84,7 +88,7 @@ public class LibraScaleBalance : MonoBehaviour
 
     void SumWeight()
     {
-        WeightVal = -deadLoadLeft + deadLoadRight;
+        WeightVal = -deadLoadLeft * loadMultiplierLeft + deadLoadRight * loadMultiplierRight;
 
         // populates our collider arrays
         weightsLeft = Physics.OverlapSphere(panLeftTransform.position, OverlapSphereRange, weightLayer);
@@ -96,7 +100,7 @@ public class LibraScaleBalance : MonoBehaviour
             Weight2 weight = c.GetComponent<Weight2>();
             if (weight != null && weight.isColliding == true && c.gameObject != playerGrapple.target)
             {
-                WeightVal -= (int)weight.itemWeight;
+                WeightVal -= (int)weight.itemWeight * loadMultiplierLeft;
             }
         }
 
@@ -105,7 +109,7 @@ public class LibraScaleBalance : MonoBehaviour
             Weight2 weight = c.GetComponent<Weight2>();
             if (weight != null && weight.isColliding == true && c.gameObject != playerGrapple.target)
             {
-                WeightVal += (int)weight.itemWeight;
+                WeightVal += (int)weight.itemWeight * loadMultiplierRight;
             }
         }
 
