@@ -52,6 +52,7 @@ public class LibraScaleBalanceEnd : MonoBehaviour
 
     public VFXCircleHandler vfx;
     public DialogueTrigger dl;
+    public DialogueTrigger dl2;
 
     void Start()
     {
@@ -68,11 +69,16 @@ public class LibraScaleBalanceEnd : MonoBehaviour
 
             if(passAngle && weightEqual)
             {
-                vfx.circleVFXStart();
-                
+                dl.OnEventCheck();
             }
 
-            if(dl.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+            if (dl.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+            {
+                dl.OnEvent = false;
+                vfx.circleVFXStart();
+            }
+
+            if (dl2.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
             {
                 OpenDoor();
             }
