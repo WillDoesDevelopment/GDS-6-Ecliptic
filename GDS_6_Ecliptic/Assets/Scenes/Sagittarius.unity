@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1918500789}
-  m_IndirectSpecularColor: {r: 0.10819137, g: 0.005662299, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.10048005, g: 0.0053128283, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1825,7 +1825,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1850,8 +1850,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883125550}
-  m_LocalRotation: {x: 0.2502859, y: 0.30031842, z: -0.08199056, w: 0.916757}
-  m_LocalPosition: {x: 3.2069988, y: 7.182, z: -147.98694}
+  m_LocalRotation: {x: 0.17094584, y: 0.29173103, z: -0.05307583, w: 0.93960285}
+  m_LocalPosition: {x: 2.2099972, y: 7.092, z: -148.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2994,11 +2994,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 5.09, z: -10}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_BindingMode: 4
+  m_FollowOffset: {x: -6.0200024, y: 5, z: -8.76001}
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -5709,8 +5709,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3115847532711726455}
-  m_LocalRotation: {x: 0.2502859, y: 0.30031842, z: -0.08199056, w: 0.916757}
-  m_LocalPosition: {x: 3.2069988, y: 7.182, z: -147.98694}
+  m_LocalRotation: {x: 0.17094584, y: 0.29173103, z: -0.05307583, w: 0.93960285}
+  m_LocalPosition: {x: 2.2099972, y: 7.092, z: -148.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5739,7 +5739,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 948833240}
   m_Follow: {fileID: 948833240}
   m_Lens:
-    FieldOfView: 60
+    FieldOfView: 50
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -5767,6 +5767,7 @@ GameObject:
   - component: {fileID: 3115847532711726448}
   - component: {fileID: 3115847532711726449}
   - component: {fileID: 382289433}
+  - component: {fileID: 3115847532711726456}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Vcam
@@ -5774,6 +5775,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3115847532711726456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3115847532711726455}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53258ad9ad6e71e48bb8643c9522112e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ExcludedPropertiesInInspector:
+  - m_Script
+  m_LockStageInInspector: 
+  m_StreamingVersion: 20170927
+  m_Priority: 10
+  m_StandbyUpdate: 2
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
+  m_ShowDebugText: 0
+  m_Loop: 0
+  m_ChildCameras: []
+  m_Instructions: []
 --- !u!114 &3115847533926303392
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -5797,6 +5822,7 @@ GameObject:
   - component: {fileID: 3115847533926303399}
   - component: {fileID: 3115847533926303392}
   - component: {fileID: 1317168511}
+  - component: {fileID: 3115847533926303400}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -5819,6 +5845,33 @@ Transform:
   m_Father: {fileID: 3115847532711726448}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3115847533926303400
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3115847533926303396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjectOffset: {x: 0, y: 1, z: 0}
+  m_LookaheadTime: 0
+  m_LookaheadSmoothing: 0
+  m_LookaheadIgnoreY: 0
+  m_HorizontalDamping: 0.5
+  m_VerticalDamping: 0.5
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
+  m_SoftZoneWidth: 0.8
+  m_SoftZoneHeight: 0.8
+  m_BiasX: 0
+  m_BiasY: 0
+  m_CenterOnActivate: 1
 --- !u!23 &3156186507676137623
 MeshRenderer:
   m_ObjectHideFlags: 0
