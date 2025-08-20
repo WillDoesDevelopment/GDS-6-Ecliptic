@@ -8,7 +8,9 @@ public class GemEndDoor : MonoBehaviour
     public GameObject SnakeDT;
     public GameObject polcasDT;
     public GameObject doorDT;
+    public GameObject globeDT;
     public GameObject snek;
+    public VFXCircleHandler VFXCH;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +21,14 @@ public class GemEndDoor : MonoBehaviour
     private void Update()
     {
 
-        if (/*SnakeDT.GetComponent<DialogueTrigger>().OnEvent == true &&*/ polcasDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        if (globeDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
+        {
+            VFXCH.circleVFXStart();
+
+        }
+
+
+        if (polcasDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
            SnakeDT.SetActive(true);
 

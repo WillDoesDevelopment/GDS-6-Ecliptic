@@ -6,11 +6,9 @@ using UnityEngine.SceneManagement;
 public class VirgoManager : MonoBehaviour
 {
     public DialogueTrigger DT;
-    public GameObject VirtualCam;
+  
+    public GameObject VirgoDoor;
 
-    public GameObject credits;
-    public GameObject title;
-    public string level;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,17 +25,8 @@ public class VirgoManager : MonoBehaviour
     {
         if (DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            VirtualCam.SetActive(true);
-            StartCoroutine(loadMenu());
+            VirgoDoor.GetComponent<Animator>().SetBool("Reveal", true);
         }
     }
-    IEnumerator loadMenu()
-    {
-        Debug.Log("Credits");
-        yield return new WaitForSeconds(10f);
-        credits.SetActive(true);
-        title.SetActive(false);
-        yield return new WaitForSeconds(90f);
-        SceneManager.LoadScene(level);
-    }
+
 }

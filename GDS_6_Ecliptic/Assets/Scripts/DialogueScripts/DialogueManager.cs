@@ -260,6 +260,11 @@ public class DialogueManager : MonoBehaviour
         eventSystem.SetSelectedGameObject(DecisionTexts[0].transform.parent.gameObject);
         //DialogueText.text = "";
         TextAnim.SetBool("DecisionUIAnimate", true);
+
+        for (int i = 0; i < decisionIndexList.Count; i++)
+        {
+            DecisionTexts[i].transform.parent.gameObject.SetActive(false);
+        }
         for (int i = 0; i < decisionIndexList.Count; i++)
         {
             DecisionTexts[i].transform.parent.gameObject.SetActive(true);
@@ -355,7 +360,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator WaitForCamera()
     {
-        yield return new WaitForSeconds(1.6f);
+        yield return new WaitForSeconds(0.1f);
         HubManager.UnfreezePlayerActions(player);
         player.GetComponent<PlayerController>().playerState = PlayerState.Walk;
     }

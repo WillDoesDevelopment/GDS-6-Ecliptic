@@ -18,7 +18,7 @@ public class GemDoor : MonoBehaviour
         if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             DS.DS.IsOpen = true;
-            Destroy(EndDT);
+            //Destroy(EndDT);
             return;
         }
     }
