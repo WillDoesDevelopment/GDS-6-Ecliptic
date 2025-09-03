@@ -22,3 +22,10 @@ public enum LionState
     Defeat,
     Falling
 }
+
+public enum GondolaState
+{
+    Start,
+    Moving,
+    End
+}
