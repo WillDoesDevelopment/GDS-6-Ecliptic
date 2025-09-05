@@ -27,5 +27,6 @@ public enum GondolaState
 {
     Start,
     Moving,
-    End
+    End,
+    Locked
 }

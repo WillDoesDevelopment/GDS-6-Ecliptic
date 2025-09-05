@@ -13,7 +13,9 @@ public class Gondola : MonoBehaviour
     public Transform endTransform;
     public GameObject startWalls;
     public GameObject endWalls;
-    
+    public MeshRenderer unlockMatRenderer;
+    public Material unlockedMat;
+
     public float moveTime = 3f;
     float time = 0f;
     public float radius = 2f;
@@ -21,7 +23,7 @@ public class Gondola : MonoBehaviour
     public AnimationCurve movementCurve;
     public AnimationCurve angleCurve;
 
-    public GondolaState state = GondolaState.Start;
+    public GondolaState state = GondolaState.Locked;
 
     PlayerController playerController;
 
@@ -83,7 +85,13 @@ public class Gondola : MonoBehaviour
     void MoveGondola(float t)
     {
         gondolaPlatformTop.transform.position = Vector3.Lerp(startTransform.position, endTransform.position, movementCurve.Evaluate(t));
-        gondolaPlatformTop.transform.eulerAngles = new Vector3(180 * angleCurve.Evaluate(t), 0, 0);
+        gondolaPlatformTop.transform.eulerAngles = new Vector3(180 * angleCurve.Evaluate(t), gondolaPlatformTop.transform.eulerAngles.y, gondolaPlatformTop.transform.eulerAngles.z);
+    }
+
+    public void UnlockGondola()
+    {
+        state = GondolaState.Start;
+        unlockMatRenderer.material = unlockedMat;
     }
     private void OnDrawGizmos()
     {

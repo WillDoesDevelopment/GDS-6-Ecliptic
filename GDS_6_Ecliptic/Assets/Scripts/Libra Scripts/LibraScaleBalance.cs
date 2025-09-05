@@ -8,6 +8,7 @@ public class LibraScaleBalance : MonoBehaviour
     public DoorScript doorScript;
     public MeshRenderer DoorMeshRenderer;
     public Material DoorOpenMat;
+    public Gondola gondolaScript;
 
     //Permanent loadings
     public float deadLoadLeft;
@@ -123,6 +124,9 @@ public class LibraScaleBalance : MonoBehaviour
         Debug.Log("Open Door: " + doorScript.transform.gameObject);
         doorScript.DS.IsOpen = true;
         DoorMeshRenderer.material = DoorOpenMat;
+
+        //Gondola
+        gondolaScript.UnlockGondola();
 
         //Scale
         transform.localEulerAngles = new Vector3(0, 0, targetAngleDeg);
