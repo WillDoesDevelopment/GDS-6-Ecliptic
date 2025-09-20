@@ -57,7 +57,7 @@ public class Grapple3 : MonoBehaviour
 
         //Release
         if (Input.GetMouseButtonDown(1) ^ Input.GetKeyDown(KeyCode.JoystickButton0) ^ Input.GetKeyDown(KeyCode.RightShift))
-        { 
+        {
             RopeBreak();
         }
 
@@ -66,10 +66,10 @@ public class Grapple3 : MonoBehaviour
 
         //Retracting
         SnakeRetractCheck();
-        
+
         //Grapple Follow
         GrappleFollowCheck();
-                      
+
     }
 
     void AddForce()
@@ -210,7 +210,7 @@ public class Grapple3 : MonoBehaviour
                 else
                 {
                     //Attatch and Pull Object
-                    
+
                     if (t > 0.6f) //Start affecting objects
                     {
                         if (target.GetComponent<columnScript>() == null)
@@ -221,7 +221,7 @@ public class Grapple3 : MonoBehaviour
                         {
                             CollumnInteraction(); //if interacting with column
                         }
-                    }                    
+                    }
                 }
                 if (t > 1.2)
                 {
@@ -273,7 +273,7 @@ public class Grapple3 : MonoBehaviour
     }
 
     public void CollumnInteraction()
-    {       
+    {
         if (t > 1)
         {
             target.GetComponent<columnScript>().fall = true;
@@ -281,13 +281,13 @@ public class Grapple3 : MonoBehaviour
             RopeBreak();
             ExplosionForce();
             target = null;
-        }                 
+        }
     }
 
     public void SmashInteraction()
     {
-        target.GetComponent<BreakObject>().smash = true;        
-        RopeBreak();        
+        target.GetComponent<BreakObject>().smash = true;
+        RopeBreak();
         target = null;
     }
 

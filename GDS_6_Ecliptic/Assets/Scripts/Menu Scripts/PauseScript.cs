@@ -28,6 +28,9 @@ public class PauseScript : MonoBehaviour
 
     public HubManager HM;
 
+    public float startTime = 0f;
+    public float holdTime = 5.0f;
+
     public bool Quitting = false;
     // Start is called before the first frame update
     void Start()
@@ -56,6 +59,17 @@ public class PauseScript : MonoBehaviour
             {
                 Resume();
             }
+
+        }
+
+        if (Input.GetButtonDown("RESET TO MENU"))
+        {
+            startTime = Time.time;
+            if (startTime + holdTime >= Time.time)
+            {
+                SceneManager.LoadScene(0);
+            }
+
 
         }
     }

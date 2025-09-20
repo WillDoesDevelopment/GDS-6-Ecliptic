@@ -60,6 +60,10 @@ public class DialogueManager : MonoBehaviour
         SentenceType = new Queue<Dialogue.DialogueType>();
         CharacterSFX = new Queue<AudioClip>();*/
         player = GameObject.Find("Player");
+        foreach (var item in decisionIndexList)
+        {
+            Debug.Log(item.ToString());
+        }
     }
 
     private void Update()
@@ -171,8 +175,12 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
-        if (DialogueIndexTracker != 0 && DialogueIndexTracker < dialogue.IndentVals.Length)
-        {
+        //Debug.Log(dialogue.IndentVals.Length);
+        //Debug.Log(DialogueIndexTracker);
+
+        if (DialogueIndexTracker != 0 && DialogueIndexTracker < dialogue.IndentVals.Length)  
+        { 
+                        Debug.Log("Finding dialogue");
             if (dialogue.IndentVals[DialogueIndexTracker] < dialogue.IndentVals[DialogueIndexTracker - 1])
             {
                 for (int i = DialogueIndexTracker; i < dialogue.IndentVals.Length; i++)
@@ -184,8 +192,7 @@ public class DialogueManager : MonoBehaviour
                     }
                 }
             }
-
-        }
+         }
         DeactivateDecisions(dialogue);
         //List<int> TempDecisionIndex = new List<int>();
         decisionIndexList.Clear();                                                    // this is for debugging purposes
@@ -274,7 +281,7 @@ public class DialogueManager : MonoBehaviour
 
     //        Debug.Log(decisionIndexList[i]);
             DecisionTexts[i].text = dialogue.line[decisionIndexList[i]].sentence;
-            DecisionTexts[i].color = new Vector4(1,1,1,0) ;
+            DecisionTexts[i].color = new Vector4(1,1,0,0) ;
         }
     }
     public void DeactivateDecisions(Dialogue dialogue)

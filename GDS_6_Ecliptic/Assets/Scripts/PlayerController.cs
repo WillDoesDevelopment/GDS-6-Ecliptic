@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     //Debug - remove for release
     public Vector3 teleportPos;
-    
+
 
     //Spawn
     Vector3 spawnPoint;
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (playerState == PlayerState.Freeze)
         {
-            
+
         }
         else if (playerState == PlayerState.Passive)
         {
@@ -169,9 +169,9 @@ public class PlayerController : MonoBehaviour
         moveDirection = new Vector3(moveDirection.x, inputY, moveDirection.z);
 
         //camera correction
-        if(playerState == PlayerState.Walk & mainCamera != null)
+        if (playerState == PlayerState.Walk & mainCamera != null)
         {
-            moveDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y,0) * moveDirection;
+            moveDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0) * moveDirection;
         }
         grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0; //credit benjamin esposito First Person Drifter
 
@@ -278,7 +278,7 @@ public class PlayerController : MonoBehaviour
 
         inputX = autoDir.x * c;
         inputZ = autoDir.z * c;
-        if(a < 0.1) { playerState = PlayerState.Dialogue; } //Stop when within 0.1m of destination
+        if (a < 0.1) { playerState = PlayerState.Dialogue; } //Stop when within 0.1m of destination
     }
 
     void Knockback()
@@ -293,7 +293,7 @@ public class PlayerController : MonoBehaviour
         transform.position += new Vector3(0, knockbackV.Evaluate(a), 0);
         //Debug.Log(a);
 
-        if(a == 1f)
+        if (a == 1f)
         {
             timer = 0;
             playerState = PlayerState.Walk;
@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour
     public void Damage()
     {
         health -= 1;
-        if(health == 0)
+        if (health == 0)
         {
             Respawn();
             //Restart or faint or something
