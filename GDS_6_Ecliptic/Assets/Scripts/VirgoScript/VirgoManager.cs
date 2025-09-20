@@ -8,16 +8,12 @@ public class VirgoManager : MonoBehaviour
     public DialogueTrigger DT;
   
     public GameObject VirgoDoor;
-
-<<<<<<< HEAD
-=======
     public GameObject credits;
     public GameObject title;
     public string level;
     public PlayerController CC;
     private bool isFinished = false;
 
->>>>>>> SMASH-DEMO
     // Start is called before the first frame update
     void Start()
     {
@@ -41,15 +37,12 @@ public class VirgoManager : MonoBehaviour
     {
         if (DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-<<<<<<< HEAD
+
             VirgoDoor.GetComponent<Animator>().SetBool("Reveal", true);
         }
     }
-=======
-            CC.playerState = PlayerState.Paused;
-            StartCoroutine(loadMenu());
-        }
-    }
+
+   /*
     IEnumerator loadMenu()
     {
         Debug.Log("Credits");
@@ -67,10 +60,6 @@ public class VirgoManager : MonoBehaviour
         credits.SetActive(true);
         yield return new WaitForSeconds(15f);
         SceneManager.LoadScene(level);
-    }
-
-
-
->>>>>>> SMASH-DEMO
+    }*/
 
 }

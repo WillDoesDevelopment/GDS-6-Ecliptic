@@ -9,15 +9,14 @@ public class MainMenu : MonoBehaviour
 {
     //basic main menu script
 
-    public string level;
+    
 
     public GameObject[] canvas;
 
     public GameObject[] controllerCanvas;
 
-    public Animator anim;
+
     public Animator anim2;
-    public GameObject orb;
 
     public EventSystem eventSystem;
 
@@ -56,7 +55,7 @@ public class MainMenu : MonoBehaviour
 
         
         anim2.GetComponent<Animator>().SetTrigger("Woosh");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneNumber);
         //StartCoroutine(Load());
         
     }
@@ -102,14 +101,7 @@ public class MainMenu : MonoBehaviour
         print("Quit!");
     }
 
-    IEnumerator Load()
-    {
-        //actually loads the game and has some animations to go with
-        yield return new WaitForSeconds(2f);
-        anim.GetComponent<Animator>().SetTrigger("Boop");
-        yield return new WaitForSeconds(4f);
-        SceneManager.LoadScene(level);
-    }
+
 
     public void ChangeFirstSelected(GameObject firstSelected)
     {
