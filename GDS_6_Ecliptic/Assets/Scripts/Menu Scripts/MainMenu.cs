@@ -27,10 +27,20 @@ public class MainMenu : MonoBehaviour
 
     private bool connected = false;
 
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
+    public static void OnBeforeSplashScreen()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+
+
     private void Awake()
     {
         //checks if the controller is connected
         controllerCheck();
+        Cursor.lockState = CursorLockMode.Locked;
  
     }
 
