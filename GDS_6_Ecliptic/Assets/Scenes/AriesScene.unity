@@ -5425,11 +5425,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 40
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
   orthographic: 0
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5452,8 +5452,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231926473}
-  m_LocalRotation: {x: 0.19964889, y: -0.3985681, z: 0.08931926, w: 0.8906772}
-  m_LocalPosition: {x: -36.239998, y: 6.31, z: -51.54}
+  m_LocalRotation: {x: 0.2738753, y: -0.02711204, z: 0.00772383, w: 0.961352}
+  m_LocalPosition: {x: -48.89, y: 8.12, z: -61.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35670,6 +35670,10 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 231926473}
     - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: stepVolume
       value: 0.8
