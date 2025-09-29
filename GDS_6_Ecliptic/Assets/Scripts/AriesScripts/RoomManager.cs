@@ -11,6 +11,7 @@ public class RoomManager : MonoBehaviour
     public GameObject Aries;
     public GameObject ResetRamObj;
     public GameObject Resetdialogue;
+    public GameObject ResetSmallRam;
 
     [Header("Orb Objects")]
     public GameObject startDia;
@@ -148,6 +149,7 @@ public class RoomManager : MonoBehaviour
             {
                 resetGoldRam();
                 Resetdialogue.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+
             }
         }
         else
@@ -175,10 +177,19 @@ public class RoomManager : MonoBehaviour
         deadRamSnd.SetActive(false);
         NormalRamSnd.SetActive(false);
         GoldenRamSnd.SetActive(false);
+
+        if(NormalSheep.gameObject.GetComponent<Dialogue>().DialogueMode == Dialogue.DialogueState.Finished)
+        {
+            ResetSmallRam.gameObject.SetActive(false);
+        }
     }
 
     public void resetGoldRam()
     {
+        if (NormalSheep.gameObject.GetComponent<Dialogue>().DialogueMode == Dialogue.DialogueState.Finished)
+        {
+            ResetSmallRam.gameObject.SetActive(false);
+        }
         GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, GoldRamStartRot);
         Destroy(GoldSheep.transform.parent.gameObject);
         GoldSheep = Temp.transform.Find("DialogueTriggerPrefab").gameObject;

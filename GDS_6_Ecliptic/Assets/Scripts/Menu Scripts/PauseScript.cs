@@ -51,7 +51,7 @@ public class PauseScript : MonoBehaviour
         SelectedSNDCheck();
 
         // when pause button is pressed we pause or unpause
-        if (Input.GetKeyDown(KeyCode.Escape)  || InputController.Player.Pause.triggered || InputController.Player.Back.triggered)
+        if (Input.GetKeyDown(KeyCode.Escape)  || InputController.Player.Pause.triggered)
         {
             if (Paused == false)
             {
@@ -62,6 +62,14 @@ public class PauseScript : MonoBehaviour
                 Resume();
             }
 
+        }
+
+        if (Paused == true)
+        {
+            if (InputController.UI.Cancel.triggered)
+            {
+                Resume();
+            }
         }
 
         if (Input.GetButtonDown("RESET TO MENU"))
