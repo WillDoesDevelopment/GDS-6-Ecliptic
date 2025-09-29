@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.011507869, g: 0.00030832784, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.011188205, g: 0.0002972156, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5141,6 +5141,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6981412706319783120, guid: 149a50204fa43be42a1a9d8286391716, type: 3}
+--- !u!1 &215334873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2728799479131046370, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+  m_PrefabInstance: {fileID: 8759757638799762402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &225307534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7330,6 +7335,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3019616672412295913, guid: 550a28ddeab387047b1314541cebd0a1, type: 3}
   m_PrefabInstance: {fileID: 1792713284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &344933591 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5366026400625008939, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+  m_PrefabInstance: {fileID: 8759757638799762402}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &345474989
 PrefabInstance:
@@ -44919,6 +44929,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3642574548008584730, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5366026400257558385, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -44927,9 +44941,17 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 689838356}
+    - target: {fileID: 5366026400625008939, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5366026400890762224, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: m_Name
       value: NewPauseUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366026400890762224, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5366026400890762228, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: m_Pivot.x
@@ -45019,6 +45041,22 @@ PrefabInstance:
       propertyPath: HM
       value: 
       objectReference: {fileID: 2039047842}
+    - target: {fileID: 5366026400890762231, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 21182259}
+    - target: {fileID: 5366026400890762231, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: panelCanvas.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366026400890762231, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: panelCanvas.Array.data[0]
+      value: 
+      objectReference: {fileID: 344933591}
+    - target: {fileID: 5366026400890762231, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: panelCanvas.Array.data[1]
+      value: 
+      objectReference: {fileID: 215334873}
     - target: {fileID: 5568563255926916331, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
