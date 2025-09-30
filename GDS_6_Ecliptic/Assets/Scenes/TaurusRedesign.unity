@@ -30075,6 +30075,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8944439769904862093, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 1313919468}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1313919470 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 1313919468}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1332408674
 GameObject:
   m_ObjectHideFlags: 0
@@ -30201,6 +30206,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 888469159}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1385093410}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 772081480}
@@ -30228,6 +30237,18 @@ PrefabInstance:
       propertyPath: StageNumber
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 815c7991d3602b04ea33d3ce1da639d9, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 7583722161636961893, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -30308,6 +30329,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7583722161636961893, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 1385093407}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1385093410 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 1385093407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1389846993 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
@@ -30333,6 +30359,10 @@ MonoBehaviour:
   ThisAnim: {fileID: 1859104229}
   StageNumber: 0
   BackToHub: 0
+  rend: {fileID: 1859104230}
+  mat:
+  - {fileID: 2100000, guid: 815c7991d3602b04ea33d3ce1da639d9, type: 2}
+  - {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
   HM: {fileID: 0}
 --- !u!1 &1395649705
 GameObject:
@@ -43801,6 +43831,10 @@ MonoBehaviour:
   ThisAnim: {fileID: 1815641281}
   StageNumber: 0
   BackToHub: 0
+  rend: {fileID: 1313919470}
+  mat:
+  - {fileID: 2100000, guid: 815c7991d3602b04ea33d3ce1da639d9, type: 2}
+  - {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
   HM: {fileID: 0}
 --- !u!1 &1713960714
 GameObject:
@@ -44121,6 +44155,11 @@ PrefabInstance:
     - {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
     - {fileID: 739613153149494421, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+--- !u!23 &1727953159 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 1727953158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1729957659
 GameObject:
   m_ObjectHideFlags: 0
@@ -45272,6 +45311,11 @@ PrefabInstance:
 --- !u!95 &1859104229 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1830916836422594956, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 1859104228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1859104230 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 1859104228}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1864132483
@@ -47399,6 +47443,10 @@ MonoBehaviour:
   ThisAnim: {fileID: 169068727}
   StageNumber: 0
   BackToHub: 0
+  rend: {fileID: 1727953159}
+  mat:
+  - {fileID: 2100000, guid: 815c7991d3602b04ea33d3ce1da639d9, type: 2}
+  - {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
   HM: {fileID: 0}
 --- !u!1001 &2005521949
 PrefabInstance:

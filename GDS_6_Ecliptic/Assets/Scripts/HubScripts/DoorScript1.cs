@@ -17,8 +17,11 @@ public class DoorScript1 : MonoBehaviour
     public int StageNumber;
     public bool BackToHub;
 
+    public Renderer rend;
+    public Material[] mat;
+
     //public AudioSource DoorSnd;
-    
+
     // at the moment each door script needs to know about the hub manager
     public HubManager HM;
     void Start()
@@ -38,6 +41,15 @@ public class DoorScript1 : MonoBehaviour
     }
     public void DoorOpenCheck()
     {
+        if (DS.IsOpen == true)
+        {
+            rend.material = mat[0];
+        }
+        else
+        {
+            rend.material = mat[1];
+        }
+
         if (proximity(Radius) && DS.IsOpen == true)
         {
             ThisAnim.SetBool("Animate", true);

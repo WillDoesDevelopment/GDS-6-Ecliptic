@@ -44,23 +44,28 @@ public class DoorScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(DS.IsOpen == true)
-        {
-            rend.material = mat[0];
-        }
+        
     }
     public void DoorOpenCheck()
     {
-        if (proximity(Radius) && DS.IsOpen == true)
+        if (DS.IsOpen == true)
         {
             rend.material = mat[0];
+        } else
+        {
+            rend.material = mat[1];
+        }
+
+        if (proximity(Radius) && DS.IsOpen == true)
+        {
+            //rend.material = mat[0];
             ThisAnim.SetBool("Animate", true); 
 
         }
         else
         {
             ThisAnim.SetBool("Animate", false);
-            rend.material = mat[1];
+            
         }
     }
     public void DoorEnteredCheck()
