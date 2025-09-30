@@ -279,7 +279,7 @@ public class PlayerController : MonoBehaviour
         if (a < 0.1) { playerState = PlayerState.Dialogue; } //Stop when within 0.1m of destination
     }
 
-    void Knockback()
+    public void Knockback()
     {
         timer += Time.deltaTime;
 

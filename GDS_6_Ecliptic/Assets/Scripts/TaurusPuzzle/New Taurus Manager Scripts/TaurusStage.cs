@@ -75,15 +75,15 @@ public class TaurusStage : MonoBehaviour
         if (bullDist >= barrierBuffer)
         {
             barrierObject.SetActive(false);
-            print(bull + "... is getting here");
+            //print(bull + "... is getting here");
         }
         else
         {
             barrierObject.SetActive(true);
-            print(bull + "... is NOT getting here");
+            //print(bull + "... is NOT getting here");
         }
 
-        print(bull + "is" + bullDist);
+        //print(bull + "is" + bullDist);
         
 
         rend.material.SetFloat("_Transparency", Mathf.Clamp(bullDist, 0, 1));
@@ -93,9 +93,10 @@ public class TaurusStage : MonoBehaviour
     {
         if (Vector3.Distance(Player.transform.position, bull.transform.position) < 1f)
         {
-            Player.GetComponent<PlayerController>().Damage();
-            Player.GetComponent<DialogueTrigger>().OnEventCheck();
-            Player.GetComponent<DialogueTrigger>().OnEvent = false;
+            player.GetComponent<blooood>().blood();
+            //Player.GetComponent<PlayerController>().Damage();
+            //Player.GetComponent<DialogueTrigger>().OnEventCheck();
+            //Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
             //this teleports the player without being over written by the character controller
             Player.GetComponent<CharacterController>().enabled = false;
@@ -103,7 +104,7 @@ public class TaurusStage : MonoBehaviour
             Player.GetComponent<CharacterController>().enabled = true;
 
 
-            Debug.Log(Player.transform.position);
+            //Debug.Log(Player.transform.position);
 
             Artifact.transform.position = ArtifactResetPos;
             bull.transform.position = BullResetPos;
@@ -172,13 +173,13 @@ public class TaurusStage : MonoBehaviour
     {
 
         vfxCircle.GetComponent<VFXCircleHandler>().circleVFXStart();
-        Debug.Log("I got to here!");
+        //Debug.Log("I got to here!");
        
     }
 
     public void RoomWinDondition(GameObject HO, GameObject Player)
     {
-        print("Activated Now!");
+        //print("Activated Now!");
         this.TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
         HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         HO.transform.DetachChildren();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public class AINavMesh : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class AINavMesh : MonoBehaviour
     bool playDaftPunk = false;
 
     public Animator PlayerAnim;
+
+    
     private void Awake()
     {
         foreach (Transform t in positions)
@@ -102,8 +105,7 @@ public class AINavMesh : MonoBehaviour
         {
             if (c.gameObject == Player)
             {
-              
-                //TM.Resetting();
+               
             }
         }
     }
