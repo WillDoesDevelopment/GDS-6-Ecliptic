@@ -32,8 +32,6 @@ public class PauseScript : MonoBehaviour
     public float holdTime = 5.0f;
 
     public bool Quitting = false;
-
-    public GameObject[] panelCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +49,7 @@ public class PauseScript : MonoBehaviour
         SelectedSNDCheck();
 
         // when pause button is pressed we pause or unpause
-        if (Input.GetKeyDown(KeyCode.Escape)  || InputController.Player.Pause.triggered)
+        if (Input.GetKeyDown(KeyCode.Escape)  || InputController.Player.Pause.triggered) //|| Input.GetButtonDown("Cancel")
         {
             if (Paused == false)
             {
@@ -62,14 +60,6 @@ public class PauseScript : MonoBehaviour
                 Resume();
             }
 
-        }
-
-        if (Paused == true)
-        {
-            if (InputController.UI.Cancel.triggered)
-            {
-                Resume();
-            }
         }
 
         if (Input.GetButtonDown("RESET TO MENU"))
@@ -102,9 +92,7 @@ public class PauseScript : MonoBehaviour
     //the menu will call the "Resume" function
     public void Resume()
     {
-        eventSystem.SetSelectedGameObject(SettingsFirstSelect);
-        panelCanvas[0].SetActive(true);
-        panelCanvas[1].SetActive(false);
+        eventSystem.SetSelectedGameObject(LastSelected);
         // gets rid of menu. will become an animation later
         PauseSnd.Play();
         PauseUI.SetActive(false);
