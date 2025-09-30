@@ -12,10 +12,11 @@ public class RoomManager : MonoBehaviour
     public GameObject ResetRamObj;
     public GameObject Resetdialogue;
     public GameObject ResetSmallRam;
+    public GameObject NsheepAnim;
 
     [Header("Orb Objects")]
-    public GameObject startDia;
-    public GameObject orb;
+    //public GameObject startDia;
+    //public GameObject orb;
 
     [Header("VFX & Managers")]
     // object that activates vfx circle
@@ -42,10 +43,11 @@ public class RoomManager : MonoBehaviour
     public GameObject SuccessSND;
 
     private bool isPlayed;
-    public bool isOrbed = false;
+    public bool sheeped = false;
+    //public bool isOrbed = false;
     void Start()
     {
-        orb.GetComponent<OrbMovementAries>().OrbIdle();
+        //orb.GetComponent<OrbMovementAries>().OrbIdle();
         VFXCH.circleVFXStart();
         PlayerStartPos = Player.transform.position;
         GoldRamStartPos = GoldSheep.transform.parent.transform.position;
@@ -54,7 +56,7 @@ public class RoomManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         displayResetRam();
         //Debug.Log("TestDT" + TestDt);
@@ -83,21 +85,26 @@ public class RoomManager : MonoBehaviour
             
         }
 
-        if (DialogueEndcheck(startDia.GetComponent<DialogueTrigger>()) && isOrbed == false)
+        /* (DialogueEndcheck(startDia.GetComponent<DialogueTrigger>()) && isOrbed == false)
         {
             orb.GetComponent<OrbMovementAries>().OrbMove();
 
-        }
+        }*/
 
-        if (NormalSheep.gameObject.activeInHierarchy)
+        if (NormalSheep.gameObject.activeInHierarchy && sheeped == false)
         {
             //GoldSheep.SetActive(true);
             if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
             {
                 GoldSheep.SetActive(false);
-                NormalSheep.transform.parent.GetComponent<Animator>().SetTrigger("Animate");
-                NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
-
+                //print("Baby sheep");
+                NormalSheep.GetComponent<Animator>().SetTrigger("Animate");
+                NsheepAnim.GetComponent<Animator>().SetTrigger("Animate");
+                sheeped = true;
+                //NormalSheep.GetComponentInChildren<Animator>().SetTrigger("Animate");
+                //NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
+                //NormalSheep.transform.parent.GetChild(1).GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+                //
             }
 
         }
@@ -105,7 +112,8 @@ public class RoomManager : MonoBehaviour
         {
             if (DialogueEndcheck(sheepDeathDT))
             {
-
+                //print("Death DT triggered");
+                sheepDeathDT.gameObject.SetActive(false);
                 GoldSheep.SetActive(true);
             }
         }
@@ -145,6 +153,7 @@ public class RoomManager : MonoBehaviour
             ResetRamObj.GetComponent<Animator>().SetBool("FadeIn", true);
             ResetRamObj.GetComponent<DialogueTrigger>().enabled = true;
             Resetdialogue.SetActive(true);
+            
             if (DialogueEndcheck(ResetRamObj.GetComponent<DialogueTrigger>()))
             {
                 resetGoldRam();
@@ -178,18 +187,12 @@ public class RoomManager : MonoBehaviour
         NormalRamSnd.SetActive(false);
         GoldenRamSnd.SetActive(false);
 
-        if(NormalSheep.gameObject.GetComponent<Dialogue>().DialogueMode == Dialogue.DialogueState.Finished)
-        {
-            ResetSmallRam.gameObject.SetActive(false);
-        }
+
     }
 
     public void resetGoldRam()
     {
-        if (NormalSheep.gameObject.GetComponent<Dialogue>().DialogueMode == Dialogue.DialogueState.Finished)
-        {
-            ResetSmallRam.gameObject.SetActive(false);
-        }
+       
         GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, GoldRamStartRot);
         Destroy(GoldSheep.transform.parent.gameObject);
         GoldSheep = Temp.transform.Find("DialogueTriggerPrefab").gameObject;
