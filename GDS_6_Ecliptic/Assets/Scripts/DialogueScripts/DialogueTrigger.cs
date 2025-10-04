@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 public class DialogueTrigger : MonoBehaviour
 {
-
     // seen in editor
     public Dialogue dialogue;
 
@@ -26,7 +25,9 @@ public class DialogueTrigger : MonoBehaviour
     public bool IsDone => dialogue.DialogueMode == Dialogue.DialogueState.Finished;
     public bool IsTrigger => !OnStart && !OnEvent;
 
-    void Awake()
+	PlayerController PlayerCon;
+
+	void Awake()
     {
         // instead of finding it in editor
         Dm = FindObjectOfType<DialogueManager>();
@@ -34,7 +35,8 @@ public class DialogueTrigger : MonoBehaviour
     }
     private void Start()
     {
-        OnStartCheck();
+        PlayerCon = FindObjectOfType<PlayerController>();
+		OnStartCheck();
     }
     void Update()
     {
@@ -75,7 +77,7 @@ public class DialogueTrigger : MonoBehaviour
             {
                 //Debug.Log("In range");
                 Dm.proximityBool = true;
-                if (Input.GetKeyDown(KeyCode.Return) ^ Input.GetKeyUp(KeyCode.JoystickButton1))
+                if (PlayerCon.InputController.Player.Accept.triggered)
                 {
                     TriggerDialogue();
                 }
@@ -86,7 +88,7 @@ public class DialogueTrigger : MonoBehaviour
         else if (dialogue.DialogueMode == Dialogue.DialogueState.InProgress)
         {
             
-            if (Input.GetKeyDown(KeyCode.Return) ^ Input.GetKeyUp(KeyCode.JoystickButton1) )
+            if (PlayerCon.InputController.Player.Accept.triggered)
             {
                 //Debug.Log("CallingNextDialogue");
                 // end dialogue must be done first otherwise our Next dialogue in dialogue manager will check for no sentences left and stop the dialogue before we can exit the dialogue in dialogue trigger

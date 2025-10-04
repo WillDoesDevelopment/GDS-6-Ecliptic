@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject mainCamera;
     public Animator PlayerAnim;
     //Movement
-    Ecliptic02 InputController;
+    public Ecliptic02 InputController;
     CharacterController controller;
     float inputX;
     float inputY;
@@ -58,16 +58,16 @@ public class PlayerController : MonoBehaviour
     //Spawn
     Vector3 spawnPoint;
 
-
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
-        InputController = new Ecliptic02();
-        InputController.Enable();
-        //InputController.controlSchemes[0]
-        //InputController.bindingMask = InputBinding.MaskByGroup("Switch Pro");
+		InputController = new Ecliptic02();
+		InputController.Player.Enable();
+        InputController.UI.Disable();
+		//InputController.controlSchemes[0]
+		//InputController.bindingMask = InputBinding.MaskByGroup("Switch Pro");
 
-        isPaused = false;
+		isPaused = false;
 
         // Spawn
         spawnPoint = transform.position;
