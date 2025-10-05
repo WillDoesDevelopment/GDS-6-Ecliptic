@@ -51,6 +51,7 @@ public class RoomManager : MonoBehaviour
         VFXCH.circleVFXStart();
         PlayerStartPos = Player.transform.position;
         GoldRamStartPos = GoldSheep.transform.parent.transform.position;
+        GoldSheep.SetActive(true);
         GoldRamStartRot = GoldSheep.transform.parent.transform.rotation;
         //Cursor.lockState = CursorLockMode.Locked;
     }
@@ -93,7 +94,7 @@ public class RoomManager : MonoBehaviour
 
         if (NormalSheep.gameObject.activeInHierarchy && sheeped == false)
         {
-            //GoldSheep.SetActive(true);
+            
             if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
             {
                 GoldSheep.SetActive(false);
