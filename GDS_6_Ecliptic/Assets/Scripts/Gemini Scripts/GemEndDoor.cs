@@ -21,7 +21,7 @@ public class GemEndDoor : MonoBehaviour
 
         if (polcasDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            finalDT.GetComponent<DialogueTrigger>().OnEventCheck();
+            StartCoroutine(waiturdamnturn());
         }
 
     }
@@ -36,4 +36,11 @@ public class GemEndDoor : MonoBehaviour
         }
 
     }
+
+    IEnumerator waiturdamnturn()
+    {
+        yield return new WaitForSeconds(1f);
+        finalDT.GetComponent<DialogueTrigger>().OnEventCheck();
+    }
+
 }
