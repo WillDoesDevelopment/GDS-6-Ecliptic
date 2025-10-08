@@ -88,9 +88,9 @@ public class arrowScript : MonoBehaviour
 
             Temp.SetActive(false);
 
-            Temp.GetComponent<DialogueTrigger>().OnEventCheck();
-            Temp.GetComponent<DialogueTrigger>().OnEvent = false;
-
+            DialogueTrigger Trigger = Temp.GetComponentsInChildren<DialogueTrigger>()[1];
+            Trigger.OnEventCheck();
+            Trigger.OnEvent = false;
 
             RM.PlaySnd(RM.deadRamSnd);
         }
