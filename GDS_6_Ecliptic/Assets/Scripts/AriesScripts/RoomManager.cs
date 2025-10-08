@@ -92,7 +92,7 @@ public class RoomManager : MonoBehaviour
 
         }*/
 
-        if (NormalSheep.gameObject.activeInHierarchy && sheeped == false)
+        if (NormalSheep.gameObject.activeInHierarchy /*&& sheeped == false*/)
         {
             
             if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
@@ -104,16 +104,17 @@ public class RoomManager : MonoBehaviour
                 sheeped = true;
                 //NormalSheep.GetComponentInChildren<Animator>().SetTrigger("Animate");
                 //NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
-                //NormalSheep.transform.parent.GetChild(1).GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+                //NormalSheep.GetComponentInChildren<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.Finished;
                 //
             }
 
         }
         else
         {
+            Debug.LogError("Made it here in one piece.");
             if (DialogueEndcheck(sheepDeathDT))
             {
-                //print("Death DT triggered");
+                Debug.LogError("Death DT triggered");
                 sheepDeathDT.gameObject.SetActive(false);
                 GoldSheep.SetActive(true);
             }
