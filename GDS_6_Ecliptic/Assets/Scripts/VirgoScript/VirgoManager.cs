@@ -52,11 +52,11 @@ public class VirgoManager : MonoBehaviour
         Debug.Log("Credits");
         yield return new WaitForSeconds(3f);
         title.SetActive(true);
-        yield return new WaitForSeconds(3f);
+        /*yield return new WaitForSeconds(3f);
 		print("Going");
         credits.SetActive(true);
         yield return new WaitForSeconds(85f);
-        reLoad();
+        reLoad();*/
 
     }
 
