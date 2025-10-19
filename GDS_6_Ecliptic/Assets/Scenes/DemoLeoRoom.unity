@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 946519693}
-  m_IndirectSpecularColor: {r: 0.12904146, g: 0.0067665232, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.058494173, g: 0.0032512713, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -186,7 +186,15 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7999545414356764206, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8072375556475778784, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490829136179490722, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -196,15 +204,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490724, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: 28.24
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490724, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.08
+      value: -87.455
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490724, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.63
+      value: 94.81
       objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490724, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: m_LocalRotation.w
@@ -234,9 +242,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: canWalk
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 472082485}
+    - target: {fileID: 8490829136179490725, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: playerState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8490829136179490732, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490829136179490732, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8585224175187368918, guid: 708da7a4c81d6ac4b9e82c0cf573e449, type: 3}
       propertyPath: m_Enabled
@@ -700,6 +724,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 606613187997855666, guid: 58c56218985612d4fb431ddd1e253b87, type: 3}
   m_PrefabInstance: {fileID: 1584311935}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &784026253 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4731691729103838188, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
+  m_PrefabInstance: {fileID: 1588232817}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50e286e2aead6c040ac1021c97b840ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &895740945
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,6 +933,7 @@ GameObject:
   - component: {fileID: 956523482}
   - component: {fileID: 956523484}
   - component: {fileID: 956523485}
+  - component: {fileID: 956523486}
   m_Layer: 0
   m_Name: Room Manager
   m_TagString: Untagged
@@ -1048,11 +1084,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956523479}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 779a5983a1668d641996938688fcdaf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  credits: {fileID: 967891292}
+  title: {fileID: 481171002}
+  level: MainMenu
+--- !u!114 &956523486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956523479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3223e7873acdec4abaa6c780948a403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DT: {fileID: 784026253}
+  VirtualCam: {fileID: 895740945}
   credits: {fileID: 967891292}
   title: {fileID: 481171002}
   level: MainMenu
@@ -1711,7 +1764,7 @@ PrefabInstance:
       objectReference: {fileID: 156973064}
     - target: {fileID: 4731691729103838188, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: radius
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4731691729103838188, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: OnEvent
