@@ -152,7 +152,7 @@ public class HubManager : MonoBehaviour
         TransitionAnim.SetTrigger("Animate");
         
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
 
     }
 

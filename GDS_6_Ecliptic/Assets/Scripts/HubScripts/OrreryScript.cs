@@ -145,7 +145,11 @@ public class OrreryScript : MonoBehaviour
     public void StartDialogue()
     {
 
-          StartDialoguetriggers[HubManager.LevelNumber].gameObject.SetActive(true);
+        if (StartDialoguetriggers[HubManager.LevelNumber].gameObject != null)
+        {
+            StartDialoguetriggers[HubManager.LevelNumber].gameObject.SetActive(true);
+        }  
+        
         
     }
 
