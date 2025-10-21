@@ -10,7 +10,8 @@ public class DoorScript : MonoBehaviour
     //for collision checking
     public GameObject Player;
 
-    public float Radius = 5;
+    public float AnimateRadius = 5;
+    public float EnterRadius = 2;
 
     public Animator ThisAnim;
 
@@ -56,7 +57,7 @@ public class DoorScript : MonoBehaviour
             rend.material = mat[1];
         }
 
-        if (proximity(Radius) && DS.IsOpen == true)
+        if (proximity(AnimateRadius) && DS.IsOpen == true)
         {
             //rend.material = mat[0];
             ThisAnim.SetBool("Animate", true); 
@@ -70,7 +71,7 @@ public class DoorScript : MonoBehaviour
     }
     public void DoorEnteredCheck()
     {
-        if (proximity(2))
+        if (proximity(EnterRadius))
         {
             if (BackToHub)
             {
