@@ -9,6 +9,7 @@ public class introCineCamScript : MonoBehaviour
 
     public Animator anim;
     public Animator anim2;
+    public Animator vcamanim;
     public GameObject plyer;
     public GameObject star;
     public string levelName;
@@ -77,8 +78,8 @@ public class introCineCamScript : MonoBehaviour
         anim.SetTrigger("End"); // STOP THAT! ZOOM CAMERA OUT
         //yield return new WaitForSeconds(f);
         StartSpin = true;   
-        
-        yield return new WaitForSeconds(9f);
+        vcamanim.SetTrigger("FadeVCam");
+        yield return new WaitForSeconds(7f);
         SceneManager.LoadScene(2); // GOES TO HUB AFTER THAT SOUNDS DONE
 
 
