@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03873136, g: 0.18453547, b: 0.29338616, a: 1}
+  m_IndirectSpecularColor: {r: 0.03907612, g: 0.18651626, b: 0.29637077, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2948,7 +2948,8 @@ MonoBehaviour:
     SceneNum: 4
     IsOpen: 0
   Player: {fileID: 8490829134853015848}
-  Radius: 2
+  AnimateRadius: 5
+  EnterRadius: 2
   ThisAnim: {fileID: 8124502460510428038}
   StageNumber: 3
   BackToHub: 1
@@ -21327,8 +21328,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.85
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -21385,14 +21386,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038273780}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.6111016, y: 0.35633263, z: -0.32572097, w: 0.627286}
+  m_LocalPosition: {x: 0, y: 9.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 87.194, y: 90.979, z: 33.29}
 --- !u!114 &1038273783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30190,7 +30191,8 @@ MonoBehaviour:
     SceneNum: 4
     IsOpen: 0
   Player: {fileID: 8490829134853015848}
-  Radius: 2
+  AnimateRadius: 5
+  EnterRadius: 2
   ThisAnim: {fileID: 8124502460510428038}
   StageNumber: 3
   BackToHub: 1
@@ -32624,7 +32626,8 @@ MonoBehaviour:
     SceneNum: 4
     IsOpen: 0
   Player: {fileID: 8490829134853015848}
-  Radius: 2
+  AnimateRadius: 5
+  EnterRadius: 2
   ThisAnim: {fileID: 8124502460510428038}
   StageNumber: 3
   BackToHub: 1
@@ -36129,8 +36132,12 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 896970c8a8670834bb4be22e7d3c4034, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9856665
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 896970c8a8670834bb4be22e7d3c4034, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.6
+      value: -13.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 896970c8a8670834bb4be22e7d3c4034, type: 3}
       propertyPath: m_LocalPosition.y
@@ -36178,7 +36185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2218379409888497361, guid: 896970c8a8670834bb4be22e7d3c4034, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.0251564
+      value: 1.0328255
       objectReference: {fileID: 0}
     - target: {fileID: -2218379409888497361, guid: 896970c8a8670834bb4be22e7d3c4034, type: 3}
       propertyPath: m_LocalScale.z
@@ -36186,7 +36193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2218379409888497361, guid: 896970c8a8670834bb4be22e7d3c4034, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.4
+      value: 14.28
       objectReference: {fileID: 0}
     - target: {fileID: -2218379409888497361, guid: 896970c8a8670834bb4be22e7d3c4034, type: 3}
       propertyPath: m_LocalPosition.y
@@ -37803,7 +37810,8 @@ MonoBehaviour:
     SceneNum: 4
     IsOpen: 0
   Player: {fileID: 8490829134853015848}
-  Radius: 2
+  AnimateRadius: 5
+  EnterRadius: 2
   ThisAnim: {fileID: 8124502460510428038}
   StageNumber: 3
   BackToHub: 1
@@ -41516,7 +41524,8 @@ MonoBehaviour:
     SceneNum: 4
     IsOpen: 0
   Player: {fileID: 8490829134853015848}
-  Radius: 2
+  AnimateRadius: 5
+  EnterRadius: 2
   ThisAnim: {fileID: 8124502460510428038}
   StageNumber: 3
   BackToHub: 1
@@ -60777,7 +60786,8 @@ MonoBehaviour:
     SceneNum: 4
     IsOpen: 0
   Player: {fileID: 8490829134853015848}
-  Radius: 2
+  AnimateRadius: 5
+  EnterRadius: 2
   ThisAnim: {fileID: 8124502460510428038}
   StageNumber: 3
   BackToHub: 1
@@ -73788,7 +73798,8 @@ MonoBehaviour:
     SceneNum: 3
     IsOpen: 0
   Player: {fileID: 8490829134853015848}
-  Radius: 5
+  AnimateRadius: 5
+  EnterRadius: 2
   ThisAnim: {fileID: 1830916838022293927}
   StageNumber: 3
   BackToHub: 1
