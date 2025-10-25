@@ -5,12 +5,9 @@ using UnityEngine;
 
 public class GeminiManager : MonoBehaviour
 {
-    //public DialogueTrigger EndDialogue;
-    //public VFXCircleHandler VFXCH;
-
-    // need to know about both dialogue prefabs in the scene
-    //public GameObject startDT;
+  
     public GameObject EndDT;
+    public GameObject Snake2;
 
     public AudioSource SuccessSND;
 
@@ -30,7 +27,10 @@ public class GeminiManager : MonoBehaviour
         {
             SuccessSND.Play();
             played = true;
+            Snake2.SetActive(true);
         }
+
+        
     }
 
     

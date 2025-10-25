@@ -6,6 +6,8 @@ public class GemDoor : MonoBehaviour
 {
     public DoorScript DS;
     public GameObject EndDT;
+
+    public GameObject Snake2;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,7 @@ public class GemDoor : MonoBehaviour
         if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             DS.DS.IsOpen = true;
-            //Destroy(EndDT);
+            Snake2.GetComponent<Animator>().SetTrigger("Bye");
             return;
         }
     }
