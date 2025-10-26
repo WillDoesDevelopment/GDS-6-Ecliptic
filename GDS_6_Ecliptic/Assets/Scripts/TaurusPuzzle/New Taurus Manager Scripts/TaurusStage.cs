@@ -16,6 +16,8 @@ public class TaurusStage : MonoBehaviour
 
     public Animator anim;
 
+    public AudioSource GoodJobSND;
+
     public bool isOff = true;
 
     public Vector3 PlayerResetPos;
@@ -145,7 +147,7 @@ public class TaurusStage : MonoBehaviour
         {           /*            CollectedItems += 1;
                         if (CollectedItems <= 3)
                         {
-                            GoodJobSND.GetComponent<AudioSource>().Play();
+                            
                         }*/
             //Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
             
@@ -153,6 +155,7 @@ public class TaurusStage : MonoBehaviour
             if (stageCounter <= 2)
             {
                 this.TargetObject.transform.GetChild(1).GetComponent<DoorScript1>().DS.IsOpen = true;
+                GoodJobSND.GetComponent<AudioSource>().Play();
                 HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
                 HO.transform.DetachChildren();
                 Player.GetComponent<PickUpScript>().holding = false;
