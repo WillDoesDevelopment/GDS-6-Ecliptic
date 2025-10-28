@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00458342, g: 0.010366803, b: 0.11738482, a: 1}
+  m_IndirectSpecularColor: {r: 0.006795397, g: 0.014579384, b: 0.16611229, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -774,6 +774,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 49e2e1c88ea150e4e9b9217c29a06502, type: 3}
   m_PrefabInstance: {fileID: 1066207604}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &139415625
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139415623}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &158448617
 GameObject:
   m_ObjectHideFlags: 0
@@ -2173,7 +2187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348351885}
   m_LocalRotation: {x: 0.28392982, y: -0.06668334, z: 0.021597717, w: 0.9562797}
-  m_LocalPosition: {x: -1.6, y: 5.66, z: -12.2}
+  m_LocalPosition: {x: -1.6, y: 7.2, z: -14.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17105,7 +17119,7 @@ PrefabInstance:
       objectReference: {fileID: 1560073677}
     - target: {fileID: 5830700051032336145, guid: 2bcca63cf8b3f714f85dfc435e4c3cc8, type: 3}
       propertyPath: offset1.y
-      value: 9.7
+      value: 9.77
       objectReference: {fileID: 0}
     - target: {fileID: 5830700051032336145, guid: 2bcca63cf8b3f714f85dfc435e4c3cc8, type: 3}
       propertyPath: offset2.x
@@ -17113,11 +17127,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5830700051032336145, guid: 2bcca63cf8b3f714f85dfc435e4c3cc8, type: 3}
       propertyPath: offset2.y
-      value: -0.04
+      value: 4.22
       objectReference: {fileID: 0}
     - target: {fileID: 5830700051032336145, guid: 2bcca63cf8b3f714f85dfc435e4c3cc8, type: 3}
       propertyPath: offset2.z
-      value: 4.15
+      value: -3.04
       objectReference: {fileID: 0}
     - target: {fileID: 5830700051032336145, guid: 2bcca63cf8b3f714f85dfc435e4c3cc8, type: 3}
       propertyPath: RoomLeftPos
@@ -17153,11 +17167,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5830700051032336151, guid: 2bcca63cf8b3f714f85dfc435e4c3cc8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.66
+      value: 7.2
       objectReference: {fileID: 0}
     - target: {fileID: 5830700051032336151, guid: 2bcca63cf8b3f714f85dfc435e4c3cc8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.2
+      value: -14.81
       objectReference: {fileID: 0}
     - target: {fileID: 5830700051032336151, guid: 2bcca63cf8b3f714f85dfc435e4c3cc8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -23579,7 +23593,8 @@ MonoBehaviour:
     SceneNum: 4
     IsOpen: 0
   Player: {fileID: 1560073677}
-  Radius: 5
+  AnimateRadius: 5
+  EnterRadius: 2
   ThisAnim: {fileID: 1830916837078147338}
   StageNumber: 4
   BackToHub: 1

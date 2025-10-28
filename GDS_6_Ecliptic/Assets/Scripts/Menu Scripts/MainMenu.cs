@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
         canvas[1].SetActive(true);
         
         canvas[0].SetActive(false);
-        canvas[2].SetActive(false);
+        //canvas[2].SetActive(false);
     }
     /*public void SaveLoad()
     {
@@ -96,7 +96,7 @@ public class MainMenu : MonoBehaviour
         canvas[0].SetActive(true);
 
         canvas[1].SetActive(false);
-        canvas[2].SetActive(false);
+        //canvas[2].SetActive(false);
     }
 
     /*public void BackMenuBtn()
