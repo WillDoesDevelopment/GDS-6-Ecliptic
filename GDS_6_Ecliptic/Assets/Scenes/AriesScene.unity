@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 928322707}
-  m_IndirectSpecularColor: {r: 0.012944546, g: 0.0003254608, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.018412324, g: 0.0007451018, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19946,6 +19946,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3536702329365852974, guid: 4b2fcbc3f1f7bfe489bb64688c7c2f16, type: 3}
   m_PrefabInstance: {fileID: 956446917}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &960684891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3873319081359816422, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
+  m_PrefabInstance: {fileID: 1099363185}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &966177221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22801,55 +22806,63 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 543450653140878977}
+    m_TransformParent: {fileID: 543450653580623413}
     m_Modifications:
     - target: {fileID: 3873319081359816422, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_Name
       value: SparkleFX 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3873319081359816422, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873319081359816422, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
+      propertyPath: m_TagString
+      value: Spike
+      objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1841279
+      value: 0.1876633
       objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1841279
+      value: 0.18766332
       objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1841279
+      value: 0.18766335
       objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.024
+      value: -0.03199398
       objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.138
+      value: 0.13430908
       objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.047
+      value: -0.10094061
       objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.706991
       objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: -0.706991
       objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.012795208
       objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.012795208
       objectReference: {fileID: 0}
     - target: {fileID: 4063796500649586532, guid: 1738607b6a5c4db42b073f990be2e57e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -31120,6 +31133,7 @@ MonoBehaviour:
   Resetdialogue: {fileID: 1135282294}
   ResetSmallRam: {fileID: 1044763782}
   NsheepAnim: {fileID: 1044763782}
+  GoldRamFX: {fileID: 960684891}
   VFXCH: {fileID: 3970566854044868061}
   TestDt: {fileID: 1509297793}
   sheepDeathDT: {fileID: 4731691729539639967}
@@ -40196,7 +40210,8 @@ MonoBehaviour:
     SceneNum: 1
     IsOpen: 0
   Player: {fileID: 1442537224}
-  Radius: 5
+  AnimateRadius: 5
+  EnterRadius: 2
   ThisAnim: {fileID: 1785543454}
   StageNumber: 1
   BackToHub: 1
@@ -42338,7 +42353,6 @@ Transform:
   m_LocalScale: {x: 1.0192009, y: 1.019201, z: 1.0192009}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1767442069}
   - {fileID: 7142816568949133181}
   - {fileID: 1139415398645485755}
   - {fileID: 7793157066782649738}
@@ -42364,6 +42378,7 @@ Transform:
   m_Children:
   - {fileID: 543450653140878977}
   - {fileID: 235301533}
+  - {fileID: 1767442069}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 79.855, z: 0}
@@ -42778,7 +42793,7 @@ Transform:
   m_Children:
   - {fileID: 8647947099937510513}
   m_Father: {fileID: 543450653140878977}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1214126297013638247
 GameObject:
@@ -45915,7 +45930,8 @@ MonoBehaviour:
     SceneNum: 0
     IsOpen: 0
   Player: {fileID: 1442537224}
-  Radius: 5
+  AnimateRadius: 5
+  EnterRadius: 2
   ThisAnim: {fileID: 1830916838184541995}
   StageNumber: 0
   BackToHub: 0
@@ -46229,7 +46245,7 @@ Transform:
   - {fileID: 2307809412974049205}
   - {fileID: 2370848230685346840}
   m_Father: {fileID: 543450653140878977}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &7156395199985238057
 MeshRenderer:
@@ -46663,7 +46679,7 @@ Transform:
   m_Children:
   - {fileID: 8728298711904400641}
   m_Father: {fileID: 543450653140878977}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7794935453545460841
 Transform:

@@ -13,6 +13,7 @@ public class RoomManager : MonoBehaviour
     public GameObject Resetdialogue;
     public GameObject ResetSmallRam;
     public GameObject NsheepAnim;
+    public GameObject GoldRamFX;
 
     [Header("Orb Objects")]
     //public GameObject startDia;
@@ -52,7 +53,8 @@ public class RoomManager : MonoBehaviour
         PlayerStartPos = Player.transform.position;
         GoldRamStartPos = GoldSheep.transform.parent.transform.position;
         GoldSheep.SetActive(true);
-        GoldRamStartRot = GoldSheep.transform.parent.transform.rotation;
+        GoldRamFX.SetActive(true);
+    GoldRamStartRot = GoldSheep.transform.parent.transform.rotation;
         //Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -80,11 +82,17 @@ public class RoomManager : MonoBehaviour
         
         if (DialogueEndcheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
-            VFXCH.circleVFXStart(); 
+            VFXCH.circleVFXStart();
+            if (GameObject.FindWithTag("Spike") != null)
+            {
+                GameObject.FindWithTag("Spike").gameObject.SetActive(false);
+            }
             GoldSheep.transform.parent.GetComponent<Animator>().SetTrigger("AnimateTrig");
             GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
             
         }
+
+       
 
         /* (DialogueEndcheck(startDia.GetComponent<DialogueTrigger>()) && isOrbed == false)
         {
@@ -117,6 +125,8 @@ public class RoomManager : MonoBehaviour
                 Debug.LogError("Death DT triggered");
                 sheepDeathDT.gameObject.SetActive(false);
                 GoldSheep.SetActive(true);
+                GoldRamFX.SetActive(false);
+
             }
         }
         // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
@@ -200,6 +210,7 @@ public class RoomManager : MonoBehaviour
         GoldSheep = Temp.transform.Find("DialogueTriggerPrefab").gameObject;
         Temp.GetComponent<Animator>().SetBool("Animate", false);
         Temp.transform.Find("DialogueTriggerPrefab").gameObject.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+        Temp.transform.Find("SparkleFX 2").gameObject.SetActive(true);
     }
 
     public void PlaySnd(GameObject AS)
