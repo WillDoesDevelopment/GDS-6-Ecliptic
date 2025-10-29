@@ -53,6 +53,11 @@ public class DialogueManager : MonoBehaviour
     public AudioSource TextSnd;
     public AudioSource CharacterSND;
     private bool sndIsPlaying = false;
+
+    // Dialogue Buffers/Delays
+    private float skipBuffer = .5f;
+    private float charDelay = 0.02f;
+
     void Awake()
     {
         OtherDialogueBox.sprite = OtherDialogueBoxSprite;
@@ -192,11 +197,13 @@ public class DialogueManager : MonoBehaviour
                     }
                 }
             }
-         }
+        }
+
         DeactivateDecisions(dialogue);
         //List<int> TempDecisionIndex = new List<int>();
         decisionIndexList.Clear();                                                    // this is for debugging purposes
         decisionIndexList = DetectingDecisions(dialogue);
+
         if (CoroutineRunning)
         {
             //Debug.Log("skipping");
@@ -324,10 +331,11 @@ public class DialogueManager : MonoBehaviour
                     sndIsPlaying = true;
                     StartCoroutine(typingSnd());
                 }
-                yield return new WaitForSeconds(.02f);
+                yield return new WaitForSeconds(charDelay);
             }
             
         }
+        yield return new WaitForSeconds(skipBuffer);
         skip = false;
         CoroutineRunning = false;
 
