@@ -142,6 +142,8 @@ public class PlayerController : MonoBehaviour
         {
             Damage();
         }
+
+        Screenshot();
     }
 
     void PlayerInput()
@@ -350,4 +352,13 @@ public class PlayerController : MonoBehaviour
         knockbackEndPos = transform.position - transform.forward * knockbackDist;
         Knockback();
     }
+
+    public void Screenshot()
+    {
+        if (InputController.Player.Screenshot.WasPressedThisFrame())
+        {
+            StartCoroutine(gameIEnums.ScreenshotIEnum());
+        }
+    }
+
 }
