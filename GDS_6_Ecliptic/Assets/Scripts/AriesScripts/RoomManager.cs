@@ -83,9 +83,9 @@ public class RoomManager : MonoBehaviour
         if (DialogueEndcheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
             VFXCH.circleVFXStart();
-            if (GameObject.FindWithTag("Spike") != null)
+            if (GameObject.FindWithTag("Vfx") != null)
             {
-                GameObject.FindWithTag("Spike").gameObject.SetActive(false);
+                GameObject.FindWithTag("Vfx").gameObject.SetActive(false);
             }
             GoldSheep.transform.parent.GetComponent<Animator>().SetTrigger("AnimateTrig");
             GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
