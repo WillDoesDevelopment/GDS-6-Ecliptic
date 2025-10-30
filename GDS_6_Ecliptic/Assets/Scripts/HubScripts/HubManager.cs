@@ -48,7 +48,7 @@ public class HubManager : MonoBehaviour
     {
         if (DebugMode)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            /*if (Input.GetKeyDown(KeyCode.R))
             {
                 Scene scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(scene.name);
