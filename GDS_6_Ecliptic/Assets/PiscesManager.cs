@@ -24,7 +24,7 @@ public class PiscesManager : MonoBehaviour
     public GameObject player;
 
     [Header("Net")]
-    public GameObject net;
+    public GameObject[] net;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +32,6 @@ public class PiscesManager : MonoBehaviour
         //sets red material emissive on whaleshark for hit
         glowAmt[0].SetFloat("_Glow_Amount", 0);
         glowAmt[1].SetFloat("_Glow_Amount", 0);
-
-
         //set lerp timer to 0f.
         lerpTimer = 0f;
     }
@@ -50,45 +48,38 @@ public class PiscesManager : MonoBehaviour
     public void StartLerpToPosition() //controls the first half of the whales movement
     {
         lerpTimer += Time.deltaTime;//timepassed variable += time it is now
-        net.SetActive(false);
+        net[0].SetActive(false);
         SparklesFx.SetActive(false);
         player.transform.parent = whaleSharkObj.transform;
         whaleSharkObj.transform.position = Vector3.Lerp(wsTransforms[0], wsTransforms[4], lerpTimer/lerpDuration);
 
     }
 
-
-
-
-
-
-
-
     void EndLerpToPosition() //controls the second half of the whale movement from the middle platform to end
     {
+        lerpTimer += Time.deltaTime;
+        net[1].SetActive(false);
+        SparklesFx.SetActive(false);
         player.transform.parent = whaleSharkObj.transform;
-        //whaleSharkObj.transform.rotation = Quaternion.Slerp(whaleSharkObj.transform.rotation, Quaternion.Euler(wsRotations[1]), Time.deltaTime * lerpSpeed);
-        //whaleSharkObj.transform.position = Vector3.Lerp(whaleSharkObj.transform.position, wsTransforms[3], lerpSpeed);
+        whaleSharkObj.transform.rotation = Quaternion.Slerp(whaleSharkObj.transform.rotation, Quaternion.Euler(wsRotations[1]), lerpTimer / lerpDuration);
+        whaleSharkObj.transform.position = Vector3.Lerp(wsTransforms[0], wsTransforms[4], lerpTimer / lerpDuration);
     }
 
-    public void sharkHit() //when shark is it
+   
+    public IEnumerator sharkHit(GameObject obj)
     {
-        print("sharkHit");
-        var colliders = Physics.OverlapSphere(transform.position, .5f);
-        foreach (var collider in colliders)
+        
+        yield return new WaitForSeconds(1.5f);
+        isHit = true;
+        particleObject.transform.position = transform.position;
+        system.Emit(10);
+        player.GetComponent<PlayerController>().health -= 1;
+        if (player.GetComponent<PlayerController>().health == 0)
         {
-            if (collider.gameObject.tag == "Angler")
-            {
-                print("Hit Hit");
-                isHit = true;
-                particleObject.transform.position = transform.position;
-                player.GetComponent<PlayerController>().Damage();
-
-                system.Emit(2);
-                break;
-            }
-
+            player.GetComponent<PlayerController>().Respawn();
+            //Restart or faint or something
         }
+        obj.SetActive(false);
     }
 
     IEnumerator Hit() //actual changing of materials

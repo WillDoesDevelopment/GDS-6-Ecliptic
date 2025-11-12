@@ -16,12 +16,15 @@ public class sharkCollider : MonoBehaviour
        
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //first time
     {
+        
         if (other.CompareTag("Angler"))
         {
-            print("Angleeeer");
-            m_Manager.sharkHit();
+            other.GetComponent<AnglerManager>().spin = true;
+            GameObject obj = other.gameObject;
+            StartCoroutine(m_Manager.sharkHit(obj));
+
         }
     }
 

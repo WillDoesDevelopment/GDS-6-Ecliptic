@@ -207,7 +207,10 @@ public class Grapple3 : MonoBehaviour
                 {
                     SmashInteraction(); //break object
                 }
-                else
+                else if (target.GetComponent<AnglerManager>() != null)
+                {
+                    AnglerSpin(); //spin angler
+                }else
                 {
                     //Attatch and Pull Object
                     
@@ -288,6 +291,13 @@ public class Grapple3 : MonoBehaviour
     {
         target.GetComponent<BreakObject>().smash = true;        
         RopeBreak();        
+        target = null;
+    }
+
+    public void AnglerSpin()
+    {
+        target.GetComponent<AnglerManager>().spin = true;
+        RopeBreak();
         target = null;
     }
 
