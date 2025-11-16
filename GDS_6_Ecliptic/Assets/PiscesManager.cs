@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Cinemachine;
 
 public class PiscesManager : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PiscesManager : MonoBehaviour
 
     [Header("Player")]
     public GameObject player;
+    public CinemachineVirtualCamera vCam1;
+    public CinemachineVirtualCamera vCam2;
 
     [Header("Net")]
     public GameObject[] net;
@@ -34,10 +37,13 @@ public class PiscesManager : MonoBehaviour
 
     [Header("Dialogue")]
     public Dialogue[] dia;
+    public GameObject exitDoor;
 
     // Start is called before the first frame update
     void Start()
     {
+        vCam1.Priority = 10;
+        vCam2.Priority = 0;
         ang[0].SetActive(false);
         ang[1].SetActive(false);
         //sets red material emissive on whaleshark for hit
@@ -57,9 +63,14 @@ public class PiscesManager : MonoBehaviour
         }
 
         if (dia[0].DialogueMode == Dialogue.DialogueState.InProgress)
-        {
-            
+        {     
             MidLerpToPosition();
+        }
+
+        if (dia[1].DialogueMode == Dialogue.DialogueState.Finished)
+        {
+            exitDoor.GetComponent<DoorScript>().DS.IsOpen = true;
+
         }
 
     }
@@ -78,6 +89,7 @@ public class PiscesManager : MonoBehaviour
 
     void MidLerpToPosition() //controls the second half of the whale movement from the middle platform to end
     {
+        player.GetComponent<PlayerController>().health = 3;
         SparklesFx.SetActive(true);
         player.transform.parent = null;
         whaleSharkObj.SetActive(false);
@@ -89,6 +101,8 @@ public class PiscesManager : MonoBehaviour
 
     public void EndLerpToPosition()
     {
+        vCam1.Priority = 0;
+        vCam2.Priority = 10;
         slerpTimer += Time.deltaTime;
         net[1].SetActive(false);
         SparklesFx.SetActive(false);
@@ -108,6 +122,7 @@ public class PiscesManager : MonoBehaviour
         player.GetComponent<PlayerController>().health -= 1;
         if (player.GetComponent<PlayerController>().health == 0)
         {
+            PiscesReset();
             player.GetComponent<PlayerController>().Respawn();
             //Restart or faint or something
         }
@@ -155,5 +170,41 @@ public class PiscesManager : MonoBehaviour
 
     }
 
+
+    public void PiscesReset()
+    {
+        lerpTimer = 0f;
+        slerpTimer = 0f;
+
+        player.transform.parent = null;
+        whaleSharkObj.transform.position = wsTransforms[0];
+        whaleSharkObj.transform.localEulerAngles = wsRotations[0];
+        net[0].SetActive(true);
+        net[1].SetActive(true);
+
+        for (int i = 0; i < ang[0].transform.childCount; i++)
+        {
+            ang[0].transform.GetChild(i).gameObject.SetActive(true);
+        }
+        for (int i = 0; i < ang[1].transform.childCount; i++)
+        {
+            ang[1].transform.GetChild(i).gameObject.SetActive(true);
+        }
+
+        dia[0].DialogueMode = Dialogue.DialogueState.NotStarted;
+        dia[1].DialogueMode = Dialogue.DialogueState.NotStarted;
+
+        ang[0].SetActive(false);
+        ang[1].SetActive(false);
+
+        exitDoor.GetComponent<DoorScript>().DS.IsOpen = false;
+
+        vCam1.Priority = 10;
+        vCam2.Priority = 0;
+
+        AtoBStart = false;
+        go = false;
+
+    }
 
 }

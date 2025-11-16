@@ -35,10 +35,9 @@ public class AnglerManager : MonoBehaviour
 
     IEnumerator anglerSpin()
     {
-
-        this.gameObject.GetComponent<Animator>().SetTrigger("Spin");
         this.gameObject.GetComponent<SphereCollider>().enabled = false;
-        yield return new WaitForSeconds(2);
+        this.gameObject.GetComponent<Animator>().SetTrigger("Spin");
+        yield return new WaitForSeconds(1.5f);
         this.gameObject.SetActive(false);
         spin = false;
     }
