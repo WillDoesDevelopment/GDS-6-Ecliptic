@@ -6,7 +6,27 @@ public class StageEnabler : MonoBehaviour
 {
     public CapStage targetCapStage;
 
-    [ContextMenu("Update Capricorn Stage")]
+    public void UpdateCapStage(CapStage updateStage)
+    {
+        foreach (Transform child in transform)
+        {
+            //Debug.Log(child.name);
+
+            if (child.gameObject.TryGetComponent<CapStageHolder>(out CapStageHolder capStageHolder))
+            {
+                if ((capStageHolder.capStage & updateStage) != 0)
+                {
+                    child.gameObject.SetActive(true);
+                }
+                else
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+
+    [ContextMenu("Show Capricorn Stage")]
     void ShowCapStage()
     {
         foreach (Transform child in transform)
