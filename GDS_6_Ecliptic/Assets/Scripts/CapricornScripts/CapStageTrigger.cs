@@ -5,9 +5,11 @@ using UnityEngine;
 public class CapStageTrigger : MonoBehaviour
 {
     public GameObject player;
+    public GameObject nextTrigger;
     public StageEnabler parentStageEnabler;
     public CapStage nextCapStage;
     public float range = 5f;
+    public bool diasableAfterUse = true;
 
     // Update is called once per frame
     void Update()
@@ -15,7 +17,15 @@ public class CapStageTrigger : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) < range)
         {
             parentStageEnabler.UpdateCapStage(nextCapStage);
-            gameObject.SetActive(false);
+            if(nextTrigger != null)
+            {
+                nextTrigger.SetActive(true);
+            }
+            if(diasableAfterUse)
+            {
+                gameObject.SetActive(false);
+            }
+
         }
     }
 
