@@ -5,13 +5,18 @@ using UnityEngine;
 public class TileAppear : MonoBehaviour
 {
     public GameObject player;
-    bool visible = false;
+
     float range = 10f;
+    float clipAmount = 1f; //initial visibility
+    float prevClipAmount = -1f;
+    float dissolveSpeed = 0.6f;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        visible = false;
-        Hide();
+        //visible = false;
+        SetClip();
     }
 
     // Update is called once per frame
@@ -19,49 +24,43 @@ public class TileAppear : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, player.transform.position) < range)
         {
-            if (!visible)
-            {
-                visible = true;
-                Appear();
-            }
+            clipAmount = Mathf.MoveTowards(clipAmount,0f,Time.deltaTime * dissolveSpeed);
         }
         else
         {
-            if (visible)
-            {
-                visible = false;
-                Hide();
-            }
+            clipAmount = Mathf.MoveTowards(clipAmount, 1f, Time.deltaTime * dissolveSpeed);
         }
+
+        if(clipAmount != prevClipAmount)
+        {
+            SetClip();
+        } 
+
+        prevClipAmount = clipAmount;
     }
 
-    void Appear()
-    {
-        if (gameObject.TryGetComponent<MeshRenderer>(out MeshRenderer pRenderer))
-        {
-            pRenderer.enabled = true;
-        }
-        foreach (Transform child in transform)
-        {
-            if (child.gameObject.TryGetComponent<MeshRenderer>(out MeshRenderer renderer))
-            {
-                renderer.enabled = true;
-            }
-        }
-    }
 
-    void Hide()
+    void SetClip()
     {
+        /*
         if (gameObject.TryGetComponent<MeshRenderer>(out MeshRenderer pRenderer))
         {
             pRenderer.enabled = false;
         }
+        */
 
         foreach (Transform child in transform)
         {
             if (child.gameObject.TryGetComponent<MeshRenderer>(out MeshRenderer renderer))
-            {
-                renderer.enabled = false;
+            {                
+                //renderer.enabled = false;
+
+                foreach (Material mat in renderer.materials)
+                {
+                    mat.SetFloat("_Clip_Amt", clipAmount);//Shader VFX 
+                }
+                //renderer.material.SetFloat("_Clip_Amt", clipAmount);//Shader VFX 
+                
             }
         }
     }
