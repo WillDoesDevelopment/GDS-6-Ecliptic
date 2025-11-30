@@ -89,6 +89,7 @@ public class endingMan : MonoBehaviour
 
     IEnumerator Human()
     {
+        print("I got here");
         endStarted = true;
         pc.canWalk = false;
         yield return new WaitForSeconds(3f);
