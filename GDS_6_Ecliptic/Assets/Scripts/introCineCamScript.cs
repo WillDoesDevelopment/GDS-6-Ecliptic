@@ -9,6 +9,7 @@ public class introCineCamScript : MonoBehaviour
 
     public Animator anim;
     public Animator anim2;
+    public Animator vcamanim;
     public GameObject plyer;
     public GameObject star;
     public string levelName;
@@ -77,8 +78,8 @@ public class introCineCamScript : MonoBehaviour
         anim.SetTrigger("End"); // STOP THAT! ZOOM CAMERA OUT
         //yield return new WaitForSeconds(f);
         StartSpin = true;   
-        
-        yield return new WaitForSeconds(9f);
+        vcamanim.SetTrigger("FadeVCam");
+        yield return new WaitForSeconds(7f);
         SceneManager.LoadScene(2); // GOES TO HUB AFTER THAT SOUNDS DONE
 
 
@@ -96,7 +97,11 @@ public class introCineCamScript : MonoBehaviour
 
     public void DoorsOn()
     {
-        //This turns the emission on for all the doors, the platform and the podium.
+        for (int i = 0; i < Doors.Length; i++)
+        {
+            Doors[i].GetComponent<MeshRenderer>().material = doorMats[i];
+        }
+        /*//This turns the emission on for all the doors, the platform and the podium.
         Doors[0].GetComponent<MeshRenderer>().material = doorMats[0];
         Doors[1].GetComponent<MeshRenderer>().material = doorMats[1];
         Doors[2].GetComponent<MeshRenderer>().material = doorMats[2];
@@ -104,7 +109,7 @@ public class introCineCamScript : MonoBehaviour
         Doors[4].GetComponent<MeshRenderer>().material = doorMats[4];
 
         doorMats[5].EnableKeyword("_EMISSION");
-        doorMats[6].EnableKeyword("_EMISSION");
+        doorMats[12].EnableKeyword("_EMISSION");*/
     }
 
 }
