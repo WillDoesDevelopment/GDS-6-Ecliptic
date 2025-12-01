@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 553995925}
-  m_IndirectSpecularColor: {r: 0.015970767, g: 0, b: 0.034092903, a: 1}
+  m_IndirectSpecularColor: {r: 0.019624565, g: 0, b: 0.042968206, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16888,25 +16888,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 643f081d47f336d4aa7292e7c8bbc078, type: 3}
   m_PrefabInstance: {fileID: 1510839959}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1511232451 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2bb50255c980df44ba46c2069bf9afc6, type: 3}
-  m_PrefabInstance: {fileID: 2054999268}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1511232453
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511232451}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1001 &1537698407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26440,6 +26421,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2466747993191788143, guid: 2bb50255c980df44ba46c2069bf9afc6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2466747993191788143, guid: 2bb50255c980df44ba46c2069bf9afc6, type: 3}
       propertyPath: m_LocalPosition.y
       value: -115
       objectReference: {fileID: 0}
@@ -26478,6 +26463,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!64 &2054999271
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054999269}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3304521592968442657, guid: 2bb50255c980df44ba46c2069bf9afc6, type: 3}
 --- !u!1 &2082754562
 GameObject:
   m_ObjectHideFlags: 0

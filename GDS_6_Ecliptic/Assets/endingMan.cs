@@ -77,6 +77,7 @@ public class endingMan : MonoBehaviour
 
     IEnumerator endStartUp()
     {
+        globe.GetComponent<Animator>().SetTrigger("Act3Bob");
         endObj[0].SetActive(true);
         endObj[1].SetActive(true);
         pc.canWalk = false;
@@ -89,7 +90,6 @@ public class endingMan : MonoBehaviour
 
     IEnumerator Human()
     {
-        print("I got here");
         endStarted = true;
         pc.canWalk = false;
         yield return new WaitForSeconds(3f);
