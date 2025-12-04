@@ -57,7 +57,7 @@ public class StaircaseRepeat : MonoBehaviour
 
     void SpawnTopDecoration()
     {
-        GameObject newObject = Instantiate(decorationPrefabs[Random.Range(0,decorationPrefabs.Length)], stairSegments[stairSegments.Length-1].transform.position + new Vector3(-2f, 1.5f, 0f), Quaternion.identity);
+        GameObject newObject = Instantiate(decorationPrefabs[Random.Range(0,decorationPrefabs.Length)], stairSegments[stairSegments.Length-1].transform.position + new Vector3(Random.Range(-2f,2f), 1.5f, 0f), Quaternion.identity);
         newObject.transform.parent = stairSegments[stairSegments.Length - 1].transform;        
     }
     private void OnDrawGizmos()
