@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,13 +11,10 @@ public class RoomManager : MonoBehaviour
     public GameObject Aries;
     public GameObject ResetRamObj;
     public GameObject Resetdialogue;
-    public GameObject ResetSmallRam;
-    public GameObject NsheepAnim;
-    public GameObject GoldRamFX;
 
     [Header("Orb Objects")]
-    //public GameObject startDia;
-    //public GameObject orb;
+    public GameObject startDia;
+    public GameObject orb;
 
     [Header("VFX & Managers")]
     // object that activates vfx circle
@@ -44,22 +41,19 @@ public class RoomManager : MonoBehaviour
     public GameObject SuccessSND;
 
     private bool isPlayed;
-    public bool sheeped = false;
-    //public bool isOrbed = false;
+    public bool isOrbed = false;
     void Start()
     {
-        //orb.GetComponent<OrbMovementAries>().OrbIdle();
+        orb.GetComponent<OrbMovementAries>().OrbIdle();
         VFXCH.circleVFXStart();
         PlayerStartPos = Player.transform.position;
         GoldRamStartPos = GoldSheep.transform.parent.transform.position;
-        GoldSheep.SetActive(true);
-        GoldRamFX.SetActive(true);
-    GoldRamStartRot = GoldSheep.transform.parent.transform.rotation;
+        GoldRamStartRot = GoldSheep.transform.parent.transform.rotation;
         //Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         displayResetRam();
         //Debug.Log("TestDT" + TestDt);
@@ -79,54 +73,40 @@ public class RoomManager : MonoBehaviour
 
             SuccessSND.SetActive(true);
         }
-        
+
         if (DialogueEndcheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
             VFXCH.circleVFXStart();
-            if (GameObject.FindWithTag("Vfx") != null)
-            {
-                GameObject.FindWithTag("Vfx").gameObject.SetActive(false);
-            }
             GoldSheep.transform.parent.GetComponent<Animator>().SetTrigger("AnimateTrig");
             GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
-            
+
         }
 
-       
-
-        /* (DialogueEndcheck(startDia.GetComponent<DialogueTrigger>()) && isOrbed == false)
+        if (DialogueEndcheck(startDia.GetComponent<DialogueTrigger>()) && isOrbed == false)
         {
             orb.GetComponent<OrbMovementAries>().OrbMove();
 
-        }*/
+        }
 
-        if (NormalSheep.gameObject.activeInHierarchy /*&& sheeped == false*/)
+        if (NormalSheep.gameObject.activeInHierarchy)
         {
-            
+            //GoldSheep.SetActive(true);
             if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
             {
                 GoldSheep.SetActive(false);
-                //print("Baby sheep");
-                NormalSheep.GetComponent<Animator>().SetTrigger("Animate");
-                NsheepAnim.GetComponent<Animator>().SetTrigger("Animate");
-                sheeped = true;
-                //NormalSheep.GetComponentInChildren<Animator>().SetTrigger("Animate");
-                //NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
-                //NormalSheep.GetComponentInChildren<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.Finished;
-                //
+                NormalSheep.transform.parent.GetComponent<Animator>().SetTrigger("Animate");
+                NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
+                
+
             }
 
         }
         else
         {
-            Debug.LogError("Made it here in one piece.");
             if (DialogueEndcheck(sheepDeathDT))
             {
-                Debug.LogError("Death DT triggered");
-                sheepDeathDT.gameObject.SetActive(false);
+                NormalSheep.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
                 GoldSheep.SetActive(true);
-                GoldRamFX.SetActive(false);
-
             }
         }
         // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
@@ -134,7 +114,7 @@ public class RoomManager : MonoBehaviour
 
     public bool DialogueEndcheck(DialogueTrigger DialogueObj)
     {
-        
+
         if (DialogueObj.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             return true;
@@ -165,12 +145,10 @@ public class RoomManager : MonoBehaviour
             ResetRamObj.GetComponent<Animator>().SetBool("FadeIn", true);
             ResetRamObj.GetComponent<DialogueTrigger>().enabled = true;
             Resetdialogue.SetActive(true);
-            
             if (DialogueEndcheck(ResetRamObj.GetComponent<DialogueTrigger>()))
             {
                 resetGoldRam();
                 Resetdialogue.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
-
             }
         }
         else
@@ -193,24 +171,20 @@ public class RoomManager : MonoBehaviour
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
         Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
-        
+
         //turn off audios
         deadRamSnd.SetActive(false);
         NormalRamSnd.SetActive(false);
         GoldenRamSnd.SetActive(false);
-
-
     }
 
     public void resetGoldRam()
     {
-       
         GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, GoldRamStartRot);
         Destroy(GoldSheep.transform.parent.gameObject);
         GoldSheep = Temp.transform.Find("DialogueTriggerPrefab").gameObject;
         Temp.GetComponent<Animator>().SetBool("Animate", false);
         Temp.transform.Find("DialogueTriggerPrefab").gameObject.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
-        Temp.transform.Find("SparkleFX 2").gameObject.SetActive(true);
     }
 
     public void PlaySnd(GameObject AS)

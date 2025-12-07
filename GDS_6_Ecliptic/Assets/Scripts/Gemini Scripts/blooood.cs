@@ -33,14 +33,4 @@ public class blooood : MonoBehaviour
         }
     }
 
-    public void blood()
-    {
-        hitVFX.GetComponent<HitVFX>().isHit = true;
-        particleObject.transform.position = transform.position;
-        player.GetComponent<PlayerController>().Damage();
-        //player.GetComponent<PlayerController>().Knockback();
-
-        system.Emit(2);
-    }
-
 }

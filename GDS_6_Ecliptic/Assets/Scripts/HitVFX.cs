@@ -16,7 +16,8 @@ public class HitVFX : MonoBehaviour
         //collects all the shaders parameters to start the animation
         glowAmt[0].SetFloat("_Glow_Amount", 0);
         glowAmt[1].SetFloat("_Glow_Amount", 0);
-        
+
+
     }
 
     // Update is called once per frame

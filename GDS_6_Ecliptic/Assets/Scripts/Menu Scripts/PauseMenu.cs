@@ -79,16 +79,7 @@ public class PauseMenu : MonoBehaviour
             settingsPanels[2].SetActive(true);
         }
 
-        if (Input.GetButtonDown("RESET TO MENU"))
-        {
-            startTime = Time.time;
-            if (startTime + holdTime >= Time.time) 
-            { 
-                SceneManager.LoadScene(0); 
-            }
-                
-
-        }
+        
     }
 
     public void BackBtn()
