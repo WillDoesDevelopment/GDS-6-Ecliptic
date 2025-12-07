@@ -108,8 +108,8 @@ public class introCineCamScript : MonoBehaviour
         Doors[3].GetComponent<MeshRenderer>().material = doorMats[3];
         Doors[4].GetComponent<MeshRenderer>().material = doorMats[4];
 
-        doorMats[5].EnableKeyword("_EMISSION");
-        doorMats[12].EnableKeyword("_EMISSION");*/
+        doorMats[5].EnableKeyword("_EMISSION");*/
+        doorMats[12].EnableKeyword("_EMISSION");
     }
 
 }

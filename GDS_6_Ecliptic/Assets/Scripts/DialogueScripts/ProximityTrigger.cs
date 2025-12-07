@@ -12,7 +12,7 @@ public class ProximityTrigger : MonoBehaviour
     public GameObject[] deactivateObjects;
     public float width = 1f;
     public float length = 1f;
-    public bool autowalk = false;    
+    public bool autowalk = false;
     public Vector3 autowalkPos;
     PlayerController playerController;
 
@@ -33,15 +33,15 @@ public class ProximityTrigger : MonoBehaviour
                 if (setPlayerState)
                 {
                     playerController.playerState = newPlayerState;
-                }                
+                }
 
-                if(dialogueTrigger != null)
+                if (dialogueTrigger != null)
                 {
                     dialogueTrigger.OnEvent = false;
                     dialogueTrigger.TriggerDialogue();
                 }
 
-                if(autowalk)
+                if (autowalk)
                 {
                     playerController.AutoWalkDestination = autowalkPos;
                     playerController.playerState = PlayerState.Autowalk;

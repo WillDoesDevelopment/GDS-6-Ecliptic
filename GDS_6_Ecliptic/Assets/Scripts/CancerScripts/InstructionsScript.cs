@@ -7,13 +7,14 @@ public class InstructionsScript : MonoBehaviour
     private Animator InstructionsAnim;
 
     public PlayerController playerController;
-
+    public PlayerState newPlayerState = PlayerState.Dialogue;
     public HubManager HB;
+    public DialogueTrigger dialogueTrigger;
     // Start is called before the first frame update
     void Start()
     {
         InstructionsAnim = this.GetComponent<Animator>();
-
+        newPlayerState = PlayerState.Dialogue;
         // when instructions appear, freeze player movement and actions     
         playerController.canWalk = false;
         HubManager.freezePlayerActions(playerController.gameObject);
@@ -38,5 +39,12 @@ public class InstructionsScript : MonoBehaviour
     {
         HubManager.UnfreezePlayerActions(playerController.gameObject);
         playerController.canWalk = true;
+        newPlayerState = PlayerState.Walk;
+
+        if (dialogueTrigger != null)
+        {
+            dialogueTrigger.OnEvent = false;
+            dialogueTrigger.TriggerDialogue();
+        }
     }
 }
