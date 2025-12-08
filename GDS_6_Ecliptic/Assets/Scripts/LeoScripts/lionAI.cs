@@ -89,13 +89,13 @@ public class lionAI : MonoBehaviour
         //StartDialogue.OnEventCheck();
         //StartDialogue.OnEvent = false;
 
+     
 
-
-        if (columnCount < 4 && columnCount > 0)
+        if(columnCount <4 && columnCount > 0)
         {
             stage = 2;
         }
-        if (columnCount == 0)
+        if(columnCount == 0)
         {
             lionState = LionState.Defeat;
             Animator.SetTrigger("IdleTrig");
@@ -120,7 +120,7 @@ public class lionAI : MonoBehaviour
             Follow();
         }
 
-        else if (lionState == LionState.Charge)           //Charging
+        else if(lionState == LionState.Charge)           //Charging
         {
             Charge();
         }
@@ -166,7 +166,7 @@ public class lionAI : MonoBehaviour
             lionState = LionState.Defeat;
         } 
         */
-
+        
         /*
         if (lionState == LionState.Defeat)     //Collapse
         {
@@ -207,25 +207,25 @@ public class lionAI : MonoBehaviour
         //Collision    
         Collider[] hitColliders1 = Physics.OverlapBox(transform.position + transform.forward * 2f, new Vector3(1.25f, 1.0f, 1.25f)); //Hitbox for player
         foreach (var hitCollider in hitColliders1)
-        {
-            if (hitCollider.gameObject == player)
+        {            
+            if (hitCollider.gameObject == player)                                           
             {
-                if (playerController.playerState == PlayerState.Walk) //Player takes damage
+                if(playerController.playerState == PlayerState.Walk) //Player takes damage
                 {
                     playerController.Damage();
                 }
-
+                                
             }
         }
         Collider[] hitColliders2 = Physics.OverlapBox(transform.position, new Vector3(1.0f, 1.0f, 1.0f)); //Hitbox for columns. Hitboxes need rotation.........
         foreach (var hitCollider in hitColliders2)
         {
             if (hitCollider.gameObject.layer == LayerMask.NameToLayer("Grapple") && lionState == LionState.Pounce)            //collumn falls
-            {
+            {                      
                 hitCollider.gameObject.GetComponent<columnScript>().fall = true;
-            }
+            }  
         }
-
+        
     }
 
     void Cutscene()
@@ -246,7 +246,7 @@ public class lionAI : MonoBehaviour
         for (var i = 0; i < 100; i++)
         {
             Debug.DrawLine(rayPos, rayPos + forward * 2.0f, Color.blue, 0.01f);
-            if (Physics.SphereCast(new Ray(rayPos, forward), 2.0f, out hit, rayDist, obstacles))
+            if (Physics.SphereCast(new Ray(rayPos, forward), 2.0f, out hit, rayDist,obstacles))
             {
                 inv = inv * -1.0f;  //alternate angle
                 angle += 1.0f;      //fan out from center
@@ -261,7 +261,7 @@ public class lionAI : MonoBehaviour
         //if (rayDist > 1)
         {
             //transform.LookAt(target);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(forward, Vector3.up), 100 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(forward, Vector3.up), 100*Time.deltaTime);
             transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
         }
 
@@ -288,8 +288,8 @@ public class lionAI : MonoBehaviour
                 timer = roarTime;
                 lionState = LionState.Roar;
                 Animator.SetTrigger("RoarTrig");
-            }
-
+            }           
+            
         }
     }
     void Charge()
@@ -398,7 +398,7 @@ public class lionAI : MonoBehaviour
     {
         playerController.playerState = PlayerState.Autowalk;
         playerController.AutoWalkDestination = new Vector3(30, 0, 30);  //Autowalk destination
-
+        
         foreach (GameObject cam in vCameras)
         {
 
@@ -422,9 +422,9 @@ public class lionAI : MonoBehaviour
 
     void Difficulty()
     {
-        if (stage == 1)
+        if(stage == 1)
         {
-            if (playerController.health == 1)
+            if(playerController.health == 1)
             {
                 difficulty = 1;
             }
@@ -456,7 +456,7 @@ public class lionAI : MonoBehaviour
                 EndDialogue.OnEventCheck();
                 EndDialogue.OnEvent = false;
 
-
+                
             }
 
         }
@@ -465,8 +465,8 @@ public class lionAI : MonoBehaviour
     public IEnumerator WaitForX(int x)
     {
         yield return new WaitForSeconds(x);
-
-
+        
+        
     }
 
     private void OnDrawGizmos()

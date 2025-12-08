@@ -17,12 +17,12 @@ public class linearScorpian : MonoBehaviour
     Vector3 targetPoint;
     float offset = 1.0f;
     float timer = 0;
-
+    
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class linearScorpian : MonoBehaviour
         DTfollow();
 
         timer += Time.deltaTime;        //Time for pie
-        if (timer > 6.28319)
+        if(timer > 6.28319)
         {
             timer -= 6.28319f;
         }
@@ -52,9 +52,9 @@ public class linearScorpian : MonoBehaviour
 
         targetPoint = GetClosestPointOnFiniteLine(player.transform.position, point1.position, point2.position);
         transform.position = targetPoint;
-        transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
-
-
+        transform.LookAt(new Vector3(player.transform.position.x,transform.position.y,player.transform.position.z));
+        
+        
     }
 
     public void DTfollow()

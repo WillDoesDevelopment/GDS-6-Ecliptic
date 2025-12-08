@@ -18,8 +18,8 @@ public class ProximityCameraSet : MonoBehaviour
         
     }
 
-
-    private void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
         Collider[] hitColliders = Physics.OverlapBox(transform.position, new Vector3(width, 1.0f, length) / 2, transform.rotation); //Hitbox for player
         foreach (var hitCollider in hitColliders)
@@ -28,10 +28,10 @@ public class ProximityCameraSet : MonoBehaviour
             {
                 foreach (GameObject cam in vCameras)
                 {
-
+                    
                     cam.GetComponent<CinemachineVirtualCamera>().Priority = 10;
                 }
-                setCamera.Priority = 11;
+                setCamera.Priority = 11;                
             }
         }
     }

@@ -29,7 +29,7 @@ public class CamMovment : MonoBehaviour
     //public PlayerScript Ps;
 
 
-    void FixedUpdate()
+    void Update()
     {
 
         LerpToTargets();   

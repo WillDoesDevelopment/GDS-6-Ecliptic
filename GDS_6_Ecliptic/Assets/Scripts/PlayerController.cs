@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public GameObject mainCamera;
     public Animator PlayerAnim;
     //Movement
-    public Ecliptic02 InputController;
+    Ecliptic02 InputController;
     CharacterController controller;
     float inputX;
     float inputY;
@@ -53,21 +53,21 @@ public class PlayerController : MonoBehaviour
 
     //Debug - remove for release
     public Vector3 teleportPos;
-
+    
 
     //Spawn
     Vector3 spawnPoint;
 
-	// Start is called before the first frame update
-	void Start()
-    {
-		InputController = new Ecliptic02();
-		InputController.Player.Enable();
-        InputController.UI.Disable();
-		//InputController.controlSchemes[0]
-		//InputController.bindingMask = InputBinding.MaskByGroup("Switch Pro");
 
-		isPaused = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        InputController = new Ecliptic02();
+        InputController.Enable();
+        //InputController.controlSchemes[0]
+        //InputController.bindingMask = InputBinding.MaskByGroup("Switch Pro");
+
+        isPaused = false;
 
         // Spawn
         spawnPoint = transform.position;
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //Debug remove for build
         if (Input.GetKeyDown(KeyCode.Alpha9))
@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (playerState == PlayerState.Freeze)
         {
-
+            
         }
         else if (playerState == PlayerState.Passive)
         {
@@ -169,9 +169,9 @@ public class PlayerController : MonoBehaviour
         moveDirection = new Vector3(moveDirection.x, inputY, moveDirection.z);
 
         //camera correction
-        if (playerState == PlayerState.Walk & mainCamera != null)
+        if(playerState == PlayerState.Walk & mainCamera != null)
         {
-            moveDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0) * moveDirection;
+            moveDirection = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y,0) * moveDirection;
         }
         grounded = (controller.Move(moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0; //credit benjamin esposito First Person Drifter
 
@@ -278,10 +278,10 @@ public class PlayerController : MonoBehaviour
 
         inputX = autoDir.x * c;
         inputZ = autoDir.z * c;
-        if (a < 0.1) { playerState = PlayerState.Dialogue; } //Stop when within 0.1m of destination
+        if(a < 0.1) { playerState = PlayerState.Dialogue; } //Stop when within 0.1m of destination
     }
 
-    public void Knockback()
+    void Knockback()
     {
         timer += Time.deltaTime;
 
@@ -293,7 +293,7 @@ public class PlayerController : MonoBehaviour
         transform.position += new Vector3(0, knockbackV.Evaluate(a), 0);
         //Debug.Log(a);
 
-        if (a == 1f)
+        if(a == 1f)
         {
             timer = 0;
             playerState = PlayerState.Walk;
@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour
     public void Damage()
     {
         health -= 1;
-        if (health == 0)
+        if(health == 0)
         {
             Respawn();
             //Restart or faint or something
@@ -355,10 +355,9 @@ public class PlayerController : MonoBehaviour
 
     public void Screenshot()
     {
-        if (InputController.Player.Screenshot.WasPressedThisFrame())
+        if(InputController.Player.Screenshot.WasPressedThisFrame())
         {
             StartCoroutine(gameIEnums.ScreenshotIEnum());
-        }
+        }        
     }
-
 }
