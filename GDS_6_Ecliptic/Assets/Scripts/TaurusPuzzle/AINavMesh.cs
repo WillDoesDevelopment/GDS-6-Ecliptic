@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public class AINavMesh : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class AINavMesh : MonoBehaviour
     bool playDaftPunk = false;
 
     public Animator PlayerAnim;
+
+    
     private void Awake()
     {
         foreach (Transform t in positions)
@@ -44,7 +47,7 @@ public class AINavMesh : MonoBehaviour
 
         playSnd();
 
-        //CollisionCheck();
+        CollisionCheck();
 
         BullActiveCheck();
 
@@ -95,18 +98,17 @@ public class AINavMesh : MonoBehaviour
         }
     }
 
-    /*public void CollisionCheck()
+    public void CollisionCheck()
     {
         Collider[] Collisions = Physics.OverlapSphere(this.gameObject.transform.localPosition, 1f);
         foreach(Collider c in Collisions)
         {
             if (c.gameObject == Player)
             {
-              
-                TM.Resetting();
+               
             }
         }
-    }*/
+    }
 
     public void playSnd()
     {
