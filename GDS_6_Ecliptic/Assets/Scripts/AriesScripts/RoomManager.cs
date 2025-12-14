@@ -12,9 +12,9 @@ public class RoomManager : MonoBehaviour
     public GameObject ResetRamObj;
     public GameObject Resetdialogue;
 
-    [Header("Orb Objects")]
-    public GameObject startDia;
-    public GameObject orb;
+    //[Header("Orb Objects")]
+    //public GameObject startDia;
+    //public GameObject orb;
 
     [Header("VFX & Managers")]
     // object that activates vfx circle
@@ -44,7 +44,7 @@ public class RoomManager : MonoBehaviour
     public bool isOrbed = false;
     void Start()
     {
-        orb.GetComponent<OrbMovementAries>().OrbIdle();
+        //orb.GetComponent<OrbMovementAries>().OrbIdle();
         VFXCH.circleVFXStart();
         PlayerStartPos = Player.transform.position;
         GoldRamStartPos = GoldSheep.transform.parent.transform.position;
@@ -82,11 +82,11 @@ public class RoomManager : MonoBehaviour
 
         }
 
-        if (DialogueEndcheck(startDia.GetComponent<DialogueTrigger>()) && isOrbed == false)
+        /*if (DialogueEndcheck(startDia.GetComponent<DialogueTrigger>()) && isOrbed == false)
         {
             orb.GetComponent<OrbMovementAries>().OrbMove();
 
-        }
+        }*/
 
         if (NormalSheep.gameObject.activeInHierarchy)
         {
