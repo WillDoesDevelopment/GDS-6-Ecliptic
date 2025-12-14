@@ -43,27 +43,29 @@ public class RoomManager : MonoBehaviour
     public GameObject deadRamSnd;
     public GameObject SuccessSND;
 
+    public Dialogue startDia;
+    public DialogueTrigger startDiaDT;
     private bool isPlayed;
     public bool sheeped = false;
+     
+
     //public bool isOrbed = false;
     void Start()
     {
-        //orb.GetComponent<OrbMovementAries>().OrbIdle();
         VFXCH.circleVFXStart();
         PlayerStartPos = Player.transform.position;
         GoldRamStartPos = GoldSheep.transform.parent.transform.position;
         GoldSheep.SetActive(true);
         GoldRamFX.SetActive(true);
-    GoldRamStartRot = GoldSheep.transform.parent.transform.rotation;
+        GoldRamStartRot = GoldSheep.transform.parent.transform.rotation;
         //Cursor.lockState = CursorLockMode.Locked;
     }
+
 
     // Update is called once per frame
     void FixedUpdate()
     {
         displayResetRam();
-        //Debug.Log("TestDT" + TestDt);
-        //Debug.Log(Aries.GetComponent<DialogueTrigger>());
         if (DialogueStartedCheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
             PlaySnd(GoldenRamSnd);
@@ -91,14 +93,7 @@ public class RoomManager : MonoBehaviour
             GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
             
         }
-
-       
-
-        /* (DialogueEndcheck(startDia.GetComponent<DialogueTrigger>()) && isOrbed == false)
-        {
-            orb.GetComponent<OrbMovementAries>().OrbMove();
-
-        }*/
+  
 
         if (NormalSheep.gameObject.activeInHierarchy /*&& sheeped == false*/)
         {
@@ -129,7 +124,10 @@ public class RoomManager : MonoBehaviour
 
             }
         }
-        // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
+        /*(if(blooood.tries >= 1)
+        {
+            startDia.DialogueMode = Dialogue.DialogueState.Finished;
+        }*/
     }
 
     public bool DialogueEndcheck(DialogueTrigger DialogueObj)
@@ -184,6 +182,7 @@ public class RoomManager : MonoBehaviour
     {
         PlaySnd(deadRamSnd);
 
+        
 
         Player.transform.position = PlayerStartPos;
 
@@ -204,13 +203,13 @@ public class RoomManager : MonoBehaviour
 
     public void resetGoldRam()
     {
-       
         GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, GoldRamStartRot);
         Destroy(GoldSheep.transform.parent.gameObject);
         GoldSheep = Temp.transform.Find("DialogueTriggerPrefab").gameObject;
         Temp.GetComponent<Animator>().SetBool("Animate", false);
         Temp.transform.Find("DialogueTriggerPrefab").gameObject.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
-        Temp.transform.Find("SparkleFX 2").gameObject.SetActive(true);
+        Temp.transform.Find("SparkleFX 2").gameObject.SetActive(true);   
+
     }
 
     public void PlaySnd(GameObject AS)

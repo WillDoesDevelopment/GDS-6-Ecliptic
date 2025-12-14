@@ -8,6 +8,8 @@ public class blooood : MonoBehaviour
     public ParticleSystem system;
     public HitVFX hitVFX;
     public GameObject player;
+
+    //public static int tries = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,6 @@ public class blooood : MonoBehaviour
                 hitVFX.GetComponent<HitVFX>().isHit = true;
                 particleObject.transform.position = transform.position;
                 player.GetComponent<PlayerController>().Damage();
-
                 system.Emit(2);
                 break;
             }
@@ -39,7 +40,6 @@ public class blooood : MonoBehaviour
         particleObject.transform.position = transform.position;
         player.GetComponent<PlayerController>().Damage();
         //player.GetComponent<PlayerController>().Knockback();
-
         system.Emit(2);
     }
 
