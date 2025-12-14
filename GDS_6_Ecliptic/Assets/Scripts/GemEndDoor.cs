@@ -5,11 +5,8 @@ using UnityEngine;
 public class GemEndDoor : MonoBehaviour
 {
     public GameObject Ophieno2;
-    public GameObject SnakeDT;
     public GameObject polcasDT;
-    public GameObject doorDT;
-    public GameObject globeDT;
-    public GameObject snek;
+    public GameObject finalDT;
     public VFXCircleHandler VFXCH;
 
     // Start is called before the first frame update
@@ -21,24 +18,12 @@ public class GemEndDoor : MonoBehaviour
     private void Update()
     {
 
-        if (globeDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
-        {
-            VFXCH.circleVFXStart();
-
-        }
-
 
         if (polcasDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-           SnakeDT.SetActive(true);
-
+            StartCoroutine(waiturdamnturn());
         }
 
-        if(SnakeDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
-        {
-            snek.SetActive(false);
-            doorDT.SetActive(true);
-        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -47,7 +32,15 @@ public class GemEndDoor : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Ophieno2.SetActive(false);
+            VFXCH.circleVFXStart();
         }
 
     }
+
+    IEnumerator waiturdamnturn()
+    {
+        yield return new WaitForSeconds(1f);
+        finalDT.GetComponent<DialogueTrigger>().OnEventCheck();
+    }
+
 }

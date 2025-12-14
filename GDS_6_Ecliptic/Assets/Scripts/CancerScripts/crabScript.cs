@@ -42,14 +42,18 @@ public class crabScript : MonoBehaviour
                 crabDT.SetActive(false); // if we dont talk to the crab before squishing it we want to deactivate the dialogue
                 if (player.GetComponent<PlayerController>().airTime > 0.5)
                 {
-                    AngrySnds.SetActive(true);
+                    SuccessSND.SetActive(true);
                     GetComponent<Animator>().SetTrigger("Animate");//squashes crab
                     VFXCH.circleVFXStart(); //dialouge circle stuff :)
-                    EndDT.SetActive(true);// we want to activate the dialogue prefab 
-                    SuccessSND.SetActive(true);
+                    EndDT.SetActive(true);// we want to activate the dialogue prefab
+                    
 
                 }
             }
+        }
+        if(EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.InProgress)
+        {
+            //AngrySnds.SetActive(true);
         }
         if (EndDT.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {

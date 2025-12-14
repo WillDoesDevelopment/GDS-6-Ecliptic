@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PauseScript : MonoBehaviour
 {
-    Ecliptic02 InputController;
+    PlayerController Player;
     //public static bool Controller = true;
     public static bool Paused = false;
 
@@ -28,34 +28,50 @@ public class PauseScript : MonoBehaviour
 
     public HubManager HM;
 
+    public float startTime = 0f;
+    public float holdTime = 5.0f;
+
     public bool Quitting = false;
-    // Start is called before the first frame update
-    void Start()
+
+    public GameObject[] panelCanvas;
+
+
+	// Start is called before the first frame update
+	void Start()
     {
         HM = GameObject.FindObjectOfType<HubManager>();
         eventSystem = EventSystem.current;
-        InputController = new Ecliptic02();
-        InputController.Enable();
-        ControllerOrNot();
-    }
+		Player = FindObjectOfType<PlayerController>();
+	}
 
     // Update is called once per frame
     void Update()
     {
-        ControllerOrNot();
+		ControllerOrNot();
         SelectedSNDCheck();
 
         // when pause button is pressed we pause or unpause
-        if (Input.GetKeyDown(KeyCode.Escape)  || InputController.Player.Pause.triggered) //|| Input.GetButtonDown("Cancel")
+        if (Player.InputController.Player.Pause.triggered)
         {
-            if (Paused == false)
-            {
-                Pause();
-            }
-            else
+            Pause();
+        }
+
+        if (Paused == true)
+        {
+            if (Player.InputController.UI.Cancel.triggered || Player.InputController.UI.Pause.triggered)
             {
                 Resume();
             }
+        }
+
+        if (Input.GetButtonDown("RESET TO MENU"))
+        {
+            startTime = Time.time;
+            if (startTime + holdTime >= Time.time)
+            {
+                SceneManager.LoadScene(0);
+            }
+
 
         }
     }
@@ -78,16 +94,22 @@ public class PauseScript : MonoBehaviour
     //the menu will call the "Resume" function
     public void Resume()
     {
-        eventSystem.SetSelectedGameObject(LastSelected);
+        eventSystem.SetSelectedGameObject(SettingsFirstSelect);
+        panelCanvas[0].SetActive(true);
+        panelCanvas[1].SetActive(false);
         // gets rid of menu. will become an animation later
         PauseSnd.Play();
         PauseUI.SetActive(false);
         Time.timeScale = 1f;
-        Paused = false;
-    }
+		Paused = false;
+        Player.InputController.Player.Enable();
+        Player.InputController.UI.Disable();
+	}
     public void Pause()
     {
-        LastSelected = eventSystem.currentSelectedGameObject;
+        Player.InputController.Player.Disable();
+        Player.InputController.UI.Enable();
+		LastSelected = eventSystem.currentSelectedGameObject;
         // brings up the pause menu. will be an animation later
         eventSystem.SetSelectedGameObject(PauseFirstSelect);
         PauseSnd.Play();

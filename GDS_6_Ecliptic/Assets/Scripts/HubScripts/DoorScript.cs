@@ -10,12 +10,16 @@ public class DoorScript : MonoBehaviour
     //for collision checking
     public GameObject Player;
 
-    public float Radius = 5;
+    public float AnimateRadius = 5;
+    public float EnterRadius = 2;
 
     public Animator ThisAnim;
 
     public int StageNumber;
     public bool BackToHub;
+
+    public Renderer rend;
+    public Material[] mat;
 
     //public AudioSource DoorSnd;
     
@@ -38,34 +42,46 @@ public class DoorScript : MonoBehaviour
         DoorEnteredCheck();
 
     }
+
+    private void FixedUpdate()
+    {
+        
+    }
     public void DoorOpenCheck()
     {
-        if (proximity(Radius) && DS.IsOpen == true)
+        if (DS.IsOpen == true)
         {
-            ThisAnim.SetBool("Animate", true);
+            rend.material = mat[0];
+        } else
+        {
+            rend.material = mat[1];
+        }
+
+        if (proximity(AnimateRadius) && DS.IsOpen == true)
+        {
+            //rend.material = mat[0];
+            ThisAnim.SetBool("Animate", true); 
 
         }
         else
         {
             ThisAnim.SetBool("Animate", false);
+            
         }
     }
     public void DoorEnteredCheck()
     {
-        if (HM != null)
+        if (proximity(EnterRadius))
         {
-            if (proximity(2))
+            if (BackToHub)
             {
-                if (BackToHub)
-                {
-                    HM.SendToHub(DS);
-                    HM.SetGameStage(StageNumber);
-                }
-                else
-                {
-                    HM.SendToScene(DS);
-                    HM.SetGameStage(StageNumber);
-                }
+                HM.SendToHub(DS);
+                HM.SetGameStage(StageNumber);
+            }
+            else
+            {
+                HM.SendToScene(DS);
+                HM.SetGameStage(StageNumber);
             }
         }
     }
