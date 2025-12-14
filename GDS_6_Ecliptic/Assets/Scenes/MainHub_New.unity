@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 553995925}
-  m_IndirectSpecularColor: {r: 0.019624565, g: 0, b: 0.042968206, a: 1}
+  m_IndirectSpecularColor: {r: 0.019818835, g: 0, b: 0.04300058, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1164,6 +1164,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 142092561}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -1175,6 +1179,18 @@ PrefabInstance:
       propertyPath: DS.SceneNum
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2dabb289ef1b44c47b91798423d7655c, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Sag
@@ -1249,6 +1265,11 @@ Transform:
 --- !u!1 &142092556 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 142092554}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &142092561 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 142092554}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &146787601
@@ -1553,6 +1574,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 178291321}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -1564,6 +1589,18 @@ PrefabInstance:
       propertyPath: DS.SceneNum
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 38e80767d65acb1439c2ec3ac37ae81d, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Aqua
@@ -1638,6 +1675,11 @@ Transform:
 --- !u!1 &178291316 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 178291314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &178291321 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 178291314}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &180324971
@@ -4513,6 +4555,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 423437117}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -4524,6 +4570,18 @@ PrefabInstance:
       propertyPath: DS.SceneNum
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d4e9db74f708b8f488af4abdc4faea2d, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Pic
@@ -4598,6 +4656,11 @@ Transform:
 --- !u!1 &423437112 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 423437110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &423437117 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 423437110}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &424319803
@@ -5237,6 +5300,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 506402901}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -5252,6 +5319,18 @@ PrefabInstance:
       propertyPath: StageNumber
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ac8e06340c27db74abf5964f708bd9c0, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Virgo
@@ -5326,6 +5405,11 @@ Transform:
 --- !u!1 &506402896 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 506402894}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &506402901 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 506402894}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &515656197
@@ -5549,7 +5633,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518488383}
-  m_LocalRotation: {x: -0.5428662, y: 0.33817172, z: -0.2882548, w: -0.7126327}
+  m_LocalRotation: {x: -0.5428662, y: 0.3381717, z: -0.2882548, w: -0.7126328}
   m_LocalPosition: {x: 0.35007596, y: -29.98506, z: 6.878561}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9633,6 +9717,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 836444607}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -9644,6 +9732,18 @@ PrefabInstance:
       propertyPath: DS.SceneNum
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a6fefeb81c1dfeb41b59d64d56a487c2, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Cap
@@ -9718,6 +9818,11 @@ Transform:
 --- !u!1 &836444602 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 836444600}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &836444607 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 836444600}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &844936073
@@ -10317,6 +10422,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 888899993}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -10332,6 +10441,18 @@ PrefabInstance:
       propertyPath: StageNumber
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bd6f9bc24f97314449bc1fc0e8e625c2, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Gemini
@@ -10406,6 +10527,11 @@ Transform:
 --- !u!1 &888899988 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 888899986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &888899993 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 888899986}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &910408203
@@ -13664,6 +13790,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1268483652}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -13679,6 +13809,18 @@ PrefabInstance:
       propertyPath: StageNumber
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ae727236f755f74d91f72f651d82e84, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Cancer
@@ -13753,6 +13895,11 @@ Transform:
 --- !u!1 &1268483647 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 1268483645}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1268483652 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 1268483645}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1274324946
@@ -14914,6 +15061,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1391462962}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -14933,6 +15084,18 @@ PrefabInstance:
       propertyPath: StageNumber
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 815c7991d3602b04ea33d3ce1da639d9, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Taurus
@@ -15007,6 +15170,11 @@ Transform:
 --- !u!1 &1391462957 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 1391462955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1391462962 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 1391462955}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1395061084
@@ -16223,6 +16391,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1465271039}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -16238,6 +16410,18 @@ PrefabInstance:
       propertyPath: StageNumber
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6439f645356296d45a8480766bfe3576, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Leo
@@ -16312,6 +16496,11 @@ Transform:
 --- !u!1 &1465271034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 1465271032}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1465271039 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 1465271032}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1482340329
@@ -24661,6 +24850,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1861938200}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -24676,6 +24869,18 @@ PrefabInstance:
       propertyPath: StageNumber
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Ophi
@@ -24746,6 +24951,11 @@ Transform:
 --- !u!1 &1861938191 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 1861938189}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1861938200 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 1861938189}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1873933429
@@ -25670,6 +25880,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 1989226956}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -25681,6 +25895,18 @@ PrefabInstance:
       propertyPath: DS.SceneNum
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f510a6baee25aa145a3289f63a0bfb18, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_libra
@@ -25757,6 +25983,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 1989226949}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1989226956 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 1989226949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2016186272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25777,6 +26008,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 2016186279}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -25788,6 +26023,18 @@ PrefabInstance:
       propertyPath: DS.SceneNum
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c6c60ef30d604ff45a95a1d0f389e682, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Scorpio
@@ -25862,6 +26109,11 @@ Transform:
 --- !u!1 &2016186274 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 2016186272}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2016186279 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 2016186272}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2022626673
@@ -31086,6 +31338,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043206442}
     - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 8478352447027708217}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1932958057}
@@ -31101,6 +31357,18 @@ PrefabInstance:
       propertyPath: StageNumber
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f7939d24a986844d9ff23bb4ea41cfd, type: 2}
+    - target: {fileID: 6317744023004522470, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+      propertyPath: mat.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0743772c6f7a14c4999832a6fdd2794c, type: 2}
     - target: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
       propertyPath: m_Name
       value: Door_Aries
@@ -31175,6 +31443,11 @@ Transform:
 --- !u!1 &8478352447027708212 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6607104656719053933, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
+  m_PrefabInstance: {fileID: 8478352447027708210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8478352447027708217 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6262515802122218504, guid: 4f66c47fa8d8efa438925716e3a4a7c0, type: 3}
   m_PrefabInstance: {fileID: 8478352447027708210}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8607054458515151603
@@ -31403,9 +31676,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5366026400890762231, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
+      propertyPath: HM
+      value: 
+      objectReference: {fileID: 2043206442}
+    - target: {fileID: 5366026400890762231, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: eventSystem
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3328319}
     - target: {fileID: 6739295375738444380, guid: 19fe9f5f2d4e3f3499210cf3bc85387d, type: 3}
       propertyPath: m_IsActive
       value: 1
