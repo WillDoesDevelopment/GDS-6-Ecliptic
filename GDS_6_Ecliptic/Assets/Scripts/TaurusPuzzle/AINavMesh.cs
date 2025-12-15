@@ -28,7 +28,6 @@ public class AINavMesh : MonoBehaviour
     [Range(0f, 0.8f)] public float stepPitchVariance = 0.5f;
     public AudioSource audioSource;
     public AudioClip[] stepArray;
-    bool playDaftPunk = false;
 
     public Animator PlayerAnim;
 

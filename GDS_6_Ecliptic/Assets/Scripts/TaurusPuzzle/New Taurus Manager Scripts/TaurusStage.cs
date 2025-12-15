@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TaurusStage : MonoBehaviour
@@ -11,6 +12,10 @@ public class TaurusStage : MonoBehaviour
     public GameObject ItemIndicator;
     public GameObject vfxCircle;
     public GameObject player;
+
+    public GameObject[] pieces;
+    public Vector3[] piecesResetPos;
+    public int piecesCounter = 0;
 
     public DialogueTrigger DT;
 
@@ -26,7 +31,7 @@ public class TaurusStage : MonoBehaviour
 
     public GameObject barrierObject;
     public Renderer rend;
-    public AINavMesh? ANM;
+    public AINavMesh ANM;
 
     public MazeState maze;
 
@@ -37,16 +42,21 @@ public class TaurusStage : MonoBehaviour
     private void Start()
     {
         rend = barrierObject.GetComponent<Renderer>();
-        anim.SetBool("Bob", true);
+        
     }
 
     private void Update()
     {
+        if(piecesCounter >= pieces.Length)
+        {
+            ArtifactAppear();
+        }
+
         Barrier();
 
         if (DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            RoomWinDondition(Artifact, player);
+            RoomWinCondition(Artifact, player);
         }
         else
         {
@@ -64,29 +74,16 @@ public class TaurusStage : MonoBehaviour
 
     public void Barrier()
     {
-        /*
-         * 1. Calc Distance to Bull
-         * 
-         * 2. Subtract Radius
-         * 
-         * 3. Convert to percentage?
-         */
-
         float bullDist = Vector3.Distance(barrierObject.transform.position, ANM.transform.position);
         
         if (bullDist >= barrierBuffer)
         {
             barrierObject.SetActive(false);
-            //print(bull + "... is getting here");
         }
         else
         {
             barrierObject.SetActive(true);
-            //print(bull + "... is NOT getting here");
         }
-
-        //print(bull + "is" + bullDist);
-        
 
         rend.material.SetFloat("_Transparency", Mathf.Clamp(bullDist, 0, 1));
     }
@@ -96,17 +93,11 @@ public class TaurusStage : MonoBehaviour
         if (Vector3.Distance(Player.transform.position, bull.transform.position) < 1f)
         {
             player.GetComponent<blooood>().blood();
-            //Player.GetComponent<PlayerController>().Damage();
-            //Player.GetComponent<DialogueTrigger>().OnEventCheck();
-            //Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
             //this teleports the player without being over written by the character controller
             Player.GetComponent<CharacterController>().enabled = false;
             Player.transform.position = PlayerResetPos;
             Player.GetComponent<CharacterController>().enabled = true;
-
-
-            //Debug.Log(Player.transform.position);
 
             Artifact.transform.position = ArtifactResetPos;
             bull.transform.position = BullResetPos;
@@ -127,10 +118,16 @@ public class TaurusStage : MonoBehaviour
         {
             return false;
         }
+
         if (!HO.CompareTag("PickUp"))
         {
             particleObject.SetActive(false);
             
+        }
+        else if(pieces.Contains(HO))
+        {
+            ArtPieces(HO);
+            return false;
         }
         else
         {
@@ -139,18 +136,11 @@ public class TaurusStage : MonoBehaviour
             particleObject.SetActive(true);
             particleObject.transform.position = HO.transform.position;
             particleObject.transform.LookAt(BeamTarget.transform.position);
-
         }
-        //Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
+
 
         if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3)
-        {           /*            CollectedItems += 1;
-                        if (CollectedItems <= 3)
-                        {
-                            
-                        }*/
-            //Debug.Log(HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3);
-            
+        {          
 
             if (stageCounter <= 2)
             {
@@ -173,16 +163,45 @@ public class TaurusStage : MonoBehaviour
     }
 
     public void StageWinCondition()
-    {
-
-        vfxCircle.GetComponent<VFXCircleHandler>().circleVFXStart();
-        //Debug.Log("I got to here!");
-       
+    { 
+        vfxCircle.GetComponent<VFXCircleHandler>().circleVFXStart();    
     }
 
-    public void RoomWinDondition(GameObject HO, GameObject Player)
+    public void ArtPieces(GameObject HO)
     {
-        //print("Activated Now!");
+        /*GameObject HO = player.GetComponent<PickUpScript>().HoldingObj;
+
+        if (HO == null)
+        {
+            return;
+        }
+
+        if(pieces.Contains(HO))
+        {*/
+        Debug.Log("Checkpoint1");
+        HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+        Debug.Log("Checkpoint2");
+        HO.transform.DetachChildren();
+        Debug.Log("Checkpoint3");
+        player.GetComponent<PickUpScript>().holding = false;
+        Debug.Log("Checkpoint4");
+        HO.SetActive(false);
+        Debug.Log("Checkpoint5");
+        piecesCounter++;
+        Debug.Log("Checkpoint6");
+
+        //}
+
+    }
+
+    public void ArtifactAppear()
+    {
+        Artifact.SetActive(true);
+        anim.SetBool("Bob", true);
+    }
+
+    public void RoomWinCondition(GameObject HO, GameObject Player)
+    {
         this.TargetObject.transform.GetChild(1).GetComponent<DoorScript>().DS.IsOpen = true;
         HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         HO.transform.DetachChildren();
@@ -194,5 +213,10 @@ public class TaurusStage : MonoBehaviour
     {
         BullResetPos = bull.transform.position;
         ArtifactResetPos = Artifact.transform.position;
+
+        for (int i = 0; i < pieces.Length; i++)
+        {
+            piecesResetPos[i] = pieces[i].transform.position;
+        }
     }
 }

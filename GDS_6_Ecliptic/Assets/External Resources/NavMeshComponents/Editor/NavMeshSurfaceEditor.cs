@@ -108,6 +108,7 @@ namespace UnityEditor.AI
             AssetDatabase.CreateAsset(surface.navMeshData, combinedAssetPath);
         }
 
+        [System.Obsolete]
         static NavMeshData GetNavMeshAssetToDelete(NavMeshSurface navSurface)
         {
             var prefabType = PrefabUtility.GetPrefabType(navSurface);
@@ -121,6 +122,7 @@ namespace UnityEditor.AI
             return navSurface.navMeshData;
         }
 
+        [System.Obsolete]
         void ClearSurface(NavMeshSurface navSurface)
         {
             var assetToDelete = GetNavMeshAssetToDelete(navSurface);
@@ -141,6 +143,7 @@ namespace UnityEditor.AI
             return new Bounds(navSurface.transform.position, navSurface.size);
         }
 
+     
         public override void OnInspectorGUI()
         {
             if (s_Styles == null)
@@ -294,15 +297,21 @@ namespace UnityEditor.AI
                 if (GUILayout.Button("Clear"))
                 {
                     foreach (NavMeshSurface s in targets)
+#pragma warning disable CS0612 // Type or member is obsolete
                         ClearSurface(s);
+#pragma warning restore CS0612 // Type or member is obsolete
                     SceneView.RepaintAll();
                 }
 
                 if (GUILayout.Button("Bake"))
                 {
                     // Remove first to avoid double registration of the callback
+#pragma warning disable CS0612 // Type or member is obsolete
                     EditorApplication.update -= UpdateAsyncBuildOperations;
+#pragma warning restore CS0612 // Type or member is obsolete
+#pragma warning disable CS0612 // Type or member is obsolete
                     EditorApplication.update += UpdateAsyncBuildOperations;
+#pragma warning restore CS0612 // Type or member is obsolete
 
                     foreach (NavMeshSurface surf in targets)
                     {
@@ -361,6 +370,7 @@ namespace UnityEditor.AI
                 , surface.transform.position, surface.transform.rotation);
         }
 
+        [System.Obsolete]
         static void UpdateAsyncBuildOperations()
         {
             foreach (var oper in s_BakeOperations)
