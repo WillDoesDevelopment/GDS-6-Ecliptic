@@ -24,6 +24,7 @@ public class TaurusStage : MonoBehaviour
     public AudioSource GoodJobSND;
 
     public bool isOff = true;
+    public bool hasAppeared = false;
 
     public Vector3 PlayerResetPos;
     public Vector3 ArtifactResetPos;
@@ -47,7 +48,7 @@ public class TaurusStage : MonoBehaviour
 
     private void Update()
     {
-        if(piecesCounter >= pieces.Length)
+        if(piecesCounter >= pieces.Length && hasAppeared == false)
         {
             ArtifactAppear();
         }
@@ -124,11 +125,6 @@ public class TaurusStage : MonoBehaviour
             particleObject.SetActive(false);
             
         }
-        else if(pieces.Contains(HO))
-        {
-            ArtPieces(HO);
-            return false;
-        }
         else
         {
             anim.SetBool("Bob", false);
@@ -138,12 +134,18 @@ public class TaurusStage : MonoBehaviour
             particleObject.transform.LookAt(BeamTarget.transform.position);
         }
 
+        if (HO.CompareTag("PickUp") && pieces.Contains(HO))
+        {
+            ArtPieces(HO);
+            return false;
+        }
 
         if (HO.GetComponent<Artifact>() != null && Vector3.Distance(this.TargetObject.transform.position, HO.transform.position) < 3)
         {          
 
             if (stageCounter <= 2)
             {
+                print("Im getting to here");
                 this.TargetObject.transform.GetChild(1).GetComponent<DoorScript1>().DS.IsOpen = true;
                 GoodJobSND.GetComponent<AudioSource>().Play();
                 HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
@@ -178,17 +180,17 @@ public class TaurusStage : MonoBehaviour
 
         if(pieces.Contains(HO))
         {*/
-        Debug.Log("Checkpoint1");
+
         HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
-        Debug.Log("Checkpoint2");
+
         HO.transform.DetachChildren();
-        Debug.Log("Checkpoint3");
+
         player.GetComponent<PickUpScript>().holding = false;
-        Debug.Log("Checkpoint4");
+
         HO.SetActive(false);
-        Debug.Log("Checkpoint5");
+
         piecesCounter++;
-        Debug.Log("Checkpoint6");
+   
 
         //}
 
@@ -198,6 +200,8 @@ public class TaurusStage : MonoBehaviour
     {
         Artifact.SetActive(true);
         anim.SetBool("Bob", true);
+        hasAppeared = true;
+
     }
 
     public void RoomWinCondition(GameObject HO, GameObject Player)
