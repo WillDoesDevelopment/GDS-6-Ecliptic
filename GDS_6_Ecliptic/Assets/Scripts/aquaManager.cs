@@ -1,6 +1,8 @@
+using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class aquaManager : MonoBehaviour
@@ -19,6 +21,11 @@ public class aquaManager : MonoBehaviour
     public Quaternion spawnRot;
 
     public bool drinkisCorrect = false;
+
+    public Material jarMat;
+    public GameObject sparkleFx;
+
+    public float t = 0.0f;
 
     public enum IngredientChoice
     {
@@ -128,6 +135,14 @@ public class aquaManager : MonoBehaviour
     }
     
 
-    
+    public void completeDrink()
+    {
+        t += Time.fixedDeltaTime;
+
+        if (drinkisCorrect)
+        {
+            jarMat.SetFloat("_Fill", Mathf.Lerp(0, 1, t));
+        }
+    }
 
 }
