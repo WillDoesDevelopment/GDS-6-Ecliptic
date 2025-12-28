@@ -15,17 +15,17 @@ public class aquaManager : MonoBehaviour
     public List<string> recipe = new List<string>();
     public List<string> ingredients = new List<string>();
 
-    public IngredientChoice ingre;
-    public GameObject[] ingreObj;
+    private IngredientChoice ingre;
     public Vector3 spawnPos;
-    public Quaternion spawnRot;
+    private Quaternion spawnRot;
 
     public bool drinkisCorrect = false;
 
     public Material jarMat;
     public GameObject sparkleFx;
 
-    public float t = 0.0f;
+    private float t = 0.0f;
+
 
     public enum IngredientChoice
     {
@@ -80,7 +80,7 @@ public class aquaManager : MonoBehaviour
 
     public void SpawnIngre(int ingNum)
     {
-        Instantiate(ingreObj[ingNum], spawnPos, spawnRot);
+        //Instantiate(ingreObj[ingNum], spawnPos, spawnRot);
     }
 
     public void IntoDrink(GameObject obj)
