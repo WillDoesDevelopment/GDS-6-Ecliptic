@@ -5374,8 +5374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c699893fb718b42b55b60b460c8f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNum:
-    sceneNum: 0
+  savePath: /save.ecl
 --- !u!1 &1131579406
 GameObject:
   m_ObjectHideFlags: 0
@@ -17279,6 +17278,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2861446365775068546, guid: c91902295066c2b43bd075527e577eec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1049015580}
+    - target: {fileID: 2861446365775068546, guid: c91902295066c2b43bd075527e577eec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Save
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861446365775068546, guid: c91902295066c2b43bd075527e577eec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameDataManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861446367321018252, guid: c91902295066c2b43bd075527e577eec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1049015580}
+    - target: {fileID: 2861446367321018252, guid: c91902295066c2b43bd075527e577eec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Load
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861446367321018252, guid: c91902295066c2b43bd075527e577eec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameDataManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c91902295066c2b43bd075527e577eec, type: 3}
 --- !u!23 &2872438779426151774
@@ -18180,7 +18203,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1049015580}
-        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameDataManager, Assembly-CSharp
         m_MethodName: Load
         m_Mode: 1
         m_Arguments:
@@ -19428,7 +19451,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1049015580}
-        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameDataManager, Assembly-CSharp
         m_MethodName: Save
         m_Mode: 1
         m_Arguments:
