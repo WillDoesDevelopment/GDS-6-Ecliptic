@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System;
+using System.Text;
 
 public class GameDataManager : MonoBehaviour
 {
@@ -33,41 +35,64 @@ public class GameDataManager : MonoBehaviour
 	private bool CheckLevel(int lvNum)
 	{
 		if (lvNum > 1 && lvNum < 13)
-			return false;
-		else
 			return true;
+		else
+			return false;
 	}
 
 	private SaveData CreateSave(int lv)
 	{
-		SaveData data;
-
 		if (CheckLevel(lv))
-			data = new SaveData(lv);
+		{
+			SaveData data = new SaveData(lv);
+			Debug.Log("New Save Data Created: " + lv);
+			return new SaveData(lv);
+		}
 		else
-			data = new SaveData();
-
-		return data;
+			return new SaveData();
 	}
 
 	private SaveData ReadFile()
 	{
-		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.OpenRead(Application.persistentDataPath + savePath);
-		//try catch
-		SaveData data = (SaveData)bf.Deserialize(file);
-		file.Close();
-		Debug.Log("Save File Lv: " + data.CurrentLevel);
-		return data;
+		Debug.Log("Reading file...");
+		
+		try
+		{
+			FileStream file = File.OpenRead(Application.persistentDataPath + savePath);
+			StreamReader stream = new StreamReader(file, Encoding.UTF8);
+
+			SaveData data;
+			data = JsonUtility.FromJson<SaveData>(stream.ReadToEnd());
+			
+			file.Close();
+			Debug.Log("Save File Lv: " + data.CurrentLevel);
+			return data;
+		}
+		catch (Exception e)
+		{
+			Debug.LogError("Could not read save file: " + e);
+			return null;
+		}
 	}
 
 	private void WriteFile(SaveData data)
 	{
 		Debug.Log("Writing file...");
-		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.Open(Application.persistentDataPath + savePath, FileMode.OpenOrCreate);
-		bf.Serialize(file, data);
-		file.Close();
+		Debug.Log("Data: " + data.CurrentLevel);
+		string js = JsonUtility.ToJson(data);
+
+		Debug.Log("Json Data: " + js);
+		
+		try
+		{
+			FileStream file = File.Open(Application.persistentDataPath + savePath, FileMode.Create);
+			file.Write(Encoding.UTF8.GetBytes(js));
+			file.Close();
+		}
+		catch (Exception e)
+		{
+			Debug.LogError("Could not write save file: " + e);
+		}
 		Debug.Log("File written");
 	}
 

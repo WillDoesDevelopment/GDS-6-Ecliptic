@@ -7,26 +7,16 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class SaveData
 {
-	private int m_currLvNum;
-
-	//private int m_completeRuns;
+	[SerializeField] private int m_currLvNum;
 
 	public SaveData()
 	{
 		m_currLvNum = 1;
-		//m_completeRuns = 0;
 	}
 
-	public SaveData(int completeRuns)
-	{
-		m_currLvNum = 1;
-		//m_completeRuns = completeRuns;
-	}
-
-	public SaveData(int currLvNum, int completeRuns)
+	public SaveData(int currLvNum)
 	{
 		m_currLvNum = currLvNum;
-		//m_completeRuns = completeRuns;
 	}
 
 	public int CurrentLevel
@@ -34,16 +24,6 @@ public class SaveData
 		get { return m_currLvNum; }
 		set { m_currLvNum = value; }
 	}
-
-	/*public int CompleteRuns
-	{
-		get { return m_completeRuns; }
-	}
-
-	public void IncrementRun()
-	{
-		m_completeRuns++;
-	}*/
 }
 
 public enum SaveState
