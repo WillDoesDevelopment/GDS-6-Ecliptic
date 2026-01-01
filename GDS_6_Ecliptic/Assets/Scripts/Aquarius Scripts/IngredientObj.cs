@@ -19,15 +19,4 @@ public class IngredientObj : ScriptableObject
         get { return ingreObj.name; }
     }
 
-    public void Tester()
-    {
-        onPlayerDeath = Alpha;
-
-        onPlayerDeath.Invoke(10);
-    }
-
-    public void Alpha(int i)
-    {
-        Debug.Log("AAAAHHH!");
-    }
 }

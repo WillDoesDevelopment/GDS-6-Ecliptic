@@ -33,6 +33,8 @@ public class AquaGrapple : MonoBehaviour
     public float explosionForce = 500f;
     public float explosionRadius = 5f;
 
+    //public GameEvent grap;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -131,8 +133,12 @@ public class AquaGrapple : MonoBehaviour
                     pointObject.transform.parent = target.transform;
                     //rope.SetActive(true);
 
-                    //OnGrapple.Invoke(target.GetComponent<IngredientObj.GetNumber);
 
+                    var lever = target.GetComponent<leverScript>();
+                    if (lever != null)
+                    {
+                        lever.LeverNumberQueue();
+                    }
                 }
                 else
                 {

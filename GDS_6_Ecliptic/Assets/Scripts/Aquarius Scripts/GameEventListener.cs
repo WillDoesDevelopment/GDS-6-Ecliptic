@@ -1,3 +1,4 @@
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,7 +17,7 @@ public class GameEventListener : MonoBehaviour
         gameEvent.RemoveListener(this);
     }
 
-    public void OnEventTriggered()
+    public void EventTriggered()
     {
         onEventTriggered.Invoke();
     }

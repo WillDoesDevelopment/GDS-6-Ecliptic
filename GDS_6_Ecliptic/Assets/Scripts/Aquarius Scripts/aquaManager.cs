@@ -14,6 +14,7 @@ public class aquaManager : MonoBehaviour
 
     public List<string> recipe = new List<string>();
     public List<string> ingredients = new List<string>();
+    public Queue<int> leverCombo = new Queue<int>(3);
 
     private IngredientChoice ingre;
     public Vector3 spawnPos;
@@ -26,6 +27,7 @@ public class aquaManager : MonoBehaviour
 
     private float t = 0.0f;
 
+    public GameObject cube;
 
     public enum IngredientChoice
     {
@@ -45,6 +47,41 @@ public class aquaManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void CheckQueue(int leverNum)
+    {
+        if (leverCombo.Count < 2)
+        {
+            AddQueue(leverNum);
+        } else
+        {
+            Instantiate(cube, spawnPos, spawnRot);
+            print("Que que que que que");
+            //Steps to follow:
+            //CHeck the queue against ingrediants. Is there a match?
+            //If there is a match, spawn the ingredient.
+            //If ther is no match, just clear the queue.
+            //
+            //SpawnIngre(leverNum);
+            ClearQueue();
+        }
+    }
+
+    public void AddQueue(int leverNum)
+    {
+        leverCombo.Enqueue(leverNum);
+        print(leverNum +"In Queue");
+    }
+
+    public void ClearQueue()
+    {
+        if(leverCombo.Count >= 3)
+        {
+            leverCombo.Clear();
+            print("Queue Cleared");
+        }
+
     }
 
 
