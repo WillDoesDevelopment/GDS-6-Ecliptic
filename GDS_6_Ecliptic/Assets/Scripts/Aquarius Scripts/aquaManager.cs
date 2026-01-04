@@ -9,12 +9,14 @@ public class aquaManager : MonoBehaviour
 {
     public Dialogue[] recipeDia;
     public DialogueTrigger recipeTrig;
+    
 
     public GameObject[] recipePanel;
 
     public List<string> recipe = new List<string>();
     public List<string> ingredients = new List<string>();
-    public Queue<int> leverCombo = new Queue<int>(3);
+    public List<int> leverCombo = new List<int>(3);
+    public List<IngredientObj> iObj = new List<IngredientObj>(); 
 
     private IngredientChoice ingre;
     public Vector3 spawnPos;
@@ -49,15 +51,21 @@ public class aquaManager : MonoBehaviour
         
     }
 
-    public void CheckQueue(int leverNum)
+    public void CheckLeverList(int leverNum)
     {
-        if (leverCombo.Count < 2)
+        AddQueue(leverNum);
+
+        if(leverCombo.Count > 2)
         {
-            AddQueue(leverNum);
-        } else
-        {
-            Instantiate(cube, spawnPos, spawnRot);
-            print("Que que que que que");
+            foreach (IngredientObj i in iObj)
+            {
+                if (i.CompareList(leverCombo))
+                {
+                    Instantiate(i.IngreObjPrefab, spawnPos, spawnRot);
+                    break;
+                }
+            }
+
             //Steps to follow:
             //CHeck the queue against ingrediants. Is there a match?
             //If there is a match, spawn the ingredient.
@@ -70,8 +78,8 @@ public class aquaManager : MonoBehaviour
 
     public void AddQueue(int leverNum)
     {
-        leverCombo.Enqueue(leverNum);
-        print(leverNum +"In Queue");
+        leverCombo.Add(leverNum);
+        print(leverNum +"In List");
     }
 
     public void ClearQueue()
@@ -79,7 +87,7 @@ public class aquaManager : MonoBehaviour
         if(leverCombo.Count >= 3)
         {
             leverCombo.Clear();
-            print("Queue Cleared");
+            print("List Cleared");
         }
 
     }
@@ -113,11 +121,6 @@ public class aquaManager : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    public void SpawnIngre(int ingNum)
-    {
-        //Instantiate(ingreObj[ingNum], spawnPos, spawnRot);
     }
 
     public void IntoDrink(GameObject obj)
