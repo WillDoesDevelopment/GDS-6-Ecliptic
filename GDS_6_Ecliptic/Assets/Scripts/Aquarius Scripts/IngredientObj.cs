@@ -1,20 +1,17 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "AquariusScripts/IngredientObj", order = 1)]
 public class IngredientObj : ScriptableObject
 {
-    [SerializeField] private string ingName;
+    [SerializeField] private IngredientChoice ingType;
 
     public List<int> ingreIDNum;
 
     public GameObject ingreObj;
 
-    public string Name
+    public IngredientChoice Type
     {
-        get { return ingreObj.name; }
+        get { return ingType; }
     }
 
     public GameObject IngreObjPrefab

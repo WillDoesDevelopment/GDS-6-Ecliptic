@@ -9,12 +9,10 @@ public class aquaManager : MonoBehaviour
 {
     public Dialogue[] recipeDia;
     public DialogueTrigger recipeTrig;
-    
 
-    public GameObject[] recipePanel;
+    public List<Recipe> recObj = new List<Recipe>();
+    public List<IngredientChoice> drinklist = new List<IngredientChoice>();
 
-    public List<string> recipe = new List<string>();
-    public List<string> ingredients = new List<string>();
     public List<int> leverCombo = new List<int>(3);
     public List<IngredientObj> iObj = new List<IngredientObj>(); 
 
@@ -31,24 +29,11 @@ public class aquaManager : MonoBehaviour
 
     public GameObject cube;
 
-    public enum IngredientChoice
-    {
-        heart,
-        crab,
-        left,
-        check
-    }
-
+    public DrinkHopper DH;
 
     void Start()
     {
         recipeTrig.dialogue = recipeDia[0];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void CheckLeverList(int leverNum)
@@ -66,12 +51,6 @@ public class aquaManager : MonoBehaviour
                 }
             }
 
-            //Steps to follow:
-            //CHeck the queue against ingrediants. Is there a match?
-            //If there is a match, spawn the ingredient.
-            //If ther is no match, just clear the queue.
-            //
-            //SpawnIngre(leverNum);
             ClearQueue();
         }
     }
@@ -90,88 +69,42 @@ public class aquaManager : MonoBehaviour
             print("List Cleared");
         }
 
+        if(drinklist.Count >= 4)
+        {
+            drinklist.Clear();
+        }
+
     }
 
 
-    public void recipeStart(Dialogue dia, int rNum)
+    public void recipeStart(int rNum)
     {
-        if(dia.DialogueMode == Dialogue.DialogueState.InProgress)
+        if (recipeDia[rNum].DialogueMode == Dialogue.DialogueState.InProgress)
         {
-            recipePanel[rNum].SetActive(true);
+            recObj[rNum].recPanel.SetActive(true);
         }
         else
         {
-            recipePanel[rNum].SetActive(false);
+            recObj[rNum].recPanel. SetActive(false);
         }
-
-        switch(ingre)
-        {
-            case IngredientChoice.heart:
-                recipe.Add("Heart");
-                break;
-            case IngredientChoice.crab:
-                recipe.Add("Crab");
-                break; 
-            case IngredientChoice.left:
-                recipe.Add("Left");
-                break;
-            case IngredientChoice.check:
-                recipe.Add("Check");
-                break;
-            default:
-                break;
-        }
+        
     }
 
     public void IntoDrink(GameObject obj)
     {
-            switch (ingre)
+        drinklist.Add(ingre);
+
+        if(drinklist.Count > 3)
+        {
+            if(DH.CheckDrinkContents(drinklist, recObj[0].ingredients))
             {
-                case IngredientChoice.heart:
-                    ingredients.Add("Heart");
-                    break;
-                case IngredientChoice.crab:
-                    ingredients.Add("Crab");
-                    break;
-                case IngredientChoice.left:
-                    ingredients.Add("Left");
-                    break;
-                case IngredientChoice.check:
-                    ingredients.Add("Check");
-                    break;
-                default:
-                    break;
+                completeDrink();
             }
+
+            ClearQueue();
+        }
 
         obj.SetActive(false);
-    }
-
-    public void CheckDrinkContents(List<string> A, List<string> B)
-    {
-        if(A.Count != B.Count)
-        {
-            drinkisCorrect = false;
-            return;        
-        }
-
-        List<string> ASort = A.ToList();
-        ASort.Sort();
-        List<string> BSort = B.ToList();
-        BSort.Sort();
-
-        for (int i = 0; i < A.Count; i++) 
-        {
-            if (ASort[i] != BSort[i])
-            {
-                drinkisCorrect = false;
-                return;
-            }
-            else
-            {
-                drinkisCorrect = true;
-            }
-        }
-
     }
     
 
@@ -185,4 +118,12 @@ public class aquaManager : MonoBehaviour
         }
     }
 
+}
+
+public enum IngredientChoice
+{
+    Heart,
+    Crab,
+    Left,
+    Check
 }

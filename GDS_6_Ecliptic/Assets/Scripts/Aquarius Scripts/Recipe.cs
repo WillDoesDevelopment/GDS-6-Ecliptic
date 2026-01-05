@@ -7,6 +7,7 @@ using static aquaManager;
 public class Recipe : ScriptableObject
 {
     [SerializeField] private string recipeName;
-    public List<IngredientObj> ingredients;
+    public GameObject recPanel;
+    public List<IngredientChoice> ingredients;
 
 }
