@@ -5,18 +5,19 @@ using UnityEngine;
 
 public class DrinkHopper : MonoBehaviour
 {
-    public GameEvent eTrigger;
+    public GameEventObj eObj;
 
     public void AbsorbIngredient(GameObject obj)
     {
-        eTrigger.TriggerEvent();
+        eObj.TriggerEvent(obj);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PickUp"))
         {
-            AbsorbIngredient(other.gameObject);
+            var obj = other.GetComponent<GameObject>();
+            AbsorbIngredient(obj);
         }
     }
 

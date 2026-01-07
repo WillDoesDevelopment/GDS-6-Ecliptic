@@ -106,7 +106,7 @@ public class aquaManager : MonoBehaviour
 
     public void IntoDrink(GameObject obj)
     {
-        drinklist.Add(ingre);
+        drinklist.Add(obj.GetComponent<IngredientData>().ing);
 
         if(drinklist.Count > 3)
         {
