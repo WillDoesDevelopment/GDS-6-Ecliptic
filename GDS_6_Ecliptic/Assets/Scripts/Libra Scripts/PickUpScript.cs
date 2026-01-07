@@ -91,7 +91,7 @@ public class PickUpScript : MonoBehaviour
             }
             else if (holding == true)
             {
-                //PutDown(HoldingObj);
+                PutDown(HoldingObj);
             }
             
         }

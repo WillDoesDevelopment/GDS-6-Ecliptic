@@ -1,4 +1,5 @@
 using Mono.Cecil;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ public class aquaManager : MonoBehaviour
 {
     public Dialogue[] recipeDia;
     public DialogueTrigger recipeTrig;
+    public GameObject[] recPanel;
 
     public List<Recipe> recObj = new List<Recipe>();
     public List<IngredientChoice> drinklist = new List<IngredientChoice>();
@@ -34,6 +36,18 @@ public class aquaManager : MonoBehaviour
     void Start()
     {
         recipeTrig.dialogue = recipeDia[0];
+    }
+
+    private void Update()
+    {
+        if (recipeDia[0].DialogueMode == Dialogue.DialogueState.InProgress)
+        {
+            recPanel[0].SetActive(true);
+        }
+        else
+        {
+            recPanel[0].SetActive(false);
+        }
     }
 
     public void CheckLeverList(int leverNum)
@@ -79,15 +93,15 @@ public class aquaManager : MonoBehaviour
 
     public void recipeStart(int rNum)
     {
-        if (recipeDia[rNum].DialogueMode == Dialogue.DialogueState.InProgress)
+        if(recipeDia[rNum].DialogueMode == Dialogue.DialogueState.InProgress)
         {
-            recObj[rNum].recPanel.SetActive(true);
+            recPanel[rNum].SetActive(true);
         }
         else
         {
-            recObj[rNum].recPanel. SetActive(false);
+            recPanel[rNum].SetActive(false);
         }
-        
+
     }
 
     public void IntoDrink(GameObject obj)
