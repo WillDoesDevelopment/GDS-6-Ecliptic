@@ -29,10 +29,6 @@ public class aquaManager : MonoBehaviour
 
     private float t = 0.0f;
 
-    public GameObject cube;
-
-    public DrinkHopper DH;
-
     void Start()
     {
         recipeTrig.dialogue = recipeDia[0];
@@ -47,6 +43,13 @@ public class aquaManager : MonoBehaviour
         else
         {
             recPanel[0].SetActive(false);
+        }
+
+
+        if (drinkisCorrect)
+        {
+            t += Time.fixedDeltaTime;
+            jarMat.SetFloat("_Fill", Mathf.Lerp(0, 1, t / 2));
         }
     }
 
@@ -110,8 +113,10 @@ public class aquaManager : MonoBehaviour
 
         if(drinklist.Count > 3)
         {
-            if(DH.CheckDrinkContents(drinklist, recObj[0].ingredients))
+            if(CheckDrinkContents(drinklist, recObj[0].ingredients))
             {
+                print("Drink Contents Checked");
+                drinkisCorrect = true;
                 completeDrink();
             }
 
@@ -124,12 +129,34 @@ public class aquaManager : MonoBehaviour
 
     public void completeDrink()
     {
-        t += Time.fixedDeltaTime;
+        
+        print("I got here");
 
-        if (drinkisCorrect)
+        
+    }
+
+    public bool CheckDrinkContents(List<IngredientChoice> A, List<IngredientChoice> B)
+    {
+        if (A.Count != B.Count)
         {
-            jarMat.SetFloat("_Fill", Mathf.Lerp(0, 1, t));
+            return false;
         }
+
+        List<IngredientChoice> ASort = A.ToList();
+        ASort.Sort();
+        List<IngredientChoice> BSort = B.ToList();
+        BSort.Sort();
+
+        for (int i = 0; i < A.Count; i++)
+        {
+            if (ASort[i] != BSort[i])
+            {
+                return false;
+            }
+        }
+
+        return true;
+
     }
 
 }

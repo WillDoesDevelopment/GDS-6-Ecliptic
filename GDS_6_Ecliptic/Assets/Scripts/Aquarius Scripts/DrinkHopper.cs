@@ -16,37 +16,9 @@ public class DrinkHopper : MonoBehaviour
     {
         if (other.CompareTag("PickUp"))
         {
-            var obj = other.GetComponent<GameObject>();
+            var obj = other.gameObject;
             AbsorbIngredient(obj);
         }
-    }
-
-    public bool CheckDrinkContents(List<IngredientChoice> A, List<IngredientChoice> B)
-    {
-        if (A.Count != B.Count)
-        {
-            return false;
-        }
-
-        List<IngredientChoice> ASort = A.ToList();
-        ASort.Sort();
-        List<IngredientChoice> BSort = B.ToList();
-        BSort.Sort();
-
-        for (int i = 0; i < A.Count; i++)
-        {
-            if (ASort[i] != BSort[i])
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        return false;
-
     }
 }
 
