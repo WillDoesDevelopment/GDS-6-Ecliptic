@@ -29,6 +29,12 @@ public class aquaManager : MonoBehaviour
 
     private float t = 0.0f;
 
+    private int recNum;
+
+    public DoorScript ds;
+
+    public GameEventDia ge;
+
     void Start()
     {
         recipeTrig.dialogue = recipeDia[0];
@@ -36,20 +42,11 @@ public class aquaManager : MonoBehaviour
 
     private void Update()
     {
-        if (recipeDia[0].DialogueMode == Dialogue.DialogueState.InProgress)
-        {
-            recPanel[0].SetActive(true);
-        }
-        else
-        {
-            recPanel[0].SetActive(false);
-        }
-
-
         if (drinkisCorrect)
         {
             t += Time.fixedDeltaTime;
             jarMat.SetFloat("_Fill", Mathf.Lerp(0, 1, t / 2));
+            sparkleFx.SetActive(true);
         }
     }
 
@@ -94,15 +91,15 @@ public class aquaManager : MonoBehaviour
     }
 
 
-    public void recipeStart(int rNum)
+    public void recipeStart()
     {
-        if(recipeDia[rNum].DialogueMode == Dialogue.DialogueState.InProgress)
+        if(recipeDia[recNum].DialogueMode == Dialogue.DialogueState.InProgress)
         {
-            recPanel[rNum].SetActive(true);
+            recPanel[recNum].SetActive(true);
         }
         else
         {
-            recPanel[rNum].SetActive(false);
+            recPanel[recNum].SetActive(false);
         }
 
     }
@@ -129,10 +126,13 @@ public class aquaManager : MonoBehaviour
 
     public void completeDrink()
     {
-        
-        print("I got here");
+        recNum++;
+        ge.TriggerEvent(recipeDia[recNum]);
 
-        
+        if(recNum <= 4)
+        {
+            ds.GetComponent<DoorStatus>().IsOpen = true;
+        }
     }
 
     public bool CheckDrinkContents(List<IngredientChoice> A, List<IngredientChoice> B)
