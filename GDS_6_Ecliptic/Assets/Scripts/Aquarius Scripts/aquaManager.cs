@@ -27,9 +27,9 @@ public class aquaManager : MonoBehaviour
     public Material jarMat;
     public GameObject sparkleFx;
 
-    private float t = 0.0f;
+    public float t = 0.0f;
 
-    private int recNum;
+    public int recNum;
 
     public DoorScript ds;
 
@@ -38,6 +38,7 @@ public class aquaManager : MonoBehaviour
     void Start()
     {
         recipeTrig.dialogue = recipeDia[0];
+        jarMat.SetFloat("_Fill", 0);
     }
 
     private void Update()
@@ -47,6 +48,17 @@ public class aquaManager : MonoBehaviour
             t += Time.fixedDeltaTime;
             jarMat.SetFloat("_Fill", Mathf.Lerp(0, 1, t / 2));
             sparkleFx.SetActive(true);
+        }
+        if(recNum < 4)
+        {
+            if (recipeDia[recNum].DialogueMode == Dialogue.DialogueState.InProgress)
+            {
+                recPanel[recNum].SetActive(true);
+            }
+            else
+            {
+                recPanel[recNum].SetActive(false);
+            }
         }
     }
 
@@ -90,49 +102,55 @@ public class aquaManager : MonoBehaviour
 
     }
 
-
-    public void recipeStart()
-    {
-        if(recipeDia[recNum].DialogueMode == Dialogue.DialogueState.InProgress)
-        {
-            recPanel[recNum].SetActive(true);
-        }
-        else
-        {
-            recPanel[recNum].SetActive(false);
-        }
-
-    }
-
     public void IntoDrink(GameObject obj)
     {
         drinklist.Add(obj.GetComponent<IngredientData>().ing);
 
         if(drinklist.Count > 3)
         {
-            if(CheckDrinkContents(drinklist, recObj[0].ingredients))
+            if(CheckDrinkContents(drinklist, recObj[recNum].ingredients))
             {
                 print("Drink Contents Checked");
                 drinkisCorrect = true;
-                completeDrink();
+                StartCoroutine(completeDrink());
             }
 
             ClearQueue();
         }
 
-        obj.SetActive(false);
+        Destroy(obj);
     }
     
 
-    public void completeDrink()
+    /*public void completeDrink()
     {
         recNum++;
         ge.TriggerEvent(recipeDia[recNum]);
 
         if(recNum <= 4)
         {
-            ds.GetComponent<DoorStatus>().IsOpen = true;
+            ds.DS.IsOpen = true;
         }
+
+        drinkisCorrect = false;
+        jarMat.SetFloat("_Fill", 0);
+    }*/
+
+    IEnumerator completeDrink()
+    {
+        recNum++;
+        ge.TriggerEvent(recipeDia[recNum]);
+
+        if (recNum <= 4)
+        {
+            ds.DS.IsOpen = true;
+        }
+
+        yield return new WaitForSeconds(3f);
+        drinkisCorrect = false;
+        jarMat.SetFloat("_Fill", 0);
+        t = 0.0f;
+        sparkleFx.SetActive(false);
     }
 
     public bool CheckDrinkContents(List<IngredientChoice> A, List<IngredientChoice> B)
