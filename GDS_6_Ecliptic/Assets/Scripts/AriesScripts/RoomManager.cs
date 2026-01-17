@@ -15,16 +15,12 @@ public class RoomManager : MonoBehaviour
     public GameObject NsheepAnim;
     public GameObject GoldRamFX;
 
-    [Header("Orb Objects")]
-    //public GameObject startDia;
-    //public GameObject orb;
-
     [Header("VFX & Managers")]
     // object that activates vfx circle
     public VFXCircleHandler VFXCH;
     public DialogueTrigger TestDt;
     public DialogueTrigger sheepDeathDT;
-
+    public DialogueTrigger normalsheepDT;
     public HubManager HM;
 
     [Header("Positions")]
@@ -43,34 +39,33 @@ public class RoomManager : MonoBehaviour
     public GameObject deadRamSnd;
     public GameObject SuccessSND;
 
-    public Dialogue startDia;
-    public DialogueTrigger startDiaDT;
     private bool isPlayed;
     public bool sheeped = false;
-     
-
     //public bool isOrbed = false;
     void Start()
     {
+        TestDt.TriggerDialogue();
         VFXCH.circleVFXStart();
         PlayerStartPos = Player.transform.position;
         GoldRamStartPos = GoldSheep.transform.parent.transform.position;
         GoldSheep.SetActive(true);
         GoldRamFX.SetActive(true);
         GoldRamStartRot = GoldSheep.transform.parent.transform.rotation;
-        //Cursor.lockState = CursorLockMode.Locked;
-    }
+        sheepDeathDT.dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
+        normalsheepDT.dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
 
+    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         displayResetRam();
+
         if (DialogueStartedCheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
             PlaySnd(GoldenRamSnd);
         }
-        if (DialogueStartedCheck(NormalSheep.GetComponent<DialogueTrigger>()))
+        if (DialogueStartedCheck(NormalSheep.GetComponentInChildren<DialogueTrigger>()))
         {
             PlaySnd(NormalRamSnd);
         }
@@ -80,8 +75,10 @@ public class RoomManager : MonoBehaviour
             ExitDoor.GetComponent<DoorScript>().DS.IsOpen = true;
 
             SuccessSND.SetActive(true);
+
+            
         }
-        
+
         if (DialogueEndcheck(GoldSheep.GetComponent<DialogueTrigger>()))
         {
             VFXCH.circleVFXStart();
@@ -91,48 +88,38 @@ public class RoomManager : MonoBehaviour
             }
             GoldSheep.transform.parent.GetComponent<Animator>().SetTrigger("AnimateTrig");
             GoldSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
-            
-        }
-  
 
-        if (NormalSheep.gameObject.activeInHierarchy /*&& sheeped == false*/)
+        }
+
+        if (NormalSheep.gameObject.activeInHierarchy)
         {
-            
-            if (DialogueEndcheck(NormalSheep.GetComponent<DialogueTrigger>()))
+
+            if (DialogueEndcheck(NormalSheep.GetComponentInChildren<DialogueTrigger>()))
             {
                 GoldSheep.SetActive(false);
-                //print("Baby sheep");
                 NormalSheep.GetComponent<Animator>().SetTrigger("Animate");
                 NsheepAnim.GetComponent<Animator>().SetTrigger("Animate");
                 sheeped = true;
-                //NormalSheep.GetComponentInChildren<Animator>().SetTrigger("Animate");
-                //NormalSheep.transform.parent.GetChild(0).GetComponent<Animator>().SetTrigger("Animate");
-                //NormalSheep.GetComponentInChildren<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.Finished;
-                //
+     
             }
 
         }
         else
         {
-            Debug.LogError("Made it here in one piece.");
             if (DialogueEndcheck(sheepDeathDT))
             {
-                Debug.LogError("Death DT triggered");
                 sheepDeathDT.gameObject.SetActive(false);
                 GoldSheep.SetActive(true);
                 GoldRamFX.SetActive(false);
 
             }
         }
-        /*(if(blooood.tries >= 1)
-        {
-            startDia.DialogueMode = Dialogue.DialogueState.Finished;
-        }*/
+        // Once the dialogue component on the sheep is on the finished state it animates and gets hit by the arrow
     }
 
     public bool DialogueEndcheck(DialogueTrigger DialogueObj)
     {
-        
+
         if (DialogueObj.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
             return true;
@@ -163,7 +150,7 @@ public class RoomManager : MonoBehaviour
             ResetRamObj.GetComponent<Animator>().SetBool("FadeIn", true);
             ResetRamObj.GetComponent<DialogueTrigger>().enabled = true;
             Resetdialogue.SetActive(true);
-            
+
             if (DialogueEndcheck(ResetRamObj.GetComponent<DialogueTrigger>()))
             {
                 resetGoldRam();
@@ -182,7 +169,6 @@ public class RoomManager : MonoBehaviour
     {
         PlaySnd(deadRamSnd);
 
-        
 
         Player.transform.position = PlayerStartPos;
 
@@ -192,7 +178,7 @@ public class RoomManager : MonoBehaviour
         Player.GetComponent<DialogueTrigger>().OnEventCheck();
         Player.GetComponent<DialogueTrigger>().OnEvent = false;
 
-        
+
         //turn off audios
         deadRamSnd.SetActive(false);
         NormalRamSnd.SetActive(false);
@@ -203,18 +189,17 @@ public class RoomManager : MonoBehaviour
 
     public void resetGoldRam()
     {
+
         GameObject Temp = Instantiate(GoldSheep.transform.parent.gameObject, GoldRamStartPos, GoldRamStartRot);
         Destroy(GoldSheep.transform.parent.gameObject);
         GoldSheep = Temp.transform.Find("DialogueTriggerPrefab").gameObject;
         Temp.GetComponent<Animator>().SetBool("Animate", false);
         Temp.transform.Find("DialogueTriggerPrefab").gameObject.GetComponent<DialogueTrigger>().dialogue.DialogueMode = Dialogue.DialogueState.NotStarted;
-        Temp.transform.Find("SparkleFX 2").gameObject.SetActive(true);   
-
+        Temp.transform.Find("SparkleFX 2").gameObject.SetActive(true);
     }
 
     public void PlaySnd(GameObject AS)
     {
-        //GameObject Temp = Instantiate(AS, GameObject.Find("AudioObjs").transform.position,Quaternion.identity);
         AS.SetActive(true);
 
     }

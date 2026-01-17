@@ -185,7 +185,7 @@ public class DialogueManager : MonoBehaviour
 
         if (DialogueIndexTracker != 0 && DialogueIndexTracker < dialogue.IndentVals.Length)  
         { 
-                        Debug.Log("Finding dialogue");
+ 
             if (dialogue.IndentVals[DialogueIndexTracker] < dialogue.IndentVals[DialogueIndexTracker - 1])
             {
                 for (int i = DialogueIndexTracker; i < dialogue.IndentVals.Length; i++)
