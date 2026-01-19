@@ -23,10 +23,12 @@ public class crabScript : MonoBehaviour
     public GameObject AngrySnds;
     public GameObject WinConditionSND;
     public GameObject SuccessSND;
+
+    public GameObject sparkles;
     // Start is called before the first frame update
     void Start()
     {
-        
+        sparkles.SetActive(true);
     }
 
     // Update is called once per frame
@@ -40,6 +42,7 @@ public class crabScript : MonoBehaviour
             if (hitCollider.gameObject == player)                                           
             {
                 crabDT.SetActive(false); // if we dont talk to the crab before squishing it we want to deactivate the dialogue
+                sparkles.SetActive(false);
                 if (player.GetComponent<PlayerController>().airTime > 0.5)
                 {
                     AngrySnds.SetActive(true);

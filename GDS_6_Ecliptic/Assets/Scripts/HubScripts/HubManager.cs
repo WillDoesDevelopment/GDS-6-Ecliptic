@@ -105,7 +105,7 @@ public class HubManager : MonoBehaviour
     {
         //this is important for remembering what game stage we are in so that the hub room can respond accordingly
         LevelNumber = stageNum;
-        print("set");
+        //print("set");
     }
     public void SendToHub(DoorStatus DS)
     {
