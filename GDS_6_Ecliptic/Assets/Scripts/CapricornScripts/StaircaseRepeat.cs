@@ -11,7 +11,7 @@ public class StaircaseRepeat : MonoBehaviour
     public GameObject teleportEnd;
     public GameObject[] stairSegments;
     public GameObject[] decorationPrefabs;
-    float range = 4f;
+    public float range = 4f;
     Vector3 teleportDelta;
 
     // Start is called before the first frame update
