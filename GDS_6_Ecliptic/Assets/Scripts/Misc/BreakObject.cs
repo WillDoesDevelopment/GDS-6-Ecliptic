@@ -21,6 +21,8 @@ public class BreakObject : MonoBehaviour
     public float explosionForce = 150f;
     public float explosionRadius = 1f;
 
+    public AudioSource sound;
+
     void Start()
     {        
         
@@ -79,6 +81,7 @@ public class BreakObject : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
         if(explodeForce)
         {
+            sound.Play();
             ExplosionForce();
         }
 
@@ -100,6 +103,7 @@ public class BreakObject : MonoBehaviour
     
     void ExplosionForce()
     {
+        
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRadius);
         foreach (Collider hit in colliders)

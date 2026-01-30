@@ -25,6 +25,7 @@ public class Grapple3 : MonoBehaviour
     public AudioClip[] grappleSnd;
     public AudioSource source;
 
+
     Transform playerPoint;
     Vector3 grapplePoint;
     Vector3 playerXZ;
@@ -276,6 +277,7 @@ public class Grapple3 : MonoBehaviour
     {
         if (t > 1)
         {
+
             target.GetComponent<columnScript>().fall = true;
             target.GetComponent<columnScript>().FallUpdate();
             RopeBreak();

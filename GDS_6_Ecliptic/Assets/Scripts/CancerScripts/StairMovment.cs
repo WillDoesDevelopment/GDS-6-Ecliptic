@@ -11,6 +11,8 @@ public class StairMovment : MonoBehaviour
     bool stairLock = false;
 
     public GameObject[] objectIgnoreArray;
+
+    public AudioSource stairsnd;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +27,13 @@ public class StairMovment : MonoBehaviour
     {
         if(transform.position.z < zPosLock && !stairLock)
         {
+            stairsnd.Play();
             transform.position = new Vector3(transform.position.x, transform.position.y, zPosLock);
             int LayerDefault = LayerMask.NameToLayer("Default");
             gameObject.layer = LayerDefault;
             gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             stairLock = true;
+            
         }
     }
 
@@ -37,6 +41,6 @@ public class StairMovment : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(new Vector3(transform.position.x, transform.position.y - 5f, zPosLock), new Vector3(transform.position.x, transform.position.y + 5f, zPosLock));
-
+        
     }
 }
