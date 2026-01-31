@@ -80,11 +80,11 @@ public class PickUpScript : MonoBehaviour
         ObjColliders = Physics.OverlapSphere(this.transform.position, PickUpRadius);
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Submit"))
         {
-            Debug.Log(HoldingObj);
+            //Debug.Log(HoldingObj);
             if (nearestPickUp() != null && nearestPickUp().CompareTag("PickUp") && holding == false)
             {
                 PickUpSnd.Play();
-                Debug.Log("running");
+                //Debug.Log("running");
                 HoldingObj = nearestPickUp();
                 PickUp(nearestPickUp());
                 holding = true;

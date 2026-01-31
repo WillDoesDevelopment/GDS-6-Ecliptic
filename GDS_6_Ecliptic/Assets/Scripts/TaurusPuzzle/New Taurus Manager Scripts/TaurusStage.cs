@@ -171,15 +171,7 @@ public class TaurusStage : MonoBehaviour
 
     public void ArtPieces(GameObject HO)
     {
-        /*GameObject HO = player.GetComponent<PickUpScript>().HoldingObj;
-
-        if (HO == null)
-        {
-            return;
-        }
-
-        if(pieces.Contains(HO))
-        {*/
+  
 
         HO.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
 
@@ -187,18 +179,18 @@ public class TaurusStage : MonoBehaviour
 
         player.GetComponent<PickUpScript>().holding = false;
 
-        HO.SetActive(false);
+       
+        Destroy(HO);
 
         piecesCounter++;
-   
 
-        //}
 
     }
 
     public void ArtifactAppear()
     {
         Artifact.SetActive(true);
+        Artifact.transform.GetChild(1).gameObject.SetActive(true);
         anim.SetBool("Bob", true);
         hasAppeared = true;
 
