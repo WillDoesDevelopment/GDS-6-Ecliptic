@@ -19,7 +19,11 @@ public class globeManager : MonoBehaviour
         {
             Act1();
         }
-        if(HubManager.LevelNumber >= 4)
+        if(HubManager.LevelNumber >= 4 && HubManager.LevelNumber <= 7)
+        {
+            Act2();
+        }
+        if (HubManager.LevelNumber >= 7)
         {
             return;
         }
@@ -34,6 +38,7 @@ public class globeManager : MonoBehaviour
     public void Act2()
     {
         rend.material.EnableKeyword("_EMISSION");
+        this.GetComponent<Animator>().SetTrigger("Act3Bob");
     }
 
     public void Act3()
