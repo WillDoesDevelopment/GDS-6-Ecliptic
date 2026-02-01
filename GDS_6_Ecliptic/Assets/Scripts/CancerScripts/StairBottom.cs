@@ -12,7 +12,7 @@ public class StairBottom : MonoBehaviour
 
     public GameObject[] objectIgnoreArray;
 
-    public AudioSource stairsnd;
+    //public AudioSource stairsnd;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,7 @@ public class StairBottom : MonoBehaviour
     {
         if(transform.position.x > xPosLock && !stairLock)
         {
-            stairsnd.Play();
+            //stairsnd.Play();
             transform.position = new Vector3(xPosLock, transform.position.y, transform.position.z);
             int LayerDefault = LayerMask.NameToLayer("Default");
             gameObject.layer = LayerDefault;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 553995925}
-  m_IndirectSpecularColor: {r: 0.01956937, g: 0, b: 0.04310909, a: 1}
+  m_IndirectSpecularColor: {r: 0.016863361, g: 0, b: 0.03629151, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12027,7 +12027,7 @@ MonoBehaviour:
   - -19.38
   - 18.3
   - 1
-  - 20.2
+  - 21.57
   - 34.2
   - 13.52
   - -27.7
@@ -23569,6 +23569,83 @@ Transform:
   m_Father: {fileID: 5410534049794663368}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
+--- !u!1001 &1754893987
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2109368365}
+    m_Modifications:
+    - target: {fileID: 909840429943042931, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5cdbbb6f9983068498f822c60a38c07e, type: 2}
+    - target: {fileID: 3873319081359816422, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_Name
+      value: SparkleFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.26847893
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.26847893
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.26847896
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.33594447
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1628
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.6835825
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.43050322
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.43050322
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5609518
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5609518
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063796500649586532, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889258827457928180, guid: 633c50b849d0eb9499f5652979498030, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 633c50b849d0eb9499f5652979498030, type: 3}
 --- !u!1 &1759458688
 GameObject:
   m_ObjectHideFlags: 0
@@ -26704,6 +26781,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3ef8075a0ee5fb84ba1915ba4827aed7, type: 2}
+    - target: {fileID: -1071543505567560388, guid: 2bb50255c980df44ba46c2069bf9afc6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2bb50255c980df44ba46c2069bf9afc6, type: 3}
       propertyPath: m_Name
       value: Hub_hero_Globe
@@ -27021,7 +27102,7 @@ PrefabInstance:
     - target: {fileID: 4731691729103838188, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: dialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 405a484c87e98fa44b29dfccb715e872, type: 2}
+      objectReference: {fileID: 11400000, guid: 5fa49291e07b33d438add8287c439b40, type: 2}
     - target: {fileID: 5203205849167279358, guid: 6642db91dbb89e240b546f2777f246e3, type: 3}
       propertyPath: m_Name
       value: GlobeTriggerDia
@@ -27118,6 +27199,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VirtualCamera: {fileID: 587586436}
   DT: {fileID: 2104754100}
+--- !u!4 &2109368365 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2466747993191788143, guid: 2bb50255c980df44ba46c2069bf9afc6, type: 3}
+  m_PrefabInstance: {fileID: 2054999268}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2119228426
 PrefabInstance:
   m_ObjectHideFlags: 0

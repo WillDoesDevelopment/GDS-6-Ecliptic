@@ -15,7 +15,7 @@ public class globeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(HubManager.LevelNumber >= 1 && HubManager.LevelNumber <= 3)
+        if(HubManager.LevelNumber >= 0 && HubManager.LevelNumber <= 3)
         {
             Act1();
         }
