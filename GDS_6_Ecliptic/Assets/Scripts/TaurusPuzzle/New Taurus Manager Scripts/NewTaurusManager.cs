@@ -49,7 +49,7 @@ public class NewTaurusManager : MonoBehaviour
 
         if (taurusStageCounter == 3 && DT.dialogue.DialogueMode == Dialogue.DialogueState.Finished)
         {
-            print("New Taurus Triggers");
+            //print("New Taurus Triggers");
             TaurusStages[3].StageWinCondition();
         }
     }

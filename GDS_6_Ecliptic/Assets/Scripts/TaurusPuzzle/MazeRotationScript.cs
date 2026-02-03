@@ -22,7 +22,7 @@ public class MazeRotationScript : MonoBehaviour
         if (mt.mazeisOn == true)
         {
             this.transform.eulerAngles += new Vector3(0, rotSpeed, 0);
-            print("DOING THE THING");
+            //print("DOING THE THING");
         }
 
         else
