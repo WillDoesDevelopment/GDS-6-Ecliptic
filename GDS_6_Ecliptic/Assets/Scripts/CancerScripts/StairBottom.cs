@@ -12,7 +12,8 @@ public class StairBottom : MonoBehaviour
 
     public GameObject[] objectIgnoreArray;
 
-    //public AudioSource stairsnd;
+    public AudioSource stairsnd;
+    Vector3 prevPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class StairBottom : MonoBehaviour
         {
             Physics.IgnoreCollision(ignoreobject.GetComponent<Collider>(), GetComponent<Collider>());
         }
+        prevPos = transform.position;
     }
 
     // Update is called once per frame
@@ -35,6 +37,23 @@ public class StairBottom : MonoBehaviour
             stairLock = true;
             
         }
+        else if (transform.position != prevPos)
+        {
+            if (!stairsnd.isPlaying)
+            {
+                stairsnd.Play();
+            }
+
+        }
+        else
+        {
+            if (stairsnd.isPlaying)
+            {
+                stairsnd.Pause();
+            }
+        }
+
+        prevPos = transform.position;
     }
 
     private void OnDrawGizmos()
