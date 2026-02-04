@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.XR;
 public class StaircaseRepeat : MonoBehaviour
 {
     public GameObject player;
+    PlayerController playerController;
     CharacterController characterController;
     public GameObject teleportStart;
     public GameObject teleportEnd;
@@ -15,10 +16,19 @@ public class StaircaseRepeat : MonoBehaviour
     public int repeatCount = 0;
     Vector3 teleportDelta;
 
+    //When to start dialogue
+    public int triggerTime1;
+    public DialogueTrigger dialogueTrigger1;
+    public int triggerTime2;
+    public DialogueTrigger dialogueTrigger2;
+    public int triggerTime3;
+    public DialogueTrigger dialogueTrigger3;
+
     // Start is called before the first frame update
     void Start()
     {
         characterController = player.GetComponent<CharacterController>();
+        playerController = player.GetComponent<PlayerController>();
         teleportDelta = teleportEnd.transform.position - teleportStart.transform.position;
     }
 
@@ -29,6 +39,9 @@ public class StaircaseRepeat : MonoBehaviour
         {
             Teleport();
             repeatCount += 1;
+            if(repeatCount == triggerTime1) { StartDialogue(dialogueTrigger1); }
+            if(repeatCount == triggerTime2) { StartDialogue(dialogueTrigger2); }
+            if(repeatCount == triggerTime3) { StartDialogue(dialogueTrigger3); }
         }
     }
 
@@ -62,6 +75,18 @@ public class StaircaseRepeat : MonoBehaviour
         GameObject newObject = Instantiate(decorationPrefabs[Random.Range(0,decorationPrefabs.Length)], stairSegments[stairSegments.Length-1].transform.position + new Vector3( 0f, 1.5f, Random.Range(-2f, 2f)), Quaternion.identity);
         newObject.transform.parent = stairSegments[stairSegments.Length - 1].transform;        
     }
+    
+    void StartDialogue(DialogueTrigger dt)
+    {
+        playerController.playerState = PlayerState.Dialogue;        
+
+        if (dt != null)
+        {
+            dt.OnEvent = false;
+            dt.TriggerDialogue();
+        }
+    }
+    
     private void OnDrawGizmos()
     {
         // Set the color with custom alpha
