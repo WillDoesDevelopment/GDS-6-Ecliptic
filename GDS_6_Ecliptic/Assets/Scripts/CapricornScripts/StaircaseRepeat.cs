@@ -12,6 +12,7 @@ public class StaircaseRepeat : MonoBehaviour
     public GameObject[] stairSegments;
     public GameObject[] decorationPrefabs;
     public float range = 4f;
+    public int repeatCount = 0;
     Vector3 teleportDelta;
 
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class StaircaseRepeat : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) < range)
         {
             Teleport();
+            repeatCount += 1;
         }
     }
 
