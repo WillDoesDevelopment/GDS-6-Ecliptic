@@ -13,6 +13,9 @@ public class GeminiManager : MonoBehaviour
 
     private bool played = false;
 
+    public GameObject animCanvas;
+    public PlayerController cont;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +31,20 @@ public class GeminiManager : MonoBehaviour
             SuccessSND.Play();
             played = true;
             Snake2.SetActive(true);
+            StartCoroutine(gemAnimCanv()); 
+
         }
 
         
+    }
+
+    IEnumerator gemAnimCanv()
+    {
+        cont.canWalk = false;
+        animCanvas.SetActive(true);
+        yield return new WaitForSeconds(19f);
+        animCanvas.SetActive(false);
+        cont.canWalk = true;
     }
 
     
