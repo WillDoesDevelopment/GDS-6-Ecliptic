@@ -8,10 +8,12 @@ public class GeminiManager : MonoBehaviour
   
     public GameObject EndDT;
     public GameObject Snake2;
+    public GameObject SnekDt;
 
     public AudioSource SuccessSND;
 
     private bool played = false;
+    private bool played2 = false;
 
     public GameObject animCanvas;
     public PlayerController cont;
@@ -31,8 +33,13 @@ public class GeminiManager : MonoBehaviour
             SuccessSND.Play();
             played = true;
             Snake2.SetActive(true);
-            StartCoroutine(gemAnimCanv()); 
+            
 
+        }
+
+        if(SnekDt.GetComponent<DialogueTrigger>().dialogue.DialogueMode == Dialogue.DialogueState.Finished && played2 == false)
+        {
+            StartCoroutine(gemAnimCanv());
         }
 
         
@@ -40,11 +47,14 @@ public class GeminiManager : MonoBehaviour
 
     IEnumerator gemAnimCanv()
     {
+        played2 = true;
+        yield return new WaitForSeconds(1f);
         cont.canWalk = false;
         animCanvas.SetActive(true);
-        yield return new WaitForSeconds(19f);
+        yield return new WaitForSeconds(14f);
         animCanvas.SetActive(false);
         cont.canWalk = true;
+        
     }
 
     
