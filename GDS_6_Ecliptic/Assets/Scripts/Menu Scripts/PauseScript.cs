@@ -63,6 +63,17 @@ public class PauseScript : MonoBehaviour
                 Resume();
             }
         }
+
+        if (Input.GetButtonDown("RESET TO MENU"))
+        {
+            startTime = Time.time;
+            if (startTime + holdTime >= Time.time)
+            {
+                SceneManager.LoadScene(0);
+            }
+
+
+        }
     }
     public void SelectedSNDCheck()
     {
