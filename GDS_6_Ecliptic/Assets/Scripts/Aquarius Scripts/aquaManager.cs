@@ -181,8 +181,12 @@ public class aquaManager : MonoBehaviour
 
 public enum IngredientChoice
 {
-    Heart,
-    Crab,
-    Left,
-    Check
+    Mint,
+    Lime,
+    Lemon,
+    Licorice,
+    Honey,
+    Cinnamon,
+    Raisins,
+    Grapes
 }
