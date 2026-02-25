@@ -10,6 +10,8 @@ public class SagManager : MonoBehaviour
     public DialogueTrigger dt;
     public DoorScript Door;
 
+    public GameObject[] Frame;
+
     // Update is called once per frame
     void Update()
     {
@@ -22,5 +24,7 @@ public class SagManager : MonoBehaviour
                 Door.DS.IsOpen = true;
             }
         }
+
+        
     }
 }

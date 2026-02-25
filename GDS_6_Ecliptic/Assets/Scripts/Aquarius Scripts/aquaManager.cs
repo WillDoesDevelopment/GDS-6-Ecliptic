@@ -120,21 +120,6 @@ public class aquaManager : MonoBehaviour
 
         Destroy(obj);
     }
-    
-
-    /*public void completeDrink()
-    {
-        recNum++;
-        ge.TriggerEvent(recipeDia[recNum]);
-
-        if(recNum <= 4)
-        {
-            ds.DS.IsOpen = true;
-        }
-
-        drinkisCorrect = false;
-        jarMat.SetFloat("_Fill", 0);
-    }*/
 
     IEnumerator completeDrink()
     {
