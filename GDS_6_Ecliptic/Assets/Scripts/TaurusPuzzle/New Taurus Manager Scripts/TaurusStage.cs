@@ -43,6 +43,7 @@ public class TaurusStage : MonoBehaviour
     private void Start()
     {
         rend = barrierObject.GetComponent<Renderer>();
+        SetResetPos();
         
     }
 
@@ -91,8 +92,10 @@ public class TaurusStage : MonoBehaviour
 
     public void ResetCheck(GameObject Player)
     {
+        
         if (Vector3.Distance(Player.transform.position, bull.transform.position) < 1f)
         {
+            Debug.Log("Reset Check: " + name);
             player.GetComponent<blooood>().blood();
 
             //this teleports the player without being over written by the character controller
@@ -207,6 +210,7 @@ public class TaurusStage : MonoBehaviour
     }
     public void SetResetPos()
     {
+        Debug.Log(name + " set reset positions");
         BullResetPos = bull.transform.position;
         ArtifactResetPos = Artifact.transform.position;
 

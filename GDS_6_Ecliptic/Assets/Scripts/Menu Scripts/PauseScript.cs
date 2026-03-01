@@ -63,7 +63,7 @@ public class PauseScript : MonoBehaviour
                 Resume();
             }
         }
-
+        /*
         if (Input.GetButtonDown("RESET TO MENU"))
         {
             startTime = Time.time;
@@ -74,6 +74,7 @@ public class PauseScript : MonoBehaviour
 
 
         }
+        */
     }
     public void SelectedSNDCheck()
     {

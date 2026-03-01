@@ -99,6 +99,7 @@ public class PickUpScript : MonoBehaviour
     // we check if it is withing proximity using the helper function, we then set the object to out holding pos and parent it, we check for an RB and then freeze all constraints
     public void PickUp(GameObject pickUpObj)
     {
+        Debug.Log("Pick up " + pickUpObj.name);
         //bool ProxBool = ;
         pickUpObj.transform.position = PickUpPos.transform.position;
         pickUpObj.transform.SetParent(PickUpPos.transform);
@@ -150,8 +151,9 @@ public class PickUpScript : MonoBehaviour
     // here we reverse what we did in the pickUP function
     public void PutDown(GameObject HoldingObj)
     {
+        Debug.Log("Put down " + HoldingObj.name);
         HoldingObj = PickUpPos.gameObject;
-        Debug.Log(HoldingObj);
+        //Debug.Log(HoldingObj);
         PickUpPos.transform.DetachChildren();
         holding = false;
         

@@ -24,7 +24,8 @@ public class Artifact : MonoBehaviour
 
     public void ResetArtifact()
     {
-        Debug.Log("Working");
+        Debug.Log("Reset artifact: " + name);
+        //Debug.Log("Working");
         player.GetComponent<PickUpScript>().PutDown(this.gameObject);
         player.GetComponent<PickUpScript>().HoldingObj = player.GetComponent<PickUpScript>().PickUpPos.gameObject;
         anim.SetBool("Bob", true);
